@@ -64,4 +64,4 @@ Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
 Attribution
 ===========
 
-Based on the work of the awesome guys at [objc.io](http://www.objc.io/)
+Based on the work of the awesome guys at [objc.io](http://www.objc.io/).
