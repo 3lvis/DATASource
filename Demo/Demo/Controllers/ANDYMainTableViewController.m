@@ -20,6 +20,8 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
 
 @implementation ANDYMainTableViewController
 
+#pragma mark - Lazy Instantiation
+
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController) {
