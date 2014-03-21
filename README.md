@@ -8,6 +8,8 @@ How much does it take to insert a NSManagedObject into CoreData and show it in y
 Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
 
 ``` objc
+#pragma mark - Lazy Instantiation
+
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController) {
