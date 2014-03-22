@@ -1,0 +1,10 @@
+PODS:
+  - ANDYDatabaseManager (0.2.0)
+
+DEPENDENCIES:
+  - ANDYDatabaseManager
+
+SPEC CHECKSUMS:
+  ANDYDatabaseManager: a5771d4b41704c67b2ab1d28a518417b6710510c
+
+COCOAPODS: 0.29.0
