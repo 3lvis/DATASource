@@ -65,3 +65,8 @@ Attribution
 ===========
 
 Based on the work of the awesome guys at [objc.io](http://www.objc.io/).
+
+Be Awesome
+==========
+
+If something looks stupid, please create a friendly and constructive issue, getting your feedback would be awesome. Have a great day.
