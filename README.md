@@ -16,9 +16,13 @@ Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
         return _fetchedResultsController;
     }
 
+    NSManagedObjectContext *context = [[ANDYDatabaseManager sharedManager] mainContext];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[ANDYDatabaseManager sharedManager] mainContext] sectionNameKeyPath:nil cacheName:nil];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                    managedObjectContext:context
+                                                                      sectionNameKeyPath:nil 
+                                                                               cacheName:nil];
     return _fetchedResultsController;
 }
 
@@ -28,7 +32,9 @@ Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
         return _dataSource;
     }
 
-    _dataSource = [[ANDYFetchedResultsTableDataSource alloc] initWithTableView:self.tableView fetchedResultsController:self.fetchedResultsController cellIdentifier:ANDYCellIdentifier];
+    _dataSource = [[ANDYFetchedResultsTableDataSource alloc] initWithTableView:self.tableView 
+                                                      fetchedResultsController:self.fetchedResultsController
+                                                                cellIdentifier:ANDYCellIdentifier];
     _dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task) {
         cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", task.title, task.date];
     };
@@ -43,7 +49,9 @@ Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:ANDYCellIdentifier];
     self.tableView.dataSource = self.dataSource;
 
-    UIBarButtonItem *addTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createTask)];
+    UIBarButtonItem *addTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+                                                                                   target:self
+                                                                                   action:@selector(createTask)];
     self.navigationItem.rightBarButtonItem = addTaskButton;
 }
 
