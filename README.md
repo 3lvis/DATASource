@@ -16,7 +16,7 @@ Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
         return _fetchedResultsController;
     }
 
-    NSManagedObjectContext *context = [[ANDYDatabaseManager sharedManager] mainContext];
+    NSManagedObjectContext *context = [[ANDYDataManager sharedManager] mainContext];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -59,8 +59,7 @@ Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
 
 - (void)createTask
 {
-    NSManagedObjectContext *context = [ANDYDatabaseManager privateContext];
-    [context performBlock:^{
+    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
         Task *task = [Task insertInManagedObjectContext:context];
         task.title = @"Hello!";
         task.date = [NSDate date];
