@@ -7,9 +7,9 @@
 //  Copyright (c) 2014 Elvis Nuñez. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import <UIKit/UIKit.h>
+@import Foundation;
+@import CoreData;
+@import UIKit;
 
 typedef void (^ANDYConfigureBlock)(id cell, id item);
 

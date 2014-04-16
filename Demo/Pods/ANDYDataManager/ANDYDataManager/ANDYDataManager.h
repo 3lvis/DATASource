@@ -1,5 +1,5 @@
 //
-//  ANDYDatabaseManager.h
+//  ANDYDataManager.h
 //  Andy
 //
 //  Created by Elvis Nunez on 10/29/13.
@@ -9,7 +9,7 @@
 @import Foundation;
 @import CoreData;
 
-@interface ANDYDatabaseManager : NSObject
+@interface ANDYDataManager : NSObject
 
 /*!
  * Provides a NSManagedObjectContext appropriate for use on the main
@@ -19,16 +19,22 @@
 
 /*!
  * Provides a singleton that handles CoreData related operations.
- * \returns The a shared ANDYDatabaseManager for the application.
+ * \returns The a shared ANDYDataManager for the application.
  */
-+ (ANDYDatabaseManager *)sharedManager;
++ (ANDYDataManager *)sharedManager;
 
 /*!
  * Provides a new privateContext bound to the mainContext for a
  * performant background operation.
  * \returns A background NSManagedObjectContext.
  */
-+ (NSManagedObjectContext *)privateContext;
++ (NSManagedObjectContext *)backgroundContext;
+
+/*!
+ * Provides a safe way to perform an operation in a background
+ * operation by using a context.
+ */
++ (void)performInBackgroundContext:(void (^)(NSManagedObjectContext *context))operation;
 
 /*!
  * Configures a stack with InMemoryStore for testing purposes.
@@ -41,7 +47,7 @@
 - (void)persistContext;
 
 /*!
- * Resets state of ANDYDatabaseManager.
+ * Resets state of ANDYDataManager.
  */
 - (void)reset;
 

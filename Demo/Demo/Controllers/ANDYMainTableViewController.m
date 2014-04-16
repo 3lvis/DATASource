@@ -8,7 +8,7 @@
 
 #import "ANDYMainTableViewController.h"
 #import "ANDYFetchedResultsTableDataSource.h"
-#import "ANDYDatabaseManager.h"
+#import "ANDYDataManager.h"
 #import "Task.h"
 
 static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
@@ -30,7 +30,10 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
 
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[ANDYDatabaseManager sharedManager] mainContext] sectionNameKeyPath:nil cacheName:nil];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                    managedObjectContext:[[ANDYDataManager sharedManager] mainContext]
+                                                                      sectionNameKeyPath:nil
+                                                                               cacheName:nil];
     return _fetchedResultsController;
 }
 
@@ -40,7 +43,9 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
         return _dataSource;
     }
 
-    _dataSource = [[ANDYFetchedResultsTableDataSource alloc] initWithTableView:self.tableView fetchedResultsController:self.fetchedResultsController cellIdentifier:ANDYCellIdentifier];
+    _dataSource = [[ANDYFetchedResultsTableDataSource alloc] initWithTableView:self.tableView
+                                                      fetchedResultsController:self.fetchedResultsController
+                                                                cellIdentifier:ANDYCellIdentifier];
     _dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task) {
         cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", task.title, task.date];
     };
@@ -55,7 +60,9 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:ANDYCellIdentifier];
     self.tableView.dataSource = self.dataSource;
 
-    UIBarButtonItem *addTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createTask)];
+    UIBarButtonItem *addTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                   target:self
+                                                                                   action:@selector(createTask)];
     self.navigationItem.rightBarButtonItem = addTaskButton;
 }
 
@@ -63,8 +70,7 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
 
 - (void)createTask
 {
-    NSManagedObjectContext *context = [ANDYDatabaseManager privateContext];
-    [context performBlock:^{
+    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
         Task *task = [Task insertInManagedObjectContext:context];
         task.title = @"Hello!";
         task.date = [NSDate date];

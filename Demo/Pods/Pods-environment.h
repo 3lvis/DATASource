@@ -6,9 +6,9 @@
 // project.
 
 
-// ANDYDatabaseManager
-#define COCOAPODS_POD_AVAILABLE_ANDYDatabaseManager
-#define COCOAPODS_VERSION_MAJOR_ANDYDatabaseManager 0
-#define COCOAPODS_VERSION_MINOR_ANDYDatabaseManager 2
-#define COCOAPODS_VERSION_PATCH_ANDYDatabaseManager 0
+// ANDYDataManager
+#define COCOAPODS_POD_AVAILABLE_ANDYDataManager
+#define COCOAPODS_VERSION_MAJOR_ANDYDataManager 0
+#define COCOAPODS_VERSION_MINOR_ANDYDataManager 5
+#define COCOAPODS_VERSION_PATCH_ANDYDataManager 0
 

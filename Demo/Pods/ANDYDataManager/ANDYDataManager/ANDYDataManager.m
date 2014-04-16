@@ -1,15 +1,15 @@
 //
-//  ANDYDatabaseManager.m
+//  ANDYDataManager.m
 //  Andy
 //
 //  Created by Elvis Nunez on 10/29/13.
 //  Copyright (c) 2013 Andy. All rights reserved.
 //
 
-#import "ANDYDatabaseManager.h"
+#import "ANDYDataManager.h"
 @import UIKit;
 
-@interface ANDYDatabaseManager ()
+@interface ANDYDataManager ()
 @property (strong, nonatomic, readwrite) NSManagedObjectContext *mainContext;
 @property (strong, nonatomic) NSManagedObjectContext *writerContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -17,19 +17,19 @@
 @property (nonatomic) BOOL inMemoryStore;
 @end
 
-@implementation ANDYDatabaseManager
+@implementation ANDYDataManager
 
 + (void)setUpStackWithInMemoryStore
 {
     [[self sharedManager] setInMemoryStore:YES];
 }
 
-+ (ANDYDatabaseManager *)sharedManager
++ (ANDYDataManager *)sharedManager
 {
-    static ANDYDatabaseManager *__sharedInstance;
+    static ANDYDataManager *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[ANDYDatabaseManager alloc] init];
+        __sharedInstance = [[ANDYDataManager alloc] init];
     });
     
     return __sharedInstance;
@@ -213,7 +213,17 @@
 
 #pragma mark - Class methods
 
-+ (NSManagedObjectContext *)privateContext
++ (void)performInBackgroundContext:(void (^)(NSManagedObjectContext *context))operation
+{
+    NSManagedObjectContext *context = [self backgroundContext];
+    [context performBlock:^{
+        if (operation) {
+            operation(context);
+        }
+    }];
+}
+
++ (NSManagedObjectContext *)backgroundContext
 {
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = [[self sharedManager] persistentStoreCoordinator];
@@ -242,11 +252,23 @@
 
 - (void)reset
 {
-    self.mainContext = nil;
+    NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores lastObject];
+    NSURL *storeURL = store.URL;
+
     self.writerContext = nil;
+    self.mainContext = nil;
     self.managedObjectModel = nil;
     self.persistentStoreCoordinator = nil;
     self.inMemoryStore = NO;
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    if ([fileManager fileExistsAtPath:storeURL.path])
+        [fileManager removeItemAtURL:storeURL error:&error];
+    if (error) {
+        NSLog(@"error deleting sqlite file");
+        abort();
+    }
 }
 
 @end
