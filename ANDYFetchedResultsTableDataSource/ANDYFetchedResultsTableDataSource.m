@@ -91,6 +91,9 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+    if ([self.delegate respondsToSelector:@selector(fetchedResultsTableDataSourceDidChangeContent:)]) {
+        [self.delegate fetchedResultsTableDataSourceDidChangeContent:self];
+    }
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
