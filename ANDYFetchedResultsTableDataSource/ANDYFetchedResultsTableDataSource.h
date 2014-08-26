@@ -13,12 +13,23 @@
 
 typedef void (^ANDYConfigureBlock)(id cell, id item);
 
+@class ANDYFetchedResultsTableDataSource;
+
+@protocol ANDYFetchedResultsTableDataSourceDelegate <NSObject>
+- (void)fetchedResultsTableDataSourceDidChangeContent:(ANDYFetchedResultsTableDataSource*)dataSource;
+@end
+
 @interface ANDYFetchedResultsTableDataSource : NSObject <UITableViewDataSource>
 
 /*!
  * Used to configure UITableView's cell.
  */
 @property (nonatomic, copy) ANDYConfigureBlock configureCellBlock;
+
+/*!
+ * Delegate.
+ */
+@property (nonatomic, weak) id<ANDYFetchedResultsTableDataSourceDelegate> delegate;
 
 /*!
  * Initialization of ANDYFetchedResultsTableDataSource.
