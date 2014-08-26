@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "ANDYFetchedResultsTableDataSource"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
   s.summary = "How much does it take to show a persited NSManagedObject in your UITableView?"
   s.description = <<-DESC
                    * How much does it take to insert a NSManagedObject into CoreData
