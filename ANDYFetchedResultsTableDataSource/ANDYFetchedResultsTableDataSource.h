@@ -13,11 +13,7 @@
 
 typedef void (^ANDYConfigureBlock)(id cell, id item);
 
-@class ANDYFetchedResultsTableDataSource;
-
-@protocol ANDYFetchedResultsTableDataSourceDelegate <NSObject>
-- (void)fetchedResultsTableDataSourceDidChangeContent:(ANDYFetchedResultsTableDataSource*)dataSource;
-@end
+@protocol ANDYFetchedResultsTableDataSourceDelegate;
 
 @interface ANDYFetchedResultsTableDataSource : NSObject <UITableViewDataSource>
 
@@ -46,4 +42,8 @@ typedef void (^ANDYConfigureBlock)(id cell, id item);
  */
 - (void)changePredicate:(NSPredicate *)predicate;
 
+@end
+
+@protocol ANDYFetchedResultsTableDataSourceDelegate <NSObject>
+- (void)fetchedResultsTableDataSourceDidChangeContent:(ANDYFetchedResultsTableDataSource*)dataSource;
 @end
