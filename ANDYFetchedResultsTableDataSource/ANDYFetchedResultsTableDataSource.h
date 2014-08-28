@@ -11,8 +11,6 @@
 @import CoreData;
 @import UIKit;
 
-@protocol ANDYFetchedResultsTableDataSourceDelegate;
-
 typedef void (^ANDYConfigureBlock)(id cell, id item);
 
 @interface ANDYFetchedResultsTableDataSource : NSObject <UITableViewDataSource>
@@ -21,11 +19,6 @@ typedef void (^ANDYConfigureBlock)(id cell, id item);
  * Used to configure UITableView's cell.
  */
 @property (nonatomic, copy) ANDYConfigureBlock configureCellBlock;
-
-/*!
- * Delegate.
- */
-@property (nonatomic, weak) id <ANDYFetchedResultsTableDataSourceDelegate> delegate;
 
 /*!
  * Initialization of ANDYFetchedResultsTableDataSource.
@@ -41,11 +34,5 @@ typedef void (^ANDYConfigureBlock)(id cell, id item);
  * \param predicate The predicate.
  */
 - (void)changePredicate:(NSPredicate *)predicate;
-
-@end
-
-@protocol ANDYFetchedResultsTableDataSourceDelegate <NSObject>
-
-- (void)fetchedResultsTableDataSourceDidChangeContent:(ANDYFetchedResultsTableDataSource *)dataSource;
 
 @end
