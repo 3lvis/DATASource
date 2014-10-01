@@ -10,30 +10,31 @@
 #import "ANDYFetchedResultsTableDataSource.h"
 
 @interface ANDYFetchedResultsTableDataSource () <NSFetchedResultsControllerDelegate>
+
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSString *cellIdentifier;
+
 @end
 
 @implementation ANDYFetchedResultsTableDataSource
 
-- (instancetype)initWithTableView:(UITableView *)aTableView fetchedResultsController:(NSFetchedResultsController *)aFetchedResultsController cellIdentifier:(NSString *)aCellIdentifier
+- (instancetype)initWithTableView:(UITableView *)aTableView
+         fetchedResultsController:(NSFetchedResultsController *)aFetchedResultsController
+                   cellIdentifier:(NSString *)aCellIdentifier
 {
     self = [super init];
-    if(self) {
-        self.tableView = aTableView;
-        self.fetchedResultsController = aFetchedResultsController;
-        self.cellIdentifier = aCellIdentifier;
-        [self setUp];
-    }
-    return self;
-}
+    if (!self) return nil;
 
-- (void)setUp
-{
+    self.tableView = aTableView;
+    self.fetchedResultsController = aFetchedResultsController;
+    self.cellIdentifier = aCellIdentifier;
+
     self.tableView.dataSource = self;
     self.fetchedResultsController.delegate = self;
     [self.fetchedResultsController performFetch:NULL];
+
+    return self;
 }
 
 - (void)changePredicate:(NSPredicate *)predicate
@@ -47,14 +48,17 @@
 
 - (id)itemAtIndexPath:(NSIndexPath *)path
 {
-    return [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:path.row inSection:path.section]];
+    if (path.row < [[self.fetchedResultsController fetchedObjects] count]) {
+        return [self.fetchedResultsController objectAtIndexPath:path];
+    }
+    return nil;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path
 {
     id item = [self itemAtIndexPath:path];
     if (self.configureCellBlock) {
-        self.configureCellBlock(cell, item);
+        self.configureCellBlock(cell, item, path);
     }
 }
 
@@ -98,8 +102,10 @@
     [self.tableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+- (void)controller:(NSFetchedResultsController *)controller
+  didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex
+     forChangeType:(NSFetchedResultsChangeType)type
 {
     switch(type) {
         case NSFetchedResultsChangeInsert:
@@ -116,24 +122,36 @@
     }
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
+            if ([self.delegate respondsToSelector:@selector(dataSource:didInsertObject:withIndexPath:)]) {
+                [self.delegate dataSource:self didInsertObject:anObject withIndexPath:indexPath];
+            }
             break;
 
-        case NSFetchedResultsChangeDelete:
+        case NSFetchedResultsChangeDelete: {
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
+            if ([self.delegate respondsToSelector:@selector(dataSource:didDeleteObject:)]) {
+                [self.delegate dataSource:self didDeleteObject:anObject];
+            }
+        }
             break;
 
         case NSFetchedResultsChangeUpdate:
             if([self.tableView.indexPathsForVisibleRows indexOfObject:indexPath] != NSNotFound) {
                 [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+                if ([self.delegate respondsToSelector:@selector(dataSource:didUpdateObject:withIndexPath:)]) {
+                    [self.delegate dataSource:self didUpdateObject:anObject withIndexPath:indexPath];
+                }
             }
             break;
 
