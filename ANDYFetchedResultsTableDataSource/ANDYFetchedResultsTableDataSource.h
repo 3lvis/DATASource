@@ -8,12 +8,16 @@
 //
 
 @import Foundation;
-@import CoreData;
 @import UIKit;
+@import CoreData;
 
-typedef void (^ANDYConfigureBlock)(id cell, id item);
+@protocol ANDYFetchedResultsTableDataSourceDelegate;
+
+typedef void (^ANDYConfigureBlock)(id cell, id item, id indexPath);
 
 @interface ANDYFetchedResultsTableDataSource : NSObject <UITableViewDataSource>
+
+@property (nonatomic, weak) id <ANDYFetchedResultsTableDataSourceDelegate> delegate;
 
 /*!
  * Used to configure UITableView's cell.
@@ -34,5 +38,22 @@ typedef void (^ANDYConfigureBlock)(id cell, id item);
  * \param predicate The predicate.
  */
 - (void)changePredicate:(NSPredicate *)predicate;
+
+@end
+
+@protocol ANDYFetchedResultsTableDataSourceDelegate <NSObject>
+
+@optional
+
+- (void)dataSource:(ANDYFetchedResultsTableDataSource *)dataSource
+   didInsertObject:(NSManagedObject *)object
+     withIndexPath:(NSIndexPath *)indexPath;
+
+- (void)dataSource:(ANDYFetchedResultsTableDataSource *)dataSource
+   didUpdateObject:(NSManagedObject *)object
+     withIndexPath:(NSIndexPath *)indexPath;
+
+- (void)dataSource:(ANDYFetchedResultsTableDataSource *)dataSource
+   didDeleteObject:(NSManagedObject *)object;
 
 @end
