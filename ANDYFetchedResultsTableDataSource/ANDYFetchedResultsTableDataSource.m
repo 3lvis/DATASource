@@ -140,8 +140,8 @@
         case NSFetchedResultsChangeDelete: {
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
-            if ([self.delegate respondsToSelector:@selector(dataSource:didDeleteObject:)]) {
-                [self.delegate dataSource:self didDeleteObject:anObject];
+            if ([self.delegate respondsToSelector:@selector(dataSource:didDeleteObject:withIndexPath:)]) {
+                [self.delegate dataSource:self didDeleteObject:anObject withIndexPath:indexPath];
             }
         }
             break;
