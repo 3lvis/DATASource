@@ -13,7 +13,7 @@
 
 @protocol ANDYFetchedResultsTableDataSourceDelegate;
 
-typedef void (^ANDYConfigureBlock)(id cell, id item, id indexPath);
+typedef void (^ANDYConfigureBlock)(id cell, id item, NSIndexPath *indexPath);
 
 @interface ANDYFetchedResultsTableDataSource : NSObject <UITableViewDataSource>
 
