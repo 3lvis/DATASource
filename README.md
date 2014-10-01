@@ -35,9 +35,11 @@ Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
     _dataSource = [[ANDYFetchedResultsTableDataSource alloc] initWithTableView:self.tableView 
                                                       fetchedResultsController:self.fetchedResultsController
                                                                 cellIdentifier:ANDYCellIdentifier];
-    _dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", task.title, task.date];
+                                                                
+    _dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@ (%@)", task.title, task.date, indexPath];
     };
+
     return _dataSource;
 }
 
