@@ -92,14 +92,23 @@
 
 #pragma mark NSFetchedResultsControllerDelegate
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
-
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
-    [self.tableView beginUpdates];
+    if (!self.parentControllerIsHidden) {
+        [self.tableView beginUpdates];
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    if (self.parentControllerIsHidden) {
+        NSArray *indexPaths = [self.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in indexPaths) {
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+        }
+    } else {
+        [self.tableView endUpdates];
+    }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller
@@ -107,6 +116,8 @@
            atIndex:(NSUInteger)sectionIndex
      forChangeType:(NSFetchedResultsChangeType)type
 {
+    if (self.parentControllerIsHidden) return;
+
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
@@ -128,14 +139,16 @@
      forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
+    if (self.parentControllerIsHidden) return;
+
     switch(type) {
-        case NSFetchedResultsChangeInsert:
+        case NSFetchedResultsChangeInsert: {
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
             if ([self.delegate respondsToSelector:@selector(dataSource:didInsertObject:withIndexPath:)]) {
                 [self.delegate dataSource:self didInsertObject:anObject withIndexPath:indexPath];
             }
-            break;
+        } break;
 
         case NSFetchedResultsChangeDelete: {
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
@@ -143,8 +156,7 @@
             if ([self.delegate respondsToSelector:@selector(dataSource:didDeleteObject:withIndexPath:)]) {
                 [self.delegate dataSource:self didDeleteObject:anObject withIndexPath:indexPath];
             }
-        }
-            break;
+        } break;
 
         case NSFetchedResultsChangeUpdate:
             if([self.tableView.indexPathsForVisibleRows indexOfObject:indexPath] != NSNotFound) {
@@ -152,8 +164,7 @@
                 if ([self.delegate respondsToSelector:@selector(dataSource:didUpdateObject:withIndexPath:)]) {
                     [self.delegate dataSource:self didUpdateObject:anObject withIndexPath:indexPath];
                 }
-            }
-            break;
+            } break;
 
         case NSFetchedResultsChangeMove: {
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
