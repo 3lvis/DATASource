@@ -57,4 +57,8 @@ typedef void (^ANDYConfigureBlock)(id cell, id item, NSIndexPath *indexPath);
    didDeleteObject:(NSManagedObject *)object
      withIndexPath:(NSIndexPath *)indexPath;
 
+- (void)dataSource:(ANDYFetchedResultsTableDataSource *)dataSource
+     didMoveObject:(NSManagedObject *)object
+     withIndexPath:(NSIndexPath *)indexPath newIndexPath:(NSIndexPath *)newIndexPath;
+
 @end

@@ -155,14 +155,18 @@
             }
             break;
 
-        case NSFetchedResultsChangeMove:
+        case NSFetchedResultsChangeMove: {
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-        default:
-            break;
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[self.tableView cellForRowAtIndexPath:newIndexPath] atIndexPath:newIndexPath];
+
+            if ([self.delegate respondsToSelector:@selector(dataSource:didMoveObject:withIndexPath:newIndexPath:)]) {
+                [self.delegate dataSource:self didMoveObject:anObject withIndexPath:indexPath newIndexPath:newIndexPath];
+            }
+        } break;
     }
 }
 
