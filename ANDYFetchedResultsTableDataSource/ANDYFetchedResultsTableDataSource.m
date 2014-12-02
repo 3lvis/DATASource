@@ -46,10 +46,11 @@
     [self.tableView reloadData];
 }
 
-- (id)itemAtIndexPath:(NSIndexPath *)path
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (path.row < [[self.fetchedResultsController fetchedObjects] count]) {
-        return [self.fetchedResultsController objectAtIndexPath:path];
+    NSUInteger row = indexPath.row;
+    if (row < [[self.fetchedResultsController fetchedObjects] count]) {
+        return [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -94,14 +95,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
-    if (!self.parentControllerIsHidden) {
+    if (!self.controllerIsHidden) {
         [self.tableView beginUpdates];
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    if (self.parentControllerIsHidden) {
+    if (self.controllerIsHidden) {
         NSArray *indexPaths = [self.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in indexPaths) {
             [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
@@ -116,7 +117,7 @@
            atIndex:(NSUInteger)sectionIndex
      forChangeType:(NSFetchedResultsChangeType)type
 {
-    if (self.parentControllerIsHidden) return;
+    if (self.controllerIsHidden) return;
 
     switch(type) {
         case NSFetchedResultsChangeInsert:
@@ -128,7 +129,8 @@
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                      withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
-        default:
+        case NSFetchedResultsChangeMove:
+        case NSFetchedResultsChangeUpdate:
             break;
     }
 }
@@ -139,7 +141,7 @@
      forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    if (self.parentControllerIsHidden) return;
+    if (self.controllerIsHidden) return;
 
     switch(type) {
         case NSFetchedResultsChangeInsert: {

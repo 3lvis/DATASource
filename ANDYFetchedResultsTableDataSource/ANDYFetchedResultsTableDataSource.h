@@ -19,7 +19,7 @@ typedef void (^ANDYConfigureBlock)(id cell, id item, NSIndexPath *indexPath);
 
 @property (nonatomic, weak) id <ANDYFetchedResultsTableDataSourceDelegate> delegate;
 
-@property (nonatomic) BOOL parentControllerIsHidden;
+@property (nonatomic) BOOL controllerIsHidden;
 
 /*!
  * Used to configure UITableView's cell.
