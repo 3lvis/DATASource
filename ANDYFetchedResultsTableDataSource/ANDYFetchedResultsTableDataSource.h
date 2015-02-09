@@ -1,12 +1,3 @@
-//
-//  ANDYFetchedResultsTableDataSource.h
-//  Andy
-//
-//  Created by Elvis Nunez on 10/29/13.
-//  Based on the work of Chris Eidhof.
-//  Copyright (c) 2014 Elvis Nuñez. All rights reserved.
-//
-
 @import Foundation;
 @import UIKit;
 @import CoreData;

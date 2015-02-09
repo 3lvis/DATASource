@@ -1,15 +1,8 @@
-//
-//  ANDYMainTableViewController.m
-//  Demo
-//
-//  Created by Elvis Nunez on 3/20/14.
-//  Copyright (c) 2014 Andy. All rights reserved.
-//
-
 #import "ANDYMainTableViewController.h"
 #import "ANDYFetchedResultsTableDataSource.h"
-#import "ANDYDataManager.h"
+#import "DATAStack.h"
 #import "Task.h"
+#import "ANDYAppDelegate.h"
 
 static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
 
@@ -31,7 +24,7 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                    managedObjectContext:[[ANDYDataManager sharedManager] mainContext]
+                                                                    managedObjectContext:appDelegate.dataStack.mainThreadContext
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
     return _fetchedResultsController;
@@ -70,7 +63,7 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
 
 - (void)createTask
 {
-    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
+    [appDelegate.dataStack performInNewBackgroundThreadContext:^(NSManagedObjectContext *context) {
         Task *task = [Task insertInManagedObjectContext:context];
         task.title = @"Hello!";
         task.date = [NSDate date];

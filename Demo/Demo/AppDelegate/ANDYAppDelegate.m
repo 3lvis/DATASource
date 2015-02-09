@@ -1,16 +1,37 @@
-//
-//  ANDYAppDelegate.m
-//  Demo
-//
-//  Created by Elvis Nunez on 3/20/14.
-//  Copyright (c) 2014 Andy. All rights reserved.
-//
-
 #import "ANDYAppDelegate.h"
 #import "ANDYMainTableViewController.h"
-#import "ANDYDataManager.h"
+#import "DATAStack.h"
+
+ANDYAppDelegate *appDelegate;
+
+@interface ANDYAppDelegate ()
+
+@property (nonatomic, strong) DATAStack *dataStack;
+
+@end
 
 @implementation ANDYAppDelegate
+
+- (instancetype)init
+{
+    self = [super init];
+    if (!self) return nil;
+
+    appDelegate = self;
+
+    return self;
+}
+
+#pragma mark - Getters
+
+- (DATAStack *)dataStack
+{
+    if (_dataStack) return _dataStack;
+
+    _dataStack = [[DATAStack alloc] initWithModelName:@"Demo"];
+
+    return _dataStack;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -26,8 +47,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[ANDYDataManager sharedManager] persistContext];
+    [self.dataStack persistWithCompletion:nil];
 }
-
 
 @end
