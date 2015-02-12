@@ -8,10 +8,10 @@ How much does it take to insert a NSManagedObject into Core Data and show it in 
 Well, DATASource does it in 10 LOC.
 
 ``` objc
-DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView 
+DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                   fetchRequest:fetchRequest
                                                 cellIdentifier:ANDYCellIdentifier
-                                                     dataStack:self.dataStack];
+                                                   mainContext:mainContext];
 
 dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
     cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@ (%@)", task.title, task.date, indexPath];
