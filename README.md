@@ -8,11 +8,10 @@ How much does it take to insert a NSManagedObject into CoreData and show it in y
 Well, DATASource does it in 71 LOC.
 
 ``` objc
-DATASource *dataSource;
-dataSource = [[DATASource alloc] initWithTableView:self.tableView 
-                                                 fetchedResultsController:self.fetchedResultsController
-                                                           cellIdentifier:ANDYCellIdentifier];
-                                                            
+DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView 
+                                      fetchedResultsController:self.fetchedResultsController
+                                                cellIdentifier:ANDYCellIdentifier];
+
 dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
     cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@ (%@)", task.title, task.date, indexPath];
 };
