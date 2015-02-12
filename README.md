@@ -9,8 +9,9 @@ Well, DATASource does it in 71 LOC.
 
 ``` objc
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView 
-                                      fetchedResultsController:self.fetchedResultsController
-                                                cellIdentifier:ANDYCellIdentifier];
+                                                  fetchRequest:fetchRequest
+                                                cellIdentifier:ANDYCellIdentifier
+                                                     dataStack:self.dataStack];
 
 dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
     cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@ (%@)", task.title, task.date, indexPath];
