@@ -20,15 +20,11 @@ dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task, NSIndexPath
 self.tableView.dataSource = self.dataSource;
 ```
 
-Attribution
-===========
+## Installation
 
-Based on the work of the awesome guys at [objc.io](http://www.objc.io/).
+**DATASource** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
-Be Awesome
-==========
-
-If something looks stupid, please create a friendly and constructive issue, getting your feedback would be awesome. Have a great day.
+`pod 'DATASource'`
 
 ## Author
 
