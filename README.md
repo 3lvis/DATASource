@@ -1,7 +1,7 @@
 DATASource
 =================================
 
-How much does it take to insert a NSManagedObject into CoreData and show it in your UITableView in an animated way (using NSFetchedResultsController, of course)?
+How much does it take to insert a NSManagedObject into Core Data and show it in your UITableView in an animated way (using NSFetchedResultsController, of course)?
 
 100 LOC? 200 LOC? 300 LOC?
 
