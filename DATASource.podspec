@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = "DATASource"
   s.version = "2.0"
-  s.summary = "NSFetchedResultsControllers + UITableViewController made stupid easy"
+  s.summary = "NSFetchedResultsController + UITableViewController made stupid easy"
   s.description = <<-DESC
                    * How much does it take to insert a NSManagedObject into CoreData
                    * and show it in your UITableView in an animated way
