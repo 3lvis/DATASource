@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name = "ANDYFetchedResultsTableDataSource"
+  s.name = "DATASource"
   s.version = "1.2"
   s.summary = "How much does it take to show a persited NSManagedObject in your UITableView?"
   s.description = <<-DESC
@@ -7,9 +7,9 @@ Pod::Spec.new do |s|
                    * and show it in your UITableView in an animated way
                    * (using NSFetchedResultsController, of course)?
                    * 100 LOC? 200 LOC? 300 LOC?
-                   * Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
+                   * Well, DATASource does it in 71 LOC.
                    DESC
-  s.homepage = "https://github.com/NSElvis/ANDYFetchedResultsTableDataSource"
+  s.homepage = "https://github.com/NSElvis/DATASource"
   s.license = {
     :type => 'MIT',
     :file => 'LICENSE'
@@ -18,10 +18,10 @@ Pod::Spec.new do |s|
   s.social_media_url = "http://twitter.com/NSElvis"
   s.platform = :ios, '5.0'
   s.source = {
-    :git => 'https://github.com/NSElvis/ANDYFetchedResultsTableDataSource.git',
+    :git => 'https://github.com/NSElvis/DATASource.git',
     :tag => s.version.to_s
   }
-  s.source_files = 'ANDYFetchedResultsTableDataSource/'
+  s.source_files = 'Source/'
   s.frameworks = 'Foundation', 'UIKit', 'CoreData'
   s.requires_arc = true
 end

@@ -1,3 +1,0 @@
-@interface ANDYMainTableViewController : UITableViewController
-
-@end

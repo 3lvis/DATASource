@@ -1,26 +1,14 @@
-#import "ANDYAppDelegate.h"
-#import "ANDYMainTableViewController.h"
+#import "AppDelegate.h"
+#import "ViewController.h"
 #import "DATAStack.h"
 
-ANDYAppDelegate *appDelegate;
-
-@interface ANDYAppDelegate ()
+@interface AppDelegate ()
 
 @property (nonatomic, strong) DATAStack *dataStack;
 
 @end
 
-@implementation ANDYAppDelegate
-
-- (instancetype)init
-{
-    self = [super init];
-    if (!self) return nil;
-
-    appDelegate = self;
-
-    return self;
-}
+@implementation AppDelegate
 
 #pragma mark - Getters
 
@@ -37,7 +25,7 @@ ANDYAppDelegate *appDelegate;
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    ANDYMainTableViewController *mainController = [[ANDYMainTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    ViewController *mainController = [[ViewController alloc] initWithDataStack:self.dataStack];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainController];
     self.window.rootViewController = navController;
 

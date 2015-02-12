@@ -1,15 +1,15 @@
-ANDYFetchedResultsTableDataSource
+DATASource
 =================================
 
 How much does it take to insert a NSManagedObject into CoreData and show it in your UITableView in an animated way (using NSFetchedResultsController, of course)?
 
 100 LOC? 200 LOC? 300 LOC?
 
-Well, ANDYFetchedResultsTableDataSource does it in 71 LOC.
+Well, DATASource does it in 71 LOC.
 
 ``` objc
-ANDYFetchedResultsTableDataSource *dataSource;
-dataSource = [[ANDYFetchedResultsTableDataSource alloc] initWithTableView:self.tableView 
+DATASource *dataSource;
+dataSource = [[DATASource alloc] initWithTableView:self.tableView 
                                                  fetchedResultsController:self.fetchedResultsController
                                                            cellIdentifier:ANDYCellIdentifier];
                                                             
@@ -36,4 +36,4 @@ Elvis Nuñez, hello@nselvis.com
 
 ## License
 
-**ANDYFetchedResultsTableDataSource** is available under the MIT license. See the LICENSE file for more info.
+**DATASource** is available under the MIT license. See the LICENSE file for more info.
