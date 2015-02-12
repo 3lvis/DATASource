@@ -25,13 +25,13 @@ typedef void (^ANDYConfigureBlock)(id cell, id item, NSIndexPath *indexPath);
  * \param tableView The used UITableView.
  * \param fetchRequest The used NSFetchedResultsController.
  * \param cellIdentifier The used cell identifier.
-  * \param dataStack The used DATAStack.
+  * \param mainContext A NSManagedObjectContext in the main thread.
  * \returns An instance of DATASource.
  */
 - (instancetype)initWithTableView:(UITableView *)tableView
                      fetchRequest:(NSFetchRequest *)fetchRequest
                    cellIdentifier:(NSString *)cellIdentifier
-                        dataStack:(DATAStack *)dataStack;
+                      mainContext:(NSManagedObjectContext *)mainContext;
 
 /*!
  * Convenience method to change the predicate of the NSFetchedResultsController.

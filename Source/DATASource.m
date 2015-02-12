@@ -1,13 +1,10 @@
 #import "DATASource.h"
 
-#import "DATAStack.h"
-
 @interface DATASource () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong, readwrite) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSString *cellIdentifier;
-@property (nonatomic, strong) DATAStack *dataStack;
 
 @end
 
@@ -16,20 +13,19 @@
 - (instancetype)initWithTableView:(UITableView *)tableView
                      fetchRequest:(NSFetchRequest *)fetchRequest
                    cellIdentifier:(NSString *)cellIdentifier
-                        dataStack:(DATAStack *)dataStack
+                      mainContext:(NSManagedObjectContext *)mainContext
 {
     self = [super init];
     if (!self) return nil;
 
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                               managedObjectContext:dataStack.mainThreadContext
+                                                                                               managedObjectContext:mainContext
                                                                                                  sectionNameKeyPath:nil
                                                                                                           cacheName:nil];
 
     _tableView = tableView;
     _fetchedResultsController = fetchedResultsController;
     _cellIdentifier = cellIdentifier;
-    _dataStack = dataStack;
 
     self.tableView.dataSource = self;
     self.fetchedResultsController.delegate = self;

@@ -37,7 +37,7 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:fetchRequest
                                          cellIdentifier:ANDYCellIdentifier
-                                              dataStack:self.dataStack];
+                                            mainContext:self.dataStack.mainContext];
     _dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
         cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@ (%@)", task.title, task.date, indexPath];
     };
@@ -63,11 +63,11 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
 
 - (void)createTask
 {
-    [self.dataStack performInNewBackgroundThreadContext:^(NSManagedObjectContext *context) {
-        Task *task = [Task insertInManagedObjectContext:context];
+    [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
+        Task *task = [Task insertInManagedObjectContext:backgroundContext];
         task.title = @"Hello!";
         task.date = [NSDate date];
-        [context save:nil];
+        [backgroundContext save:nil];
     }];
 }
 
