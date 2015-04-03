@@ -13,8 +13,10 @@ DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                 cellIdentifier:ANDYCellIdentifier
                                                    mainContext:mainContext];
 
-dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@ (%@)", task.title, task.date, indexPath];
+dataSource.configureCellBlock = ^(UITableViewCell *cell,
+                                  Task *task,
+                                  NSIndexPath *indexPath) {
+    cell.textLabel.text = task.title;
 };
 
 self.tableView.dataSource = self.dataSource;
