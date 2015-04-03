@@ -26,7 +26,9 @@ self.tableView.dataSource = self.dataSource;
 
 **DATASource** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
-`pod 'DATASource'`
+```ruby
+pod 'DATASource'
+```
 
 ## Author
 
