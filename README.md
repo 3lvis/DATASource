@@ -30,7 +30,7 @@ self.tableView.dataSource = self.dataSource;
 
 ## Author
 
-Elvis Nuñez, hello@nselvis.com
+Elvis Nuñez, [elvisnunez@me.com](mailto:elvisnunez@me.com)
 
 ## License
 
