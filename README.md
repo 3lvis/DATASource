@@ -5,7 +5,7 @@ How much does it take to insert a NSManagedObject into Core Data and show it in 
 
 100 LOC? 200 LOC? 300 LOC?
 
-Well, DATASource does it in 10 LOC.
+Well, DATASource does it in *12 LOC*.
 
 ``` objc
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
