@@ -2,9 +2,10 @@
 
 @interface DATASource () <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong, readwrite) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSString *cellIdentifier;
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) UITableView *tableView;
+@property (nonatomic) NSString *cellIdentifier;
+@property (nonatomic, copy) DATAConfigureCell configureCellBlock;
 
 @end
 
@@ -14,85 +15,87 @@
                      fetchRequest:(NSFetchRequest *)fetchRequest
                    cellIdentifier:(NSString *)cellIdentifier
                       mainContext:(NSManagedObjectContext *)mainContext
+                        configure:(DATAConfigureCell)configure
 {
     self = [super init];
     if (!self) return nil;
 
-    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                               managedObjectContext:mainContext
-                                                                                                 sectionNameKeyPath:nil
-                                                                                                          cacheName:nil];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                 managedObjectContext:mainContext
+                                                                                   sectionNameKeyPath:nil
+                                                                                            cacheName:nil];
 
     _tableView = tableView;
-    _fetchedResultsController = fetchedResultsController;
+    _fetchedResultsController = controller;
     _cellIdentifier = cellIdentifier;
+    _configureCellBlock = configure;
 
     self.tableView.dataSource = self;
     self.fetchedResultsController.delegate = self;
-    [self.fetchedResultsController performFetch:nil];
+
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Error fetching objects: %@", error);
+    }
 
     return self;
 }
 
+#pragma mark - Public methods
+
 - (void)changePredicate:(NSPredicate *)predicate
 {
-    NSAssert(self.fetchedResultsController.cacheName == nil, @"Can't change predicate when you have a caching fetched results controller");
-    NSFetchRequest* fetchRequest = self.fetchedResultsController.fetchRequest;
-    fetchRequest.predicate = predicate;
-    [self.fetchedResultsController performFetch:nil];
+    self.fetchedResultsController.fetchRequest.predicate = predicate;
+
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Error fetching objects after changing predicate: %@", error);
+    }
     [self.tableView reloadData];
 }
 
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSUInteger row = indexPath.row;
-    if (row < [[self.fetchedResultsController fetchedObjects] count]) {
-        return [self.fetchedResultsController objectAtIndexPath:indexPath];
-    }
-    return nil;
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path
-{
-    id item = [self itemAtIndexPath:path];
-    if (self.configureCellBlock) self.configureCellBlock(cell, item, path);
-}
-
-#pragma mark UITableViewDataSource
+#pragma mark - UITableViewDataSource
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView*)aTableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.fetchedResultsController.sections.count;
 }
 
-- (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
-    NSUInteger i = [self.fetchedResultsController.sections[(NSUInteger) section] numberOfObjects];
+    id <NSFetchedResultsSectionInfo> info = self.fetchedResultsController.sections[section];
 
-    return i;
+    return info.numberOfObjects;
 }
 
-- (NSString*)tableView:(UITableView*)aTableView titleForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView*)tableView
+titleForHeaderInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> info = [self.fetchedResultsController sections][(NSUInteger) section];
+    id <NSFetchedResultsSectionInfo> info = [self.fetchedResultsController sections][section];
 
     return info.name;
 }
 
-- (UITableViewCell*)tableView:(UITableView*)aTableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView
+        cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    UITableViewCell* cell = [aTableView dequeueReusableCellWithIdentifier:self.cellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier
+                                                             forIndexPath:indexPath];
+
     [self configureCell:cell atIndexPath:indexPath];
 
     return cell;
 }
 
-#pragma mark NSFetchedResultsControllerDelegate
+#pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    if (!self.controllerIsHidden) [self.tableView beginUpdates];
+    if (!self.controllerIsHidden) {
+        [self.tableView beginUpdates];
+    }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
@@ -100,7 +103,8 @@
     if (self.controllerIsHidden) {
         NSArray *indexPaths = [self.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in indexPaths) {
-            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
+                    atIndexPath:indexPath];
         }
     } else {
         [self.tableView endUpdates];
@@ -112,7 +116,9 @@
            atIndex:(NSUInteger)sectionIndex
      forChangeType:(NSFetchedResultsChangeType)type
 {
-    if (self.controllerIsHidden) return;
+    if (self.controllerIsHidden) {
+        return;
+    }
 
     switch(type) {
         case NSFetchedResultsChangeInsert:
@@ -143,7 +149,9 @@
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
             if ([self.delegate respondsToSelector:@selector(dataSource:didInsertObject:withIndexPath:)]) {
-                [self.delegate dataSource:self didInsertObject:anObject withIndexPath:indexPath];
+                [self.delegate dataSource:self
+                          didInsertObject:anObject
+                            withIndexPath:indexPath];
             }
         } break;
 
@@ -151,15 +159,20 @@
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
             if ([self.delegate respondsToSelector:@selector(dataSource:didDeleteObject:withIndexPath:)]) {
-                [self.delegate dataSource:self didDeleteObject:anObject withIndexPath:indexPath];
+                [self.delegate dataSource:self
+                          didDeleteObject:anObject
+                            withIndexPath:indexPath];
             }
         } break;
 
         case NSFetchedResultsChangeUpdate:
-            if([self.tableView.indexPathsForVisibleRows indexOfObject:indexPath] != NSNotFound) {
-                [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            if ([self.tableView.indexPathsForVisibleRows indexOfObject:indexPath] != NSNotFound) {
+                [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
+                        atIndexPath:indexPath];
                 if ([self.delegate respondsToSelector:@selector(dataSource:didUpdateObject:withIndexPath:)]) {
-                    [self.delegate dataSource:self didUpdateObject:anObject withIndexPath:indexPath];
+                    [self.delegate dataSource:self
+                              didUpdateObject:anObject
+                                withIndexPath:indexPath];
                 }
             } break;
 
@@ -168,13 +181,40 @@
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            [self configureCell:[self.tableView cellForRowAtIndexPath:newIndexPath] atIndexPath:newIndexPath];
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
+                    atIndexPath:indexPath];
+            [self configureCell:[self.tableView cellForRowAtIndexPath:newIndexPath]
+                    atIndexPath:newIndexPath];
 
             if ([self.delegate respondsToSelector:@selector(dataSource:didMoveObject:withIndexPath:newIndexPath:)]) {
-                [self.delegate dataSource:self didMoveObject:anObject withIndexPath:indexPath newIndexPath:newIndexPath];
+                [self.delegate dataSource:self
+                            didMoveObject:anObject
+                            withIndexPath:indexPath
+                             newIndexPath:newIndexPath];
             }
         } break;
+    }
+}
+
+#pragma mark - Private methods
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath
+{
+    id item;
+
+    BOOL rowIsInsideBounds = ((NSUInteger)indexPath.row < self.fetchedResultsController.fetchedObjects.count);
+    if (rowIsInsideBounds) {
+        item = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    }
+
+    return item;
+}
+
+- (void)configureCell:(UITableViewCell *)cell
+          atIndexPath:(NSIndexPath *)path
+{
+    if (self.configureCellBlock) {
+        self.configureCellBlock(cell, [self itemAtIndexPath:path], path);
     }
 }
 

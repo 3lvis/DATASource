@@ -5,33 +5,30 @@
 
 @protocol DATASourceDelegate;
 
-typedef void (^ANDYConfigureBlock)(id cell, id item, NSIndexPath *indexPath);
+typedef void (^DATAConfigureCell)(id cell, id item, NSIndexPath *indexPath);
 
 @interface DATASource : NSObject <UITableViewDataSource>
-
-@property (nonatomic, weak) id <DATASourceDelegate> delegate;
-
-@property (nonatomic) BOOL controllerIsHidden;
-
-@property (readonly) NSFetchedResultsController *fetchedResultsController;
-
-/*!
- * Used to configure UITableView's cell.
- */
-@property (nonatomic, copy) ANDYConfigureBlock configureCellBlock;
 
 /*!
  * Initialization of DATASource.
  * \param tableView The used UITableView.
  * \param fetchRequest The used NSFetchedResultsController.
  * \param cellIdentifier The used cell identifier.
-  * \param mainContext A NSManagedObjectContext in the main thread.
+ * \param mainContext A NSManagedObjectContext in the main thread.
+ * \param configure A block to configure the cell.
  * \returns An instance of DATASource.
  */
 - (instancetype)initWithTableView:(UITableView *)tableView
                      fetchRequest:(NSFetchRequest *)fetchRequest
                    cellIdentifier:(NSString *)cellIdentifier
-                      mainContext:(NSManagedObjectContext *)mainContext;
+                      mainContext:(NSManagedObjectContext *)mainContext
+                        configure:(DATAConfigureCell)configure;
+
+@property (nonatomic, weak) id <DATASourceDelegate> delegate;
+
+@property (nonatomic) BOOL controllerIsHidden;
+
+@property (nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 
 /*!
  * Convenience method to change the predicate of the NSFetchedResultsController.

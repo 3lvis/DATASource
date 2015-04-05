@@ -37,10 +37,10 @@ static NSString * const ANDYCellIdentifier = @"ANDYCellIdentifier";
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:fetchRequest
                                          cellIdentifier:ANDYCellIdentifier
-                                            mainContext:self.dataStack.mainContext];
-    _dataSource.configureCellBlock = ^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@ (%@)", task.title, task.date, indexPath];
-    };
+                                            mainContext:self.dataStack.mainContext
+                                              configure:^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
+                                                  cell.textLabel.text = task.title;
+                                              }];
 
     return _dataSource;
 }
