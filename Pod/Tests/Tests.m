@@ -15,6 +15,17 @@ static NSString * const ModelName = @"DataModel";
 
 @implementation PodTests
 
+- (User *)userWithName:(NSString *)name inContext:(NSManagedObjectContext *)context
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:EntityName
+                                              inManagedObjectContext:context];
+    User *user = (User *)[[NSManagedObject alloc] initWithEntity:entity
+                                  insertIntoManagedObjectContext:context];
+    user.name = name;
+
+    return user;
+}
+
 - (void)testTableViewDataSource
 {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -43,17 +54,6 @@ static NSString * const ModelName = @"DataModel";
         [self userWithName:@"Elvis" inContext:backgroundContext];
         [backgroundContext save:nil];
     }];
-}
-
-- (User *)userWithName:(NSString *)name inContext:(NSManagedObjectContext *)context
-{
-    NSEntityDescription *entity = [NSEntityDescription entityForName:EntityName
-                                              inManagedObjectContext:context];
-    User *user = (User *)[[NSManagedObject alloc] initWithEntity:entity
-                                  insertIntoManagedObjectContext:context];
-    user.name = name;
-
-    return user;
 }
 
 @end
