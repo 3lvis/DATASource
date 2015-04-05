@@ -5,6 +5,10 @@
 #import "DATASource.h"
 #import "User.h"
 
+static NSString * const CellIdentifier = @"CellIdentifier";
+static NSString * const EntityName = @"User";
+static NSString * const ModelName = @"DataModel";
+
 @interface PodTests : XCTestCase
 
 @end
@@ -14,20 +18,20 @@
 - (void)testTableViewDataSource
 {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"DataModel"
+    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:ModelName
                                                          bundle:bundle
                                                       storeType:DATAStackInMemoryStoreType];
 
     UITableView *tableView = [UITableView new];
     [tableView registerClass:[UITableViewCell class]
-      forCellReuseIdentifier:@"CellIdentifier"];
+      forCellReuseIdentifier:CellIdentifier];
 
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:EntityName];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                               ascending:YES]];
     DATASource *dataSource = [[DATASource alloc] initWithTableView:tableView
                                                       fetchRequest:request
-                                                    cellIdentifier:@"CellIdentifier"
+                                                    cellIdentifier:CellIdentifier
                                                        mainContext:dataStack.mainContext
                                                          configure:^(id cell, User *item, NSIndexPath *indexPath) {
                                                              XCTAssertEqualObjects(item.name, @"Elvis");
@@ -43,7 +47,7 @@
 
 - (User *)userWithName:(NSString *)name inContext:(NSManagedObjectContext *)context
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User"
+    NSEntityDescription *entity = [NSEntityDescription entityForName:EntityName
                                               inManagedObjectContext:context];
     User *user = (User *)[[NSManagedObject alloc] initWithEntity:entity
                                   insertIntoManagedObjectContext:context];
