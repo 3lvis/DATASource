@@ -9,19 +9,13 @@ Pod::Spec.new do |s|
                    * 100 LOC? 200 LOC? 300 LOC?
                    * Well, DATASource does it in 71 LOC.
                    DESC
-  s.homepage = "https://github.com/NSElvis/DATASource"
-  s.license = {
-    :type => 'MIT',
-    :file => 'LICENSE'
-  }
-  s.author = { "Elvis Nunez" => "elvisnunez@me.com" }
-  s.social_media_url = "http://twitter.com/NSElvis"
-  s.platform = :ios, '7.0'
-  s.source = {
-    :git => 'https://github.com/NSElvis/DATASource.git',
-    :tag => s.version.to_s
-  }
-  s.source_files = 'Source/'
-  s.frameworks = 'Foundation', 'UIKit', 'CoreData'
+  s.homepage         = "https://github.com/3lvis/DATASource"
+  s.license          = 'MIT'
+  s.author           = { "Elvis Nuñez" => "elvisnunez@me.com" }
+  s.source           = { :git => "https://github.com/3lvis/DATASource.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/3lvis'
+  s.platform     = :ios, '7.0'
   s.requires_arc = true
+  s.source_files = 'Source/**/*'
+  s.frameworks = 'Foundation', 'UIKit', 'CoreData'
 end

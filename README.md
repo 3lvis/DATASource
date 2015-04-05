@@ -1,5 +1,11 @@
-DATASource
-=================================
+# DATASource
+
+[![CI Status](http://img.shields.io/travis/3lvis/DATASource.svg?style=flat)](https://travis-ci.org/3lvis/DATASource)
+[![Version](https://img.shields.io/cocoapods/v/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
+[![License](https://img.shields.io/cocoapods/l/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
+[![Platform](https://img.shields.io/cocoapods/p/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
+
+## Usage
 
 How much does it take to insert a NSManagedObject into Core Data and show it in your UITableView in an animated way (using NSFetchedResultsController, of course)?
 
@@ -24,7 +30,8 @@ self.tableView.dataSource = self.dataSource;
 
 ## Installation
 
-**DATASource** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+**DATASource** is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'DATASource'
@@ -32,7 +39,7 @@ pod 'DATASource'
 
 ## Author
 
-Elvis Nuñez, [elvisnunez@me.com](mailto:elvisnunez@me.com)
+Elvis Nuñez, elvisnunez@me.com
 
 ## License
 
