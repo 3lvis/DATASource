@@ -7,7 +7,7 @@
 
 typedef void (^DATAConfigureCell)(id cell, id item, NSIndexPath *indexPath);
 
-@interface DATASource : NSObject <UITableViewDataSource>
+@interface DATASource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
 /*!
  * Initialization of DATASource.
@@ -23,6 +23,21 @@ typedef void (^DATAConfigureCell)(id cell, id item, NSIndexPath *indexPath);
                    cellIdentifier:(NSString *)cellIdentifier
                       mainContext:(NSManagedObjectContext *)mainContext
                         configure:(DATAConfigureCell)configure;
+
+/*!
+ * Initialization of DATASource.
+ * \param collectionView The used UICollectionView.
+ * \param fetchRequest The used NSFetchedResultsController.
+ * \param cellIdentifier The used cell identifier.
+ * \param mainContext A NSManagedObjectContext in the main thread.
+ * \param configure A block to configure the cell.
+ * \returns An instance of DATASource.
+ */
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
+                          fetchRequest:(NSFetchRequest *)fetchRequest
+                        cellIdentifier:(NSString *)cellIdentifier
+                           mainContext:(NSManagedObjectContext *)mainContext
+                             configure:(DATAConfigureCell)configure;
 
 @property (nonatomic, weak) id <DATASourceDelegate> delegate;
 
