@@ -1,6 +1,5 @@
 # DATASource
 
-[![CI Status](http://img.shields.io/travis/3lvis/DATASource.svg?style=flat)](https://travis-ci.org/3lvis/DATASource)
 [![Version](https://img.shields.io/cocoapods/v/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
 [![License](https://img.shields.io/cocoapods/l/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
 [![Platform](https://img.shields.io/cocoapods/p/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
