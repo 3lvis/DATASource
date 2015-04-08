@@ -76,26 +76,6 @@
     return self;
 }
 
-#pragma mark - Getters
-
-- (NSMutableDictionary *)objectChanges
-{
-    if (_objectChanges) return _objectChanges;
-
-    _objectChanges = [NSMutableDictionary new];
-
-    return _objectChanges;
-}
-
-- (NSMutableDictionary *)sectionChanges
-{
-    if (_sectionChanges) return _sectionChanges;
-
-    _sectionChanges = [NSMutableDictionary new];
-
-    return _sectionChanges;
-}
-
 #pragma mark - Public methods
 
 - (void)changePredicate:(NSPredicate *)predicate
@@ -178,8 +158,8 @@ titleForHeaderInSection:(NSInteger)section
     if (self.tableView) {
         [self.tableView beginUpdates];
     } else if (self.collectionView) {
-        [self.objectChanges removeAllObjects];
-        [self.sectionChanges removeAllObjects];
+        self.objectChanges = [NSMutableDictionary new];
+        self.sectionChanges = [NSMutableDictionary new];
     }
 }
 
@@ -208,17 +188,16 @@ titleForHeaderInSection:(NSInteger)section
             case NSFetchedResultsChangeUpdate:
                 break;
         }
-    } else if (self.collectionView &&
-               (type == NSFetchedResultsChangeInsert ||
-                type == NSFetchedResultsChangeDelete)) {
-                   NSNumber *typeNumber = @(type);
-                   NSMutableIndexSet *changeSet = self.sectionChanges[typeNumber];
-                   if (changeSet) {
-                       [changeSet addIndex:sectionIndex];
-                   } else {
-                       self.sectionChanges[typeNumber] = [[NSMutableIndexSet alloc] initWithIndex:sectionIndex];
-                   }
-               }
+    } else if (self.collectionView) {
+        if (type == NSFetchedResultsChangeInsert || type == NSFetchedResultsChangeDelete) {
+            NSMutableIndexSet *changeSet = self.sectionChanges[@(type)];
+            if (changeSet) {
+                [changeSet addIndex:sectionIndex];
+            } else {
+                self.sectionChanges[@(type)] = [[NSMutableIndexSet alloc] initWithIndex:sectionIndex];
+            }
+        }
+    }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller
@@ -281,8 +260,7 @@ titleForHeaderInSection:(NSInteger)section
             } break;
         }
     } else if (self.collectionView) {
-        NSNumber *typeNumber = @(type);
-        NSMutableArray *changeSet = self.objectChanges[typeNumber];
+        NSMutableArray *changeSet = self.objectChanges[@(type)];
         if (!changeSet) {
             changeSet = [[NSMutableArray alloc] init];
         }
@@ -302,7 +280,7 @@ titleForHeaderInSection:(NSInteger)section
                 break;
         }
 
-        self.objectChanges[typeNumber] = changeSet;
+        self.objectChanges[@(type)] = changeSet;
     }
 }
 
@@ -426,40 +404,6 @@ titleForHeaderInSection:(NSInteger)section
     if (self.configureCellBlock) {
         self.configureCellBlock(cell, item, indexPath);
     }
-}
-
-- (BOOL)shouldReloadCollectionViewToPreventKnownIssue
-{
-    __block BOOL shouldReload = NO;
-    for (NSDictionary *change in self.objectChanges) {
-        [change enumerateKeysAndObjectsUsingBlock:^(id key, NSIndexPath *indexPath, BOOL *stop) {
-            NSFetchedResultsChangeType type = [key unsignedIntegerValue];
-            switch (type) {
-                case NSFetchedResultsChangeInsert:
-                    if ([self.collectionView numberOfItemsInSection:indexPath.section] == 0) {
-                        shouldReload = YES;
-                    } else {
-                        shouldReload = NO;
-                    }
-                    break;
-                case NSFetchedResultsChangeDelete:
-                    if ([self.collectionView numberOfItemsInSection:indexPath.section] == 1) {
-                        shouldReload = YES;
-                    } else {
-                        shouldReload = NO;
-                    }
-                    break;
-                case NSFetchedResultsChangeUpdate:
-                    shouldReload = NO;
-                    break;
-                case NSFetchedResultsChangeMove:
-                    shouldReload = NO;
-                    break;
-            }
-        }];
-    }
-
-    return shouldReload;
 }
 
 @end
