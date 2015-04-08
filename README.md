@@ -1,9 +1,3 @@
-# DATASource
-
-[![Version](https://img.shields.io/cocoapods/v/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
-[![License](https://img.shields.io/cocoapods/l/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
-[![Platform](https://img.shields.io/cocoapods/p/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
-
 ## UITableView
 
 ``` objc
