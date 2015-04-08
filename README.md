@@ -11,8 +11,8 @@ DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                   fetchRequest:fetchRequest
                                                 cellIdentifier:ANDYCellIdentifier
                                                    configuration:^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
-    cell.textLabel.text = task.title;
-};
+                                                cell.textLabel.text = task.title;
+                                            };
 
 self.tableView.dataSource = self.dataSource;
 ```
