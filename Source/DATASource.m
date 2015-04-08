@@ -189,7 +189,8 @@ titleForHeaderInSection:(NSInteger)section
                 break;
         }
     } else if (self.collectionView) {
-        if (type == NSFetchedResultsChangeInsert || type == NSFetchedResultsChangeDelete) {
+        if (type == NSFetchedResultsChangeInsert ||
+            type == NSFetchedResultsChangeDelete) {
             NSMutableIndexSet *changeSet = self.sectionChanges[@(type)];
             if (changeSet) {
                 [changeSet addIndex:sectionIndex];
@@ -355,37 +356,39 @@ titleForHeaderInSection:(NSInteger)section
 
         UICollectionView *collectionView = self.collectionView;
 
-        [collectionView performBatchUpdates:^{
-            NSIndexSet *deletedSections = self.sectionChanges[@(NSFetchedResultsChangeDelete)];
-            if (deletedSections.count) {
-                [collectionView deleteSections:deletedSections];
-            }
+        [UIView performWithoutAnimation:^{
+            [collectionView performBatchUpdates:^{
+                NSIndexSet *deletedSections = self.sectionChanges[@(NSFetchedResultsChangeDelete)];
+                if (deletedSections.count) {
+                    [collectionView deleteSections:deletedSections];
+                }
 
-            NSIndexSet *insertedSections = self.sectionChanges[@(NSFetchedResultsChangeInsert)];
-            if (insertedSections.count) {
-                [collectionView insertSections:insertedSections];
-            }
+                NSIndexSet *insertedSections = self.sectionChanges[@(NSFetchedResultsChangeInsert)];
+                if (insertedSections.count) {
+                    [collectionView insertSections:insertedSections];
+                }
 
-            NSArray *deletedItems = self.objectChanges[@(NSFetchedResultsChangeDelete)];
-            if (deletedItems.count) {
-                [collectionView deleteItemsAtIndexPaths:deletedItems];
-            }
+                NSArray *deletedItems = self.objectChanges[@(NSFetchedResultsChangeDelete)];
+                if (deletedItems.count) {
+                    [collectionView deleteItemsAtIndexPaths:deletedItems];
+                }
 
-            NSArray *insertedItems = self.objectChanges[@(NSFetchedResultsChangeInsert)];
-            if (insertedItems.count) {
-                [collectionView insertItemsAtIndexPaths:insertedItems];
-            }
+                NSArray *insertedItems = self.objectChanges[@(NSFetchedResultsChangeInsert)];
+                if (insertedItems.count) {
+                    [collectionView insertItemsAtIndexPaths:insertedItems];
+                }
 
-            NSArray *reloadItems = self.objectChanges[@(NSFetchedResultsChangeUpdate)];
-            if (reloadItems.count) {
-                [collectionView reloadItemsAtIndexPaths:reloadItems];
-            }
+                NSArray *reloadItems = self.objectChanges[@(NSFetchedResultsChangeUpdate)];
+                if (reloadItems.count) {
+                    [collectionView reloadItemsAtIndexPaths:reloadItems];
+                }
 
-            NSArray *moveItems = self.objectChanges[@(NSFetchedResultsChangeMove)];
-            for (NSArray *paths in moveItems) {
-                [collectionView moveItemAtIndexPath:paths[0] toIndexPath:paths[1]];
-            }
-        } completion:nil];
+                NSArray *moveItems = self.objectChanges[@(NSFetchedResultsChangeMove)];
+                for (NSArray *paths in moveItems) {
+                    [collectionView moveItemAtIndexPath:paths[0] toIndexPath:paths[1]];
+                }
+            } completion:nil];
+        }];
     }
 }
 
