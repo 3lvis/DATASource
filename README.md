@@ -14,7 +14,7 @@ DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                 cell.textLabel.text = task.title;
                                             };
 
-self.tableView.dataSource = self.dataSource;
+self.tableView.dataSource = dataSource;
 ```
 
 ## UICollectionView
@@ -27,7 +27,7 @@ DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collect
                                                 cell.textLabel.text = task.title;
                                             };
 
-self.collectionView.dataSource = self.dataSource;
+self.collectionView.dataSource = dataSource;
 ```
 
 ## Installation
