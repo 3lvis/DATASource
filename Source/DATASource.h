@@ -5,9 +5,9 @@
 
 @protocol DATASourceDelegate;
 
-typedef void (^DATAConfigureCell)(id cell, id item, NSIndexPath *indexPath);
+typedef void (^DATAConfigurationCell)(id cell, id item, NSIndexPath *indexPath);
 
-@interface DATASource : NSObject <UITableViewDataSource>
+@interface DATASource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
 /*!
  * Initialization of DATASource.
@@ -15,14 +15,29 @@ typedef void (^DATAConfigureCell)(id cell, id item, NSIndexPath *indexPath);
  * \param fetchRequest The used NSFetchedResultsController.
  * \param cellIdentifier The used cell identifier.
  * \param mainContext A NSManagedObjectContext in the main thread.
- * \param configure A block to configure the cell.
+ * \param configuration A block to configure the cell.
  * \returns An instance of DATASource.
  */
 - (instancetype)initWithTableView:(UITableView *)tableView
                      fetchRequest:(NSFetchRequest *)fetchRequest
                    cellIdentifier:(NSString *)cellIdentifier
                       mainContext:(NSManagedObjectContext *)mainContext
-                        configure:(DATAConfigureCell)configure;
+                    configuration:(DATAConfigurationCell)configuration;
+
+/*!
+ * Initialization of DATASource.
+ * \param collectionView The used UICollectionView.
+ * \param fetchRequest The used NSFetchedResultsController.
+ * \param cellIdentifier The used cell identifier.
+ * \param mainContext A NSManagedObjectContext in the main thread.
+ * \param configuration A block to configure the cell.
+ * \returns An instance of DATASource.
+ */
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
+                          fetchRequest:(NSFetchRequest *)fetchRequest
+                        cellIdentifier:(NSString *)cellIdentifier
+                           mainContext:(NSManagedObjectContext *)mainContext
+                         configuration:(DATAConfigurationCell)configuration;
 
 @property (nonatomic, weak) id <DATASourceDelegate> delegate;
 
@@ -56,6 +71,7 @@ typedef void (^DATAConfigureCell)(id cell, id item, NSIndexPath *indexPath);
 
 - (void)dataSource:(DATASource *)dataSource
      didMoveObject:(NSManagedObject *)object
-     withIndexPath:(NSIndexPath *)indexPath newIndexPath:(NSIndexPath *)newIndexPath;
+     withIndexPath:(NSIndexPath *)indexPath
+      newIndexPath:(NSIndexPath *)newIndexPath;
 
 @end
