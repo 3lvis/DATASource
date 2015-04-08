@@ -36,9 +36,9 @@ static NSString *CellIdentifier = @"AFCollectionViewCell";
                                                 fetchRequest:request
                                               cellIdentifier:CellIdentifier
                                                  mainContext:self.dataStack.mainContext
-                                                   configure:^(UICollectionViewCell *cell, id item, NSIndexPath *indexPath) {
-                                                       cell.backgroundColor = [UIColor redColor];
-                                                   }];
+                                               configuration:^(UICollectionViewCell *cell, id item, NSIndexPath *indexPath) {
+                                                   cell.backgroundColor = [UIColor redColor];
+                                               }];
 
     return _dataSource;
 }
