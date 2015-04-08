@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
 [![Platform](https://img.shields.io/cocoapods/p/DATASource.svg?style=flat)](http://cocoadocs.org/docsets/DATASource)
 
-## Usage
+## UITableView
 
 ``` objc
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
@@ -15,6 +15,19 @@ DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                             };
 
 self.tableView.dataSource = self.dataSource;
+```
+
+## UICollectionView
+
+``` objc
+DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
+                                                       fetchRequest:fetchRequest
+                                                     cellIdentifier:ANDYCellIdentifier
+                                                      configuration:^(UICollectionView *cell, Task *task, NSIndexPath *indexPath) {
+                                                cell.textLabel.text = task.title;
+                                            };
+
+self.collectionView.dataSource = self.dataSource;
 ```
 
 ## Installation
