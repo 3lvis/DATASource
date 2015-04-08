@@ -15,7 +15,8 @@ static NSString *CellIdentifier = @"AFCollectionViewCell";
 
 @implementation ViewController
 
-- (instancetype)initWithLayout:(UICollectionViewLayout *)layout andDataStack:(DATAStack *)dataStack
+- (instancetype)initWithLayout:(UICollectionViewLayout *)layout
+                  andDataStack:(DATAStack *)dataStack
 {
     self = [super initWithCollectionViewLayout:layout];
     if (!self) return nil;
@@ -30,7 +31,8 @@ static NSString *CellIdentifier = @"AFCollectionViewCell";
     if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                              ascending:YES]];
 
     _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                 fetchRequest:request
@@ -47,8 +49,11 @@ static NSString *CellIdentifier = @"AFCollectionViewCell";
 {
     [super viewDidLoad];
 
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CellIdentifier];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
+    [self.collectionView registerClass:[UICollectionViewCell class]
+            forCellWithReuseIdentifier:CellIdentifier];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                          target:self
+                                                                          action:@selector(addAction)];
     self.navigationItem.rightBarButtonItem = item;
     self.collectionView.dataSource = self.dataSource;
 }
@@ -56,12 +61,11 @@ static NSString *CellIdentifier = @"AFCollectionViewCell";
 - (void)addAction
 {
     [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
-        for (NSInteger i = 0; i < 1000; i++) {
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:backgroundContext];
-            User *user = [[User alloc] initWithEntity:entity insertIntoManagedObjectContext:backgroundContext];
-            user.name = @"The name";
-        }
-        [backgroundContext save:nil];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"User"
+                                                  inManagedObjectContext:backgroundContext];
+        User *user = [[User alloc] initWithEntity:entity
+                   insertIntoManagedObjectContext:backgroundContext];
+        user.name = @"The name";
     }];
 }
 

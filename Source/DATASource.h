@@ -71,6 +71,7 @@ typedef void (^DATAConfigurationCell)(id cell, id item, NSIndexPath *indexPath);
 
 - (void)dataSource:(DATASource *)dataSource
      didMoveObject:(NSManagedObject *)object
-     withIndexPath:(NSIndexPath *)indexPath newIndexPath:(NSIndexPath *)newIndexPath;
+     withIndexPath:(NSIndexPath *)indexPath
+      newIndexPath:(NSIndexPath *)newIndexPath;
 
 @end
