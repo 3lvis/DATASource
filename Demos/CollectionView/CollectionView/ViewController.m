@@ -56,9 +56,11 @@ static NSString *CellIdentifier = @"AFCollectionViewCell";
 - (void)addAction
 {
     [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:backgroundContext];
-        User *user = [[User alloc] initWithEntity:entity insertIntoManagedObjectContext:backgroundContext];
-        user.name = @"The name";
+        for (NSInteger i = 0; i < 1000; i++) {
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:backgroundContext];
+            User *user = [[User alloc] initWithEntity:entity insertIntoManagedObjectContext:backgroundContext];
+            user.name = @"The name";
+        }
         [backgroundContext save:nil];
     }];
 }
