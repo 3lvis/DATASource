@@ -22,6 +22,7 @@
 		1411BF7A1AD5F3C300023F13 /* DATASource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASource.m; sourceTree = "<group>"; };
 		1494D6ED1AD5F8CB00F196B6 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = "Pods/../build/Debug-iphoneos/Pods/DATAStack.framework"; sourceTree = "<group>"; };
 		1494D6EF1AD5F8CE00F196B6 /* NSObject_HYPTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSObject_HYPTesting.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSObject_HYPTesting.framework"; sourceTree = "<group>"; };
+		14D476E91AD64EF000779A7D /* TableView-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TableView-Bridging-Header.h"; sourceTree = "<group>"; };
 		14FA8A511AD5F36C00E47506 /* TableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FA8A551AD5F36C00E47506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14FA8A561AD5F36C00E47506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +85,7 @@
 				14FA8A601AD5F36C00E47506 /* Images.xcassets */,
 				14FA8A581AD5F36C00E47506 /* TableView.xcdatamodeld */,
 				14FA8A541AD5F36C00E47506 /* Supporting Files */,
+				14D476E91AD64EF000779A7D /* TableView-Bridging-Header.h */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -338,6 +340,7 @@
 				INFOPLIST_FILE = TableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TableView/TableView-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -354,6 +357,7 @@
 				INFOPLIST_FILE = TableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TableView/TableView-Bridging-Header.h";
 			};
 			name = Release;
 		};
