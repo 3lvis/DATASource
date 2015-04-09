@@ -5,7 +5,8 @@
 
 @protocol DATASourceDelegate;
 
-typedef void (^DATAConfigurationCell)(id cell, id item, NSIndexPath *indexPath);
+typedef void (^DATAConfigurationTableCell)(UITableViewCell *cell, NSManagedObject *item, NSIndexPath *indexPath);
+typedef void (^DATAConfigurationCollectionCell)(UICollectionViewCell *cell, NSManagedObject *item, NSIndexPath *indexPath);
 
 @interface DATASource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
@@ -22,7 +23,7 @@ typedef void (^DATAConfigurationCell)(id cell, id item, NSIndexPath *indexPath);
                      fetchRequest:(NSFetchRequest *)fetchRequest
                    cellIdentifier:(NSString *)cellIdentifier
                       mainContext:(NSManagedObjectContext *)mainContext
-                    configuration:(DATAConfigurationCell)configuration;
+                    configuration:(DATAConfigurationTableCell)configuration;
 
 /*!
  * Initialization of DATASource.
@@ -37,7 +38,7 @@ typedef void (^DATAConfigurationCell)(id cell, id item, NSIndexPath *indexPath);
                           fetchRequest:(NSFetchRequest *)fetchRequest
                         cellIdentifier:(NSString *)cellIdentifier
                            mainContext:(NSManagedObjectContext *)mainContext
-                         configuration:(DATAConfigurationCell)configuration;
+                         configuration:(DATAConfigurationCollectionCell)configuration;
 
 @property (nonatomic, weak) id <DATASourceDelegate> delegate;
 
