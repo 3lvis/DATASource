@@ -4,7 +4,7 @@
 #import "DATASource.h"
 #import "User.h"
 
-static NSString *CellIdentifier = @"AFCollectionViewCell";
+static NSString *CellIdentifier = @"CollectionViewCell";
 
 @interface ViewController () <NSFetchedResultsControllerDelegate>
 
