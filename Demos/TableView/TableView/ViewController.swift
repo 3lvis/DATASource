@@ -26,8 +26,9 @@ class ViewController: UITableViewController {
         tableView: self.tableView,
         fetchRequest: request, cellIdentifier: "Cell",
         mainContext: self.dataStack.mainContext,
-        configuration: { (<#UITableViewCell!#>, <#NSManagedObject!#>, <#NSIndexPath!#>) -> Void in
-            // cell.textLabel.text = item.valueForKey("name")
+        configuration: { (cell, item, indexPath) -> Void in
+            let cell = cell as UITableViewCell
+            cell.textLabel!.text = "Hi"
     })
   }
 }
