@@ -4,7 +4,7 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 
 ## UITableView
 
-Hooking up your table view to your `Task` model and making your UITableView to insertions, updates and deletions is as simple as this.
+Hooking up your table view to your `Task` model and making your UITableView react to insertions, updates and deletions is as simple as this.
 
 ``` objc
 NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
