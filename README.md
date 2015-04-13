@@ -7,8 +7,8 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 Hooking up your table view to your `Task` model and making your UITableView react to insertions, updates and deletions is as simple as this.
 
 ``` objc
-NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
-request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
 
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                   fetchRequest:fetchRequest
@@ -25,8 +25,8 @@ self.tableView.dataSource = dataSource;
 Hooking up a UICollectionView is as simple as doing it with a UITableView, just use this method.
 
 ``` objc
-NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
-request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
 
 DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                        fetchRequest:fetchRequest
