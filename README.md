@@ -13,7 +13,7 @@ fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                   fetchRequest:fetchRequest
                                                 cellIdentifier:ANDYCellIdentifier
-                                                   configuration:^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
+                                                configuration:^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
                                                 cell.textLabel.text = task.title;
                                             };
 
