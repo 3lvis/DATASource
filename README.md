@@ -1,6 +1,15 @@
+# DATASource
+
+Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is awesome, but sadly it involves a lot of boilerplate. Well, luckily with DATASource not anymore.
+
 ## UITableView
 
+Hooking up your table view to your `Task` model and making your UITableView to insertions, updates and deletions is as simple as this.
+
 ``` objc
+NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                   fetchRequest:fetchRequest
                                                 cellIdentifier:ANDYCellIdentifier
@@ -13,7 +22,12 @@ self.tableView.dataSource = dataSource;
 
 ## UICollectionView
 
+Hooking up a UICollectionView is as simple as doing it with a UITableView, just use this method.
+
 ``` objc
+NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+
 DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                        fetchRequest:fetchRequest
                                                      cellIdentifier:ANDYCellIdentifier
@@ -35,7 +49,7 @@ pod 'DATASource'
 
 ## Author
 
-Elvis Nuñez, elvisnunez@me.com
+Elvis Nuñez, [@3lvis](https://twitter.com/3lvis)
 
 ## License
 
