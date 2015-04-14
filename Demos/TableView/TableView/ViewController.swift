@@ -11,7 +11,8 @@ class ViewController: UITableViewController {
   init(dataStack: DATAStack) {
     self.dataStack = dataStack
 
-    super.init(nibName: nil, bundle: nil)
+    super.init(nibName: nil,
+      bundle: nil)
   }
 
   override func viewDidLoad() {
@@ -20,7 +21,8 @@ class ViewController: UITableViewController {
     self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
 
     let request: NSFetchRequest = NSFetchRequest(entityName: "User")
-    request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+    request.sortDescriptors = [NSSortDescriptor(key: "name",
+      ascending: true)]
 
     delay(0.1) {
       self.tableView.dataSource = DATASource(
