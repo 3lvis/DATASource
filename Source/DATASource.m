@@ -4,7 +4,7 @@
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic) NSString *cellIdentifier;
-@property (nonatomic, copy) DATAConfigurationCell configurationBlock;
+@property (nonatomic, copy) void (^configurationBlock)(id cell, id item, NSIndexPath *indexPath);
 
 @property (nonatomic) UITableView *tableView;
 
@@ -22,13 +22,15 @@
                      fetchRequest:(NSFetchRequest *)fetchRequest
                    cellIdentifier:(NSString *)cellIdentifier
                       mainContext:(NSManagedObjectContext *)mainContext
-                    configuration:(DATAConfigurationCell)configuration;
+                    configuration:(void (^)(id cell,
+                                            id item,
+                                            NSIndexPath *indexPath))configuration
 {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
-                          mainContext:mainContext
-                        configuration:configuration];
+                          mainContext:mainContext];
 
+    _configurationBlock = configuration;
     _tableView = tableView;
     _tableView.dataSource = self;
 
@@ -39,13 +41,15 @@
                           fetchRequest:(NSFetchRequest *)fetchRequest
                         cellIdentifier:(NSString *)cellIdentifier
                            mainContext:(NSManagedObjectContext *)mainContext
-                         configuration:(DATAConfigurationCell)configuration;
+                         configuration:(void (^)(id cell,
+                                                 id item,
+                                                 NSIndexPath *indexPath))configuration
 {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
-                          mainContext:mainContext
-                        configuration:configuration];
+                          mainContext:mainContext];
 
+    _configurationBlock = configuration;
     _collectionView = collectionView;
     _collectionView.dataSource = self;
 
@@ -55,13 +59,11 @@
 - (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest
                       cellIdentifier:(NSString *)cellIdentifier
                          mainContext:(NSManagedObjectContext *)mainContext
-                       configuration:(DATAConfigurationCell)configuration;
 {
     self = [super init];
     if (!self) return nil;
 
     _cellIdentifier = cellIdentifier;
-    _configurationBlock = configuration;
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                     managedObjectContext:mainContext
                                                                       sectionNameKeyPath:nil
