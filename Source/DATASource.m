@@ -91,6 +91,19 @@
     [self.tableView reloadData];
 }
 
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+- (void)fetch
+{
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Error fetching: %@", [error description]);
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
