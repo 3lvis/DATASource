@@ -66,6 +66,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
         User *user = [[User alloc] initWithEntity:entity
                    insertIntoManagedObjectContext:backgroundContext];
         user.name = @"The name";
+        [backgroundContext save:nil];
     }];
 }
 
