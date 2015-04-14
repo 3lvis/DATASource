@@ -3,8 +3,6 @@
 @import CoreData;
 @class DATAStack;
 
-NS_ASSUME_NONNULL_BEGIN
-
 @protocol DATASourceDelegate;
 
 @interface DATASource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
@@ -79,5 +77,3 @@ NS_ASSUME_NONNULL_BEGIN
       newIndexPath:(NSIndexPath *)newIndexPath;
 
 @end
-
-NS_ASSUME_NONNULL_END
