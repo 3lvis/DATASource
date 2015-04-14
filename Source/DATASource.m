@@ -4,8 +4,7 @@
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic) NSString *cellIdentifier;
-@property (nonatomic, copy) DATAConfigurationTableCell tableConfigurationBlock;
-@property (nonatomic, copy) DATAConfigurationCollectionCell collectionConfigurationBlock;
+@property (nonatomic, copy) void (^configurationBlock)(id cell, id item, NSIndexPath *indexPath);
 
 @property (nonatomic) UITableView *tableView;
 
@@ -23,13 +22,15 @@
                      fetchRequest:(NSFetchRequest *)fetchRequest
                    cellIdentifier:(NSString *)cellIdentifier
                       mainContext:(NSManagedObjectContext *)mainContext
-                    configuration:(DATAConfigurationTableCell)configuration;
+                    configuration:(void (^)(id cell,
+                                            id item,
+                                            NSIndexPath *indexPath))configuration
 {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
                           mainContext:mainContext];
 
-    _tableConfigurationBlock = configuration;
+    _configurationBlock = configuration;
     _tableView = tableView;
     _tableView.dataSource = self;
 
@@ -40,13 +41,15 @@
                           fetchRequest:(NSFetchRequest *)fetchRequest
                         cellIdentifier:(NSString *)cellIdentifier
                            mainContext:(NSManagedObjectContext *)mainContext
-                         configuration:(DATAConfigurationCollectionCell)configuration;
+                         configuration:(void (^)(id cell,
+                                                 id item,
+                                                 NSIndexPath *indexPath))configuration
 {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
                           mainContext:mainContext];
 
-    _collectionConfigurationBlock = configuration;
+    _configurationBlock = configuration;
     _collectionView = collectionView;
     _collectionView.dataSource = self;
 
@@ -399,11 +402,9 @@ titleForHeaderInSection:(NSInteger)section
     if (rowIsInsideBounds) {
         item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
-    
-    if (self.tableConfigurationBlock) {
-        self.tableConfigurationBlock(cell, item, indexPath);
-    } else if (self.collectionConfigurationBlock) {
-        self.collectionConfigurationBlock(cell, item, indexPath);
+
+    if (self.configurationBlock) {
+        self.configurationBlock(cell, item, indexPath);
     }
 }
 
