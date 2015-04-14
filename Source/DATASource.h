@@ -53,6 +53,17 @@
  */
 - (void)changePredicate:(NSPredicate *)predicate;
 
+/*!
+ * Convenience method to retreive an object at a given @c indexPath.
+ * \param indexPath The indexPath.
+ */
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+
+/*!
+ * Convenience method to perform fetch.
+ */
+- (void)fetch;
+
 @end
 
 @protocol DATASourceDelegate <NSObject>
