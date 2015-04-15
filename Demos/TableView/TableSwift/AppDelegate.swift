@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.dataStack = DATAStack(modelName: "TableSwift")
 
-        let viewController = ViewController()
+        let viewController = ViewController(dataStack: self.dataStack!)
         self.window?.rootViewController = UINavigationController(rootViewController: viewController)
         self.window?.makeKeyAndVisible()
 

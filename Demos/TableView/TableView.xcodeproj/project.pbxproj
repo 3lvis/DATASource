@@ -41,6 +41,7 @@
 		1497E2C41ADE2DC700FFA154 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		14BC994A1ADE34B00038E393 /* DATASource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
 		14BC994B1ADE34B00038E393 /* DATASource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASource.m; sourceTree = "<group>"; };
+		14FD66701ADEAE93000C116A /* TableSwift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TableSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		622CE58A7E988DE1BCAF1FAD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E05DD17F18296CB80DC3DB60 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EBB9EA998A7FD6EA72157364 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				1497E2BA1ADE2DC700FFA154 /* AppDelegate.swift */,
+				14FD66701ADEAE93000C116A /* TableSwift-Bridging-Header.h */,
 				1497E2BF1ADE2DC700FFA154 /* ViewController.swift */,
 				1497E2C41ADE2DC700FFA154 /* Images.xcassets */,
 				1497E2BC1ADE2DC700FFA154 /* TableSwift.xcdatamodeld */,
@@ -498,6 +500,7 @@
 				INFOPLIST_FILE = TableSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TableSwift/TableSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -512,6 +515,7 @@
 				INFOPLIST_FILE = TableSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TableSwift/TableSwift-Bridging-Header.h";
 			};
 			name = Release;
 		};
