@@ -43,9 +43,16 @@ class ViewController: UITableViewController {
 
   func saveAction() {
     self.dataStack.performInNewBackgroundContext { (backgroundContext) -> Void in
-      let user = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: backgroundContext) as! NSManagedObject
-      user.setValue("Elvis", forKey: "name")
-      backgroundContext.save(nil)
+      if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
+        let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
+        user.setValue("Elvis", forKey: "name")
+        var error: NSError?
+        if !backgroundContext.save(&error) {
+          println("Could not save \(error), \(error?.userInfo)")
+        }
+      } else {
+        println("Oh no")
+      }
     }
   }
 }
