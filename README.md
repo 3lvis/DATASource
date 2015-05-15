@@ -13,6 +13,7 @@ fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                   fetchRequest:fetchRequest
                                                 cellIdentifier:ANDYCellIdentifier
+                                                   mainContext:context
                                                  configuration:^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
                                                 cell.textLabel.text = task.title;
                                             };
@@ -31,6 +32,7 @@ fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title
 DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                        fetchRequest:fetchRequest
                                                      cellIdentifier:ANDYCellIdentifier
+                                                        mainContext:context
                                                       configuration:^(UICollectionView *cell, Task *task, NSIndexPath *indexPath) {
                                                 cell.textLabel.text = task.title;
                                             };
