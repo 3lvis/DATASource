@@ -138,6 +138,36 @@ titleForHeaderInSection:(NSInteger)section
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if ([self.delegate respondsToSelector:@selector(dataSource:canEditRowAtIndexPath:)]) {
+        [self.delegate dataSource:tableView
+            canEditRowAtIndexPath:indexPath];
+    }
+    return NO;
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(dataSource:titleForDeleteConfirmationButtonForRowAtIndexPath:)]) {
+        [self.delegate dataSource:tableView
+            titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
+    }
+    return @"Delete";
+}
+
+-   (void)tableView:(UITableView *)tableView
+ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+  forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]){
+        [self.delegate dataSource:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
