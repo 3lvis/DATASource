@@ -153,8 +153,7 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
 titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.delegate respondsToSelector:@selector(dataSource:titleForDeleteConfirmationButtonForRowAtIndexPath:)]) {
-        [self.delegate dataSource:tableView
-            titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
+        [self.delegate dataSource:tableView titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
     }
     return @"Delete";
 }
@@ -164,7 +163,9 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
   forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]){
-        [self.delegate dataSource:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
+        [self.delegate dataSource:tableView
+               commitEditingStyle:editingStyle
+                forRowAtIndexPath:indexPath];
     }
 }
 
