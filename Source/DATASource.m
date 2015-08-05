@@ -135,6 +135,7 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
         [self.delegate dataSource:tableView
             canEditRowAtIndexPath:indexPath];
     }
+
     return NO;
 }
 
