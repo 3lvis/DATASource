@@ -87,4 +87,18 @@
      withIndexPath:(NSIndexPath *)indexPath
       newIndexPath:(NSIndexPath *)newIndexPath;
 
+    - (BOOL)dataSource:(UITableView *)tableView
+ canEditRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (NSString *)dataSource:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+-   (void)dataSource:(UITableView *)tableView
+  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+   forRowAtIndexPath:(NSIndexPath *)indexPath;
+
+
+
+
+
+
 @end
