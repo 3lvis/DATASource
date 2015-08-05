@@ -24,8 +24,7 @@
                       mainContext:(NSManagedObjectContext *)mainContext
                     configuration:(void (^)(id cell,
                                             id item,
-                                            NSIndexPath *indexPath))configuration
-{
+                                            NSIndexPath *indexPath))configuration {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
                           mainContext:mainContext];
@@ -43,8 +42,7 @@
                            mainContext:(NSManagedObjectContext *)mainContext
                          configuration:(void (^)(id cell,
                                                  id item,
-                                                 NSIndexPath *indexPath))configuration
-{
+                                                 NSIndexPath *indexPath))configuration {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
                           mainContext:mainContext];
@@ -58,21 +56,20 @@
 
 - (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest
                       cellIdentifier:(NSString *)cellIdentifier
-                         mainContext:(NSManagedObjectContext *)mainContext
-{
+                         mainContext:(NSManagedObjectContext *)mainContext {
     self = [super init];
-    if (!self) return nil;
+    if (self) {
+        _cellIdentifier = cellIdentifier;
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                        managedObjectContext:mainContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+        _fetchedResultsController.delegate = self;
 
-    _cellIdentifier = cellIdentifier;
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                    managedObjectContext:mainContext
-                                                                      sectionNameKeyPath:nil
-                                                                               cacheName:nil];
-    _fetchedResultsController.delegate = self;
-
-    NSError *error = nil;
-    if (![_fetchedResultsController performFetch:&error]) {
-        NSLog(@"Error fetching objects: %@", error);
+        NSError *error = nil;
+        if (![_fetchedResultsController performFetch:&error]) {
+            NSLog(@"Error fetching objects: %@", error);
+        }
     }
 
     return self;
@@ -80,8 +77,7 @@
 
 #pragma mark - Public methods
 
-- (void)changePredicate:(NSPredicate *)predicate
-{
+- (void)changePredicate:(NSPredicate *)predicate {
     self.fetchedResultsController.fetchRequest.predicate = predicate;
 
     NSError *error = nil;
@@ -91,13 +87,11 @@
     [self.tableView reloadData];
 }
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath
-{
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath {
     return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
-- (void)fetch
-{
+- (void)fetch {
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
         NSLog(@"Error fetching: %@", [error description]);
@@ -106,30 +100,26 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
-{
+ numberOfRowsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
 
     return sectionInfo.numberOfObjects;
 }
 
 - (NSString *)tableView:(UITableView *)tableView
-titleForHeaderInSection:(NSInteger)section
-{
+titleForHeaderInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
 
     return sectionInfo.name;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier
                                                             forIndexPath:indexPath];
 
@@ -139,8 +129,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 
 - (BOOL)tableView:(UITableView *)tableView
-canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if ([self.delegate respondsToSelector:@selector(dataSource:canEditRowAtIndexPath:)]) {
         [self.delegate dataSource:tableView
@@ -149,20 +138,10 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
     return NO;
 }
 
-- (NSString *)tableView:(UITableView *)tableView
-titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:titleForDeleteConfirmationButtonForRowAtIndexPath:)]) {
-        [self.delegate dataSource:tableView titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
-    }
-    return NSLocalizedString(@"delete", nil);
-}
-
 -   (void)tableView:(UITableView *)tableView
  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-  forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]){
+  forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]) {
         [self.delegate dataSource:tableView
                commitEditingStyle:editingStyle
                 forRowAtIndexPath:indexPath];
@@ -171,22 +150,19 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return self.fetchedResultsController.sections.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section
-{
+     numberOfItemsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
 
     return sectionInfo.numberOfObjects;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cellIdentifier
                                                                            forIndexPath:indexPath];
 
@@ -197,8 +173,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     if (self.controllerIsHidden) return;
 
     if (self.tableView) {
@@ -213,8 +188,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)controller:(NSFetchedResultsController *)controller
   didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex
-     forChangeType:(NSFetchedResultsChangeType)type
-{
+     forChangeType:(NSFetchedResultsChangeType)type {
     if (self.controllerIsHidden) {
         return;
     }
@@ -251,8 +225,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
    didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath
      forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
+      newIndexPath:(NSIndexPath *)newIndexPath {
     if (self.controllerIsHidden) return;
 
     if (self.tableView) {
@@ -331,8 +304,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     if (self.tableView) {
         if (self.controllerIsHidden) {
             NSArray *indexPaths = [self.tableView indexPathsForVisibleRows];
@@ -438,15 +410,14 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - Private methods
 
 - (void)configureCell:(id)cell
-          atIndexPath:(NSIndexPath *)indexPath
-{
+          atIndexPath:(NSIndexPath *)indexPath {
     id item;
 
     BOOL rowIsInsideBounds = ((NSUInteger)indexPath.row < self.fetchedResultsController.fetchedObjects.count);
     if (rowIsInsideBounds) {
         item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
-
+    
     if (self.configurationBlock) {
         self.configurationBlock(cell, item, indexPath);
     }

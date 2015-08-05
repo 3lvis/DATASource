@@ -4,14 +4,13 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) DATAStack *dataStack;
+@property (nonatomic) DATAStack *dataStack;
 
 @end
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
     self.dataStack = [[DATAStack alloc] initWithModelName:@"TableObjectiveC"];
