@@ -155,7 +155,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
     if ([self.delegate respondsToSelector:@selector(dataSource:titleForDeleteConfirmationButtonForRowAtIndexPath:)]) {
         [self.delegate dataSource:tableView titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
     }
-    return @"Delete";
+    return NSLocalizedString(@"delete", nil);
 }
 
 -   (void)tableView:(UITableView *)tableView
