@@ -87,6 +87,9 @@
      withIndexPath:(NSIndexPath *)indexPath
       newIndexPath:(NSIndexPath *)newIndexPath;
 
+/*!
+ * UITableView specific
+ */
 - (BOOL)dataSource:(UITableView *)tableView
 canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 
