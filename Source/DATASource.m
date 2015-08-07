@@ -186,7 +186,6 @@ canMoveRowAtIndexPath:(NSIndexPath *)indexPath
     if ([self.delegate respondsToSelector:@selector(sectionIndexTitleForSectionName:)]) {
         [self.delegate sectionIndexTitlesForDataSource:tableView];
     }
-    //TODO:implement @[]
     return @[];
 }
 
@@ -200,7 +199,6 @@ sectionForSectionIndexTitle:(NSString *)title
          sectionForSectionIndexTitle:title
                              atIndex:index];
     }
-    //TODO:implement
     return [@0 integerValue];
 }
 
