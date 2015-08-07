@@ -113,6 +113,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section {
+    if ([self.delegate respondsToSelector:@selector(dataSource:titleForHeaderInSection:)]) {
+        return [self.delegate dataSource:tableView
+             titleForHeaderInSection:section];
+    }
+
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
 
     return sectionInfo.name;
@@ -148,6 +153,73 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
                 forRowAtIndexPath:indexPath];
     }
 }
+
+
+// fixed font style. use custom view (UILabel) if you want something different
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if ([self.delegate respondsToSelector:@selector(dataSource:titleForFooterInSection:)]) {
+        return [self.delegate dataSource:tableView
+             titleForFooterInSection:section];
+    }
+    return NSLocalizedString(@"", nil);
+   
+}
+
+
+// Moving/reordering
+
+// Allows the reorder accessory view to optionally be shown for a particular row. By default, the reorder control will be shown only if the datasource implements -tableView:moveRowAtIndexPath:toIndexPath:
+    - (BOOL)tableView:(UITableView *)tableView
+canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(dataSource:canMoveRowAtIndexPath:)]) {
+        return [self.delegate dataSource:tableView canMoveRowAtIndexPath:indexPath];
+    }
+    return false;
+
+}
+
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView
+{
+    if ([self.delegate respondsToSelector:@selector(sectionIndexTitleForSectionName:)]) {
+        [self.delegate sectionIndexTitlesForDataSource:tableView];
+    }
+    return @[];
+}
+
+
+     - (NSInteger)tableView:(UITableView *)tableView
+sectionForSectionIndexTitle:(NSString *)title
+                   atIndex:(NSInteger)index
+{
+    if ([self.delegate respondsToSelector:@selector(dataSource:sectionForSectionIndexTitle:atIndex:)]) {
+        return [self.delegate dataSource:tableView
+         sectionForSectionIndexTitle:title
+                             atIndex:index];
+    }
+    return [@0 integerValue];
+}
+
+// tell table which section corresponds to section title/index (e.g. "B",1))
+
+// Data manipulation - reorder / moving support
+
+- (void)tableView:(UITableView *)tableView
+moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+      toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    if ([self.delegate respondsToSelector:@selector(dataSource:moveRowAtIndexPath:toIndexPath:)]) {
+        [self.delegate dataSource:tableView
+           moveRowAtIndexPath:sourceIndexPath
+                  toIndexPath:destinationIndexPath];
+    }
+    
+}
+
+
+
 
 #pragma mark - UICollectionViewDataSource
 
