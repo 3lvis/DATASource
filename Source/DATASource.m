@@ -113,8 +113,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section {
-    if ([_delegate respondsToSelector:@selector(dataSource:titleForHeaderInSection:)]) {
-        return [_delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:titleForHeaderInSection:)]) {
+        return [self.delegate dataSource:tableView
              titleForHeaderInSection:section];
     }
 
@@ -158,8 +158,8 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 // fixed font style. use custom view (UILabel) if you want something different
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    if ([_delegate respondsToSelector:@selector(dataSource:titleForFooterInSection:)]) {
-        return [_delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:titleForFooterInSection:)]) {
+        return [self.delegate dataSource:tableView
              titleForFooterInSection:section];
     }
     return NSLocalizedString(@"", nil);
@@ -173,8 +173,8 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     - (BOOL)tableView:(UITableView *)tableView
 canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([_delegate respondsToSelector:@selector(dataSource:canMoveRowAtIndexPath:)]) {
-        return [_delegate dataSource:tableView canMoveRowAtIndexPath:indexPath];
+    if ([self.delegate respondsToSelector:@selector(dataSource:canMoveRowAtIndexPath:)]) {
+        return [self.delegate dataSource:tableView canMoveRowAtIndexPath:indexPath];
     }
     return false;
 
@@ -183,8 +183,8 @@ canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView
 {
-    if ([_delegate respondsToSelector:@selector(sectionIndexTitleForSectionName:)]) {
-        [_delegate sectionIndexTitlesForDataSource:tableView];
+    if ([self.delegate respondsToSelector:@selector(sectionIndexTitleForSectionName:)]) {
+        [self.delegate sectionIndexTitlesForDataSource:tableView];
     }
     //TODO:implement @[]
     return @[];
@@ -195,8 +195,8 @@ canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 sectionForSectionIndexTitle:(NSString *)title
                    atIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(dataSource:sectionForSectionIndexTitle:atIndex:)]) {
-        return [_delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:sectionForSectionIndexTitle:atIndex:)]) {
+        return [self.delegate dataSource:tableView
          sectionForSectionIndexTitle:title
                              atIndex:index];
     }
@@ -212,8 +212,8 @@ sectionForSectionIndexTitle:(NSString *)title
 moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    if ([_delegate respondsToSelector:@selector(dataSource:moveRowAtIndexPath:toIndexPath:)]) {
-        [_delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:moveRowAtIndexPath:toIndexPath:)]) {
+        [self.delegate dataSource:tableView
            moveRowAtIndexPath:sourceIndexPath
                   toIndexPath:destinationIndexPath];
     }
