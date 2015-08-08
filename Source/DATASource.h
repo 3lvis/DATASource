@@ -90,6 +90,17 @@
 /*!
  * UITableView specific
  */
+
+// Headers and footers
+
+- (NSString *)dataSource:(UITableView *)tableView
+ titleForHeaderInSection:(NSInteger)section;
+
+- (NSString *)dataSource:(UITableView *)tableView
+ titleForFooterInSection:(NSInteger)section;
+
+// Editing
+
 - (BOOL)dataSource:(UITableView *)tableView
 canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 
@@ -97,26 +108,21 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
  forRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (NSString *)dataSource:(UITableView *)tableView
-titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
-- (NSString *)dataSource:(UITableView *)tableView
-titleForFooterInSection:(NSInteger)section;
-
-// Moving/reordering
-
-// Allows the reorder accessory view to optionally be shown for a particular row. By default, the reorder control will be shown only if the datasource implements -tableView:moveRowAtIndexPath:toIndexPath:
-- (BOOL)dataSource:(UITableView *)tableView
-canMoveRowAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSArray *)sectionIndexTitlesForDataSource:(UITableView *)tableView;                                                    // return list of section titles to display in section index view (e.g. "ABCD...Z#")
-    - (NSInteger)dataSource:(UITableView *)tableView
-sectionForSectionIndexTitle:(NSString *)title
-               atIndex:(NSInteger)index;  // tell table which section corresponds to section title/index (e.g. "B",1))
-
-// Data manipulation - reorder / moving support
+// Reorder / moving support
 
 - (void)dataSource:(UITableView *)tableView
 moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-      toIndexPath:(NSIndexPath *)destinationIndexPath;
+       toIndexPath:(NSIndexPath *)destinationIndexPath;
+
+- (BOOL)dataSource:(UITableView *)tableView
+canMoveRowAtIndexPath:(NSIndexPath *)indexPath;
+
+// Indexing
+
+- (NSArray *)sectionIndexTitlesForDataSource:(UITableView *)tableView;
+
+- (NSInteger)dataSource:(UITableView *)tableView
+sectionForSectionIndexTitle:(NSString *)title
+                atIndex:(NSInteger)index;
 
 @end
