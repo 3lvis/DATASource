@@ -137,8 +137,8 @@ titleForHeaderInSection:(NSInteger)section {
 canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if ([self.delegate respondsToSelector:@selector(dataSource:canEditRowAtIndexPath:)]) {
-        [self.delegate dataSource:tableView
-            canEditRowAtIndexPath:indexPath];
+        return [self.delegate dataSource:tableView
+                   canEditRowAtIndexPath:indexPath];
     }
 
     return NO;
