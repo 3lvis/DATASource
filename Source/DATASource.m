@@ -1,5 +1,7 @@
 #import "DATASource.h"
 
+#import "DATASourceCollectionHeaderView.h"
+
 @interface DATASource () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
@@ -11,6 +13,8 @@
 @property (nonatomic) UICollectionView *collectionView;
 @property (nonatomic) NSMutableDictionary *objectChanges;
 @property (nonatomic) NSMutableDictionary *sectionChanges;
+
+@property (nonatomic) NSArray *cachedSectionNames;
 
 @end
 
@@ -48,12 +52,16 @@
                                                  NSIndexPath *indexPath))configuration {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
-                          sectionName:nil
+                          sectionName:sectionName
                           mainContext:mainContext];
 
     _configurationBlock = configuration;
     _collectionView = collectionView;
     _collectionView.dataSource = self;
+
+    [_collectionView registerClass:[DATASourceCollectionHeaderView class]
+        forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+               withReuseIdentifier:DATASourceCollectionHeaderViewIdentifier];
 
     return self;
 }
@@ -298,6 +306,43 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     return cell;
 }
 
+#pragma mark Sections and Headers
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if (kind == UICollectionElementKindSectionHeader) {
+        DATASourceCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                        withReuseIdentifier:DATASourceCollectionHeaderViewIdentifier
+                                                                                               forIndexPath:indexPath];
+
+        if (self.fetchedResultsController.sectionNameKeyPath && !self.cachedSectionNames) {
+            NSFetchRequest *request = [NSFetchRequest new];
+            request.entity = self.fetchedResultsController.fetchRequest.entity;
+            request.resultType = NSDictionaryResultType;
+            request.returnsDistinctResults = YES;
+            request.propertiesToFetch = @[self.fetchedResultsController.sectionNameKeyPath];
+
+            NSError *error;
+            NSArray *objects = [self.fetchedResultsController.managedObjectContext executeFetchRequest:request error:&error];
+            NSMutableArray *sectionNames = [NSMutableArray new];
+            for (NSDictionary *object in objects) {
+                [sectionNames addObjectsFromArray:object.allValues];
+            }
+
+            NSArray *sortedArray = [sectionNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+            self.cachedSectionNames = sortedArray;
+        }
+
+        NSString *title = self.cachedSectionNames[indexPath.section];
+        [headerView updateTitle:title];
+
+        return headerView;
+    } else if (kind == UICollectionElementKindSectionFooter) {
+        // Add support for footers
+    }
+
+    return nil;
+}
+
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -311,11 +356,12 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     }
 }
 
-
 - (void)controller:(NSFetchedResultsController *)controller
   didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex
      forChangeType:(NSFetchedResultsChangeType)type {
+    self.cachedSectionNames = nil;
+
     if (self.controllerIsHidden) {
         return;
     }

@@ -59,6 +59,8 @@ static NSString *CellIdentifier = @"CollectionViewCell";
     self.collectionView.dataSource = self.dataSource;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
+
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KSSWorkListHeaderView"];
 }
 
 - (void)addAction

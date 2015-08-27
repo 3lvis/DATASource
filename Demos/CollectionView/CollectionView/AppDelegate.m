@@ -24,12 +24,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    CGRect bounds = [UIScreen mainScreen].bounds;
+    self.window = [[UIWindow alloc] initWithFrame:bounds];
 
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.minimumLineSpacing = 10.0f;
-    layout.minimumInteritemSpacing = 10.0f;
-    layout.itemSize = CGSizeMake(120.0f, 120.0f);
+    layout.itemSize = CGSizeMake(120.0, 120.0);
+    layout.sectionInset = UIEdgeInsetsMake(15.0, 0.0, 15.0, 0.0);
+    layout.headerReferenceSize = CGSizeMake(bounds.size.width, 15.0);
 
     ViewController *mainController = [[ViewController alloc] initWithLayout:layout andDataStack:self.dataStack];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
