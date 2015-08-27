@@ -5,6 +5,7 @@ NSString * const DATASourceCollectionHeaderViewIdentifier = @"DATASourceCollecti
 @interface DATASourceCollectionHeaderView()
 
 @property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UIView *separatorView;
 
 @end
 
@@ -17,6 +18,7 @@ NSString * const DATASourceCollectionHeaderViewIdentifier = @"DATASourceCollecti
 
     if (self) {
         [self addSubview:self.titleLabel];
+        [self addSubview:self.separatorView];
     }
 
     return self;
@@ -27,12 +29,21 @@ NSString * const DATASourceCollectionHeaderViewIdentifier = @"DATASourceCollecti
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         CGFloat margin = 0.0;
-        CGRect frame = CGRectMake(margin, 0.0, self.frame.size.width - (margin * 2.0), self.frame.size.height);
+        CGRect frame = CGRectMake(margin, 0.0, self.frame.size.width - (margin * 2.0), self.frame.size.height - 2.0);
         _titleLabel = [[UILabel alloc] initWithFrame:frame];
-        _titleLabel.font = [UIFont systemFontOfSize:18.0];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:22.0];
     }
 
     return _titleLabel;
+}
+
+- (UIView *)separatorView {
+    if (!_separatorView) {
+        _separatorView = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.frame.size.height - 10.0, self.frame.size.width, 1.0)];
+        _separatorView.backgroundColor = [UIColor blackColor];
+    }
+
+    return _separatorView;
 }
 
 #pragma mark - Public methods
