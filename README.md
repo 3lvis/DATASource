@@ -12,6 +12,7 @@ fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title
 
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                   fetchRequest:fetchRequest
+                                                   sectionName:sectionName
                                                 cellIdentifier:ANDYCellIdentifier
                                                    mainContext:context
                                                  configuration:^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
