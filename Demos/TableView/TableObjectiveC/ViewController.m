@@ -57,9 +57,22 @@ static NSString *CellIdentifier = @"CellIdentifier";
                                                   inManagedObjectContext:backgroundContext];
         NSManagedObject *user = [[NSManagedObject alloc] initWithEntity:entity
                                          insertIntoManagedObjectContext:backgroundContext];
-        [user setValue:@"The Name" forKey:@"name"];
+        [user setValue:[self randomString] forKey:@"name"];
         [backgroundContext save:nil];
     }];
+}
+
+- (NSString *)randomString {
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:10];
+
+    for (int i = 0; i < 10; i++) {
+        u_int32_t rnd = (u_int32_t)[letters length];
+        [randomString appendFormat: @"%C", [letters characterAtIndex:arc4random_uniform(rnd)]];
+    }
+
+    return randomString;
 }
 
 @end
