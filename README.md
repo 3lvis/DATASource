@@ -32,6 +32,7 @@ fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title
 
 DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                        fetchRequest:fetchRequest
+                                                        sectionName:sectionName
                                                      cellIdentifier:ANDYCellIdentifier
                                                         mainContext:context
                                                       configuration:^(UICollectionView *cell, Task *task, NSIndexPath *indexPath) {
