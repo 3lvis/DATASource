@@ -46,8 +46,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 
-    self.view.backgroundColor = [UIColor greenColor];
-
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
 
     self.tableView.dataSource = self.dataSource;
