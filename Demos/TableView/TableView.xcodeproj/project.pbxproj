@@ -18,6 +18,8 @@
 		1497E2C51ADE2DC700FFA154 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1497E2C41ADE2DC700FFA154 /* Images.xcassets */; };
 		14BC994C1ADE34B00038E393 /* DATASource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC994B1ADE34B00038E393 /* DATASource.m */; };
 		14BC994D1ADE34B00038E393 /* DATASource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC994B1ADE34B00038E393 /* DATASource.m */; };
+		14E28A451B8F29A40066165D /* DATASourceCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E28A441B8F29A40066165D /* DATASourceCollectionHeaderView.m */; };
+		14E28A461B8F29A40066165D /* DATASourceCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E28A441B8F29A40066165D /* DATASourceCollectionHeaderView.m */; };
 		F68F63C3192CB04EDB125B6A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9EA998A7FD6EA72157364 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F97C9D0C6AF6A8C75957D72E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9EA998A7FD6EA72157364 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -41,6 +43,8 @@
 		1497E2C41ADE2DC700FFA154 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		14BC994A1ADE34B00038E393 /* DATASource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
 		14BC994B1ADE34B00038E393 /* DATASource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASource.m; sourceTree = "<group>"; };
+		14E28A431B8F29A40066165D /* DATASourceCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASourceCollectionHeaderView.h; sourceTree = "<group>"; };
+		14E28A441B8F29A40066165D /* DATASourceCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASourceCollectionHeaderView.m; sourceTree = "<group>"; };
 		14FD66701ADEAE93000C116A /* TableSwift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TableSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		622CE58A7E988DE1BCAF1FAD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E05DD17F18296CB80DC3DB60 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 			children = (
 				14BC994A1ADE34B00038E393 /* DATASource.h */,
 				14BC994B1ADE34B00038E393 /* DATASource.m */,
+				14E28A431B8F29A40066165D /* DATASourceCollectionHeaderView.h */,
+				14E28A441B8F29A40066165D /* DATASourceCollectionHeaderView.m */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -356,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E28A451B8F29A40066165D /* DATASourceCollectionHeaderView.m in Sources */,
 				1497E2911ADE2DBB00FFA154 /* AppDelegate.m in Sources */,
 				1497E2941ADE2DBB00FFA154 /* TableObjectiveC.xcdatamodeld in Sources */,
 				1497E2971ADE2DBB00FFA154 /* ViewController.m in Sources */,
@@ -368,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E28A461B8F29A40066165D /* DATASourceCollectionHeaderView.m in Sources */,
 				1497E2C01ADE2DC700FFA154 /* ViewController.swift in Sources */,
 				1497E2BE1ADE2DC700FFA154 /* TableSwift.xcdatamodeld in Sources */,
 				14BC994D1ADE34B00038E393 /* DATASource.m in Sources */,
