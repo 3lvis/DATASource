@@ -67,6 +67,28 @@
  */
 - (void)fetch;
 
+//********************************************************
+//********************************************************
+//********************   DEPRECATED   ********************
+//********************************************************
+//********************************************************
+
+- (instancetype)initWithTableView:(UITableView *)tableView
+                     fetchRequest:(NSFetchRequest *)fetchRequest
+                   cellIdentifier:(NSString *)cellIdentifier
+                      mainContext:(NSManagedObjectContext *)mainContext
+                    configuration:(void (^)(id cell,
+                                            id item,
+                                            NSIndexPath *indexPath))configuration __attribute__((deprecated("Use the method that includes the sectionName instead (sectionName is optional and can be nil).")));
+
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
+                          fetchRequest:(NSFetchRequest *)fetchRequest
+                        cellIdentifier:(NSString *)cellIdentifier
+                           mainContext:(NSManagedObjectContext *)mainContext
+                         configuration:(void (^)(id cell,
+                                                 id item,
+                                                 NSIndexPath *indexPath))configuration __attribute__((deprecated("Use the method that includes the sectionName instead (sectionName is optional and can be nil).")));
+
 @end
 
 @protocol DATASourceDelegate <NSObject>
@@ -121,27 +143,5 @@ sectionForSectionIndexTitle:(NSString *)title
 - (void)dataSource:(UITableView *)tableView
 moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath;
-
-//********************************************************
-//********************************************************
-//********************   DEPRECATED   ********************
-//********************************************************
-//********************************************************
-
-- (instancetype)initWithTableView:(UITableView *)tableView
-                     fetchRequest:(NSFetchRequest *)fetchRequest
-                   cellIdentifier:(NSString *)cellIdentifier
-                      mainContext:(NSManagedObjectContext *)mainContext
-                    configuration:(void (^)(id cell,
-                                            id item,
-                                            NSIndexPath *indexPath))configuration __attribute__((deprecated("Use initWithTableView:fetchRequest:sectionName:cellIdentifier:mainContext:configuration instead")));
-
-- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
-                          fetchRequest:(NSFetchRequest *)fetchRequest
-                        cellIdentifier:(NSString *)cellIdentifier
-                           mainContext:(NSManagedObjectContext *)mainContext
-                         configuration:(void (^)(id cell,
-                                                 id item,
-                                                 NSIndexPath *indexPath))configuration __attribute__((deprecated("Use initWithCollectionView:fetchRequest:sectionName:cellIdentifier:mainContext:configuration instead")));
 
 @end
