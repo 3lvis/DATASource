@@ -11,6 +11,7 @@
  * Initialization of DATASource.
  * \param tableView The used UITableView.
  * \param fetchRequest The used NSFetchedResultsController.
+ * \param sectionName The Core Data attribute to be used as a section
  * \param cellIdentifier The used cell identifier.
  * \param mainContext A NSManagedObjectContext in the main thread.
  * \param configuration A block to configure the cell.
@@ -18,6 +19,7 @@
  */
 - (instancetype)initWithTableView:(UITableView *)tableView
                      fetchRequest:(NSFetchRequest *)fetchRequest
+                      sectionName:(NSString *)sectionName
                    cellIdentifier:(NSString *)cellIdentifier
                       mainContext:(NSManagedObjectContext *)mainContext
                     configuration:(void (^)(id cell,
@@ -35,6 +37,7 @@
  */
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
                           fetchRequest:(NSFetchRequest *)fetchRequest
+                      sectionName:(NSString *)sectionName
                         cellIdentifier:(NSString *)cellIdentifier
                            mainContext:(NSManagedObjectContext *)mainContext
                          configuration:(void (^)(id cell,
@@ -63,6 +66,28 @@
  * Convenience method to perform fetch.
  */
 - (void)fetch;
+
+//********************************************************
+//********************************************************
+//********************   DEPRECATED   ********************
+//********************************************************
+//********************************************************
+
+- (instancetype)initWithTableView:(UITableView *)tableView
+                     fetchRequest:(NSFetchRequest *)fetchRequest
+                   cellIdentifier:(NSString *)cellIdentifier
+                      mainContext:(NSManagedObjectContext *)mainContext
+                    configuration:(void (^)(id cell,
+                                            id item,
+                                            NSIndexPath *indexPath))configuration __attribute__((deprecated("Use the method that includes the sectionName instead (sectionName is optional and can be nil).")));
+
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
+                          fetchRequest:(NSFetchRequest *)fetchRequest
+                        cellIdentifier:(NSString *)cellIdentifier
+                           mainContext:(NSManagedObjectContext *)mainContext
+                         configuration:(void (^)(id cell,
+                                                 id item,
+                                                 NSIndexPath *indexPath))configuration __attribute__((deprecated("Use the method that includes the sectionName instead (sectionName is optional and can be nil).")));
 
 @end
 

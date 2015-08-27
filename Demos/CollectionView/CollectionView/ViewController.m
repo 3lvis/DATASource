@@ -36,6 +36,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 
     _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                 fetchRequest:request
+                                                 sectionName:@"firstLetterOfName"
                                               cellIdentifier:CellIdentifier
                                                  mainContext:self.dataStack.mainContext
                                                configuration:^(UICollectionViewCell *cell, id item, NSIndexPath *indexPath) {
@@ -56,6 +57,10 @@ static NSString *CellIdentifier = @"CollectionViewCell";
                                                                           action:@selector(addAction)];
     self.navigationItem.rightBarButtonItem = item;
     self.collectionView.dataSource = self.dataSource;
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.contentInset = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
+
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KSSWorkListHeaderView"];
 }
 
 - (void)addAction
@@ -65,9 +70,25 @@ static NSString *CellIdentifier = @"CollectionViewCell";
                                                   inManagedObjectContext:backgroundContext];
         User *user = [[User alloc] initWithEntity:entity
                    insertIntoManagedObjectContext:backgroundContext];
-        user.name = @"The name";
+        NSString *name = [self randomString];
+        NSString *firstLetter = [[name substringToIndex:1] uppercaseString];
+        [user setValue:name forKey:@"name"];
+        [user setValue:firstLetter forKey:@"firstLetterOfName"];
         [backgroundContext save:nil];
     }];
+}
+
+- (NSString *)randomString {
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:10];
+
+    for (int i = 0; i < 10; i++) {
+        u_int32_t rnd = (u_int32_t)[letters length];
+        [randomString appendFormat: @"%C", [letters characterAtIndex:arc4random_uniform(rnd)]];
+    }
+
+    return randomString;
 }
 
 @end

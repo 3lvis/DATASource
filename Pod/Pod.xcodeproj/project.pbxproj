@@ -11,6 +11,7 @@
 		146A809B1AD17E6D006AC18D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 146A80991AD17E6D006AC18D /* DataModel.xcdatamodeld */; };
 		146A809E1AD18299006AC18D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 146A809D1AD18299006AC18D /* User.m */; };
 		146D72B31AB782920058798C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D72B21AB782920058798C /* Tests.m */; };
+		14D4F3111B8F2D0800189B93 /* DATASourceCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D4F3101B8F2D0800189B93 /* DATASourceCollectionHeaderView.m */; };
 		A0CF3F6CFED52A83DA7A9B3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7C164986809D9AD3F371B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,8 @@
 		14C136521AB784B200B7B07A /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C136541AB784B200B7B07A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		14C136551AB784B200B7B07A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		14D4F30F1B8F2D0800189B93 /* DATASourceCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASourceCollectionHeaderView.h; sourceTree = "<group>"; };
+		14D4F3101B8F2D0800189B93 /* DATASourceCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASourceCollectionHeaderView.m; sourceTree = "<group>"; };
 		84C7C164986809D9AD3F371B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD889C6A1359FF47089FE65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B9F75E91519E68D8A79AA74C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 		14C1365B1AB784BC00B7B07A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				14D4F30F1B8F2D0800189B93 /* DATASourceCollectionHeaderView.h */,
+				14D4F3101B8F2D0800189B93 /* DATASourceCollectionHeaderView.m */,
 				1402F77A1AD172F400C7401C /* DATASource.h */,
 				1402F77B1AD172F400C7401C /* DATASource.m */,
 			);
@@ -224,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D4F3111B8F2D0800189B93 /* DATASourceCollectionHeaderView.m in Sources */,
 				146A809E1AD18299006AC18D /* User.m in Sources */,
 				146A809B1AD17E6D006AC18D /* DataModel.xcdatamodeld in Sources */,
 				1402F77C1AD172F400C7401C /* DATASource.m in Sources */,
