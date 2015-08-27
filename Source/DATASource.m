@@ -18,6 +18,38 @@
 
 #pragma mark - Initializers
 
+// Deprecated in favor of method that contains sectionName
+- (instancetype)initWithTableView:(UITableView *)tableView
+                     fetchRequest:(NSFetchRequest *)fetchRequest
+                   cellIdentifier:(NSString *)cellIdentifier
+                      mainContext:(NSManagedObjectContext *)mainContext
+                    configuration:(void (^)(id cell,
+                                            id item,
+                                            NSIndexPath *indexPath))configuration {
+    return [self initWithTableView:tableView
+                      fetchRequest:fetchRequest
+                       sectionName:nil
+                    cellIdentifier:cellIdentifier
+                       mainContext:mainContext
+                     configuration:configuration];
+}
+
+// Deprecated in favor of method that contains sectionName
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
+                          fetchRequest:(NSFetchRequest *)fetchRequest
+                        cellIdentifier:(NSString *)cellIdentifier
+                           mainContext:(NSManagedObjectContext *)mainContext
+                         configuration:(void (^)(id cell,
+                                                 id item,
+                                                 NSIndexPath *indexPath))configuration {
+    return [self initWithCollectionView:collectionView
+                           fetchRequest:fetchRequest
+                            sectionName:nil
+                         cellIdentifier:cellIdentifier
+                            mainContext:mainContext
+                          configuration:configuration];
+}
+
 - (instancetype)initWithTableView:(UITableView *)tableView
                      fetchRequest:(NSFetchRequest *)fetchRequest
                       sectionName:(NSString *)sectionName
