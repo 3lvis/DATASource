@@ -29,7 +29,7 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 10.0f;
     layout.minimumInteritemSpacing = 10.0f;
-    layout.itemSize = CGSizeMake(50.0f, 50.0f);
+    layout.itemSize = CGSizeMake(120.0f, 120.0f);
 
     ViewController *mainController = [[ViewController alloc] initWithLayout:layout andDataStack:self.dataStack];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
