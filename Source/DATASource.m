@@ -18,38 +18,6 @@
 
 #pragma mark - Initializers
 
-// Deprecated in favor of method that contains sectionName
-- (instancetype)initWithTableView:(UITableView *)tableView
-                     fetchRequest:(NSFetchRequest *)fetchRequest
-                   cellIdentifier:(NSString *)cellIdentifier
-                      mainContext:(NSManagedObjectContext *)mainContext
-                    configuration:(void (^)(id cell,
-                                            id item,
-                                            NSIndexPath *indexPath))configuration {
-    return [self initWithTableView:tableView
-                      fetchRequest:fetchRequest
-                       sectionName:nil
-                    cellIdentifier:cellIdentifier
-                       mainContext:mainContext
-                     configuration:configuration];
-}
-
-// Deprecated in favor of method that contains sectionName
-- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
-                          fetchRequest:(NSFetchRequest *)fetchRequest
-                        cellIdentifier:(NSString *)cellIdentifier
-                           mainContext:(NSManagedObjectContext *)mainContext
-                         configuration:(void (^)(id cell,
-                                                 id item,
-                                                 NSIndexPath *indexPath))configuration {
-    return [self initWithCollectionView:collectionView
-                           fetchRequest:fetchRequest
-                            sectionName:nil
-                         cellIdentifier:cellIdentifier
-                            mainContext:mainContext
-                          configuration:configuration];
-}
-
 - (instancetype)initWithTableView:(UITableView *)tableView
                      fetchRequest:(NSFetchRequest *)fetchRequest
                       sectionName:(NSString *)sectionName
@@ -112,6 +80,40 @@
     return self;
 }
 
+#pragma mark Deprecated Initializers
+
+// Deprecated in favor of method that contains sectionName
+- (instancetype)initWithTableView:(UITableView *)tableView
+                     fetchRequest:(NSFetchRequest *)fetchRequest
+                   cellIdentifier:(NSString *)cellIdentifier
+                      mainContext:(NSManagedObjectContext *)mainContext
+                    configuration:(void (^)(id cell,
+                                            id item,
+                                            NSIndexPath *indexPath))configuration {
+    return [self initWithTableView:tableView
+                      fetchRequest:fetchRequest
+                       sectionName:nil
+                    cellIdentifier:cellIdentifier
+                       mainContext:mainContext
+                     configuration:configuration];
+}
+
+// Deprecated in favor of method that contains sectionName
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
+                          fetchRequest:(NSFetchRequest *)fetchRequest
+                        cellIdentifier:(NSString *)cellIdentifier
+                           mainContext:(NSManagedObjectContext *)mainContext
+                         configuration:(void (^)(id cell,
+                                                 id item,
+                                                 NSIndexPath *indexPath))configuration {
+    return [self initWithCollectionView:collectionView
+                           fetchRequest:fetchRequest
+                            sectionName:nil
+                         cellIdentifier:cellIdentifier
+                            mainContext:mainContext
+                          configuration:configuration];
+}
+
 #pragma mark - Public methods
 
 - (void)changePredicate:(NSPredicate *)predicate {
@@ -148,18 +150,6 @@
     return sectionInfo.numberOfObjects;
 }
 
-- (NSString *)tableView:(UITableView *)tableView
-titleForHeaderInSection:(NSInteger)section {
-    if ([self.delegate respondsToSelector:@selector(dataSource:titleForHeaderInSection:)]) {
-        return [self.delegate dataSource:tableView
-                 titleForHeaderInSection:section];
-    }
-
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-
-    return sectionInfo.name;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier
@@ -170,51 +160,7 @@ titleForHeaderInSection:(NSInteger)section {
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView
-canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    if ([self.delegate respondsToSelector:@selector(dataSource:canEditRowAtIndexPath:)]) {
-        return [self.delegate dataSource:tableView
-                   canEditRowAtIndexPath:indexPath];
-    }
-
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]) {
-        [self.delegate dataSource:tableView
-               commitEditingStyle:editingStyle
-                forRowAtIndexPath:indexPath];
-    }
-}
-
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:titleForFooterInSection:)]) {
-        return [self.delegate dataSource:tableView
-                 titleForFooterInSection:section];
-    }
-
-    return nil;
-}
-
-#pragma mark Moving/reordering
-
-- (BOOL)tableView:(UITableView *)tableView
-canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:canMoveRowAtIndexPath:)]) {
-        return [self.delegate dataSource:tableView canMoveRowAtIndexPath:indexPath];
-    }
-    return false;
-
-}
-
-#pragma mark Sectioned Table View
+#pragma mark Sections and Headers
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView
 {
@@ -243,7 +189,6 @@ canMoveRowAtIndexPath:(NSIndexPath *)indexPath
     return nil;
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView
 sectionForSectionIndexTitle:(NSString *)title
                atIndex:(NSInteger)index
@@ -253,8 +198,67 @@ sectionForSectionIndexTitle:(NSString *)title
              sectionForSectionIndexTitle:title
                                  atIndex:index];
     }
-
+    
     return index;
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section {
+    if ([self.delegate respondsToSelector:@selector(dataSource:titleForHeaderInSection:)]) {
+        return [self.delegate dataSource:tableView
+                 titleForHeaderInSection:section];
+    }
+
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+
+    return sectionInfo.name;
+}
+
+#pragma mark - Footer
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if ([self.delegate respondsToSelector:@selector(dataSource:titleForFooterInSection:)]) {
+        return [self.delegate dataSource:tableView
+                 titleForFooterInSection:section];
+    }
+
+    return nil;
+}
+
+#pragma mark Editing
+
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if ([self.delegate respondsToSelector:@selector(dataSource:canEditRowAtIndexPath:)]) {
+        return [self.delegate dataSource:tableView
+                   canEditRowAtIndexPath:indexPath];
+    }
+
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]) {
+        [self.delegate dataSource:tableView
+               commitEditingStyle:editingStyle
+                forRowAtIndexPath:indexPath];
+    }
+}
+
+#pragma mark Moving/reordering
+
+- (BOOL)tableView:(UITableView *)tableView
+canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(dataSource:canMoveRowAtIndexPath:)]) {
+        return [self.delegate dataSource:tableView canMoveRowAtIndexPath:indexPath];
+    }
+    return false;
+
 }
 
 #pragma mark Reordering / Moving

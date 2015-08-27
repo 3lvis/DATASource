@@ -36,7 +36,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 
     _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                 fetchRequest:request
-                                                 sectionName:nil
+                                                 sectionName:@"firstLetterOfName"
                                               cellIdentifier:CellIdentifier
                                                  mainContext:self.dataStack.mainContext
                                                configuration:^(UICollectionViewCell *cell, id item, NSIndexPath *indexPath) {
