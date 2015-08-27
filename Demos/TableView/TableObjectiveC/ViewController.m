@@ -57,7 +57,10 @@ static NSString *CellIdentifier = @"CellIdentifier";
                                                   inManagedObjectContext:backgroundContext];
         NSManagedObject *user = [[NSManagedObject alloc] initWithEntity:entity
                                          insertIntoManagedObjectContext:backgroundContext];
-        [user setValue:[self randomString] forKey:@"name"];
+        NSString *name = [self randomString];
+        NSString *firstLetter = [[name substringToIndex:1] uppercaseString];
+        [user setValue:name forKey:@"name"];
+        [user setValue:firstLetter forKey:@"firstLetterOfName"];
         [backgroundContext save:nil];
     }];
 }
