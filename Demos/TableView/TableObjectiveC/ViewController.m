@@ -31,6 +31,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
         _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                fetchRequest:request
+                                                sectionName:@"firstLetterOfName"
                                              cellIdentifier:CellIdentifier
                                                 mainContext:self.dataStack.mainContext
                                               configuration:^(UITableViewCell *cell, NSManagedObject *item, NSIndexPath *indexPath) {

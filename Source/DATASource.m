@@ -20,6 +20,7 @@
 
 - (instancetype)initWithTableView:(UITableView *)tableView
                      fetchRequest:(NSFetchRequest *)fetchRequest
+                      sectionName:(NSString *)sectionName
                    cellIdentifier:(NSString *)cellIdentifier
                       mainContext:(NSManagedObjectContext *)mainContext
                     configuration:(void (^)(id cell,
@@ -27,6 +28,7 @@
                                             NSIndexPath *indexPath))configuration {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
+                          sectionName:sectionName
                           mainContext:mainContext];
 
     _configurationBlock = configuration;
@@ -38,6 +40,7 @@
 
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
                           fetchRequest:(NSFetchRequest *)fetchRequest
+                           sectionName:(NSString *)sectionName
                         cellIdentifier:(NSString *)cellIdentifier
                            mainContext:(NSManagedObjectContext *)mainContext
                          configuration:(void (^)(id cell,
@@ -45,6 +48,7 @@
                                                  NSIndexPath *indexPath))configuration {
     self = [self initWithFetchRequest:fetchRequest
                        cellIdentifier:cellIdentifier
+                          sectionName:nil
                           mainContext:mainContext];
 
     _configurationBlock = configuration;
@@ -56,13 +60,14 @@
 
 - (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest
                       cellIdentifier:(NSString *)cellIdentifier
+                         sectionName:(NSString *)sectionName
                          mainContext:(NSManagedObjectContext *)mainContext {
     self = [super init];
     if (self) {
         _cellIdentifier = cellIdentifier;
         _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:mainContext
-                                                                          sectionNameKeyPath:nil
+                                                                          sectionNameKeyPath:sectionName
                                                                                    cacheName:nil];
         _fetchedResultsController.delegate = self;
 
@@ -115,7 +120,7 @@
 titleForHeaderInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(dataSource:titleForHeaderInSection:)]) {
         return [self.delegate dataSource:tableView
-             titleForHeaderInSection:section];
+                 titleForHeaderInSection:section];
     }
 
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
@@ -144,9 +149,9 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
 
--   (void)tableView:(UITableView *)tableView
- commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-  forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]) {
         [self.delegate dataSource:tableView
                commitEditingStyle:editingStyle
@@ -155,22 +160,19 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 
-// fixed font style. use custom view (UILabel) if you want something different
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     if ([self.delegate respondsToSelector:@selector(dataSource:titleForFooterInSection:)]) {
         return [self.delegate dataSource:tableView
-             titleForFooterInSection:section];
+                 titleForFooterInSection:section];
     }
-    return NSLocalizedString(@"", nil);
-   
+
+    return nil;
 }
 
+#pragma mark Moving/reordering
 
-// Moving/reordering
-
-// Allows the reorder accessory view to optionally be shown for a particular row. By default, the reorder control will be shown only if the datasource implements -tableView:moveRowAtIndexPath:toIndexPath:
-    - (BOOL)tableView:(UITableView *)tableView
+- (BOOL)tableView:(UITableView *)tableView
 canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.delegate respondsToSelector:@selector(dataSource:canMoveRowAtIndexPath:)]) {
@@ -180,31 +182,50 @@ canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 
 }
 
+#pragma mark Sectioned Table View
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView
 {
     if ([self.delegate respondsToSelector:@selector(sectionIndexTitleForSectionName:)]) {
         [self.delegate sectionIndexTitlesForDataSource:tableView];
     }
-    return @[];
+
+    if (self.fetchedResultsController.sectionNameKeyPath) {
+        NSFetchRequest *request = [NSFetchRequest new];
+        request.entity = self.fetchedResultsController.fetchRequest.entity;
+        request.resultType = NSDictionaryResultType;
+        request.returnsDistinctResults = YES;
+        request.propertiesToFetch = @[self.fetchedResultsController.sectionNameKeyPath];
+
+        NSError *error;
+        NSArray *objects = [self.fetchedResultsController.managedObjectContext executeFetchRequest:request error:&error];
+        NSMutableArray *sectionNames = [NSMutableArray new];
+        for (NSDictionary *object in objects) {
+            [sectionNames addObjectsFromArray:object.allValues];
+        }
+
+        NSArray *sortedArray = [sectionNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        return [sortedArray copy];
+    }
+
+    return nil;
 }
 
 
-     - (NSInteger)tableView:(UITableView *)tableView
+- (NSInteger)tableView:(UITableView *)tableView
 sectionForSectionIndexTitle:(NSString *)title
-                   atIndex:(NSInteger)index
+               atIndex:(NSInteger)index
 {
     if ([self.delegate respondsToSelector:@selector(dataSource:sectionForSectionIndexTitle:atIndex:)]) {
         return [self.delegate dataSource:tableView
-         sectionForSectionIndexTitle:title
-                             atIndex:index];
+             sectionForSectionIndexTitle:title
+                                 atIndex:index];
     }
-    return [@0 integerValue];
+
+    return index;
 }
 
-// tell table which section corresponds to section title/index (e.g. "B",1))
-
-// Data manipulation - reorder / moving support
+#pragma mark Reordering / Moving
 
 - (void)tableView:(UITableView *)tableView
 moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
@@ -212,14 +233,11 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 {
     if ([self.delegate respondsToSelector:@selector(dataSource:moveRowAtIndexPath:toIndexPath:)]) {
         [self.delegate dataSource:tableView
-           moveRowAtIndexPath:sourceIndexPath
-                  toIndexPath:destinationIndexPath];
+               moveRowAtIndexPath:sourceIndexPath
+                      toIndexPath:destinationIndexPath];
     }
-    
+
 }
-
-
-
 
 #pragma mark - UICollectionViewDataSource
 
