@@ -132,6 +132,7 @@
         NSLog(@"Error fetching objects after changing predicate: %@", error);
     }
     [self.tableView reloadData];
+    [self.collectionView reloadData];
 }
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {
