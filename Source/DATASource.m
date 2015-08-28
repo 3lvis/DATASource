@@ -125,6 +125,7 @@
 #pragma mark - Public methods
 
 - (void)changePredicate:(NSPredicate *)predicate {
+    self.cachedSectionNames = nil;
     self.fetchedResultsController.fetchRequest.predicate = predicate;
 
     NSError *error = nil;
@@ -321,6 +322,7 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
             request.resultType = NSDictionaryResultType;
             request.returnsDistinctResults = YES;
             request.propertiesToFetch = @[self.fetchedResultsController.sectionNameKeyPath];
+            request.predicate = self.fetchedResultsController.fetchRequest.predicate;
 
             NSError *error;
             NSArray *objects = [self.fetchedResultsController.managedObjectContext executeFetchRequest:request error:&error];
