@@ -37,7 +37,7 @@
  */
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
                           fetchRequest:(NSFetchRequest *)fetchRequest
-                      sectionName:(NSString *)sectionName
+                           sectionName:(NSString *)sectionName
                         cellIdentifier:(NSString *)cellIdentifier
                            mainContext:(NSManagedObjectContext *)mainContext
                          configuration:(void (^)(id cell,
@@ -113,35 +113,65 @@
       newIndexPath:(NSIndexPath *)newIndexPath;
 
 /*!
+ * ********************
+ *
  * UITableView specific
+ *
+ * ********************
  */
-- (BOOL)dataSource:(UITableView *)tableView
+
+// Sections and Headers
+
+- (NSArray *)sectionIndexTitlesForDataSource:(DATASource *)dataSource
+                                   tableView:(UITableView *)tableView;
+
+- (NSInteger)dataSource:(DATASource *)dataSource
+              tableView:(UITableView *)tableView
+sectionForSectionIndexTitle:(NSString *)title
+                atIndex:(NSInteger)index;
+
+- (NSString *)dataSource:(DATASource *)dataSource
+               tableView:(UITableView *)tableView
+ titleForHeaderInSection:(NSInteger)section;
+
+- (NSString *)dataSource:(DATASource *)dataSource
+               tableView:(UITableView *)tableView
+ titleForFooterInSection:(NSInteger)section;
+
+// Editing
+
+- (BOOL)dataSource:(DATASource *)dataSource
+         tableView:(UITableView *)tableView
 canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)dataSource:(UITableView *)tableView
+- (void)dataSource:(DATASource *)dataSource
+         tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
  forRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (NSString *)dataSource:(UITableView *)tableView
-titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
-- (NSString *)dataSource:(UITableView *)tableView
-titleForFooterInSection:(NSInteger)section;
+// Moving or Reordering
 
-// Moving/reordering
-
-// Allows the reorder accessory view to optionally be shown for a particular row. By default, the reorder control will be shown only if the datasource implements -tableView:moveRowAtIndexPath:toIndexPath:
-- (BOOL)dataSource:(UITableView *)tableView
+- (BOOL)dataSource:(DATASource *)dataSource
+         tableView:(UITableView *)tableView
 canMoveRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (NSArray *)sectionIndexTitlesForDataSource:(UITableView *)tableView;                                                    // return list of section titles to display in section index view (e.g. "ABCD...Z#")
-    - (NSInteger)dataSource:(UITableView *)tableView
-sectionForSectionIndexTitle:(NSString *)title
-               atIndex:(NSInteger)index;  // tell table which section corresponds to section title/index (e.g. "B",1))
-
-// Data manipulation - reorder / moving support
-
-- (void)dataSource:(UITableView *)tableView
+- (void)dataSource:(DATASource *)dataSource
+         tableView:(UITableView *)tableView
 moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-      toIndexPath:(NSIndexPath *)destinationIndexPath;
+       toIndexPath:(NSIndexPath *)destinationIndexPath;
+
+/*!
+ * ********************
+ *
+ * UICollectionView specific
+ *
+ * ********************
+ */
+
+- (UICollectionReusableView *)dataSource:(DATASource *)dataSource
+                          collectionView:(UICollectionView *)collectionView
+       viewForSupplementaryElementOfKind:(NSString *)kind
+                             atIndexPath:(NSIndexPath *)indexPath;
+
 
 @end

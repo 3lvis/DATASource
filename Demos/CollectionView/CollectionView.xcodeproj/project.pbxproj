@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1490BE121B9995B200ADCDBD /* FooterExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490BE111B9995B200ADCDBD /* FooterExampleView.m */; };
 		14A6DA5B1AD49CA600B00381 /* DATASource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A6DA5A1AD49CA600B00381 /* DATASource.m */; };
 		14A6DA611AD49D3000B00381 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A6DA601AD49D3000B00381 /* User.m */; };
 		14C7E9F31AD49BC900674947 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E9F21AD49BC900674947 /* main.m */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1490BE101B9995B200ADCDBD /* FooterExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterExampleView.h; sourceTree = "<group>"; };
+		1490BE111B9995B200ADCDBD /* FooterExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterExampleView.m; sourceTree = "<group>"; };
 		14A6DA591AD49CA600B00381 /* DATASource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
 		14A6DA5A1AD49CA600B00381 /* DATASource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASource.m; sourceTree = "<group>"; };
 		14A6DA5F1AD49D3000B00381 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 				14C7E9FB1AD49BC900674947 /* ViewController.m */,
 				14A6DA5F1AD49D3000B00381 /* User.h */,
 				14A6DA601AD49D3000B00381 /* User.m */,
+				1490BE101B9995B200ADCDBD /* FooterExampleView.h */,
+				1490BE111B9995B200ADCDBD /* FooterExampleView.m */,
 				14C7EA001AD49BC900674947 /* Images.xcassets */,
 				14C7E9F71AD49BC900674947 /* CollectionView.xcdatamodeld */,
 				14C7E9F01AD49BC900674947 /* Supporting Files */,
@@ -231,6 +236,7 @@
 				14C7E9F61AD49BC900674947 /* AppDelegate.m in Sources */,
 				14A6DA611AD49D3000B00381 /* User.m in Sources */,
 				14C7E9FC1AD49BC900674947 /* ViewController.m in Sources */,
+				1490BE121B9995B200ADCDBD /* FooterExampleView.m in Sources */,
 				14A6DA5B1AD49CA600B00381 /* DATASource.m in Sources */,
 				14C7E9F31AD49BC900674947 /* main.m in Sources */,
 				14F0431A1B8F1C3400416F7C /* DATASourceCollectionHeaderView.m in Sources */,

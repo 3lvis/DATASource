@@ -3,10 +3,11 @@
 #import "DATAStack.h"
 #import "DATASource.h"
 #import "User.h"
+#import "FooterExampleView.h"
 
 static NSString *CellIdentifier = @"CollectionViewCell";
 
-@interface ViewController () <NSFetchedResultsControllerDelegate>
+@interface ViewController () <NSFetchedResultsControllerDelegate, DATASourceDelegate>
 
 @property (nonatomic, weak) DATAStack *dataStack;
 @property (nonatomic) DATASource *dataSource;
@@ -16,8 +17,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 @implementation ViewController
 
 - (instancetype)initWithLayout:(UICollectionViewLayout *)layout
-                  andDataStack:(DATAStack *)dataStack
-{
+                  andDataStack:(DATAStack *)dataStack {
     self = [super initWithCollectionViewLayout:layout];
     if (!self) return nil;
 
@@ -26,8 +26,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
     return self;
 }
 
-- (DATASource *)dataSource
-{
+- (DATASource *)dataSource {
     if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
@@ -42,12 +41,12 @@ static NSString *CellIdentifier = @"CollectionViewCell";
                                                configuration:^(UICollectionViewCell *cell, id item, NSIndexPath *indexPath) {
                                                    cell.backgroundColor = [UIColor redColor];
                                                }];
+    _dataSource.delegate = self;
 
     return _dataSource;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     [self.collectionView registerClass:[UICollectionViewCell class]
@@ -60,11 +59,10 @@ static NSString *CellIdentifier = @"CollectionViewCell";
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
 
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KSSWorkListHeaderView"];
+    [self.collectionView registerClass:[FooterExampleView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:FooterExampleViewIdentifier];
 }
 
-- (void)addAction
-{
+- (void)addAction {
     [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"User"
                                                   inManagedObjectContext:backgroundContext];
@@ -90,5 +88,23 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 
     return randomString;
 }
+
+#pragma mark - DATASourceDelegate
+
+- (UICollectionReusableView *)dataSource:(DATASource *)dataSource
+                          collectionView:(UICollectionView *)collectionView
+       viewForSupplementaryElementOfKind:(NSString *)kind
+                             atIndexPath:(NSIndexPath *)indexPath {
+    if (kind == UICollectionElementKindSectionHeader) {
+    } else if (kind == UICollectionElementKindSectionFooter) {
+        FooterExampleView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                                                                     withReuseIdentifier:FooterExampleViewIdentifier
+                                                                            forIndexPath:indexPath];
+        return view;
+    }
+
+    return nil;
+}
+
 
 @end
