@@ -4,8 +4,7 @@
 #import "DATASource.h"
 #import "User.h"
 #import "FooterExampleView.h"
-
-static NSString *CellIdentifier = @"CollectionViewCell";
+#import "CollectionCell.h"
 
 @interface ViewController () <NSFetchedResultsControllerDelegate, DATASourceDelegate>
 
@@ -36,10 +35,10 @@ static NSString *CellIdentifier = @"CollectionViewCell";
     _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                 fetchRequest:request
                                                  sectionName:@"firstLetterOfName"
-                                              cellIdentifier:CellIdentifier
+                                              cellIdentifier:CollectionCellIdentifier
                                                  mainContext:self.dataStack.mainContext
-                                               configuration:^(UICollectionViewCell *cell, id item, NSIndexPath *indexPath) {
-                                                   cell.backgroundColor = [UIColor redColor];
+                                               configuration:^(CollectionCell *cell, User *item, NSIndexPath *indexPath) {
+                                                   [cell updateWithText:item.name];
                                                }];
     _dataSource.delegate = self;
 
@@ -49,8 +48,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.collectionView registerClass:[UICollectionViewCell class]
-            forCellWithReuseIdentifier:CellIdentifier];
+    [self.collectionView registerClass:[CollectionCell class] forCellWithReuseIdentifier:CollectionCellIdentifier];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                           target:self
                                                                           action:@selector(addAction)];
