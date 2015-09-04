@@ -29,8 +29,7 @@
     if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                              ascending:YES]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"firstLetterOfName" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
     _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                                 fetchRequest:request
