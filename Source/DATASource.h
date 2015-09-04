@@ -67,28 +67,6 @@
  */
 - (void)fetch;
 
-//********************************************************
-//********************************************************
-//********************   DEPRECATED   ********************
-//********************************************************
-//********************************************************
-
-- (instancetype)initWithTableView:(UITableView *)tableView
-                     fetchRequest:(NSFetchRequest *)fetchRequest
-                   cellIdentifier:(NSString *)cellIdentifier
-                      mainContext:(NSManagedObjectContext *)mainContext
-                    configuration:(void (^)(id cell,
-                                            id item,
-                                            NSIndexPath *indexPath))configuration __attribute__((deprecated("Use the method that includes the sectionName instead (sectionName is optional and can be nil).")));
-
-- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
-                          fetchRequest:(NSFetchRequest *)fetchRequest
-                        cellIdentifier:(NSString *)cellIdentifier
-                           mainContext:(NSManagedObjectContext *)mainContext
-                         configuration:(void (^)(id cell,
-                                                 id item,
-                                                 NSIndexPath *indexPath))configuration __attribute__((deprecated("Use the method that includes the sectionName instead (sectionName is optional and can be nil).")));
-
 @end
 
 @protocol DATASourceDelegate <NSObject>
