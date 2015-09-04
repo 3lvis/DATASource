@@ -30,7 +30,7 @@ self.tableView.dataSource = dataSource;
 
 Check the [Swift Demo](https://github.com/3lvis/DATASource/tree/master/Demos/TableView) for an example of this, were we have an indexed UITableView of names, just like the Contacts.app!
 
-![Table](https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/table.gif)
+<img align="center" src="https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/table.gif" />
 
 ### UITableViewDataSource
 
