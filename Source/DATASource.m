@@ -172,10 +172,9 @@
 
 #pragma mark Sections and Headers
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView
-{
-    if ([self.delegate respondsToSelector:@selector(sectionIndexTitleForSectionName:)]) {
-        [self.delegate sectionIndexTitlesForDataSource:tableView];
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView {
+    if ([self.delegate respondsToSelector:@selector(sectionIndexTitlesForDataSource:tableView:)]) {
+        [self.delegate sectionIndexTitlesForDataSource:self tableView:tableView];
     }
 
     if (self.fetchedResultsController.sectionNameKeyPath) {
@@ -201,21 +200,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
 sectionForSectionIndexTitle:(NSString *)title
-               atIndex:(NSInteger)index
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:sectionForSectionIndexTitle:atIndex:)]) {
-        return [self.delegate dataSource:tableView
+               atIndex:(NSInteger)index {
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:sectionForSectionIndexTitle:atIndex:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
              sectionForSectionIndexTitle:title
                                  atIndex:index];
     }
-    
+
     return index;
 }
 
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section {
-    if ([self.delegate respondsToSelector:@selector(dataSource:titleForHeaderInSection:)]) {
-        return [self.delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:titleForHeaderInSection:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
                  titleForHeaderInSection:section];
     }
 
@@ -226,10 +226,10 @@ titleForHeaderInSection:(NSInteger)section {
 
 #pragma mark - Footer
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:titleForFooterInSection:)]) {
-        return [self.delegate dataSource:tableView
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:titleForFooterInSection:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
                  titleForFooterInSection:section];
     }
 
@@ -241,8 +241,9 @@ titleForHeaderInSection:(NSInteger)section {
 - (BOOL)tableView:(UITableView *)tableView
 canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if ([self.delegate respondsToSelector:@selector(dataSource:canEditRowAtIndexPath:)]) {
-        return [self.delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:canEditRowAtIndexPath:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
                    canEditRowAtIndexPath:indexPath];
     }
 
@@ -252,8 +253,9 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]) {
-        [self.delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:commitEditingStyle:forRowAtIndexPath:)]) {
+        [self.delegate dataSource:self
+                        tableView:tableView
                commitEditingStyle:editingStyle
                 forRowAtIndexPath:indexPath];
     }
@@ -262,27 +264,27 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark Moving/reordering
 
 - (BOOL)tableView:(UITableView *)tableView
-canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:canMoveRowAtIndexPath:)]) {
-        return [self.delegate dataSource:tableView canMoveRowAtIndexPath:indexPath];
+canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:canMoveRowAtIndexPath:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
+                   canMoveRowAtIndexPath:indexPath];
     }
-    return false;
 
+    return false;
 }
 
 #pragma mark Reordering / Moving
 
 - (void)tableView:(UITableView *)tableView
 moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-      toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:moveRowAtIndexPath:toIndexPath:)]) {
-        [self.delegate dataSource:tableView
+      toIndexPath:(NSIndexPath *)destinationIndexPath {
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:moveRowAtIndexPath:toIndexPath:)]) {
+        [self.delegate dataSource:self
+                        tableView:tableView
                moveRowAtIndexPath:sourceIndexPath
                       toIndexPath:destinationIndexPath];
     }
-
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -311,6 +313,16 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 #pragma mark Sections and Headers
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(dataSource:collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]) {
+        UICollectionReusableView *view = [self.delegate dataSource:self
+                                                    collectionView:collectionView
+                                 viewForSupplementaryElementOfKind:kind
+                                                       atIndexPath:indexPath];
+        if (view) {
+            return view;
+        }
+    }
+
     if (kind == UICollectionElementKindSectionHeader) {
         DATASourceCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                                         withReuseIdentifier:DATASourceCollectionHeaderViewIdentifier
@@ -588,7 +600,7 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 - (void)configureCell:(id)cell
           atIndexPath:(NSIndexPath *)indexPath {
     id item;
-
+    
     BOOL rowIsInsideBounds = ((NSUInteger)indexPath.row < self.fetchedResultsController.fetchedObjects.count);
     if (rowIsInsideBounds) {
         item = [self.fetchedResultsController objectAtIndexPath:indexPath];

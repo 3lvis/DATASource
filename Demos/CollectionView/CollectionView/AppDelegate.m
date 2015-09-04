@@ -13,8 +13,7 @@
 
 #pragma mark - Getters
 
-- (DATAStack *)dataStack
-{
+- (DATAStack *)dataStack {
     if (_dataStack) return _dataStack;
 
     _dataStack = [[DATAStack alloc] init];
@@ -22,8 +21,7 @@
     return _dataStack;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     CGRect bounds = [UIScreen mainScreen].bounds;
     self.window = [[UIWindow alloc] initWithFrame:bounds];
 
@@ -42,8 +40,7 @@
 
 #pragma mark - Core Data stack
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application {
     [self.dataStack persistWithCompletion:nil];
 }
 
