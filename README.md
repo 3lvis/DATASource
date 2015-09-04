@@ -66,6 +66,10 @@ self.collectionView.dataSource = dataSource;
 
 Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/Demos/CollectionView) for an example of this, were we have a grouped UICollectionView using the first letter of a name as a header, just like the Contacts.app!
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/collection.gif" />
+</p>
+
 ### UICollectionViewDataSource
 
 `DATASource` takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/Demos/CollectionView) where we show how to add a footer view to your `DATASource` backed UICollectionView.
