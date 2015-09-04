@@ -28,9 +28,15 @@ self.tableView.dataSource = dataSource;
 
 `DATASource` provides an easy way to show an indexed UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
 
-Check the [Swift Demo](https://github.com/3lvis/DATASource/tree/master/Demos/TableView) for an example of this, were we have an indexed UITableView of names, just like the Contacts.app
+Check the [Swift Demo](https://github.com/3lvis/DATASource/tree/master/Demos/TableView) for an example of this, were we have an indexed UITableView of names, just like the Contacts.app!
+
+### UITableViewDataSource
+
+`DATASource` takes ownership of your `UITableViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UITableViewDataSource` methods you can use the `DATASourceDelegate`.
 
 ## UICollectionView
+
+### Basic Usage
 
 Hooking up a UICollectionView is as simple as doing it with a UITableView, just use this method.
 
@@ -49,6 +55,16 @@ DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collect
 
 self.collectionView.dataSource = dataSource;
 ```
+
+### Indexed UITableView
+
+`DATASource` provides an easy way to show an grouped UICollectionView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`. This will create a collectionView reusable header.
+
+Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/Demos/CollectionView) for an example of this, were we have a grouped UICollectionView using the first letter of a name as a header, just like the Contacts.app!
+
+### UICollectionViewDataSource
+
+`DATASource` takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/Demos/CollectionView) where we show how to add a footer view to your `DATASource` backed UICollectionView.
 
 ## Installation
 
