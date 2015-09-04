@@ -119,14 +119,16 @@
  *
  * ********************
  */
-- (BOOL)dataSource:(DATASource *)dataSource
-         tableView:(UITableView *)tableView
-canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)dataSource:(DATASource *)dataSource
-         tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
- forRowAtIndexPath:(NSIndexPath *)indexPath;
+// Sections and Headers
+
+- (NSArray *)sectionIndexTitlesForDataSource:(DATASource *)dataSource
+                                   tableView:(UITableView *)tableView;
+
+- (NSInteger)dataSource:(DATASource *)dataSource
+              tableView:(UITableView *)tableView
+sectionForSectionIndexTitle:(NSString *)title
+                atIndex:(NSInteger)index;
 
 - (NSString *)dataSource:(DATASource *)dataSource
                tableView:(UITableView *)tableView
@@ -136,17 +138,22 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
                tableView:(UITableView *)tableView
  titleForFooterInSection:(NSInteger)section;
 
+// Editing
+
+- (BOOL)dataSource:(DATASource *)dataSource
+         tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)dataSource:(DATASource *)dataSource
+         tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+ forRowAtIndexPath:(NSIndexPath *)indexPath;
+
+// Moving or Reordering
+
 - (BOOL)dataSource:(DATASource *)dataSource
          tableView:(UITableView *)tableView
 canMoveRowAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSArray *)sectionIndexTitlesForDataSource:(DATASource *)dataSource
-                                   tableView:(UITableView *)tableView;
-
-- (NSInteger)dataSource:(DATASource *)dataSource
-              tableView:(UITableView *)tableView
-sectionForSectionIndexTitle:(NSString *)title
-                atIndex:(NSInteger)index;
 
 - (void)dataSource:(DATASource *)dataSource
          tableView:(UITableView *)tableView

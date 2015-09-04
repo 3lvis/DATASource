@@ -261,7 +261,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
 }
 
-#pragma mark Moving/reordering
+#pragma mark Moving or reordering
 
 - (BOOL)tableView:(UITableView *)tableView
 canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -273,8 +273,6 @@ canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
 
     return false;
 }
-
-#pragma mark Reordering / Moving
 
 - (void)tableView:(UITableView *)tableView
 moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
