@@ -4,6 +4,8 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 
 ## UITableView
 
+### Basic Usage
+
 Hooking up your table view to your `Task` model and making your UITableView react to insertions, updates and deletions is as simple as this.
 
 ``` objc
@@ -12,7 +14,7 @@ fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title
 
 DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                                   fetchRequest:fetchRequest
-                                                   sectionName:sectionName
+                                                   sectionName:nil
                                                 cellIdentifier:ANDYCellIdentifier
                                                    mainContext:context
                                                  configuration:^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
@@ -21,6 +23,12 @@ DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
 
 self.tableView.dataSource = dataSource;
 ```
+
+### Indexed UITableView
+
+`DATASource` provides an easy way to show an indexed UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
+
+Check the [Swift Demo](https://github.com/3lvis/DATASource/tree/master/Demos/TableView) for an example of this, were we have an indexed UITableView of names, just like the Contacts.app
 
 ## UICollectionView
 
