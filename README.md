@@ -30,6 +30,8 @@ self.tableView.dataSource = dataSource;
 
 Check the [Swift Demo](https://github.com/3lvis/DATASource/tree/master/Demos/TableView) for an example of this, were we have an indexed UITableView of names, just like the Contacts.app!
 
+![Table](https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/table.gif)
+
 ### UITableViewDataSource
 
 `DATASource` takes ownership of your `UITableViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UITableViewDataSource` methods you can use the `DATASourceDelegate`.
