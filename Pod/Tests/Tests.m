@@ -44,6 +44,7 @@ static NSString * const ModelName = @"DataModel";
                                                               ascending:YES]];
     DATASource *dataSource = [[DATASource alloc] initWithTableView:tableView
                                                       fetchRequest:request
+                                                       sectionName:nil
                                                     cellIdentifier:CellIdentifier
                                                        mainContext:dataStack.mainContext
                                                      configuration:^(UITableViewCell *cell, User *item, NSIndexPath *indexPath) {
