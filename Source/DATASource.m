@@ -140,7 +140,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView {
     if ([self.delegate respondsToSelector:@selector(sectionIndexTitlesForDataSource:tableView:)]) {
-        [self.delegate sectionIndexTitlesForDataSource:self tableView:tableView];
+        return [self.delegate sectionIndexTitlesForDataSource:self tableView:tableView];
     }
 
     if (self.fetchedResultsController.sectionNameKeyPath) {
@@ -149,6 +149,7 @@
         request.resultType = NSDictionaryResultType;
         request.returnsDistinctResults = YES;
         request.propertiesToFetch = @[self.fetchedResultsController.sectionNameKeyPath];
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:self.fetchedResultsController.sectionNameKeyPath ascending:YES]];
 
         NSError *error;
         NSArray *objects = [self.fetchedResultsController.managedObjectContext executeFetchRequest:request error:&error];
@@ -157,8 +158,7 @@
             [sectionNames addObjectsFromArray:object.allValues];
         }
 
-        NSArray *sortedArray = [sectionNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-        return [sortedArray copy];
+        return [sectionNames copy];
     }
 
     return nil;
@@ -299,6 +299,7 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
             request.returnsDistinctResults = YES;
             request.propertiesToFetch = @[self.fetchedResultsController.sectionNameKeyPath];
             request.predicate = self.fetchedResultsController.fetchRequest.predicate;
+            request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:self.fetchedResultsController.sectionNameKeyPath ascending:YES]];
 
             NSError *error;
             NSArray *objects = [self.fetchedResultsController.managedObjectContext executeFetchRequest:request error:&error];
@@ -307,8 +308,7 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
                 [sectionNames addObjectsFromArray:object.allValues];
             }
 
-            NSArray *sortedArray = [sectionNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-            self.cachedSectionNames = sortedArray;
+            self.cachedSectionNames = [sectionNames copy];
         }
 
         NSString *title = self.cachedSectionNames[indexPath.section];
