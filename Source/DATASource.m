@@ -88,40 +88,6 @@
     return self;
 }
 
-#pragma mark Deprecated Initializers
-
-// Deprecated in favor of method that contains sectionName
-- (instancetype)initWithTableView:(UITableView *)tableView
-                     fetchRequest:(NSFetchRequest *)fetchRequest
-                   cellIdentifier:(NSString *)cellIdentifier
-                      mainContext:(NSManagedObjectContext *)mainContext
-                    configuration:(void (^)(id cell,
-                                            id item,
-                                            NSIndexPath *indexPath))configuration {
-    return [self initWithTableView:tableView
-                      fetchRequest:fetchRequest
-                       sectionName:nil
-                    cellIdentifier:cellIdentifier
-                       mainContext:mainContext
-                     configuration:configuration];
-}
-
-// Deprecated in favor of method that contains sectionName
-- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
-                          fetchRequest:(NSFetchRequest *)fetchRequest
-                        cellIdentifier:(NSString *)cellIdentifier
-                           mainContext:(NSManagedObjectContext *)mainContext
-                         configuration:(void (^)(id cell,
-                                                 id item,
-                                                 NSIndexPath *indexPath))configuration {
-    return [self initWithCollectionView:collectionView
-                           fetchRequest:fetchRequest
-                            sectionName:nil
-                         cellIdentifier:cellIdentifier
-                            mainContext:mainContext
-                          configuration:configuration];
-}
-
 #pragma mark - Public methods
 
 - (void)changePredicate:(NSPredicate *)predicate {
@@ -172,10 +138,9 @@
 
 #pragma mark Sections and Headers
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView
-{
-    if ([self.delegate respondsToSelector:@selector(sectionIndexTitleForSectionName:)]) {
-        [self.delegate sectionIndexTitlesForDataSource:tableView];
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView*)tableView {
+    if ([self.delegate respondsToSelector:@selector(sectionIndexTitlesForDataSource:tableView:)]) {
+        [self.delegate sectionIndexTitlesForDataSource:self tableView:tableView];
     }
 
     if (self.fetchedResultsController.sectionNameKeyPath) {
@@ -184,7 +149,6 @@
         request.resultType = NSDictionaryResultType;
         request.returnsDistinctResults = YES;
         request.propertiesToFetch = @[self.fetchedResultsController.sectionNameKeyPath];
-        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:self.fetchedResultsController.sectionNameKeyPath ascending:YES]];
 
         NSError *error;
         NSArray *objects = [self.fetchedResultsController.managedObjectContext executeFetchRequest:request error:&error];
@@ -193,7 +157,8 @@
             [sectionNames addObjectsFromArray:object.allValues];
         }
 
-        return [sectionNames copy];
+        NSArray *sortedArray = [sectionNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        return [sortedArray copy];
     }
 
     return nil;
@@ -201,21 +166,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
 sectionForSectionIndexTitle:(NSString *)title
-               atIndex:(NSInteger)index
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:sectionForSectionIndexTitle:atIndex:)]) {
-        return [self.delegate dataSource:tableView
+               atIndex:(NSInteger)index {
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:sectionForSectionIndexTitle:atIndex:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
              sectionForSectionIndexTitle:title
                                  atIndex:index];
     }
-    
+
     return index;
 }
 
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section {
-    if ([self.delegate respondsToSelector:@selector(dataSource:titleForHeaderInSection:)]) {
-        return [self.delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:titleForHeaderInSection:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
                  titleForHeaderInSection:section];
     }
 
@@ -226,10 +192,10 @@ titleForHeaderInSection:(NSInteger)section {
 
 #pragma mark - Footer
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:titleForFooterInSection:)]) {
-        return [self.delegate dataSource:tableView
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:titleForFooterInSection:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
                  titleForFooterInSection:section];
     }
 
@@ -241,8 +207,9 @@ titleForHeaderInSection:(NSInteger)section {
 - (BOOL)tableView:(UITableView *)tableView
 canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if ([self.delegate respondsToSelector:@selector(dataSource:canEditRowAtIndexPath:)]) {
-        return [self.delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:canEditRowAtIndexPath:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
                    canEditRowAtIndexPath:indexPath];
     }
 
@@ -252,37 +219,36 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(dataSource:commitEditingStyle:forRowAtIndexPath:)]) {
-        [self.delegate dataSource:tableView
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:commitEditingStyle:forRowAtIndexPath:)]) {
+        [self.delegate dataSource:self
+                        tableView:tableView
                commitEditingStyle:editingStyle
                 forRowAtIndexPath:indexPath];
     }
 }
 
-#pragma mark Moving/reordering
+#pragma mark Moving or reordering
 
 - (BOOL)tableView:(UITableView *)tableView
-canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:canMoveRowAtIndexPath:)]) {
-        return [self.delegate dataSource:tableView canMoveRowAtIndexPath:indexPath];
+canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:canMoveRowAtIndexPath:)]) {
+        return [self.delegate dataSource:self
+                               tableView:tableView
+                   canMoveRowAtIndexPath:indexPath];
     }
+
     return false;
-
 }
-
-#pragma mark Reordering / Moving
 
 - (void)tableView:(UITableView *)tableView
 moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-      toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    if ([self.delegate respondsToSelector:@selector(dataSource:moveRowAtIndexPath:toIndexPath:)]) {
-        [self.delegate dataSource:tableView
+      toIndexPath:(NSIndexPath *)destinationIndexPath {
+    if ([self.delegate respondsToSelector:@selector(dataSource:tableView:moveRowAtIndexPath:toIndexPath:)]) {
+        [self.delegate dataSource:self
+                        tableView:tableView
                moveRowAtIndexPath:sourceIndexPath
                       toIndexPath:destinationIndexPath];
     }
-
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -311,6 +277,16 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 #pragma mark Sections and Headers
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(dataSource:collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]) {
+        UICollectionReusableView *view = [self.delegate dataSource:self
+                                                    collectionView:collectionView
+                                 viewForSupplementaryElementOfKind:kind
+                                                       atIndexPath:indexPath];
+        if (view) {
+            return view;
+        }
+    }
+
     if (kind == UICollectionElementKindSectionHeader) {
         DATASourceCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                                         withReuseIdentifier:DATASourceCollectionHeaderViewIdentifier
@@ -323,7 +299,6 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
             request.returnsDistinctResults = YES;
             request.propertiesToFetch = @[self.fetchedResultsController.sectionNameKeyPath];
             request.predicate = self.fetchedResultsController.fetchRequest.predicate;
-            request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:self.fetchedResultsController.sectionNameKeyPath ascending:YES]];
 
             NSError *error;
             NSArray *objects = [self.fetchedResultsController.managedObjectContext executeFetchRequest:request error:&error];
@@ -332,7 +307,8 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
                 [sectionNames addObjectsFromArray:object.allValues];
             }
 
-            self.cachedSectionNames = [sectionNames copy];
+            NSArray *sortedArray = [sectionNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+            self.cachedSectionNames = sortedArray;
         }
 
         NSString *title = self.cachedSectionNames[indexPath.section];
@@ -588,7 +564,7 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 - (void)configureCell:(id)cell
           atIndexPath:(NSIndexPath *)indexPath {
     id item;
-
+    
     BOOL rowIsInsideBounds = ((NSUInteger)indexPath.row < self.fetchedResultsController.fetchedObjects.count);
     if (rowIsInsideBounds) {
         item = [self.fetchedResultsController objectAtIndexPath:indexPath];
