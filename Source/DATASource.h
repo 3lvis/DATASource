@@ -46,11 +46,29 @@
 
 @property (nonatomic, weak) id <DATASourceDelegate> delegate;
 
-@property (nonatomic) BOOL controllerIsHidden;
-
 @property (nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 
+/*!
+ *  Convenience to update the fetchedResultsController's predicate and reloading the state
+ *  of your controller properly. This is recommended instead of mutating your fetchedResultsController.
+ */
 @property (nonatomic) NSPredicate *predicate;
+
+/*!
+ * Disables updates from NSFetchResultsController. Useful for when you leave the viewController and you no
+ * longer want to be notified.
+ */
+@property (nonatomic) BOOL controllerIsHidden;
+
+/*!
+ * Convenience method to retreive the object count in your dataSource, returns 0 if empty.
+ */
+@property (nonatomic, readonly) NSInteger objectsCount;
+
+/*!
+ * Convenience method to see if your dataSource has 0 objects in it.
+ */
+@property (nonatomic, readonly) BOOL isEmpty;
 
 /*!
  * Convenience method to retreive an object at a given @c indexPath.
@@ -62,6 +80,23 @@
  * Convenience method to perform fetch.
  */
 - (void)fetch;
+
+/*!
+ * Convenience method to retrieve an object using an indexPath,
+ * returns nil if none is found.
+ */
+- (NSManagedObject *)objectForIndexPath:(NSIndexPath *)indexPath;
+
+/*!
+ * Convenience method to retrieve an indexPath using an object,
+ * returns nil if none is found.
+ */
+- (NSIndexPath *)indexPathForObject:(NSManagedObject *)object;
+
+/*!
+ * Convenience method to retrieve all the objects, returns an empty array if none is found.
+ */
+- (NSArray *)objects;
 
 @end
 
