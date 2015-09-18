@@ -55,7 +55,7 @@
 /*!
  * Used to retreive the object count in your dataSource, returns 0 if empty.
  */
-@property (nonatomic, readonly) NSInteger objectCount;
+@property (nonatomic, readonly) NSInteger objectsCount;
 
 /*!
  * Used to check if your dataSource has 0 objects in it.
