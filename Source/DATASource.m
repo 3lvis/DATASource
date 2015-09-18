@@ -79,8 +79,6 @@
                                                                                    cacheName:nil];
         _fetchedResultsController.delegate = self;
 
-        _predicate = _fetchedResultsController.fetchRequest.predicate;
-
         NSError *error = nil;
         if (![_fetchedResultsController performFetch:&error]) {
             NSLog(@"Error fetching objects: %@", error);
@@ -92,9 +90,11 @@
 
 #pragma mark - Setters
 
-- (void)setPredicate:(NSPredicate *)predicate {
-    _predicate = predicate;
+- (NSPredicate *)predicate {
+    return self.fetchedResultsController.fetchRequest.predicate;
+}
 
+- (void)setPredicate:(NSPredicate *)predicate {
     self.cachedSectionNames = nil;
     self.fetchedResultsController.fetchRequest.predicate = predicate;
 
