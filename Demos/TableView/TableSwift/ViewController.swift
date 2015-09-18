@@ -43,16 +43,21 @@ class ViewController: UITableViewController {
                 let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
 
                 let name = self.randomString()
-                let firstLetter = String(Array(name)[0])
+                let firstLetter = String(Array(name.characters)[0])
                 user.setValue(name, forKey: "name")
                 user.setValue(firstLetter.uppercaseString, forKey: "firstLetterOfName")
 
                 var error: NSError?
-                if !backgroundContext.save(&error) {
-                    println("Could not save \(error), \(error?.userInfo)")
+                do {
+                    try backgroundContext.save()
+                } catch let error1 as NSError {
+                    error = error1
+                    print("Could not save \(error), \(error?.userInfo)")
+                } catch {
+                    fatalError()
                 }
             } else {
-                println("Oh no")
+                print("Oh no")
             }
         }
     }
@@ -60,10 +65,10 @@ class ViewController: UITableViewController {
     func randomString() -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         var string = ""
-        for index in 0...10 {
-            let token = UInt32(count(letters))
+        for _ in 0...10 {
+            let token = UInt32(letters.characters.count)
             let letterIndex = Int(arc4random_uniform(token))
-            var firstChar = Array(letters)[letterIndex]
+            let firstChar = Array(letters.characters)[letterIndex]
             string.append(firstChar)
         }
 
