@@ -353,8 +353,6 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    if (self.controllerIsHidden) return;
-
     if (self.tableView) {
         [self.tableView beginUpdates];
     } else if (self.collectionView) {
@@ -368,10 +366,6 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
            atIndex:(NSUInteger)sectionIndex
      forChangeType:(NSFetchedResultsChangeType)type {
     self.cachedSectionNames = nil;
-
-    if (self.controllerIsHidden) {
-        return;
-    }
 
     if (self.tableView) {
         switch(type) {
@@ -406,8 +400,6 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
        atIndexPath:(NSIndexPath *)indexPath
      forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
-    if (self.controllerIsHidden) return;
-
     if (self.tableView) {
         switch(type) {
             case NSFetchedResultsChangeInsert: {
@@ -486,15 +478,7 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     if (self.tableView) {
-        if (self.controllerIsHidden) {
-            NSArray *indexPaths = [self.tableView indexPathsForVisibleRows];
-            for (NSIndexPath *indexPath in indexPaths) {
-                [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
-                        atIndexPath:indexPath];
-            }
-        } else {
-            [self.tableView endUpdates];
-        }
+        [self.tableView endUpdates];
     } else if (self.collectionView) {
         NSMutableArray *moves = self.objectChanges[@(NSFetchedResultsChangeMove)];
         if (moves.count) {

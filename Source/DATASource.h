@@ -46,49 +46,41 @@
 
 @property (nonatomic, weak) id <DATASourceDelegate> delegate;
 
-@property (nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
-
 /*!
- *  Convenience to update the fetchedResultsController's predicate and reloading the state
- *  of your controller properly. This is recommended instead of mutating your fetchedResultsController.
+ *  Used to update the dataSource's predicate and reloading the state
+ *  of your controller properly.
  */
 @property (nonatomic) NSPredicate *predicate;
 
 /*!
- * Disables updates from NSFetchResultsController. Useful for when you leave the viewController and you no
- * longer want to be notified.
- */
-@property (nonatomic) BOOL controllerIsHidden;
-
-/*!
- * Convenience method to retreive the object count in your dataSource, returns 0 if empty.
+ * Used to retreive the object count in your dataSource, returns 0 if empty.
  */
 @property (nonatomic, readonly) NSInteger objectsCount;
 
 /*!
- * Convenience method to see if your dataSource has 0 objects in it.
+ * Used to check if your dataSource has 0 objects in it.
  */
 @property (nonatomic, readonly) BOOL isEmpty;
 
 /*!
- * Convenience method to retrieve all the objects, returns an empty array if none is found.
+ * Used to retrieve all the objects, returns an empty array if none is found.
  */
 @property (nonatomic, readonly) NSArray *objects;
 
 /*!
- * Convenience method to retreive an object at a given @c indexPath.
- * \param indexPath The indexPath.
+ * Used to retreive an object at a given @c indexPath.
+ * \param indexPath The indexPath used to find the object.
  */
 - (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 /*!
- * Convenience method to retrieve an indexPath using an object,
- * returns nil if none is found.
+ * Used to retrieve an indexPath using an object, returns nil if none is found.
+ * \param object The object which indexPath neds to be found.
  */
 - (NSIndexPath *)indexPathForObject:(NSManagedObject *)object;
 
 /*!
- * Convenience method to perform fetch.
+ * Used to perform a fetch.
  */
 - (void)fetch;
 
