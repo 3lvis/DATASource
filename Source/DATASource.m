@@ -88,9 +88,9 @@
     return self;
 }
 
-#pragma mark - Public methods
+#pragma mark - Setters
 
-- (void)changePredicate:(NSPredicate *)predicate {
+- (void)setPredicate:(NSPredicate *)predicate {
     self.cachedSectionNames = nil;
     self.fetchedResultsController.fetchRequest.predicate = predicate;
 
@@ -102,8 +102,36 @@
     [self.collectionView reloadData];
 }
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath {
+#pragma mark - Getters
+
+- (NSPredicate *)predicate {
+    return self.fetchedResultsController.fetchRequest.predicate;
+}
+
+- (NSInteger)objectsCount {
+    return self.fetchedResultsController.fetchedObjects.count;
+}
+
+- (BOOL)isEmpty {
+    return (self.fetchedResultsController.fetchedObjects.count == 0);
+}
+
+- (NSArray *)objects {
+    if (self.fetchedResultsController.fetchedObjects.count == 0) {
+        return @[];
+    }
+
+    return self.fetchedResultsController.fetchedObjects;
+}
+
+#pragma mark - Public methods
+
+- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
     return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+- (NSIndexPath *)indexPathForObject:(NSManagedObject *)object {
+    return [self.fetchedResultsController indexPathForObject:object];
 }
 
 - (void)fetch {
