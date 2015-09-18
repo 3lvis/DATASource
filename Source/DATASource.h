@@ -71,21 +71,15 @@
 @property (nonatomic, readonly) BOOL isEmpty;
 
 /*!
+ * Convenience method to retrieve all the objects, returns an empty array if none is found.
+ */
+@property (nonatomic, readonly) NSArray *objects;
+
+/*!
  * Convenience method to retreive an object at a given @c indexPath.
  * \param indexPath The indexPath.
  */
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
-
-/*!
- * Convenience method to perform fetch.
- */
-- (void)fetch;
-
-/*!
- * Convenience method to retrieve an object using an indexPath,
- * returns nil if none is found.
- */
-- (NSManagedObject *)objectForIndexPath:(NSIndexPath *)indexPath;
+- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 /*!
  * Convenience method to retrieve an indexPath using an object,
@@ -94,9 +88,9 @@
 - (NSIndexPath *)indexPathForObject:(NSManagedObject *)object;
 
 /*!
- * Convenience method to retrieve all the objects, returns an empty array if none is found.
+ * Convenience method to perform fetch.
  */
-- (NSArray *)objects;
+- (void)fetch;
 
 @end
 

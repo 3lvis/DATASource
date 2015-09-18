@@ -90,10 +90,6 @@
 
 #pragma mark - Setters
 
-- (NSPredicate *)predicate {
-    return self.fetchedResultsController.fetchRequest.predicate;
-}
-
 - (void)setPredicate:(NSPredicate *)predicate {
     self.cachedSectionNames = nil;
     self.fetchedResultsController.fetchRequest.predicate = predicate;
@@ -106,10 +102,36 @@
     [self.collectionView reloadData];
 }
 
+#pragma mark - Getters
+
+- (NSPredicate *)predicate {
+    return self.fetchedResultsController.fetchRequest.predicate;
+}
+
+- (NSInteger)objectsCount {
+    return self.fetchedResultsController.fetchedObjects.count;
+}
+
+- (BOOL)isEmpty {
+    return (self.fetchedResultsController.fetchedObjects.count == 0);
+}
+
+- (NSArray *)objects {
+    if (self.fetchedResultsController.fetchedObjects.count == 0) {
+        return @[];
+    }
+
+    return self.fetchedResultsController.fetchedObjects;
+}
+
 #pragma mark - Public methods
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath {
+- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
     return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+- (NSIndexPath *)indexPathForObject:(NSManagedObject *)object {
+    return [self.fetchedResultsController indexPathForObject:object];
 }
 
 - (void)fetch {
