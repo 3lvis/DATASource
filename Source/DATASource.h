@@ -50,11 +50,7 @@
 
 @property (nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 
-/*!
- * Convenience method to change the predicate of the NSFetchedResultsController.
- * \param predicate The predicate.
- */
-- (void)changePredicate:(NSPredicate *)predicate;
+@property (nonatomic) NSPredicate *predicate;
 
 /*!
  * Convenience method to retreive an object at a given @c indexPath.

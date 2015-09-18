@@ -79,6 +79,8 @@
                                                                                    cacheName:nil];
         _fetchedResultsController.delegate = self;
 
+        _predicate = _fetchedResultsController.fetchRequest.predicate;
+
         NSError *error = nil;
         if (![_fetchedResultsController performFetch:&error]) {
             NSLog(@"Error fetching objects: %@", error);
@@ -88,9 +90,11 @@
     return self;
 }
 
-#pragma mark - Public methods
+#pragma mark - Setters
 
-- (void)changePredicate:(NSPredicate *)predicate {
+- (void)setPredicate:(NSPredicate *)predicate {
+    _predicate = predicate;
+
     self.cachedSectionNames = nil;
     self.fetchedResultsController.fetchRequest.predicate = predicate;
 
@@ -101,6 +105,8 @@
     [self.tableView reloadData];
     [self.collectionView reloadData];
 }
+
+#pragma mark - Public methods
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {
     return [self.fetchedResultsController objectAtIndexPath:indexPath];
