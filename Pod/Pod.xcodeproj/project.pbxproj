@@ -7,30 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1402F77C1AD172F400C7401C /* DATASource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1402F77B1AD172F400C7401C /* DATASource.m */; };
 		146A809B1AD17E6D006AC18D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 146A80991AD17E6D006AC18D /* DataModel.xcdatamodeld */; };
-		146A809E1AD18299006AC18D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 146A809D1AD18299006AC18D /* User.m */; };
-		146D72B31AB782920058798C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D72B21AB782920058798C /* Tests.m */; };
-		14D4F3111B8F2D0800189B93 /* DATASourceCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D4F3101B8F2D0800189B93 /* DATASourceCollectionHeaderView.m */; };
-		A0CF3F6CFED52A83DA7A9B3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7C164986809D9AD3F371B /* libPods.a */; };
+		149AA6D01BC73CDC004E3F91 /* DataSourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AA6CF1BC73CDC004E3F91 /* DataSourceCollectionHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
+		149AA6D21BC73CE9004E3F91 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AA6D11BC73CE9004E3F91 /* DataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		149AA6D41BC7869D004E3F91 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AA6D31BC7869D004E3F91 /* Tests.swift */; settings = {ASSET_TAGS = (); }; };
+		A200EDE79186E616464AD758 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F143F84B4457852DACBAF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1402F77A1AD172F400C7401C /* DATASource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
-		1402F77B1AD172F400C7401C /* DATASource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASource.m; sourceTree = "<group>"; };
 		146A809A1AD17E6D006AC18D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		146A809C1AD18299006AC18D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		146A809D1AD18299006AC18D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		146D72B21AB782920058798C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		149AA6CF1BC73CDC004E3F91 /* DataSourceCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceCollectionHeaderView.swift; sourceTree = "<group>"; };
+		149AA6D11BC73CE9004E3F91 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		149AA6D31BC7869D004E3F91 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		14C136511AB784B200B7B07A /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		14C136521AB784B200B7B07A /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C136541AB784B200B7B07A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		14C136551AB784B200B7B07A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		14D4F30F1B8F2D0800189B93 /* DATASourceCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASourceCollectionHeaderView.h; sourceTree = "<group>"; };
-		14D4F3101B8F2D0800189B93 /* DATASourceCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASourceCollectionHeaderView.m; sourceTree = "<group>"; };
-		84C7C164986809D9AD3F371B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		696F143F84B4457852DACBAF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD889C6A1359FF47089FE65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B9F75E91519E68D8A79AA74C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -40,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0CF3F6CFED52A83DA7A9B3A /* libPods.a in Frameworks */,
+				A200EDE79186E616464AD758 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,10 +66,8 @@
 			isa = PBXGroup;
 			children = (
 				146A80991AD17E6D006AC18D /* DataModel.xcdatamodeld */,
-				146A809C1AD18299006AC18D /* User.h */,
-				146A809D1AD18299006AC18D /* User.m */,
-				146D72B21AB782920058798C /* Tests.m */,
 				146D72B01AB782920058798C /* Supporting Files */,
+				149AA6D31BC7869D004E3F91 /* Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -101,10 +94,8 @@
 		14C1365B1AB784BC00B7B07A /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				14D4F30F1B8F2D0800189B93 /* DATASourceCollectionHeaderView.h */,
-				14D4F3101B8F2D0800189B93 /* DATASourceCollectionHeaderView.m */,
-				1402F77A1AD172F400C7401C /* DATASource.h */,
-				1402F77B1AD172F400C7401C /* DATASource.m */,
+				149AA6CF1BC73CDC004E3F91 /* DataSourceCollectionHeaderView.swift */,
+				149AA6D11BC73CE9004E3F91 /* DataSource.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -122,7 +113,7 @@
 		830D7552E4238CF42CF00C60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84C7C164986809D9AD3F371B /* libPods.a */,
+				696F143F84B4457852DACBAF /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,6 +130,7 @@
 				146D72A91AB782920058798C /* Frameworks */,
 				146D72AA1AB782920058798C /* Resources */,
 				0F1334CE5C371FD3828C35C7 /* Copy Pods Resources */,
+				C7A1FA0E9ED4DEE7543EF6D3 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,6 +147,7 @@
 		146D728B1AB782920058798C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Example;
 				TargetAttributes = {
@@ -222,6 +215,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		C7A1FA0E9ED4DEE7543EF6D3 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -229,11 +237,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14D4F3111B8F2D0800189B93 /* DATASourceCollectionHeaderView.m in Sources */,
-				146A809E1AD18299006AC18D /* User.m in Sources */,
+				149AA6D21BC73CE9004E3F91 /* DataSource.swift in Sources */,
+				149AA6D41BC7869D004E3F91 /* Tests.swift in Sources */,
+				149AA6D01BC73CDC004E3F91 /* DataSourceCollectionHeaderView.swift in Sources */,
 				146A809B1AD17E6D006AC18D /* DataModel.xcdatamodeld in Sources */,
-				1402F77C1AD172F400C7401C /* DATASource.m in Sources */,
-				146D72B31AB782920058798C /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +328,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B9F75E91519E68D8A79AA74C /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -330,6 +338,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -337,11 +347,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AAD889C6A1359FF47089FE65 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
