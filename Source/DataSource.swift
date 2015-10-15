@@ -185,7 +185,7 @@ extension DataSource: NSFetchedResultsControllerDelegate {
     public func controllerDidChangeContent(controller: NSFetchedResultsController) {
         if let tableView = self.tableView {
             tableView.endUpdates()
-        } else if let collectionView = self.collectionView {
+        } else if let _ = self.collectionView {
             let moves = self.objectChanges[.Move]
             if let moves = moves {
                 if moves.count > 0 {
@@ -244,6 +244,29 @@ extension DataSource: NSFetchedResultsControllerDelegate {
 
                 if let collectionView = self.collectionView {
                     collectionView.performBatchUpdates({
+                        if let deletedSections = self.sectionChanges[.Delete] {
+                            collectionView.deleteSections(deletedSections)
+                        }
+
+                        if let insertedSections = self.sectionChanges[.Insert] {
+                            collectionView.insertSections(insertedSections)
+                        }
+
+                        if let deleteItems = self.objectChanges[.Delete] {
+                            collectionView.deleteItemsAtIndexPaths(deleteItems)
+                        }
+
+                        if let insertedItems = self.objectChanges[.Insert] {
+                            collectionView.insertItemsAtIndexPaths(insertedItems)
+                        }
+
+                        if let reloadItems = self.objectChanges[.Update] {
+                            collectionView.reloadItemsAtIndexPaths(reloadItems)
+                        }
+
+                        if let moveItems = self.objectChanges[.Move] {
+                            collectionView.moveItemAtIndexPath(moveItems[0], toIndexPath: moveItems[1])
+                        }
 
                         }, completion: nil)
                 }
