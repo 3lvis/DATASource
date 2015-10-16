@@ -12,8 +12,7 @@ class ViewController: UITableViewController {
         self.dataStack = dataStack
 
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
-        request.sortDescriptors = [NSSortDescriptor(key: "name",
-            ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
         self.dataSource = DataSource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let cell = cell as! UITableViewCell
@@ -25,9 +24,7 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
-
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "saveAction")
-
         self.tableView.dataSource = self.dataSource
     }
 
