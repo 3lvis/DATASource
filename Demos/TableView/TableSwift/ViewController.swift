@@ -4,7 +4,7 @@ import DATAStack
 class ViewController: UITableViewController {
 
     var dataStack: DATAStack?
-    var dataSource: DATASource?
+    var dataSource: DataSource?
 
     convenience init(dataStack: DATAStack) {
         self.init(style: .Plain)
@@ -15,16 +15,17 @@ class ViewController: UITableViewController {
         request.sortDescriptors = [NSSortDescriptor(key: "name",
             ascending: true)]
 
-        self.dataSource = DATASource(tableView: self.tableView,
-            fetchRequest: request,
-            sectionName: "firstLetterOfName",
+        self.dataSource = DataSource(tableView: self.tableView,
             cellIdentifier: "Cell",
+            fetchRequest: request,
             mainContext: self.dataStack!.mainContext,
+            sectionName: "firstLetterOfName")
+        /*,
             configuration: { (cell, item, indexPath) -> Void in
                 let cell = cell as! UITableViewCell
                 let item = item as! NSManagedObject
                 cell.textLabel!.text = item.valueForKey("name") as? String
-        })
+        })*/
     }
 
     override func viewDidLoad() {

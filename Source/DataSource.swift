@@ -29,13 +29,13 @@ extension DataSourceable {
     func dataSource(dataSource: DataSource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) {}
 }
 
-public class DataSource: NSObject {
+public class DataSource: NSObject, UITableViewDataSource {
     private weak var tableView: UITableView?
     private weak var collectionView: UICollectionView?
     private var sectionName: String?
     private var cellIdentifier: String
     private weak var mainContext: NSManagedObjectContext?
-    private weak var delegate: DataSourceable?
+    public weak var delegate: DataSourceable?
 
     private var fetchedResultsController: NSFetchedResultsController
     private var cachedSectionNames: [String]?
@@ -49,20 +49,20 @@ public class DataSource: NSObject {
         return [NSFetchedResultsChangeType : NSMutableIndexSet]()
     }()
 
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, sectionName: String, mainContext: NSManagedObjectContext) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, sectionName: sectionName, mainContext: mainContext)
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?) {
+        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName)
 
         self.tableView = tableView
     }
 
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, sectionName: String, mainContext: NSManagedObjectContext, delegate: DataSourceable) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, sectionName: sectionName, mainContext: mainContext)
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, delegate: DataSourceable) {
+        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName)
 
         self.collectionView = collectionView
         self.collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier);
     }
 
-    public init(cellIdentifier: String, fetchRequest: NSFetchRequest, sectionName: String?, mainContext: NSManagedObjectContext) {
+    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?) {
         self.cellIdentifier = cellIdentifier
 
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
@@ -73,6 +73,10 @@ public class DataSource: NSObject {
             print("Error fetching objects")
         }
     }
+}
+
+extension DataSource: UITableViewDataSource {
+    
 }
 
 extension DataSource: NSFetchedResultsControllerDelegate {
