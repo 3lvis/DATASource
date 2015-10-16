@@ -2,8 +2,6 @@ import UIKit
 import CoreData
 
 public protocol DataSourceable: class {
-    func dataSource(dataSource: DataSource, configureCell cell: UIView, item: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-
     func dataSource(dataSource: DataSource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     func dataSource(dataSource: DataSource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
@@ -95,6 +93,8 @@ public class DataSource: NSObject {
     private var sectionName: String?
     private var cellIdentifier: String
     private weak var mainContext: NSManagedObjectContext?
+    private var configurationBlock: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()
+
     public weak var delegate: DataSourceable?
 
     private var fetchedResultsController: NSFetchedResultsController
@@ -109,15 +109,15 @@ public class DataSource: NSObject {
         return [NSFetchedResultsChangeType : NSMutableIndexSet]()
     }()
 
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName)
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
 
         self.tableView = tableView
         self.tableView?.dataSource = self
     }
 
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, delegate: DataSourceable) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName)
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
 
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
@@ -125,9 +125,10 @@ public class DataSource: NSObject {
         self.collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier);
     }
 
-    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?) {
+    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.cellIdentifier = cellIdentifier
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
+        self.configurationBlock = configuration
 
         super.init()
 
@@ -236,6 +237,8 @@ extension DataSource: NSFetchedResultsControllerDelegate {
         if let tableView = self.tableView {
             tableView.beginUpdates()
         } else if let _ = self.collectionView {
+            self.sectionChanges = [NSFetchedResultsChangeType : NSMutableIndexSet]()
+            self.objectChanges = [NSFetchedResultsChangeType : [NSIndexPath]]()
         }
     }
 
@@ -439,7 +442,7 @@ extension DataSource: NSFetchedResultsControllerDelegate {
         }
 
         if let item = item {
-            self.delegate?.dataSource(self, configureCell: cell, item: item, atIndexPath: indexPath)
+            self.configurationBlock(cell: cell, item: item, indexPath: indexPath)
         }
     }
 }

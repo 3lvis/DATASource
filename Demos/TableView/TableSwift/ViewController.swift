@@ -1,7 +1,7 @@
 import UIKit
 import DATAStack
 
-class ViewController: UITableViewController, DataSourceable {
+class ViewController: UITableViewController {
 
     var dataStack: DATAStack?
     var dataSource: DataSource?
@@ -15,12 +15,10 @@ class ViewController: UITableViewController, DataSourceable {
         request.sortDescriptors = [NSSortDescriptor(key: "name",
             ascending: true)]
 
-        self.dataSource = DataSource(tableView: self.tableView,
-            cellIdentifier: "Cell",
-            fetchRequest: request,
-            mainContext: self.dataStack!.mainContext,
-            sectionName: "firstLetterOfName")
-        self.dataSource?.delegate = self
+        self.dataSource = DataSource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+            let cell = cell as! UITableViewCell
+            cell.textLabel?.text = item.valueForKey("name") as? String
+        })
     }
 
     override func viewDidLoad() {
@@ -71,10 +69,5 @@ class ViewController: UITableViewController, DataSourceable {
         }
 
         return string
-    }
-
-    func dataSource(dataSource: DataSource, configureCell cell: UIView, item: NSManagedObject, atIndexPath indexPath: NSIndexPath) {
-        let cell = cell as! UITableViewCell
-        cell.textLabel?.text = item.valueForKey("name") as? String
     }
 }
