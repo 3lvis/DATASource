@@ -4,20 +4,23 @@ import DATAStack
 class ViewController: UITableViewController {
 
     var dataStack: DATAStack?
-    var dataSource: DataSource?
+
+    lazy var dataSource: DataSource = {
+        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+
+        let dataSource = DataSource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+            let cell = cell as! UITableViewCell
+            cell.textLabel?.text = item.valueForKey("name") as? String
+        })
+
+        return dataSource
+    }()
 
     convenience init(dataStack: DATAStack) {
         self.init(style: .Plain)
 
         self.dataStack = dataStack
-
-        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-
-        self.dataSource = DataSource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
-            let cell = cell as! UITableViewCell
-            cell.textLabel?.text = item.valueForKey("name") as? String
-        })
     }
 
     override func viewDidLoad() {
@@ -29,7 +32,7 @@ class ViewController: UITableViewController {
     }
 
     func saveAction() {
-        self.dataStack!.performInNewBackgroundContext { (backgroundContext) -> Void in
+        self.dataStack!.performInNewBackgroundContext { backgroundContext in
             if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
                 let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
 
@@ -38,12 +41,10 @@ class ViewController: UITableViewController {
                 user.setValue(name, forKey: "name")
                 user.setValue(firstLetter.uppercaseString, forKey: "firstLetterOfName")
 
-                var error: NSError?
                 do {
                     try backgroundContext.save()
-                } catch let error1 as NSError {
-                    error = error1
-                    print("Could not save \(error), \(error?.userInfo)")
+                } catch let savingError as NSError {
+                    print("Could not save \(savingError)")
                 } catch {
                     fatalError()
                 }
