@@ -2,7 +2,7 @@ import UIKit
 import CoreData
 
 public protocol DataSourceable: class {
-    func dataSource(dataSource: DataSource, configureCell cell: UITableViewCell, item: NSManagedObject, atIndexPath indexPath: NSIndexPath)
+    func dataSource(dataSource: DataSource, configureCell cell: UIView, item: NSManagedObject, atIndexPath indexPath: NSIndexPath)
 
     func dataSource(dataSource: DataSource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
@@ -20,6 +20,30 @@ public protocol DataSourceable: class {
     // Sections and Headers
 
     func sectionIndexTitlesForDataSource(dataSource: DataSource, tableView: UITableView) -> [String]?
+    func dataSource(dataSource: DataSource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
+    func dataSource(dataSource: DataSource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    func dataSource(dataSource: DataSource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
+
+    // Editing
+
+    func dataSource(dataSource: DataSource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    func dataSource(dataSource: DataSource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+
+    // Moving or Reordering
+
+    func dataSource(dataSource: DataSource, tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    func dataSource(dataSource: DataSource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)
+
+
+    /*!
+    * ********************
+    *
+    * UICollectionView specific
+    *
+    * ********************
+    */
+
+    func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
 }
 
 extension DataSourceable {
@@ -27,9 +51,45 @@ extension DataSourceable {
     func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath) {}
     func dataSource(dataSource: DataSource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath) {}
     func dataSource(dataSource: DataSource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) {}
+
+    /*!
+    * ********************
+    *
+    * UITableView specific
+    *
+    * ********************
+    */
+
+    // Sections and Headers
+
+    func sectionIndexTitlesForDataSource(dataSource: DataSource, tableView: UITableView) -> [String]?  { return nil }
+    func dataSource(dataSource: DataSource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int { return 0 }
+    func dataSource(dataSource: DataSource, tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return nil }
+    func dataSource(dataSource: DataSource, tableView: UITableView, titleForFooterInSection section: Int) -> String? { return nil }
+
+    // Editing
+
+    func dataSource(dataSource: DataSource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool { return false }
+    func dataSource(dataSource: DataSource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
+
+    // Moving or Reordering
+
+    func dataSource(dataSource: DataSource, tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool { return false }
+    func dataSource(dataSource: DataSource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {}
+
+
+    /*!
+    * ********************
+    *
+    * UICollectionView specific
+    *
+    * ********************
+    */
+
+    func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView { return UICollectionReusableView() }
 }
 
-public class DataSource: NSObject, UITableViewDataSource {
+public class DataSource: NSObject {
     private weak var tableView: UITableView?
     private weak var collectionView: UICollectionView?
     private var sectionName: String?
@@ -53,19 +113,25 @@ public class DataSource: NSObject, UITableViewDataSource {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName)
 
         self.tableView = tableView
+        self.tableView?.dataSource = self
     }
 
     public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, delegate: DataSourceable) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName)
 
         self.collectionView = collectionView
+        self.collectionView?.dataSource = self
+
         self.collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier);
     }
 
     private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?) {
         self.cellIdentifier = cellIdentifier
-
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
+
+        super.init()
+
+        self.fetchedResultsController.delegate = self
 
         do {
             try self.fetchedResultsController.performFetch()
@@ -76,7 +142,93 @@ public class DataSource: NSObject, UITableViewDataSource {
 }
 
 extension DataSource: UITableViewDataSource {
-    
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.fetchedResultsController.sections?.count ?? 0
+    }
+
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var numberOfRowsInSection = 0
+
+        if let sections = self.fetchedResultsController.sections {
+            numberOfRowsInSection = sections[section].numberOfObjects
+        }
+
+        return numberOfRowsInSection
+    }
+
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath)
+
+        self.configureCell(cell, indexPath: indexPath)
+        
+        return cell
+    }
+
+    // Sections and Headers
+
+    public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return self.delegate?.sectionIndexTitlesForDataSource(self, tableView: tableView)
+    }
+
+    public func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        return self.delegate?.dataSource(self, tableView: tableView, sectionForSectionIndexTitle: title, atIndex: index) ?? 0
+    }
+
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.delegate?.dataSource(self, tableView: tableView, titleForHeaderInSection: section)
+    }
+
+    public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return self.delegate?.dataSource(self, tableView: tableView, titleForFooterInSection: section)
+    }
+
+    // Editing
+
+    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return self.delegate?.dataSource(self, tableView: tableView, canEditRowAtIndexPath: indexPath) ?? false
+    }
+
+    public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        self.delegate?.dataSource(self, tableView: tableView, commitEditingStyle: editingStyle, forRowAtIndexPath: indexPath)
+    }
+
+    // Moving or Reordering
+
+    public func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return self.delegate?.dataSource(self, tableView: tableView, canMoveRowAtIndexPath: indexPath) ?? false
+    }
+
+    public func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        self.delegate?.dataSource(self, tableView: tableView, moveRowAtIndexPath: sourceIndexPath, toIndexPath: destinationIndexPath)
+    }
+}
+
+extension DataSource: UICollectionViewDataSource {
+    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return self.fetchedResultsController.sections?.count ?? 0
+    }
+
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var numberOfItemsInSection = 0
+
+        if let sections = self.fetchedResultsController.sections {
+            numberOfItemsInSection = sections[section].numberOfObjects
+        }
+
+        return numberOfItemsInSection
+    }
+
+    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.cellIdentifier, forIndexPath: indexPath)
+
+        self.configureCell(cell, indexPath: indexPath)
+
+        return cell
+    }
+
+    public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        return self.delegate?.dataSource(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath) ?? UICollectionReusableView()
+    }
 }
 
 extension DataSource: NSFetchedResultsControllerDelegate {
@@ -278,7 +430,7 @@ extension DataSource: NSFetchedResultsControllerDelegate {
         }
     }
 
-    private func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    private func configureCell(cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
 
         let rowIsInsideBounds = indexPath.row < self.fetchedResultsController.fetchedObjects?.count

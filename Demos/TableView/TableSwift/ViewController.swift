@@ -1,7 +1,7 @@
 import UIKit
 import DATAStack
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, DataSourceable {
 
     var dataStack: DATAStack?
     var dataSource: DataSource?
@@ -20,12 +20,7 @@ class ViewController: UITableViewController {
             fetchRequest: request,
             mainContext: self.dataStack!.mainContext,
             sectionName: "firstLetterOfName")
-        /*,
-            configuration: { (cell, item, indexPath) -> Void in
-                let cell = cell as! UITableViewCell
-                let item = item as! NSManagedObject
-                cell.textLabel!.text = item.valueForKey("name") as? String
-        })*/
+        self.dataSource?.delegate = self
     }
 
     override func viewDidLoad() {
@@ -57,6 +52,8 @@ class ViewController: UITableViewController {
                 } catch {
                     fatalError()
                 }
+
+                self.dataStack!.persistWithCompletion({ })
             } else {
                 print("Oh no")
             }
@@ -75,5 +72,9 @@ class ViewController: UITableViewController {
 
         return string
     }
-}
 
+    func dataSource(dataSource: DataSource, configureCell cell: UIView, item: NSManagedObject, atIndexPath indexPath: NSIndexPath) {
+        let cell = cell as! UITableViewCell
+        cell.textLabel?.text = item.valueForKey("name") as? String
+    }
+}

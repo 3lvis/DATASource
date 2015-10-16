@@ -13,7 +13,7 @@
 		149AA6D01BC73CDC004E3F91 /* DataSourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AA6CF1BC73CDC004E3F91 /* DataSourceCollectionHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
 		149AA6D21BC73CE9004E3F91 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AA6D11BC73CE9004E3F91 /* DataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		149AA6D41BC7869D004E3F91 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AA6D31BC7869D004E3F91 /* Tests.swift */; settings = {ASSET_TAGS = (); }; };
-		A200EDE79186E616464AD758 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F143F84B4457852DACBAF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A200EDE79186E616464AD758 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F143F84B4457852DACBAF /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
