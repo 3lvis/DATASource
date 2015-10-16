@@ -133,7 +133,44 @@ public class DataSource: NSObject {
         super.init()
 
         self.fetchedResultsController.delegate = self
+        self.fetch()
+    }
 
+    public var predicate: NSPredicate? {
+        get {
+            return self.fetchedResultsController.fetchRequest.predicate
+        }
+
+        set {
+            self.cachedSectionNames = [String]()
+            self.fetchedResultsController.fetchRequest.predicate = newValue
+            self.fetch()
+            self.tableView?.reloadData()
+            self.collectionView?.reloadData()
+        }
+    }
+
+    public var objectsCount: Int {
+        return self.fetchedResultsController.fetchedObjects?.count ?? 0
+    }
+
+    public var isEmpty: Bool {
+        return self.fetchedResultsController.fetchedObjects?.count == 0
+    }
+
+    public var objects: [NSManagedObject] {
+        return self.fetchedResultsController.fetchedObjects as?  [NSManagedObject] ?? [NSManagedObject]()
+    }
+
+    public func objectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject? {
+        return self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject ?? nil
+    }
+
+    public func indexPathForObject(object: NSManagedObject) -> NSIndexPath? {
+        return self.fetchedResultsController.indexPathForObject(object) ?? nil
+    }
+
+    public func fetch() {
         do {
             try self.fetchedResultsController.performFetch()
         } catch {
