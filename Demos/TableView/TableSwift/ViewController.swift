@@ -65,6 +65,6 @@ class ViewController: UITableViewController {
             string.append(firstChar)
         }
 
-        return string
+        return string.uppercaseString
     }
 }

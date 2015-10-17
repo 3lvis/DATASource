@@ -323,6 +323,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
                 break
             case .Move, .Update:
+                tableView.reloadSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
                 break
             }
         } else if let _ = self.collectionView {
