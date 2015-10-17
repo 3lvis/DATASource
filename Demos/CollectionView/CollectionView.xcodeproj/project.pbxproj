@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		143A87C31B99AC47000561CD /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 143A87C21B99AC47000561CD /* CollectionCell.m */; };
 		1490BE121B9995B200ADCDBD /* FooterExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490BE111B9995B200ADCDBD /* FooterExampleView.m */; };
-		14A6DA5B1AD49CA600B00381 /* DATASource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A6DA5A1AD49CA600B00381 /* DATASource.m */; };
 		14A6DA611AD49D3000B00381 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A6DA601AD49D3000B00381 /* User.m */; };
+		14AF5E8B1BD2C55D0085BAD9 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF5E891BD2C55D0085BAD9 /* DataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		14AF5E8C1BD2C55D0085BAD9 /* DataSourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF5E8A1BD2C55D0085BAD9 /* DataSourceCollectionHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
 		14C7E9F31AD49BC900674947 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E9F21AD49BC900674947 /* main.m */; };
 		14C7E9F61AD49BC900674947 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E9F51AD49BC900674947 /* AppDelegate.m */; };
 		14C7E9F91AD49BC900674947 /* CollectionView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E9F71AD49BC900674947 /* CollectionView.xcdatamodeld */; };
 		14C7E9FC1AD49BC900674947 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E9FB1AD49BC900674947 /* ViewController.m */; };
 		14C7EA011AD49BC900674947 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C7EA001AD49BC900674947 /* Images.xcassets */; };
-		14F0431A1B8F1C3400416F7C /* DATASourceCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F043191B8F1C3400416F7C /* DATASourceCollectionHeaderView.m */; };
-		CC00C447A2D29CA07CE35158 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F3A6652BF8F251AE7C6CBA /* libPods.a */; };
+		B3AB6792500876CF9FE2A02F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609321E6E0A14828A8547231 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,10 +25,10 @@
 		143A87C21B99AC47000561CD /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
 		1490BE101B9995B200ADCDBD /* FooterExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterExampleView.h; sourceTree = "<group>"; };
 		1490BE111B9995B200ADCDBD /* FooterExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterExampleView.m; sourceTree = "<group>"; };
-		14A6DA591AD49CA600B00381 /* DATASource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
-		14A6DA5A1AD49CA600B00381 /* DATASource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASource.m; sourceTree = "<group>"; };
 		14A6DA5F1AD49D3000B00381 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		14A6DA601AD49D3000B00381 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		14AF5E891BD2C55D0085BAD9 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		14AF5E8A1BD2C55D0085BAD9 /* DataSourceCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceCollectionHeaderView.swift; sourceTree = "<group>"; };
 		14C7E9ED1AD49BC900674947 /* CollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C7E9F11AD49BC900674947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C7E9F21AD49BC900674947 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -38,11 +38,9 @@
 		14C7E9FA1AD49BC900674947 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		14C7E9FB1AD49BC900674947 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		14C7EA001AD49BC900674947 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		14F043181B8F1C3400416F7C /* DATASourceCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASourceCollectionHeaderView.h; sourceTree = "<group>"; };
-		14F043191B8F1C3400416F7C /* DATASourceCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASourceCollectionHeaderView.m; sourceTree = "<group>"; };
 		2741856242070B8F31FB38F6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2F35E2588B6415FE02DD2414 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		36F3A6652BF8F251AE7C6CBA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		609321E6E0A14828A8547231 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC00C447A2D29CA07CE35158 /* libPods.a in Frameworks */,
+				B3AB6792500876CF9FE2A02F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,10 +58,8 @@
 		14A6DA581AD49CA600B00381 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				14A6DA591AD49CA600B00381 /* DATASource.h */,
-				14A6DA5A1AD49CA600B00381 /* DATASource.m */,
-				14F043181B8F1C3400416F7C /* DATASourceCollectionHeaderView.h */,
-				14F043191B8F1C3400416F7C /* DATASourceCollectionHeaderView.m */,
+				14AF5E891BD2C55D0085BAD9 /* DataSource.swift */,
+				14AF5E8A1BD2C55D0085BAD9 /* DataSourceCollectionHeaderView.swift */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -120,7 +116,7 @@
 		50FCB24E9B6E89C2FE7B7C58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				36F3A6652BF8F251AE7C6CBA /* libPods.a */,
+				609321E6E0A14828A8547231 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -146,6 +142,7 @@
 				14C7E9EA1AD49BC900674947 /* Frameworks */,
 				14C7E9EB1AD49BC900674947 /* Resources */,
 				C8F34D7F0A1F3DECD244F088 /* Copy Pods Resources */,
+				90878BB40C4F340109D59BDD /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,6 +159,7 @@
 		14C7E9E51AD49BC900674947 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Example;
 				TargetAttributes = {
@@ -200,6 +198,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		90878BB40C4F340109D59BDD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B022A3EE7CBAAC570EC08249 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,12 +253,12 @@
 				14C7E9F91AD49BC900674947 /* CollectionView.xcdatamodeld in Sources */,
 				14C7E9F61AD49BC900674947 /* AppDelegate.m in Sources */,
 				14A6DA611AD49D3000B00381 /* User.m in Sources */,
+				14AF5E8C1BD2C55D0085BAD9 /* DataSourceCollectionHeaderView.swift in Sources */,
 				143A87C31B99AC47000561CD /* CollectionCell.m in Sources */,
 				14C7E9FC1AD49BC900674947 /* ViewController.m in Sources */,
 				1490BE121B9995B200ADCDBD /* FooterExampleView.m in Sources */,
-				14A6DA5B1AD49CA600B00381 /* DATASource.m in Sources */,
 				14C7E9F31AD49BC900674947 /* main.m in Sources */,
-				14F0431A1B8F1C3400416F7C /* DATASourceCollectionHeaderView.m in Sources */,
+				14AF5E8B1BD2C55D0085BAD9 /* DataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,10 +348,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CollectionView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -348,6 +363,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CollectionView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";

@@ -1,15 +1,16 @@
 #import "ViewController.h"
 
 #import "DATAStack.h"
-#import "DATASource.h"
 #import "User.h"
 #import "FooterExampleView.h"
 #import "CollectionCell.h"
 
-@interface ViewController () <NSFetchedResultsControllerDelegate, DATASourceDelegate>
+#import "CollectionView-Swift.h"
+
+@interface ViewController () <NSFetchedResultsControllerDelegate>//, DataSourceDelegate>
 
 @property (nonatomic, weak) DATAStack *dataStack;
-@property (nonatomic) DATASource *dataSource;
+@property (nonatomic) DataSource *dataSource;
 
 @end
 
@@ -25,21 +26,24 @@
     return self;
 }
 
-- (DATASource *)dataSource {
+- (DataSource *)dataSource {
     if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"firstLetterOfName" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
-    _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
-                                                fetchRequest:request
-                                                 sectionName:@"firstLetterOfName"
+    _dataSource = [[DataSource alloc] initWithCollectionView:self.collectionView
                                               cellIdentifier:CollectionCellIdentifier
+                                                fetchRequest:request
                                                  mainContext:self.dataStack.mainContext
-                                               configuration:^(CollectionCell *cell, User *item, NSIndexPath *indexPath) {
-                                                   [cell updateWithText:item.name];
+                                                 sectionName:@"firstLetterOfName"
+                                               configuration:^(UICollectionViewCell * _Nonnull cell, NSManagedObject * _Nonnull item, NSIndexPath * _Nonnull indexPath) {
+                                                   CollectionCell *collectionCell = (CollectionCell *)cell;
+                                                   User *user = (User *)item;
+
+                                                   [collectionCell updateWithText:user.name];
                                                }];
-    _dataSource.delegate = self;
+    // _dataSource.delegate = self;
 
     return _dataSource;
 }
@@ -56,7 +60,7 @@
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
 
-    [self.collectionView registerClass:[FooterExampleView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:FooterExampleViewIdentifier];
+    //[self.collectionView registerClass:[FooterExampleView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:FooterExampleViewIdentifier];
 }
 
 - (void)addAction {
@@ -85,10 +89,10 @@
 
     return randomString;
 }
-
+/*
 #pragma mark - DATASourceDelegate
 
-- (UICollectionReusableView *)dataSource:(DATASource *)dataSource
+- (UICollectionReusableView *)dataSource:(DataSource *)dataSource
                           collectionView:(UICollectionView *)collectionView
        viewForSupplementaryElementOfKind:(NSString *)kind
                              atIndexPath:(NSIndexPath *)indexPath {
@@ -102,6 +106,6 @@
 
     return nil;
 }
-
+*/
 
 @end
