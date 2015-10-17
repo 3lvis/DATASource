@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-public protocol DataSourceable: class {
+public protocol DataSourceDelegate: class {
     func dataSource(dataSource: DataSource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     func dataSource(dataSource: DataSource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
@@ -44,7 +44,7 @@ public protocol DataSourceable: class {
     func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
 }
 
-extension DataSourceable {
+extension DataSourceDelegate {
     func dataSource(dataSource: DataSource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath) {}
     func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath) {}
     func dataSource(dataSource: DataSource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath) {}
@@ -95,7 +95,7 @@ public class DataSource: NSObject {
     private weak var mainContext: NSManagedObjectContext?
     private var configurationBlock: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()
 
-    public weak var delegate: DataSourceable?
+    public weak var delegate: DataSourceDelegate?
 
     private var fetchedResultsController: NSFetchedResultsController
 
@@ -112,14 +112,14 @@ public class DataSource: NSObject {
         return [String]()
         }()
 
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: AnyObject, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
 
         self.tableView = tableView
         self.tableView?.dataSource = self
     }
 
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: AnyObject, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
 
         self.collectionView = collectionView

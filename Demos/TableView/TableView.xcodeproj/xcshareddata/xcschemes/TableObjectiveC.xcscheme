@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1497E2B51ADE2DC700FFA154"
-               BuildableName = "TableSwift.app"
-               BlueprintName = "TableSwift"
+               BlueprintIdentifier = "1497E2881ADE2DBB00FFA154"
+               BuildableName = "TableObjectiveC.app"
+               BlueprintName = "TableObjectiveC"
                ReferencedContainer = "container:TableView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1497E2CC1ADE2DC700FFA154"
-               BuildableName = "TableSwiftTests.xctest"
-               BlueprintName = "TableSwiftTests"
+               BlueprintIdentifier = "1497E2A31ADE2DBB00FFA154"
+               BuildableName = "TableObjectiveCTests.xctest"
+               BlueprintName = "TableObjectiveCTests"
                ReferencedContainer = "container:TableView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1497E2CC1ADE2DC700FFA154"
-               BuildableName = "TableSwiftTests.xctest"
-               BlueprintName = "TableSwiftTests"
+               BlueprintIdentifier = "1497E2A31ADE2DBB00FFA154"
+               BuildableName = "TableObjectiveCTests.xctest"
+               BlueprintName = "TableObjectiveCTests"
                ReferencedContainer = "container:TableView.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1497E2B51ADE2DC700FFA154"
-            BuildableName = "TableSwift.app"
-            BlueprintName = "TableSwift"
+            BlueprintIdentifier = "1497E2881ADE2DBB00FFA154"
+            BuildableName = "TableObjectiveC.app"
+            BlueprintName = "TableObjectiveC"
             ReferencedContainer = "container:TableView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,9 +79,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1497E2B51ADE2DC700FFA154"
-            BuildableName = "TableSwift.app"
-            BlueprintName = "TableSwift"
+            BlueprintIdentifier = "1497E2881ADE2DBB00FFA154"
+            BuildableName = "TableObjectiveC.app"
+            BlueprintName = "TableObjectiveC"
             ReferencedContainer = "container:TableView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -98,9 +98,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1497E2B51ADE2DC700FFA154"
-            BuildableName = "TableSwift.app"
-            BlueprintName = "TableSwift"
+            BlueprintIdentifier = "1497E2881ADE2DBB00FFA154"
+            BuildableName = "TableObjectiveC.app"
+            BlueprintName = "TableObjectiveC"
             ReferencedContainer = "container:TableView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

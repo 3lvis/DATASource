@@ -1,8 +1,8 @@
 //
 //  main.m
-//  CollectionView
+//  TableObjectiveC
 //
-//  Created by Elvis Nuñez on 4/8/15.
+//  Created by Elvis Nuñez on 4/15/15.
 //  Copyright (c) 2015 Example. All rights reserved.
 //
 
