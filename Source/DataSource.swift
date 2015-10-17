@@ -98,7 +98,6 @@ public class DataSource: NSObject {
     public weak var delegate: DataSourceable?
 
     private var fetchedResultsController: NSFetchedResultsController
-    private var cachedSectionNames: [String]?
 
     private lazy var objectChanges: [NSFetchedResultsChangeType : [NSIndexPath]] = {
         return [NSFetchedResultsChangeType : [NSIndexPath]]()
@@ -107,6 +106,10 @@ public class DataSource: NSObject {
 
     private lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
         return [NSFetchedResultsChangeType : NSMutableIndexSet]()
+        }()
+
+    private lazy var cachedSectionNames: [String] = {
+        return [String]()
         }()
 
     public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
@@ -205,15 +208,50 @@ extension DataSource: UITableViewDataSource {
     // Sections and Headers
 
     public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return self.delegate?.sectionIndexTitlesForDataSource(self, tableView: tableView)
+        if let titles = self.delegate?.sectionIndexTitlesForDataSource(self, tableView: tableView) {
+            return titles
+        } else if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
+            let request = NSFetchRequest()
+            request.entity = self.fetchedResultsController.fetchRequest.entity
+            request.resultType = .DictionaryResultType
+            request.returnsDistinctResults = true
+            request.propertiesToFetch = [keyPath]
+            request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: true)]
+            var names = [String]()
+            var objects: [NSDictionary]?
+
+            do {
+                objects = try self.fetchedResultsController.managedObjectContext.executeFetchRequest(request) as? [NSDictionary]
+            } catch {
+                print("Error")
+            }
+
+            if let objects = objects {
+                for object in objects {
+                    names.appendContentsOf(object.allValues as! [String])
+                }
+            }
+
+            return names
+        }
+
+        return nil
     }
 
     public func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        return self.delegate?.dataSource(self, tableView: tableView, sectionForSectionIndexTitle: title, atIndex: index) ?? 0
+        return self.delegate?.dataSource(self, tableView: tableView, sectionForSectionIndexTitle: title, atIndex: index) ?? index
     }
 
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.delegate?.dataSource(self, tableView: tableView, titleForHeaderInSection: section)
+        var resultTitle: String?
+
+        if let title = self.delegate?.dataSource(self, tableView: tableView, titleForHeaderInSection: section) {
+            resultTitle = title
+        } else if let sections = self.fetchedResultsController.sections {
+            resultTitle = sections[section].name
+        }
+
+        return resultTitle
     }
 
     public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
@@ -265,7 +303,43 @@ extension DataSource: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        return self.delegate?.dataSource(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath) ?? UICollectionReusableView()
+        if let view = self.delegate?.dataSource(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath) {
+            return view
+        }
+
+        if kind == UICollectionElementKindSectionHeader {
+            if let keyPath = self.fetchedResultsController.sectionNameKeyPath, headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DataSourceCollectionViewHeader {
+                let request = NSFetchRequest()
+                request.entity = self.fetchedResultsController.fetchRequest.entity
+                request.resultType = .DictionaryResultType
+                request.returnsDistinctResults = true
+                request.propertiesToFetch = [keyPath]
+                request.predicate = self.fetchedResultsController.fetchRequest.predicate
+                request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: true)]
+                var objects: [NSDictionary]?
+
+                do {
+                    objects = try self.fetchedResultsController.managedObjectContext.executeFetchRequest(request) as? [NSDictionary]
+                } catch {
+                    print("Error")
+                }
+
+                if let objects = objects {
+                    for object in objects {
+                        self.cachedSectionNames.appendContentsOf(object.allValues as! [String])
+                    }
+                }
+
+                let title = self.cachedSectionNames[indexPath.section]
+                headerView.title = title
+
+                return headerView
+            }
+        } else if (kind == UICollectionElementKindSectionFooter) {
+            // Add support for footers
+        }
+
+        return UICollectionReusableView()
     }
 }
 
@@ -280,7 +354,7 @@ extension DataSource: NSFetchedResultsControllerDelegate {
     }
 
     public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        self.cachedSectionNames = nil
+        self.cachedSectionNames.removeAll()
 
         if let tableView = self.tableView {
             switch type {
@@ -291,7 +365,6 @@ extension DataSource: NSFetchedResultsControllerDelegate {
                 tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
                 break
             case .Move, .Update:
-                tableView.reloadSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
                 break
             }
         } else if let _ = self.collectionView {
