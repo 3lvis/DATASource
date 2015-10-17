@@ -23,7 +23,7 @@ tableView.dataSource = dataSource;
 
 `DATASource` provides an easy way to show an indexed UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
 
-Check the [Swift Demo](https://github.com/3lvis/DATASource/tree/master/Demos/TableView) for an example of this, were we have an indexed UITableView of names, just like the Contacts.app!
+Check the [Swift Demo](https://github.com/3lvis/DATASource/blob/master/Demos/TableView/TableSwift/ViewController.swift) for an example of this, were we have an indexed UITableView of names, just like the Contacts.app!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/table.gif" />
