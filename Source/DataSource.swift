@@ -93,7 +93,8 @@ public class DataSource: NSObject {
     private var sectionName: String?
     private var cellIdentifier: String
     private weak var mainContext: NSManagedObjectContext?
-    private var configurationBlock: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()
+    private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+    private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
 
     public weak var delegate: DataSourceDelegate?
 
@@ -112,26 +113,27 @@ public class DataSource: NSObject {
         return [String]()
         }()
 
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: AnyObject, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil)
 
         self.tableView = tableView
         self.tableView?.dataSource = self
     }
 
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: AnyObject, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: configuration)
 
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
 
-        self.collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier);
+        self.collectionView?.registerClass(DataSourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier);
     }
 
-    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?, collectionConfiguration: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?) {
         self.cellIdentifier = cellIdentifier
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
-        self.configurationBlock = configuration
+        self.tableConfigurationBlock = tableConfiguration
+        self.collectionConfigurationBlock = collectionConfiguration
 
         super.init()
 
@@ -372,6 +374,7 @@ extension DataSource: NSFetchedResultsControllerDelegate {
             case .Insert, .Delete:
                 if let changeSet = self.sectionChanges[type] {
                     changeSet.addIndex(sectionIndex)
+                    self.sectionChanges[type] = changeSet
                 } else {
                     self.sectionChanges[type] = NSMutableIndexSet(index: sectionIndex)
                 }
@@ -455,8 +458,7 @@ extension DataSource: NSFetchedResultsControllerDelegate {
         if let tableView = self.tableView {
             tableView.endUpdates()
         } else if let _ = self.collectionView {
-            let moves = self.objectChanges[.Move]
-            if let moves = moves {
+            if let moves = self.objectChanges[.Move] {
                 if moves.count > 0 {
                     var updatedMoves = [NSIndexPath]()
                     if let insertSections = self.sectionChanges[.Insert], deleteSections = self.sectionChanges[.Delete] {
@@ -490,55 +492,58 @@ extension DataSource: NSFetchedResultsControllerDelegate {
                         self.objectChanges.removeValueForKey(.Move)
                     }
                 }
+            }
 
-                if let deletes = self.objectChanges[.Delete] {
-                    if deletes.count > 0 {
-                        let sections = self.sectionChanges[.Delete]
+            if let deletes = self.objectChanges[.Delete] {
+                if deletes.count > 0 {
+                    if let sections = self.sectionChanges[.Delete] {
                         let filtered = deletes.filter({ element -> Bool in
-                            return (sections?.containsIndex(element.section))!
+                            return (sections.containsIndex(element.section))
                         })
                         self.objectChanges[.Delete] = filtered
                     }
                 }
+            }
 
-                if let inserts = self.objectChanges[.Insert] {
-                    if inserts.count > 0 {
-                        let sections = self.sectionChanges[.Insert]
+            if let inserts = self.objectChanges[.Insert] {
+                if inserts.count > 0 {
+                    if let sections = self.sectionChanges[.Insert] {
                         let filtered = inserts.filter({ element -> Bool in
-                            return (sections?.containsIndex(element.section))!
+                            return (sections.containsIndex(element.section))
                         })
+
                         self.objectChanges[.Insert] = filtered
                     }
                 }
+            }
 
-                if let collectionView = self.collectionView {
-                    collectionView.performBatchUpdates({
-                        if let deletedSections = self.sectionChanges[.Delete] {
-                            collectionView.deleteSections(deletedSections)
-                        }
+            if let collectionView = self.collectionView {
+                collectionView.performBatchUpdates({
+                    if let deletedSections = self.sectionChanges[.Delete] {
+                        collectionView.deleteSections(deletedSections)
+                    }
 
-                        if let insertedSections = self.sectionChanges[.Insert] {
-                            collectionView.insertSections(insertedSections)
-                        }
+                    if let insertedSections = self.sectionChanges[.Insert] {
+                        collectionView.insertSections(insertedSections)
+                    }
 
-                        if let deleteItems = self.objectChanges[.Delete] {
-                            collectionView.deleteItemsAtIndexPaths(deleteItems)
-                        }
+                    if let deleteItems = self.objectChanges[.Delete] {
+                        collectionView.deleteItemsAtIndexPaths(deleteItems)
+                    }
 
-                        if let insertedItems = self.objectChanges[.Insert] {
-                            collectionView.insertItemsAtIndexPaths(insertedItems)
-                        }
+                    if let insertedItems = self.objectChanges[.Insert] {
+                        collectionView.insertItemsAtIndexPaths(insertedItems)
+                    }
 
-                        if let reloadItems = self.objectChanges[.Update] {
-                            collectionView.reloadItemsAtIndexPaths(reloadItems)
-                        }
+                    if let reloadItems = self.objectChanges[.Update] {
+                        collectionView.reloadItemsAtIndexPaths(reloadItems)
+                    }
 
-                        if let moveItems = self.objectChanges[.Move] {
-                            collectionView.moveItemAtIndexPath(moveItems[0], toIndexPath: moveItems[1])
-                        }
-
-                        }, completion: nil)
-                }
+                    if let moveItems = self.objectChanges[.Move] {
+                        collectionView.moveItemAtIndexPath(moveItems[0], toIndexPath: moveItems[1])
+                    }
+                    
+                    }, completion: nil)
             }
         }
     }
@@ -552,7 +557,11 @@ extension DataSource: NSFetchedResultsControllerDelegate {
         }
 
         if let item = item {
-            self.configurationBlock(cell: cell, item: item, indexPath: indexPath)
+            if let _ = self.tableView, configuration = self.tableConfigurationBlock {
+                configuration(cell: cell as! UITableViewCell, item: item, indexPath: indexPath)
+            } else if let _ = self.collectionView, configuration = self.collectionConfigurationBlock {
+                configuration(cell: cell as! UICollectionViewCell, item: item, indexPath: indexPath)
+            }
         }
     }
 }
