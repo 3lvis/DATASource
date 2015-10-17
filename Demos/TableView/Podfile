@@ -3,3 +3,4 @@ use_frameworks!
 link_with 'TableObjectiveC', 'TableSwift'
 
 pod 'DATAStack'
+pod 'DATASource'

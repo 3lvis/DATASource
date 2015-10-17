@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1422EEF31BD2BBCF0025E669 /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1422EEF11BD2BBCF0025E669 /* DATASource.swift */; settings = {ASSET_TAGS = (); }; };
-		1422EEF41BD2BBCF0025E669 /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1422EEF11BD2BBCF0025E669 /* DATASource.swift */; settings = {ASSET_TAGS = (); }; };
-		1422EEF51BD2BBCF0025E669 /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1422EEF21BD2BBCF0025E669 /* DATASourceCollectionHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
-		1422EEF61BD2BBCF0025E669 /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1422EEF21BD2BBCF0025E669 /* DATASourceCollectionHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
 		1497E28E1ADE2DBB00FFA154 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1497E28D1ADE2DBB00FFA154 /* main.m */; };
 		1497E2911ADE2DBB00FFA154 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1497E2901ADE2DBB00FFA154 /* AppDelegate.m */; };
 		1497E2941ADE2DBB00FFA154 /* TableObjectiveC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1497E2921ADE2DBB00FFA154 /* TableObjectiveC.xcdatamodeld */; };
@@ -26,8 +22,6 @@
 
 /* Begin PBXFileReference section */
 		141906211ADE380D00F2BEEF /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
-		1422EEF11BD2BBCF0025E669 /* DATASource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATASource.swift; sourceTree = "<group>"; };
-		1422EEF21BD2BBCF0025E669 /* DATASourceCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATASourceCollectionHeaderView.swift; sourceTree = "<group>"; };
 		1497E2891ADE2DBB00FFA154 /* TableObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1497E28C1ADE2DBB00FFA154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1497E28D1ADE2DBB00FFA154 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,7 +65,6 @@
 		1497E2001ADE2CE500FFA154 = {
 			isa = PBXGroup;
 			children = (
-				14BC99491ADE34B00038E393 /* Source */,
 				1497E28A1ADE2DBB00FFA154 /* TableObjectiveC */,
 				1497E2B71ADE2DC700FFA154 /* TableSwift */,
 				1497E20A1ADE2CE500FFA154 /* Products */,
@@ -130,16 +123,6 @@
 				1497E2B91ADE2DC700FFA154 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		14BC99491ADE34B00038E393 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				1422EEF11BD2BBCF0025E669 /* DATASource.swift */,
-				1422EEF21BD2BBCF0025E669 /* DATASourceCollectionHeaderView.swift */,
-			);
-			name = Source;
-			path = ../../Source;
 			sourceTree = "<group>";
 		};
 		654E9C88F4CEF51F1A409EB0 /* Pods */ = {
@@ -358,8 +341,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1422EEF31BD2BBCF0025E669 /* DATASource.swift in Sources */,
-				1422EEF51BD2BBCF0025E669 /* DATASourceCollectionHeaderView.swift in Sources */,
 				1497E2911ADE2DBB00FFA154 /* AppDelegate.m in Sources */,
 				1497E2941ADE2DBB00FFA154 /* TableObjectiveC.xcdatamodeld in Sources */,
 				1497E2971ADE2DBB00FFA154 /* ViewController.m in Sources */,
@@ -371,8 +352,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1422EEF41BD2BBCF0025E669 /* DATASource.swift in Sources */,
-				1422EEF61BD2BBCF0025E669 /* DATASourceCollectionHeaderView.swift in Sources */,
 				1497E2C01ADE2DC700FFA154 /* ViewController.swift in Sources */,
 				1497E2BE1ADE2DC700FFA154 /* TableSwift.xcdatamodeld in Sources */,
 				1497E2BB1ADE2DC700FFA154 /* AppDelegate.swift in Sources */,

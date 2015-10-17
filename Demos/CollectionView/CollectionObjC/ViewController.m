@@ -1,11 +1,11 @@
 #import "ViewController.h"
 
-#import "DATAStack.h"
+@import DATAStack;
+@import DATASource;
+
 #import "User.h"
 #import "FooterExampleView.h"
 #import "CollectionCell.h"
-
-#import "CollectionObjC-Swift.h"
 
 @interface ViewController () <NSFetchedResultsControllerDelegate, DATASourceDelegate>
 
