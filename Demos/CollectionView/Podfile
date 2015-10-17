@@ -1,3 +1,5 @@
 use_frameworks!
 
+link_with 'CollectionObjC', 'CollectionSwift'
+
 pod 'DATAStack'

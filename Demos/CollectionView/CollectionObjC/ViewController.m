@@ -5,7 +5,7 @@
 #import "FooterExampleView.h"
 #import "CollectionCell.h"
 
-#import "CollectionView-Swift.h"
+#import "CollectionObjC-Swift.h"
 
 @interface ViewController () <NSFetchedResultsControllerDelegate, DataSourceDelegate>
 
