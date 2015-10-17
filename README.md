@@ -8,20 +8,15 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 
 Hooking up your table view to your `Task` model and making your UITableView react to insertions, updates and deletions is as simple as this.
 
-``` objc
-NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
-fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+```swift
+let request: NSFetchRequest = NSFetchRequest(entityName: "Task")
+request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 
-DataSource *dataSource = [[DataSource alloc] initWithTableView:self.tableView
-                                                  fetchRequest:fetchRequest
-                                                   sectionName:nil
-                                                cellIdentifier:ANDYCellIdentifier
-                                                   mainContext:context
-                                                 configuration:^(UITableViewCell *cell, Task *task, NSIndexPath *indexPath) {
-                                                cell.textLabel.text = task.title;
-                                            };
+let dataSource = DataSource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack.mainContext, configuration: { cell, item, indexPath in
+    cell.textLabel?.text = item.valueForKey("title") as? String
+})
 
-self.tableView.dataSource = dataSource;
+tableView.dataSource = dataSource;
 ```
 
 ### Indexed UITableView
@@ -44,20 +39,15 @@ Check the [Swift Demo](https://github.com/3lvis/DataSource/tree/master/Demos/Tab
 
 Hooking up a UICollectionView is as simple as doing it with a UITableView, just use this method.
 
-``` objc
-NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
-fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+```swift
+let request: NSFetchRequest = NSFetchRequest(entityName: "Task")
+request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 
-DataSource *dataSource = [[DataSource alloc] initWithCollectionView:self.collectionView
-                                                       fetchRequest:fetchRequest
-                                                        sectionName:sectionName
-                                                     cellIdentifier:ANDYCellIdentifier
-                                                        mainContext:context
-                                                      configuration:^(UICollectionView *cell, Task *task, NSIndexPath *indexPath) {
-                                                cell.textLabel.text = task.title;
-                                            };
+let dataSource = DataSource(collectionView: self.collectionView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack.mainContext, configuration: { cell, item, indexPath in
+    cell.textLabel.text = item.valueForKey("title") as? String
+})
 
-self.collectionView.dataSource = dataSource;
+collectionView.dataSource = dataSource
 ```
 
 ### Indexed UITableView
