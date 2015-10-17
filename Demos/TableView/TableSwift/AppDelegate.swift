@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        if let window = self.window = UIWindow(frame: UIScreen.mainScreen().bounds) {
+        if let window = self.window {
             self.dataStack = DATAStack(modelName: "TableSwift")
 
-            let viewController = ViewController(dataStack: self.dataStack!)
+            let viewController = ViewController(dataStack: self.dataStack)
             window.rootViewController = UINavigationController(rootViewController: viewController)
             window.makeKeyAndVisible()
         }
