@@ -90,7 +90,7 @@
     return randomString;
 }
 
-#pragma mark - DATASourceDelegate
+#pragma mark - DataSourceDelegate
 
 - (UICollectionReusableView *)dataSource:(DataSource *)dataSource
                           collectionView:(UICollectionView *)collectionView
