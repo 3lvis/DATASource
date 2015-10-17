@@ -5,12 +5,12 @@ class CollectionController: UICollectionViewController {
     var dataStack: DATAStack?
 
     lazy var dataSource: DataSource = {
-        guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
+        guard let collectionView = self.collectionView, mainContext = self.dataStack?.mainContext else { fatalError("CollectionView is nil") }
 
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DataSource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DataSource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let collectionCell = cell as! CollectionCell
             collectionCell.textLabel.text = item.valueForKey("name") as? String
         })
@@ -42,7 +42,7 @@ class CollectionController: UICollectionViewController {
     }
 
     func saveAction() {
-        self.dataStack!.performInNewBackgroundContext { backgroundContext in
+        self.dataStack?.performInNewBackgroundContext { backgroundContext in
             if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
                 let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
 
@@ -59,7 +59,7 @@ class CollectionController: UICollectionViewController {
                     fatalError()
                 }
 
-                self.dataStack!.persistWithCompletion({ })
+                self.dataStack?.persistWithCompletion({ })
             } else {
                 print("Oh no")
             }

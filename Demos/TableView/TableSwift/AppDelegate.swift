@@ -5,17 +5,26 @@ import DATAStack
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-    var dataStack: DATAStack?
+    var window: UIWindow? = {
+        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
+        return window
+        }()
+
+    var dataStack: DATAStack = {
+        let dataStack = DATAStack(modelName: "TableSwift")
+
+        return dataStack
+        }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        if let window = self.window = UIWindow(frame: UIScreen.mainScreen().bounds) {
+            self.dataStack = DATAStack(modelName: "TableSwift")
 
-        self.dataStack = DATAStack(modelName: "TableSwift")
-
-        let viewController = ViewController(dataStack: self.dataStack!)
-        self.window?.rootViewController = UINavigationController(rootViewController: viewController)
-        self.window?.makeKeyAndVisible()
+            let viewController = ViewController(dataStack: self.dataStack!)
+            window.rootViewController = UINavigationController(rootViewController: viewController)
+            window.makeKeyAndVisible()
+        }
 
         return true
     }
