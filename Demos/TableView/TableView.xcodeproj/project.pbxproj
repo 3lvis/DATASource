@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1422EEF31BD2BBCF0025E669 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1422EEF11BD2BBCF0025E669 /* DataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		1422EEF41BD2BBCF0025E669 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1422EEF11BD2BBCF0025E669 /* DataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		1422EEF51BD2BBCF0025E669 /* DataSourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1422EEF21BD2BBCF0025E669 /* DataSourceCollectionHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
+		1422EEF61BD2BBCF0025E669 /* DataSourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1422EEF21BD2BBCF0025E669 /* DataSourceCollectionHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
 		1497E28E1ADE2DBB00FFA154 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1497E28D1ADE2DBB00FFA154 /* main.m */; };
 		1497E2911ADE2DBB00FFA154 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1497E2901ADE2DBB00FFA154 /* AppDelegate.m */; };
 		1497E2941ADE2DBB00FFA154 /* TableObjectiveC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1497E2921ADE2DBB00FFA154 /* TableObjectiveC.xcdatamodeld */; };
@@ -16,16 +20,14 @@
 		1497E2BE1ADE2DC700FFA154 /* TableSwift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1497E2BC1ADE2DC700FFA154 /* TableSwift.xcdatamodeld */; };
 		1497E2C01ADE2DC700FFA154 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497E2BF1ADE2DC700FFA154 /* ViewController.swift */; };
 		1497E2C51ADE2DC700FFA154 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1497E2C41ADE2DC700FFA154 /* Images.xcassets */; };
-		14BC994C1ADE34B00038E393 /* DATASource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC994B1ADE34B00038E393 /* DATASource.m */; };
-		14BC994D1ADE34B00038E393 /* DATASource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC994B1ADE34B00038E393 /* DATASource.m */; };
-		14E28A451B8F29A40066165D /* DATASourceCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E28A441B8F29A40066165D /* DATASourceCollectionHeaderView.m */; };
-		14E28A461B8F29A40066165D /* DATASourceCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E28A441B8F29A40066165D /* DATASourceCollectionHeaderView.m */; };
-		F68F63C3192CB04EDB125B6A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9EA998A7FD6EA72157364 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F97C9D0C6AF6A8C75957D72E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9EA998A7FD6EA72157364 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F68F63C3192CB04EDB125B6A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9EA998A7FD6EA72157364 /* Pods.framework */; };
+		F97C9D0C6AF6A8C75957D72E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9EA998A7FD6EA72157364 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		141906211ADE380D00F2BEEF /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
+		1422EEF11BD2BBCF0025E669 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		1422EEF21BD2BBCF0025E669 /* DataSourceCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceCollectionHeaderView.swift; sourceTree = "<group>"; };
 		1497E2891ADE2DBB00FFA154 /* TableObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1497E28C1ADE2DBB00FFA154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1497E28D1ADE2DBB00FFA154 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -41,11 +43,6 @@
 		1497E2BD1ADE2DC700FFA154 /* TableSwift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TableSwift.xcdatamodel; sourceTree = "<group>"; };
 		1497E2BF1ADE2DC700FFA154 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1497E2C41ADE2DC700FFA154 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		14BC994A1ADE34B00038E393 /* DATASource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
-		14BC994B1ADE34B00038E393 /* DATASource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASource.m; sourceTree = "<group>"; };
-		14E28A431B8F29A40066165D /* DATASourceCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATASourceCollectionHeaderView.h; sourceTree = "<group>"; };
-		14E28A441B8F29A40066165D /* DATASourceCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATASourceCollectionHeaderView.m; sourceTree = "<group>"; };
-		14FD66701ADEAE93000C116A /* TableSwift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TableSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		622CE58A7E988DE1BCAF1FAD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E05DD17F18296CB80DC3DB60 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EBB9EA998A7FD6EA72157364 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				1497E2BA1ADE2DC700FFA154 /* AppDelegate.swift */,
-				14FD66701ADEAE93000C116A /* TableSwift-Bridging-Header.h */,
 				1497E2BF1ADE2DC700FFA154 /* ViewController.swift */,
 				1497E2C41ADE2DC700FFA154 /* Images.xcassets */,
 				1497E2BC1ADE2DC700FFA154 /* TableSwift.xcdatamodeld */,
@@ -139,10 +135,8 @@
 		14BC99491ADE34B00038E393 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				14BC994A1ADE34B00038E393 /* DATASource.h */,
-				14BC994B1ADE34B00038E393 /* DATASource.m */,
-				14E28A431B8F29A40066165D /* DATASourceCollectionHeaderView.h */,
-				14E28A441B8F29A40066165D /* DATASourceCollectionHeaderView.m */,
+				1422EEF11BD2BBCF0025E669 /* DataSource.swift */,
+				1422EEF21BD2BBCF0025E669 /* DataSourceCollectionHeaderView.swift */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -364,11 +358,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E28A451B8F29A40066165D /* DATASourceCollectionHeaderView.m in Sources */,
+				1422EEF31BD2BBCF0025E669 /* DataSource.swift in Sources */,
+				1422EEF51BD2BBCF0025E669 /* DataSourceCollectionHeaderView.swift in Sources */,
 				1497E2911ADE2DBB00FFA154 /* AppDelegate.m in Sources */,
 				1497E2941ADE2DBB00FFA154 /* TableObjectiveC.xcdatamodeld in Sources */,
 				1497E2971ADE2DBB00FFA154 /* ViewController.m in Sources */,
-				14BC994C1ADE34B00038E393 /* DATASource.m in Sources */,
 				1497E28E1ADE2DBB00FFA154 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,10 +371,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E28A461B8F29A40066165D /* DATASourceCollectionHeaderView.m in Sources */,
+				1422EEF41BD2BBCF0025E669 /* DataSource.swift in Sources */,
+				1422EEF61BD2BBCF0025E669 /* DataSourceCollectionHeaderView.swift in Sources */,
 				1497E2C01ADE2DC700FFA154 /* ViewController.swift in Sources */,
 				1497E2BE1ADE2DC700FFA154 /* TableSwift.xcdatamodeld in Sources */,
-				14BC994D1ADE34B00038E393 /* DATASource.m in Sources */,
 				1497E2BB1ADE2DC700FFA154 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -483,6 +478,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -492,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TableObjectiveC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
@@ -505,6 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -514,7 +512,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TableSwift/TableSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -525,12 +522,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = TableSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TableSwift/TableSwift-Bridging-Header.h";
 			};
 			name = Release;
 		};

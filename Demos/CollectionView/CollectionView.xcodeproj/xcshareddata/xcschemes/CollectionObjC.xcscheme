@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14C7E9EC1AD49BC900674947"
-               BuildableName = "CollectionView.app"
-               BlueprintName = "CollectionView"
+               BlueprintIdentifier = "14DD0E7D1BD2D5A7007AEE34"
+               BuildableName = "CollectionObjC.app"
+               BlueprintName = "CollectionObjC"
                ReferencedContainer = "container:CollectionView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14C7E9EC1AD49BC900674947"
-            BuildableName = "CollectionView.app"
-            BlueprintName = "CollectionView"
+            BlueprintIdentifier = "14DD0E7D1BD2D5A7007AEE34"
+            BuildableName = "CollectionObjC.app"
+            BlueprintName = "CollectionObjC"
             ReferencedContainer = "container:CollectionView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14C7E9EC1AD49BC900674947"
-            BuildableName = "CollectionView.app"
-            BlueprintName = "CollectionView"
+            BlueprintIdentifier = "14DD0E7D1BD2D5A7007AEE34"
+            BuildableName = "CollectionObjC.app"
+            BlueprintName = "CollectionObjC"
             ReferencedContainer = "container:CollectionView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14C7E9EC1AD49BC900674947"
-            BuildableName = "CollectionView.app"
-            BlueprintName = "CollectionView"
+            BlueprintIdentifier = "14DD0E7D1BD2D5A7007AEE34"
+            BuildableName = "CollectionObjC.app"
+            BlueprintName = "CollectionObjC"
             ReferencedContainer = "container:CollectionView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

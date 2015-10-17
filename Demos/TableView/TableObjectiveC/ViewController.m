@@ -1,14 +1,15 @@
 #import "ViewController.h"
 
 #import "DATAStack.h"
-#import "DATASource.h"
+
+#import "TableObjectiveC-Swift.h"
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
 @interface ViewController ()
 
 @property (nonatomic, weak) DATAStack *dataStack;
-@property (nonatomic) DATASource *dataSource;
+@property (nonatomic) DataSource *dataSource;
 
 @end
 
@@ -23,18 +24,18 @@ static NSString *CellIdentifier = @"CellIdentifier";
     return self;
 }
 
-- (DATASource *)dataSource {
+- (DataSource *)dataSource {
     if (!_dataSource) {
         NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                   ascending:YES]];
 
-        _dataSource = [[DATASource alloc] initWithTableView:self.tableView
-                                               fetchRequest:request
-                                                sectionName:@"firstLetterOfName"
+        _dataSource = [[DataSource alloc] initWithTableView:self.tableView
                                              cellIdentifier:CellIdentifier
+                                               fetchRequest:request
                                                 mainContext:self.dataStack.mainContext
-                                              configuration:^(UITableViewCell *cell, NSManagedObject *item, NSIndexPath *indexPath) {
+                                                sectionName:@"firstLetterOfName"
+                                              configuration:^(UITableViewCell * _Nonnull cell, NSManagedObject * _Nonnull item, NSIndexPath * _Nonnull indexPath) {
                                                   cell.textLabel.text = [item valueForKey:@"name"];
                                               }];
     }

@@ -4,41 +4,34 @@ import DATAStack
 class ViewController: UITableViewController {
 
     var dataStack: DATAStack?
-    var dataSource: DATASource?
+
+    lazy var dataSource: DataSource = {
+        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+
+        let dataSource = DataSource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+            cell.textLabel?.text = item.valueForKey("name") as? String
+        })
+
+        return dataSource
+    }()
 
     convenience init(dataStack: DATAStack) {
         self.init(style: .Plain)
 
         self.dataStack = dataStack
-
-        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
-        request.sortDescriptors = [NSSortDescriptor(key: "name",
-            ascending: true)]
-
-        self.dataSource = DATASource(tableView: self.tableView,
-            fetchRequest: request,
-            sectionName: "firstLetterOfName",
-            cellIdentifier: "Cell",
-            mainContext: self.dataStack!.mainContext,
-            configuration: { (cell, item, indexPath) -> Void in
-                let cell = cell as! UITableViewCell
-                let item = item as! NSManagedObject
-                cell.textLabel!.text = item.valueForKey("name") as? String
-        })
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
-
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "saveAction")
-
         self.tableView.dataSource = self.dataSource
     }
 
     func saveAction() {
-        self.dataStack!.performInNewBackgroundContext { (backgroundContext) -> Void in
+        self.dataStack!.performInNewBackgroundContext { backgroundContext in
             if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
                 let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
 
@@ -47,15 +40,15 @@ class ViewController: UITableViewController {
                 user.setValue(name, forKey: "name")
                 user.setValue(firstLetter.uppercaseString, forKey: "firstLetterOfName")
 
-                var error: NSError?
                 do {
                     try backgroundContext.save()
-                } catch let error1 as NSError {
-                    error = error1
-                    print("Could not save \(error), \(error?.userInfo)")
+                } catch let savingError as NSError {
+                    print("Could not save \(savingError)")
                 } catch {
                     fatalError()
                 }
+
+                self.dataStack!.persistWithCompletion({ })
             } else {
                 print("Oh no")
             }
@@ -75,4 +68,3 @@ class ViewController: UITableViewController {
         return string
     }
 }
-
