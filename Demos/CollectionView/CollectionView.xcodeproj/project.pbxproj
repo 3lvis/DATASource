@@ -11,6 +11,7 @@
 		14245B7C1BD2D7C300C79F1F /* FooterExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14245B761BD2D7C300C79F1F /* FooterExampleView.m */; settings = {ASSET_TAGS = (); }; };
 		14245B7D1BD2D7C300C79F1F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14245B781BD2D7C300C79F1F /* User.m */; settings = {ASSET_TAGS = (); }; };
 		14245B7E1BD2D7C300C79F1F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14245B7A1BD2D7C300C79F1F /* ViewController.m */; settings = {ASSET_TAGS = (); }; };
+		144086581BD2D9E600CFEA36 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144086571BD2D9E600CFEA36 /* CollectionCell.swift */; settings = {ASSET_TAGS = (); }; };
 		14DD0E821BD2D5A7007AEE34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD0E811BD2D5A7007AEE34 /* main.m */; };
 		14DD0E851BD2D5A7007AEE34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD0E841BD2D5A7007AEE34 /* AppDelegate.m */; };
 		14DD0E881BD2D5A7007AEE34 /* CollectionObjC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14DD0E861BD2D5A7007AEE34 /* CollectionObjC.xcdatamodeld */; };
@@ -24,6 +25,7 @@
 		14F3BBD51BD2D933005303CE /* DataSourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF5E8A1BD2C55D0085BAD9 /* DataSourceCollectionHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
 		14F3BBD61BD2D935005303CE /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF5E891BD2C55D0085BAD9 /* DataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		14F3BBD71BD2D936005303CE /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF5E891BD2C55D0085BAD9 /* DataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		14F3BBD91BD2D964005303CE /* CollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3BBD81BD2D964005303CE /* CollectionController.swift */; settings = {ASSET_TAGS = (); }; };
 		281A20B0ABF0A141968AAD13 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609321E6E0A14828A8547231 /* Pods.framework */; };
 		D358FD2123E1D015B795C99D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609321E6E0A14828A8547231 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -37,6 +39,7 @@
 		14245B781BD2D7C300C79F1F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		14245B791BD2D7C300C79F1F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		14245B7A1BD2D7C300C79F1F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		144086571BD2D9E600CFEA36 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		14AF5E891BD2C55D0085BAD9 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		14AF5E8A1BD2C55D0085BAD9 /* DataSourceCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceCollectionHeaderView.swift; sourceTree = "<group>"; };
 		14DD0E7E1BD2D5A7007AEE34 /* CollectionObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +56,7 @@
 		14DD0E9D1BD2D5B3007AEE34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14DD0EA01BD2D5B3007AEE34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14DD0EA21BD2D5B3007AEE34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14F3BBD81BD2D964005303CE /* CollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionController.swift; sourceTree = "<group>"; };
 		2741856242070B8F31FB38F6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2F35E2588B6415FE02DD2414 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		609321E6E0A14828A8547231 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				14DD0E981BD2D5B3007AEE34 /* AppDelegate.swift */,
+				14F3BBD81BD2D964005303CE /* CollectionController.swift */,
+				144086571BD2D9E600CFEA36 /* CollectionCell.swift */,
 				14DD0E9D1BD2D5B3007AEE34 /* Assets.xcassets */,
 				14DD0E9F1BD2D5B3007AEE34 /* LaunchScreen.storyboard */,
 				14DD0EA21BD2D5B3007AEE34 /* Info.plist */,
@@ -384,9 +390,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				14DD0E991BD2D5B3007AEE34 /* AppDelegate.swift in Sources */,
+				14F3BBD91BD2D964005303CE /* CollectionController.swift in Sources */,
 				14DD0E9C1BD2D5B3007AEE34 /* CollectionSwift.xcdatamodeld in Sources */,
 				14F3BBD71BD2D936005303CE /* DataSource.swift in Sources */,
 				14F3BBD41BD2D932005303CE /* DataSourceCollectionHeaderView.swift in Sources */,
+				144086581BD2D9E600CFEA36 /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
