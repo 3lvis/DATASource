@@ -8,11 +8,11 @@ public protocol DataSourceable: class {
     func dataSource(dataSource: DataSource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath)
 
     /*!
-    * ********************
+    * **************************
     *
     * UITableView specific
     *
-    * ********************
+    * **************************
     */
 
     // Sections and Headers
@@ -34,11 +34,11 @@ public protocol DataSourceable: class {
 
 
     /*!
-    * ********************
+    * **************************
     *
     * UICollectionView specific
     *
-    * ********************
+    * **************************
     */
 
     func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
@@ -51,11 +51,11 @@ extension DataSourceable {
     func dataSource(dataSource: DataSource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) {}
 
     /*!
-    * ********************
+    * **************************
     *
     * UITableView specific
     *
-    * ********************
+    * **************************
     */
 
     // Sections and Headers
@@ -77,11 +77,11 @@ extension DataSourceable {
 
 
     /*!
-    * ********************
+    * **************************
     *
     * UICollectionView specific
     *
-    * ********************
+    * **************************
     */
 
     func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView { return UICollectionReusableView() }
