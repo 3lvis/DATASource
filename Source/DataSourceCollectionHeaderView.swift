@@ -1,10 +1,10 @@
 import UIKit
 
-public class DataSourceCollectionViewHeader: UICollectionReusableView {
+public class DATASourceCollectionViewHeader: UICollectionReusableView {
 
     // MARK: Variables
 
-    public static let Identifier = "DataSourceCollectionHeaderViewIdentifier"
+    public static let Identifier = "DATASourceCollectionHeaderViewIdentifier"
 
     public var title: String = "" {
         didSet {

@@ -9,7 +9,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 @interface ViewController ()
 
 @property (nonatomic, weak) DATAStack *dataStack;
-@property (nonatomic) DataSource *dataSource;
+@property (nonatomic) DATASource *dataSource;
 
 @end
 
@@ -24,13 +24,13 @@ static NSString *CellIdentifier = @"CellIdentifier";
     return self;
 }
 
-- (DataSource *)dataSource {
+- (DATASource *)dataSource {
     if (!_dataSource) {
         NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                   ascending:YES]];
 
-        _dataSource = [[DataSource alloc] initWithTableView:self.tableView
+        _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                              cellIdentifier:CellIdentifier
                                                fetchRequest:request
                                                 mainContext:self.dataStack.mainContext

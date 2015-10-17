@@ -5,11 +5,11 @@ class ViewController: UITableViewController {
 
     var dataStack: DATAStack?
 
-    lazy var dataSource: DataSource = {
+    lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DataSource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             cell.textLabel?.text = item.valueForKey("name") as? String
         })
 

@@ -4,13 +4,13 @@ import DATAStack
 class CollectionController: UICollectionViewController {
     var dataStack: DATAStack?
 
-    lazy var dataSource: DataSource = {
+    lazy var dataSource: DATASource = {
         guard let collectionView = self.collectionView, mainContext = self.dataStack?.mainContext else { fatalError("CollectionView is nil") }
 
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DataSource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let collectionCell = cell as! CollectionCell
             collectionCell.textLabel.text = item.valueForKey("name") as? String
         })

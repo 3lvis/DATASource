@@ -1,11 +1,11 @@
 import UIKit
 import CoreData
 
-@objc public protocol DataSourceDelegate: class {
-    optional func dataSource(dataSource: DataSource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    optional func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    optional func dataSource(dataSource: DataSource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    optional func dataSource(dataSource: DataSource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath)
+@objc public protocol DATASourceDelegate: class {
+    optional func dataSource(dataSource: DATASource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
+    optional func dataSource(dataSource: DATASource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
+    optional func dataSource(dataSource: DATASource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
+    optional func dataSource(dataSource: DATASource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath)
 
     /*!
     * **************************
@@ -17,20 +17,20 @@ import CoreData
 
     // Sections and Headers
 
-    optional func sectionIndexTitlesForDataSource(dataSource: DataSource, tableView: UITableView) -> [String]?
-    optional func dataSource(dataSource: DataSource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
-    optional func dataSource(dataSource: DataSource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-    optional func dataSource(dataSource: DataSource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
+    optional func sectionIndexTitlesForDATASource(dataSource: DATASource, tableView: UITableView) -> [String]?
+    optional func dataSource(dataSource: DATASource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
+    optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
 
     // Editing
 
-    optional func dataSource(dataSource: DataSource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
-    optional func dataSource(dataSource: DataSource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    optional func dataSource(dataSource: DATASource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    optional func dataSource(dataSource: DATASource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
 
     // Moving or Reordering
 
-    optional func dataSource(dataSource: DataSource, tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
-    optional func dataSource(dataSource: DataSource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)
+    optional func dataSource(dataSource: DATASource, tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    optional func dataSource(dataSource: DATASource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)
 
     /*!
     * **************************
@@ -40,10 +40,10 @@ import CoreData
     * **************************
     */
 
-    optional func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
+    optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
 }
 
-public class DataSource: NSObject {
+public class DATASource: NSObject {
     private weak var tableView: UITableView?
     private weak var collectionView: UICollectionView?
     private var sectionName: String?
@@ -52,7 +52,7 @@ public class DataSource: NSObject {
     private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
     private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
 
-    public weak var delegate: DataSourceDelegate?
+    public weak var delegate: DATASourceDelegate?
 
     private var fetchedResultsController: NSFetchedResultsController
 
@@ -82,7 +82,7 @@ public class DataSource: NSObject {
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
 
-        self.collectionView?.registerClass(DataSourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier);
+        self.collectionView?.registerClass(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier);
     }
 
     private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?, collectionConfiguration: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?) {
@@ -140,7 +140,7 @@ public class DataSource: NSObject {
     }
 }
 
-extension DataSource: UITableViewDataSource {
+extension DATASource: UITableViewDataSource {
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
@@ -166,7 +166,7 @@ extension DataSource: UITableViewDataSource {
     // Sections and Headers
 
     public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        if let titles = self.delegate?.sectionIndexTitlesForDataSource?(self, tableView: tableView) {
+        if let titles = self.delegate?.sectionIndexTitlesForDATASource?(self, tableView: tableView) {
             return titles
         } else if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
             let request = NSFetchRequest()
@@ -237,7 +237,7 @@ extension DataSource: UITableViewDataSource {
     }
 }
 
-extension DataSource: UICollectionViewDataSource {
+extension DATASource: UICollectionViewDataSource {
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
@@ -266,7 +266,7 @@ extension DataSource: UICollectionViewDataSource {
         }
 
         if kind == UICollectionElementKindSectionHeader {
-            if let keyPath = self.fetchedResultsController.sectionNameKeyPath, headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DataSourceCollectionViewHeader {
+            if let keyPath = self.fetchedResultsController.sectionNameKeyPath, headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader {
                 let request = NSFetchRequest()
                 request.entity = self.fetchedResultsController.fetchRequest.entity
                 request.resultType = .DictionaryResultType
@@ -301,7 +301,7 @@ extension DataSource: UICollectionViewDataSource {
     }
 }
 
-extension DataSource: NSFetchedResultsControllerDelegate {
+extension DATASource: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(controller: NSFetchedResultsController) {
         if let tableView = self.tableView {
             tableView.beginUpdates()

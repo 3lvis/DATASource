@@ -7,10 +7,10 @@
 
 #import "CollectionObjC-Swift.h"
 
-@interface ViewController () <NSFetchedResultsControllerDelegate, DataSourceDelegate>
+@interface ViewController () <NSFetchedResultsControllerDelegate, DATASourceDelegate>
 
 @property (nonatomic, weak) DATAStack *dataStack;
-@property (nonatomic) DataSource *dataSource;
+@property (nonatomic) DATASource *dataSource;
 
 @end
 
@@ -26,13 +26,13 @@
     return self;
 }
 
-- (DataSource *)dataSource {
+- (DATASource *)dataSource {
     if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"firstLetterOfName" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
-    _dataSource = [[DataSource alloc] initWithCollectionView:self.collectionView
+    _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
                                               cellIdentifier:CollectionCellIdentifier
                                                 fetchRequest:request
                                                  mainContext:self.dataStack.mainContext
@@ -90,9 +90,9 @@
     return randomString;
 }
 
-#pragma mark - DataSourceDelegate
+#pragma mark - DATASourceDelegate
 
-- (UICollectionReusableView *)dataSource:(DataSource *)dataSource
+- (UICollectionReusableView *)dataSource:(DATASource *)dataSource
                           collectionView:(UICollectionView *)collectionView
        viewForSupplementaryElementOfKind:(NSString *)kind
                              atIndexPath:(NSIndexPath *)indexPath {

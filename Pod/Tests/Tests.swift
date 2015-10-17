@@ -15,7 +15,7 @@ class PodTests: XCTestCase {
         return user
     }
 
-    func testTableViewDataSource() {
+    func testTableViewDATASource() {
         var success = false
         let bundle = NSBundle(forClass: PodTests.self)
         let dataStack = DATAStack(modelName: PodTests.modelName, bundle: bundle, storeType: .InMemoryStoreType)
@@ -26,7 +26,7 @@ class PodTests: XCTestCase {
         let request = NSFetchRequest(entityName: PodTests.entityName)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DataSource(tableView: tableView, cellIdentifier: PodTests.cellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
+        let dataSource = DATASource(tableView: tableView, cellIdentifier: PodTests.cellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
             if let name = item.valueForKey("name") as? String {
                 XCTAssertEqual(name, "Elvis")
                 success = true
