@@ -103,11 +103,11 @@ public class DataSource: NSObject {
     private lazy var objectChanges: [NSFetchedResultsChangeType : [NSIndexPath]] = {
         return [NSFetchedResultsChangeType : [NSIndexPath]]()
 
-    }()
+        }()
 
     private lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
         return [NSFetchedResultsChangeType : NSMutableIndexSet]()
-    }()
+        }()
 
     public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
@@ -198,7 +198,7 @@ extension DataSource: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath)
 
         self.configureCell(cell, indexPath: indexPath)
-        
+
         return cell
     }
 
