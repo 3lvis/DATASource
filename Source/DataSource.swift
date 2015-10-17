@@ -47,10 +47,10 @@ public class DATASource: NSObject {
     private weak var tableView: UITableView?
     private weak var collectionView: UICollectionView?
     private var sectionName: String?
-    private var cellIdentifier: String
     private weak var mainContext: NSManagedObjectContext?
     private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
     private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+    private var cellIdentifierBlock: ((indexPath: NSIndexPath) -> (String))?
 
     public weak var delegate: DATASourceDelegate?
 
@@ -69,15 +69,15 @@ public class DATASource: NSObject {
         return [String]()
         }()
 
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil)
+    public convenience init(tableView: UITableView, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> (), cellIdentifier: (indexPath: NSIndexPath) -> (String)) {
+        self.init(fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil, cellIdentifier: cellIdentifier)
 
         self.tableView = tableView
         self.tableView?.dataSource = self
     }
 
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: configuration)
+    public convenience init(collectionView: UICollectionView, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> (), cellIdentifier: (indexPath: NSIndexPath) -> (String)) {
+        self.init(fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: configuration, cellIdentifier: cellIdentifier)
 
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
@@ -85,11 +85,11 @@ public class DATASource: NSObject {
         self.collectionView?.registerClass(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier);
     }
 
-    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?, collectionConfiguration: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?) {
-        self.cellIdentifier = cellIdentifier
+    private init(fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?, collectionConfiguration: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?, cellIdentifier: (indexPath: NSIndexPath) -> (String)) {
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
         self.tableConfigurationBlock = tableConfiguration
         self.collectionConfigurationBlock = collectionConfiguration
+        self.cellIdentifierBlock = cellIdentifier
 
         super.init()
 
@@ -156,11 +156,15 @@ extension DATASource: UITableViewDataSource {
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath)
+        if let identifier = cellIdentifierBlock?(indexPath: indexPath) {
+            let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
 
-        self.configureCell(cell, indexPath: indexPath)
+            self.configureCell(cell, indexPath: indexPath)
 
-        return cell
+            return cell
+        }
+
+        return UITableViewCell()
     }
 
     // Sections and Headers
@@ -253,11 +257,15 @@ extension DATASource: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.cellIdentifier, forIndexPath: indexPath)
+        if let identifier = cellIdentifierBlock?(indexPath: indexPath) {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
 
-        self.configureCell(cell, indexPath: indexPath)
+            self.configureCell(cell, indexPath: indexPath)
 
-        return cell
+            return cell
+        }
+
+        return UICollectionViewCell()
     }
 
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
