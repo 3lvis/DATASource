@@ -10,7 +10,6 @@ class ViewController: UITableViewController {
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
         let dataSource = DataSource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
-            let cell = cell as! UITableViewCell
             cell.textLabel?.text = item.valueForKey("name") as? String
         })
 
