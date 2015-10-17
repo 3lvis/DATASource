@@ -38,7 +38,7 @@ class ViewController: UITableViewController {
                 let name = self.randomString()
                 let firstLetter = String(Array(name.characters)[0])
                 user.setValue(name, forKey: "name")
-                user.setValue(firstLetter.uppercaseString, forKey: "firstLetterOfName")
+                user.setValue(firstLetter, forKey: "firstLetterOfName")
 
                 do {
                     try backgroundContext.save()
@@ -56,7 +56,7 @@ class ViewController: UITableViewController {
     }
 
     func randomString() -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÅØÆ"
         var string = ""
         for _ in 0...10 {
             let token = UInt32(letters.characters.count)
