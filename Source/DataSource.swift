@@ -109,14 +109,14 @@ public class DataSource: NSObject {
         return [NSFetchedResultsChangeType : NSMutableIndexSet]()
     }()
 
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
 
         self.tableView = tableView
         self.tableView?.dataSource = self
     }
 
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
 
         self.collectionView = collectionView
@@ -125,7 +125,7 @@ public class DataSource: NSObject {
         self.collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DataSourceCollectionViewHeader.Identifier);
     }
 
-    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String?, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UIView, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.cellIdentifier = cellIdentifier
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
         self.configurationBlock = configuration
