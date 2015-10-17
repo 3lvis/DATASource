@@ -7,7 +7,7 @@
 
 #import "CollectionView-Swift.h"
 
-@interface ViewController () <NSFetchedResultsControllerDelegate>//, DataSourceDelegate>
+@interface ViewController () <NSFetchedResultsControllerDelegate, DataSourceDelegate>
 
 @property (nonatomic, weak) DATAStack *dataStack;
 @property (nonatomic) DataSource *dataSource;
@@ -43,7 +43,7 @@
 
                                                    [collectionCell updateWithText:user.name];
                                                }];
-    // _dataSource.delegate = self;
+    _dataSource.delegate = self;
 
     return _dataSource;
 }
@@ -60,7 +60,7 @@
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
 
-    //[self.collectionView registerClass:[FooterExampleView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:FooterExampleViewIdentifier];
+    [self.collectionView registerClass:[FooterExampleView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:FooterExampleViewIdentifier];
 }
 
 - (void)addAction {
@@ -89,7 +89,7 @@
 
     return randomString;
 }
-/*
+
 #pragma mark - DATASourceDelegate
 
 - (UICollectionReusableView *)dataSource:(DataSource *)dataSource
@@ -106,6 +106,5 @@
 
     return nil;
 }
-*/
 
 @end

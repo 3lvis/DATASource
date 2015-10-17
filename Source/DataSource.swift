@@ -1,11 +1,11 @@
 import UIKit
 import CoreData
 
-public protocol DataSourceDelegate: class {
-    func dataSource(dataSource: DataSource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    func dataSource(dataSource: DataSource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    func dataSource(dataSource: DataSource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath)
+@objc public protocol DataSourceDelegate: class {
+    optional func dataSource(dataSource: DataSource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
+    optional func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
+    optional func dataSource(dataSource: DataSource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
+    optional func dataSource(dataSource: DataSource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath)
 
     /*!
     * **************************
@@ -17,21 +17,20 @@ public protocol DataSourceDelegate: class {
 
     // Sections and Headers
 
-    func sectionIndexTitlesForDataSource(dataSource: DataSource, tableView: UITableView) -> [String]?
-    func dataSource(dataSource: DataSource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
-    func dataSource(dataSource: DataSource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-    func dataSource(dataSource: DataSource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
+    optional func sectionIndexTitlesForDataSource(dataSource: DataSource, tableView: UITableView) -> [String]?
+    optional func dataSource(dataSource: DataSource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
+    optional func dataSource(dataSource: DataSource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    optional func dataSource(dataSource: DataSource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
 
     // Editing
 
-    func dataSource(dataSource: DataSource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
-    func dataSource(dataSource: DataSource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    optional func dataSource(dataSource: DataSource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    optional func dataSource(dataSource: DataSource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
 
     // Moving or Reordering
 
-    func dataSource(dataSource: DataSource, tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
-    func dataSource(dataSource: DataSource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)
-
+    optional func dataSource(dataSource: DataSource, tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    optional func dataSource(dataSource: DataSource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)
 
     /*!
     * **************************
@@ -41,50 +40,7 @@ public protocol DataSourceDelegate: class {
     * **************************
     */
 
-    func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
-}
-
-extension DataSourceDelegate {
-    func dataSource(dataSource: DataSource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath) {}
-    func dataSource(dataSource: DataSource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath) {}
-    func dataSource(dataSource: DataSource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath) {}
-    func dataSource(dataSource: DataSource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) {}
-
-    /*!
-    * **************************
-    *
-    * UITableView specific
-    *
-    * **************************
-    */
-
-    // Sections and Headers
-
-    func sectionIndexTitlesForDataSource(dataSource: DataSource, tableView: UITableView) -> [String]?  { return nil }
-    func dataSource(dataSource: DataSource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int { return 0 }
-    func dataSource(dataSource: DataSource, tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return nil }
-    func dataSource(dataSource: DataSource, tableView: UITableView, titleForFooterInSection section: Int) -> String? { return nil }
-
-    // Editing
-
-    func dataSource(dataSource: DataSource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool { return false }
-    func dataSource(dataSource: DataSource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
-
-    // Moving or Reordering
-
-    func dataSource(dataSource: DataSource, tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool { return false }
-    func dataSource(dataSource: DataSource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {}
-
-
-    /*!
-    * **************************
-    *
-    * UICollectionView specific
-    *
-    * **************************
-    */
-
-    func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView { return UICollectionReusableView() }
+    optional func dataSource(dataSource: DataSource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
 }
 
 public class DataSource: NSObject {
@@ -210,7 +166,7 @@ extension DataSource: UITableViewDataSource {
     // Sections and Headers
 
     public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        if let titles = self.delegate?.sectionIndexTitlesForDataSource(self, tableView: tableView) {
+        if let titles = self.delegate?.sectionIndexTitlesForDataSource?(self, tableView: tableView) {
             return titles
         } else if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
             let request = NSFetchRequest()
@@ -241,13 +197,13 @@ extension DataSource: UITableViewDataSource {
     }
 
     public func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        return self.delegate?.dataSource(self, tableView: tableView, sectionForSectionIndexTitle: title, atIndex: index) ?? index
+        return self.delegate?.dataSource?(self, tableView: tableView, sectionForSectionIndexTitle: title, atIndex: index) ?? index
     }
 
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var resultTitle: String?
 
-        if let title = self.delegate?.dataSource(self, tableView: tableView, titleForHeaderInSection: section) {
+        if let title = self.delegate?.dataSource?(self, tableView: tableView, titleForHeaderInSection: section) {
             resultTitle = title
         } else if let sections = self.fetchedResultsController.sections {
             resultTitle = sections[section].name
@@ -257,27 +213,27 @@ extension DataSource: UITableViewDataSource {
     }
 
     public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return self.delegate?.dataSource(self, tableView: tableView, titleForFooterInSection: section)
+        return self.delegate?.dataSource?(self, tableView: tableView, titleForFooterInSection: section)
     }
 
     // Editing
 
     public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return self.delegate?.dataSource(self, tableView: tableView, canEditRowAtIndexPath: indexPath) ?? false
+        return self.delegate?.dataSource?(self, tableView: tableView, canEditRowAtIndexPath: indexPath) ?? false
     }
 
     public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        self.delegate?.dataSource(self, tableView: tableView, commitEditingStyle: editingStyle, forRowAtIndexPath: indexPath)
+        self.delegate?.dataSource?(self, tableView: tableView, commitEditingStyle: editingStyle, forRowAtIndexPath: indexPath)
     }
 
     // Moving or Reordering
 
     public func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return self.delegate?.dataSource(self, tableView: tableView, canMoveRowAtIndexPath: indexPath) ?? false
+        return self.delegate?.dataSource?(self, tableView: tableView, canMoveRowAtIndexPath: indexPath) ?? false
     }
 
     public func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        self.delegate?.dataSource(self, tableView: tableView, moveRowAtIndexPath: sourceIndexPath, toIndexPath: destinationIndexPath)
+        self.delegate?.dataSource?(self, tableView: tableView, moveRowAtIndexPath: sourceIndexPath, toIndexPath: destinationIndexPath)
     }
 }
 
@@ -305,7 +261,7 @@ extension DataSource: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        if let view = self.delegate?.dataSource(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath) {
+        if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath) {
             return view
         }
 
@@ -391,13 +347,13 @@ extension DataSource: NSFetchedResultsControllerDelegate {
             case .Insert:
                 if let newIndexPath = newIndexPath, anObject = anObject as? NSManagedObject {
                     tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Automatic)
-                    self.delegate?.dataSource(self, didInsertObject: anObject, atIndexPath: newIndexPath)
+                    self.delegate?.dataSource?(self, didInsertObject: anObject, atIndexPath: newIndexPath)
                 }
                 break
             case .Delete:
                 if let indexPath = indexPath, anObject = anObject as? NSManagedObject {
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    self.delegate?.dataSource(self, didDeleteObject: anObject, atIndexPath: indexPath)
+                    self.delegate?.dataSource?(self, didDeleteObject: anObject, atIndexPath: indexPath)
                 }
                 break
             case .Update:
@@ -408,7 +364,7 @@ extension DataSource: NSFetchedResultsControllerDelegate {
                         }
 
                         if let anObject = anObject as? NSManagedObject {
-                            self.delegate?.dataSource(self, didUpdateObject: anObject, atIndexPath: indexPath)
+                            self.delegate?.dataSource?(self, didUpdateObject: anObject, atIndexPath: indexPath)
                         }
                     }
                 }
@@ -423,7 +379,7 @@ extension DataSource: NSFetchedResultsControllerDelegate {
                         self.configureCell(newCell, indexPath: newIndexPath)
 
                         if let anObject = anObject as? NSManagedObject {
-                            self.delegate?.dataSource(self, didMoveObject: anObject, fromIndexPath: indexPath, toIndexPath: newIndexPath)
+                            self.delegate?.dataSource?(self, didMoveObject: anObject, fromIndexPath: indexPath, toIndexPath: newIndexPath)
                         }
                     }
                 }

@@ -29,7 +29,7 @@
     layout.itemSize = CGSizeMake(120.0, 120.0);
     layout.sectionInset = UIEdgeInsetsMake(15.0, 0.0, 15.0, 0.0);
     layout.headerReferenceSize = CGSizeMake(bounds.size.width, 60.0);
-    //layout.footerReferenceSize = CGSizeMake(bounds.size.width, 60.0);
+    layout.footerReferenceSize = CGSizeMake(bounds.size.width, 60.0);
 
     ViewController *mainController = [[ViewController alloc] initWithLayout:layout andDataStack:self.dataStack];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
