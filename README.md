@@ -2,6 +2,12 @@
 
 Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is awesome, but sadly it involves a lot of boilerplate. Well, luckily with DATASource not anymore.
 
+- [x] Encapsulates NSFetchedResultsController and NSFetchedResultsControllerDelegate boilerplate
+- [x] Supports indexed tables out of the box
+- [x] Supports sectioned collections out of the box
+- [x] Swift 2.0
+- [x] Objective-C compatibility
+
 ## UITableView
 
 ### Basic Usage
