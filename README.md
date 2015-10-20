@@ -25,6 +25,23 @@ let dataSource = DATASource(tableView: self.tableView, cellIdentifier: "Cell", f
 tableView.dataSource = dataSource;
 ```
 
+**Objective-C:**
+```objc
+NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+
+DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
+                                                cellIdentifier:@"Cell"
+                                                  fetchRequest:request
+                                                   mainContext:self.dataStack.mainContext
+                                                   sectionName:nil
+                                                 configuration:^(UITableViewCell * _Nonnull cell, NSManagedObject * _Nonnull item, NSIndexPath * _Nonnull indexPath) {
+                                                     cell.textLabel.text = [item valueForKey:@"name"];
+                                                 }];
+
+self.tableView.dataSource = dataSource;
+```
+
 ### Indexed UITableView
 
 `DATASource` provides an easy way to show an indexed UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
@@ -45,6 +62,7 @@ Check the [Swift Demo](https://github.com/3lvis/DATASource/blob/master/Demos/Tab
 
 Hooking up a UICollectionView is as simple as doing it with a UITableView, just use this method.
 
+**Swift**:
 ```swift
 let request: NSFetchRequest = NSFetchRequest(entityName: "Task")
 request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
@@ -54,6 +72,24 @@ let dataSource = DATASource(collectionView: self.collectionView, cellIdentifier:
 })
 
 collectionView.dataSource = dataSource
+```
+
+**Objective-C:**
+```objc
+NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+
+DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
+                                                     cellIdentifier:CollectionCellIdentifier
+                                                       fetchRequest:request
+                                                        mainContext:self.dataStack.mainContext
+                                                        sectionName:nil
+                                                      configuration:^(UICollectionViewCell * _Nonnull cell, NSManagedObject * _Nonnull item, NSIndexPath * _Nonnull indexPath) {
+                                                          CollectionCell *collectionCell = (CollectionCell *)cell;
+                                                          [collectionCell updateWithText:[item valueForKey:@"name"]];
+                                                      }];
+
+self.collectionView.dataSource = dataSource;
 ```
 
 ### Indexed UITableView
