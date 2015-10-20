@@ -14,6 +14,7 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 
 Hooking up your table view to your `Task` model and making your UITableView react to insertions, updates and deletions is as simple as this.
 
+**Swift:**
 ```swift
 let request: NSFetchRequest = NSFetchRequest(entityName: "Task")
 request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
