@@ -10,8 +10,10 @@ class ViewController: UITableViewController {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
-            cell.textLabel?.text = item.valueForKey("name") as? String
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+            if let cell = cell as? CustomCell {
+                cell.label.text = item.valueForKey("name") as? String
+            }
         })
 
         return dataSource
@@ -26,7 +28,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
+        self.tableView.registerClass(CustomCell.self, forCellReuseIdentifier: CustomCell.Identifier)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "saveAction")
         self.tableView.dataSource = self.dataSource
     }
