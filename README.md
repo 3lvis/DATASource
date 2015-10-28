@@ -126,4 +126,6 @@ Elvis Nuñez, [@3lvis](https://twitter.com/3lvis)
 
 **DATASource** is available under the MIT license. See the LICENSE file for more info.
 
-<a name="footnote1">1.-</a>: Extracted from the [RealmResultsController](https://redbooth.com/engineering/ios/realmresultscontroller) article.
+#### Footnotes:
+
+<a name="footnote1">1.-</a> Extracted from the [RealmResultsController](https://redbooth.com/engineering/ios/realmresultscontroller) article.
