@@ -1,10 +1,7 @@
 # DATASource
 
-
 If you are not familiarized with [NSFetchedResultsController](https://developer.apple.com/library/ios/documentation/CoreData/Reference/NSFetchedResultsController_Class/index.html), it allows you to efficiently manage the results returned from a Core Data fetch request to provide data for a `UITableView` or a `UICollectionView`. `NSFetchedResultsController` monitors changes in `Core Data` objects and notifies the view about those changes allowing you to be reactive about them.<sup>1<sup>
 
-
- 
 Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is awesome, but sadly it involves a lot of boilerplate. Well, luckily with DATASource not anymore.
 
 - [x] Encapsulates NSFetchedResultsController and NSFetchedResultsControllerDelegate boilerplate
