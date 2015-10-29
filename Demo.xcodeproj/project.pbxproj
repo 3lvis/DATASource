@@ -55,7 +55,6 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		14C0AF851BD6D4370009ECBE /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		14F3A67A1BE01B8400789E22 /* CollectionSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F3A67C1BE01B8500789E22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14F3A67F1BE01B8500789E22 /* CollectionSwift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CollectionSwift.xcdatamodel; sourceTree = "<group>"; };
@@ -153,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				14C136501AB7849300B7B07A /* Metadata */,
-				14C0AF841BD6D4370009ECBE /* Source */,
 				146D72AF1AB782920058798C /* Tests */,
 				14F3A67B1BE01B8500789E22 /* CollectionSwift */,
 				14F3A68F1BE01B9200789E22 /* CollectionObjC */,
@@ -197,14 +195,6 @@
 				146D72B11AB782920058798C /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		14C0AF841BD6D4370009ECBE /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				14C0AF851BD6D4370009ECBE /* .gitkeep */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		14C136501AB7849300B7B07A /* Metadata */ = {
