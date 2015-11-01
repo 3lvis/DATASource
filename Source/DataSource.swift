@@ -97,6 +97,9 @@ public class DATASource: NSObject {
         self.fetch()
     }
 
+    /**
+     The DATASource's predicate.
+     */
     public var predicate: NSPredicate? {
         get {
             return self.fetchedResultsController.fetchRequest.predicate
@@ -111,26 +114,49 @@ public class DATASource: NSObject {
         }
     }
 
+    /**
+     The number of objects fetched by DATASource.
+     */
     public var objectsCount: Int {
         return self.fetchedResultsController.fetchedObjects?.count ?? 0
     }
 
+    /**
+     Check for wheter the DATASource is empty or not. Returns `true` is the amount of objects
+     is more than 0.
+     */
     public var isEmpty: Bool {
         return self.fetchedResultsController.fetchedObjects?.count == 0
     }
 
+    /**
+     The objects fetched by DATASource. This is an array of `NSManagedObject`.
+     */
     public var objects: [NSManagedObject] {
         return self.fetchedResultsController.fetchedObjects as?  [NSManagedObject] ?? [NSManagedObject]()
     }
 
+    /**
+     Returns the object for a given index path.
+     - parameter indexPath: An index path used to fetch an specific object.
+     - returns: The object at a given index path in the fetch results.
+     */
     public func objectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject? {
         return self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject ?? nil
     }
 
+    /**
+     Returns the index path of a given managed object.
+     - parameter object: An object in the receiver’s fetch results.
+     - returns: The index path of object in the receiver’s fetch results, or nil if object could not be found.
+     */
     public func indexPathForObject(object: NSManagedObject) -> NSIndexPath? {
         return self.fetchedResultsController.indexPathForObject(object) ?? nil
     }
 
+    /**
+     Executes the DATASource's fetch request.
+     */
     public func fetch() {
         do {
             try self.fetchedResultsController.performFetch()
