@@ -62,7 +62,7 @@ You can disable the indexes by overwritting the method that generates them and j
 ```swift
 self.dataSource.delegate = self
 
-func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String]? {
+func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String] {
     return [String]()
 }
 ```
