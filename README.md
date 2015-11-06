@@ -55,6 +55,18 @@ Check the [Swift Demo](https://github.com/3lvis/DATASource/blob/master/TableSwif
   <img src="https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/table.gif" />
 </p>
 
+#### The section grouping is cool, but I don't want the indexes
+
+You can disable the indexes by overwritting the method that generates them and just return an empty list of indexes. Add the `DATASourceDelegate` protocol to your controller then:
+
+```swift
+self.dataSource.delegate = self
+
+func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String]? {
+    return [String]()
+}
+```
+
 ### UITableViewDataSource
 
 `DATASource` takes ownership of your `UITableViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UITableViewDataSource` methods you can use the `DATASourceDelegate`.
