@@ -17,7 +17,7 @@ import CoreData
 
     // Sections and Headers
 
-    optional func sectionIndexTitlesForDATASource(dataSource: DATASource, tableView: UITableView) -> [String]?
+    optional func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String]?
     optional func dataSource(dataSource: DATASource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
     optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
