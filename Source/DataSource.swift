@@ -213,7 +213,7 @@ extension DATASource: UITableViewDataSource {
     // Sections and Headers
 
     public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        if let titles = self.delegate?.sectionIndexTitlesForDATASource?(self, tableView: tableView) {
+        if let titles = self.delegate?.sectionIndexTitlesForDataSource?(self, tableView: tableView) {
             return titles
         } else if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
             let request = NSFetchRequest()
