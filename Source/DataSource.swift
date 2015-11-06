@@ -44,31 +44,15 @@ import CoreData
 }
 
 public class DATASource: NSObject {
-    private weak var tableView: UITableView?
-    private weak var collectionView: UICollectionView?
-    private var sectionName: String?
-    private var cellIdentifier: String
-    private weak var mainContext: NSManagedObjectContext?
-    private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
-    private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
-
-    public weak var delegate: DATASourceDelegate?
-
-    private var fetchedResultsController: NSFetchedResultsController
-
-    private lazy var objectChanges: [NSFetchedResultsChangeType : [NSIndexPath]] = {
-        return [NSFetchedResultsChangeType : [NSIndexPath]]()
-
-        }()
-
-    private lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
-        return [NSFetchedResultsChangeType : NSMutableIndexSet]()
-        }()
-
-    private lazy var cachedSectionNames: [String] = {
-        return [String]()
-        }()
-
+    /**
+     Initializes and returns a data source object for a table view.
+     - parameter tableView: A table view used to construct the data source.
+     - parameter cellIdentifier: An identifier from the registered UITableViewCell subclass.
+     - parameter fetchRequest: A request to be used, requests need a sort descriptor.
+     - parameter mainContext: A main thread managed object context.
+     - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
+     - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
+     */
     public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil)
 
@@ -76,6 +60,15 @@ public class DATASource: NSObject {
         self.tableView?.dataSource = self
     }
 
+    /**
+     Initializes and returns a data source object for a collection view.
+     - parameter collectionView: A collection view used to construct the data source.
+     - parameter cellIdentifier: An identifier from the registered UICollectionViewCell subclass.
+     - parameter fetchRequest: A request to be used, requests need a sort descriptor.
+     - parameter mainContext: A main thread managed object context.
+     - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
+     - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
+     */
     public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: configuration)
 
@@ -96,6 +89,34 @@ public class DATASource: NSObject {
         self.fetchedResultsController.delegate = self
         self.fetch()
     }
+
+    private weak var tableView: UITableView?
+    private weak var collectionView: UICollectionView?
+    private var sectionName: String?
+    private var cellIdentifier: String
+    private weak var mainContext: NSManagedObjectContext?
+    private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+    private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+
+    /**
+     The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
+     */
+    public weak var delegate: DATASourceDelegate?
+
+    private var fetchedResultsController: NSFetchedResultsController
+
+    private lazy var objectChanges: [NSFetchedResultsChangeType : [NSIndexPath]] = {
+        return [NSFetchedResultsChangeType : [NSIndexPath]]()
+
+    }()
+
+    private lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
+        return [NSFetchedResultsChangeType : NSMutableIndexSet]()
+    }()
+
+    private lazy var cachedSectionNames: [String] = {
+        return [String]()
+    }()
 
     /**
      The DATASource's predicate.
@@ -525,7 +546,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     if let moveItems = self.objectChanges[.Move] {
                         collectionView.moveItemAtIndexPath(moveItems[0], toIndexPath: moveItems[1])
                     }
-                    
+
                     }, completion: nil)
             }
         }
