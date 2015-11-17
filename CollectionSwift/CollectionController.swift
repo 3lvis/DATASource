@@ -13,9 +13,11 @@ class CollectionController: UICollectionViewController {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(collectionView: collectionView, fetchRequest: request, mainContext: mainContext, configuration: { (cell, item, indexPath) -> () in
             let collectionCell = cell as! CollectionCell
             collectionCell.textLabel.text = item.valueForKey("name") as? String
+            }, cellIdentifier: { indexPath -> String in
+                return CollectionCell.Identifier
         })
 
         return dataSource
@@ -37,6 +39,8 @@ class CollectionController: UICollectionViewController {
         guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
 
         collectionView.registerClass(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.Identifier)
+        collectionView.registerClass(AlternativeCollectionCell.self, forCellWithReuseIdentifier: AlternativeCollectionCell.Identifier)
+
         collectionView.dataSource = self.dataSource
         collectionView.backgroundColor = UIColor.whiteColor()
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)

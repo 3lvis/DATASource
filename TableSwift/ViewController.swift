@@ -10,10 +10,12 @@ class ViewController: UITableViewController {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(tableView: self.tableView, fetchRequest: request, mainContext: self.dataStack!.mainContext, configuration: { (cell, item, indexPath) -> () in
             if let cell = cell as? CustomCell {
                 cell.label.text = item.valueForKey("name") as? String
             }
+            }, cellIdentifier: { (indexPath) -> (String) in
+                return CustomCell.Identifier
         })
 
         return dataSource
