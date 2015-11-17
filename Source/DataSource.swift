@@ -97,34 +97,6 @@ public class DATASource: NSObject {
         self.fetch()
     }
 
-    private weak var tableView: UITableView?
-    private weak var collectionView: UICollectionView?
-    private var sectionName: String?
-    private var cellIdentifier: String
-    private weak var mainContext: NSManagedObjectContext?
-    private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
-    private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
-
-    /**
-     The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
-     */
-    public weak var delegate: DATASourceDelegate?
-
-    private var fetchedResultsController: NSFetchedResultsController
-
-    private lazy var objectChanges: [NSFetchedResultsChangeType : [NSIndexPath]] = {
-        return [NSFetchedResultsChangeType : [NSIndexPath]]()
-
-    }()
-
-    private lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
-        return [NSFetchedResultsChangeType : NSMutableIndexSet]()
-    }()
-
-    private lazy var cachedSectionNames: [String] = {
-        return [String]()
-    }()
-
     /**
      The DATASource's predicate.
      */
