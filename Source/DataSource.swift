@@ -17,7 +17,7 @@ import CoreData
 
     // Sections and Headers
 
-    optional func sectionIndexTitlesForDATASource(dataSource: DATASource, tableView: UITableView) -> [String]?
+    optional func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String]
     optional func dataSource(dataSource: DATASource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
     optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
@@ -97,6 +97,37 @@ public class DATASource: NSObject {
         self.fetch()
     }
 
+    private weak var tableView: UITableView?
+    private weak var collectionView: UICollectionView?
+    private var sectionName: String?
+    private var cellIdentifier: String
+    private weak var mainContext: NSManagedObjectContext?
+    private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+    private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+
+    /**
+     The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
+     */
+    public weak var delegate: DATASourceDelegate?
+
+    private var fetchedResultsController: NSFetchedResultsController
+
+    private lazy var objectChanges: [NSFetchedResultsChangeType : [NSIndexPath]] = {
+        return [NSFetchedResultsChangeType : [NSIndexPath]]()
+
+    }()
+
+    private lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
+        return [NSFetchedResultsChangeType : NSMutableIndexSet]()
+    }()
+
+    private lazy var cachedSectionNames: [String] = {
+        return [String]()
+    }()
+
+    /**
+     The DATASource's predicate.
+     */
     public var predicate: NSPredicate? {
         get {
             return self.fetchedResultsController.fetchRequest.predicate
@@ -111,26 +142,49 @@ public class DATASource: NSObject {
         }
     }
 
+    /**
+     The number of objects fetched by DATASource.
+     */
     public var objectsCount: Int {
         return self.fetchedResultsController.fetchedObjects?.count ?? 0
     }
 
+    /**
+     Check for wheter the DATASource is empty or not. Returns `true` is the amount of objects
+     is more than 0.
+     */
     public var isEmpty: Bool {
         return self.fetchedResultsController.fetchedObjects?.count == 0
     }
 
+    /**
+     The objects fetched by DATASource. This is an array of `NSManagedObject`.
+     */
     public var objects: [NSManagedObject] {
         return self.fetchedResultsController.fetchedObjects as?  [NSManagedObject] ?? [NSManagedObject]()
     }
 
+    /**
+     Returns the object for a given index path.
+     - parameter indexPath: An index path used to fetch an specific object.
+     - returns: The object at a given index path in the fetch results.
+     */
     public func objectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject? {
         return self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject ?? nil
     }
 
+    /**
+     Returns the index path of a given managed object.
+     - parameter object: An object in the receiver’s fetch results.
+     - returns: The index path of object in the receiver’s fetch results, or nil if object could not be found.
+     */
     public func indexPathForObject(object: NSManagedObject) -> NSIndexPath? {
         return self.fetchedResultsController.indexPathForObject(object) ?? nil
     }
 
+    /**
+     Executes the DATASource's fetch request.
+     */
     public func fetch() {
         do {
             try self.fetchedResultsController.performFetch()
@@ -170,7 +224,7 @@ extension DATASource: UITableViewDataSource {
     // Sections and Headers
 
     public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        if let titles = self.delegate?.sectionIndexTitlesForDATASource?(self, tableView: tableView) {
+        if let titles = self.delegate?.sectionIndexTitlesForDataSource?(self, tableView: tableView) {
             return titles
         } else if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
             let request = NSFetchRequest()
@@ -507,7 +561,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     if let moveItems = self.objectChanges[.Move] {
                         collectionView.moveItemAtIndexPath(moveItems[0], toIndexPath: moveItems[1])
                     }
-                    
+
                     }, completion: nil)
             }
         }
