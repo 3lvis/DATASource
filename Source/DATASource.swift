@@ -163,7 +163,11 @@ public class DATASource: NSObject {
      - returns: The object at a given index path in the fetch results.
      */
     public func objectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject? {
-        return self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject ?? nil
+        if self.fetchedResultsController.fetchedObjects?.count > 0 {
+            return self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject ?? nil
+        }
+
+        return nil
     }
 
     /**
@@ -554,12 +558,12 @@ extension DATASource: NSFetchedResultsControllerDelegate {
 
     private func configureCell(cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
-
+        
         let rowIsInsideBounds = indexPath.row < self.fetchedResultsController.fetchedObjects?.count
         if rowIsInsideBounds {
             item = self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject
         }
-
+        
         if let item = item {
             if let _ = self.tableView, configuration = self.tableConfigurationBlock {
                 configuration(cell: cell as! UITableViewCell, item: item, indexPath: indexPath)
