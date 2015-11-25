@@ -40,7 +40,9 @@ import CoreData
     * **************************
     */
 
-    optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
+    optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath, withTitle title: String) -> UICollectionReusableView
+
+    @available(*, deprecated=5.1.0, message="Use dataSource(_:collectionView:viewForSupplementaryElementOfKind:atIndexPath:withTitle) instead") optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
 }
 
 public class DATASource: NSObject {
@@ -312,12 +314,8 @@ extension DATASource: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath) {
-            return view
-        }
-
         if kind == UICollectionElementKindSectionHeader {
-            if let keyPath = self.fetchedResultsController.sectionNameKeyPath, headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader {
+            if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
                 let request = NSFetchRequest()
                 request.entity = self.fetchedResultsController.fetchRequest.entity
                 request.resultType = .DictionaryResultType
@@ -340,9 +338,15 @@ extension DATASource: UICollectionViewDataSource {
                 }
 
                 let title = self.cachedSectionNames[indexPath.section]
-                headerView.title = title
 
-                return headerView
+                if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: title) {
+                    return view
+                }
+
+                if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader {
+                    headerView.title = title
+                    return headerView
+                }
             }
         } else if (kind == UICollectionElementKindSectionFooter) {
             // Add support for footers
