@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "DATASource"
-  s.version = "5.1.0"
+  s.version = "5.2.0"
   s.summary = "NSFetchedResultsController made stupid easy "
   s.homepage         = "https://github.com/3lvis/DATASource"
   s.license          = 'MIT'
