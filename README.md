@@ -119,7 +119,7 @@ Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/
 
 ### UICollectionViewDataSource
 
-`DATASource` takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/CollectionViewSwift) where we show how to add a footer view to your `DATASource` backed UICollectionView.
+`DATASource` takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/CollectionSwift) where we show how to add a footer view to your `DATASource` backed UICollectionView.
 
 ## Installation
 
