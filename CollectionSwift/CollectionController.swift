@@ -11,7 +11,10 @@ class CollectionController: UICollectionViewController {
         guard let collectionView = self.collectionView, mainContext = self.dataStack?.mainContext else { fatalError("CollectionView is nil") }
 
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "name", ascending: true),
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
+        ]
 
         let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let collectionCell = cell as! CollectionCell
@@ -70,7 +73,7 @@ class CollectionController: UICollectionViewController {
     }
 
     func randomString() -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         var string = ""
         for _ in 0...10 {
             let token = UInt32(letters.characters.count)

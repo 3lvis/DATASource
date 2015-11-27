@@ -78,7 +78,7 @@
 }
 
 - (NSString *)randomString {
-    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    NSString *letters = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     NSMutableString *randomString = [NSMutableString stringWithCapacity:10];
 
@@ -92,12 +92,15 @@
 
 #pragma mark - DATASourceDelegate
 
-- (UICollectionReusableView *)dataSource:(DATASource *)dataSource
-                          collectionView:(UICollectionView *)collectionView
-       viewForSupplementaryElementOfKind:(NSString *)kind
-                             atIndexPath:(NSIndexPath *)indexPath {
-    if (kind == UICollectionElementKindSectionHeader) {
-    } else if (kind == UICollectionElementKindSectionFooter) {
+- (UICollectionReusableView * __nonnull)dataSource:(DATASource * __nonnull)dataSource
+                                    collectionView:(UICollectionView * __nonnull)collectionView
+                 viewForSupplementaryElementOfKind:(NSString * __nonnull)kind
+                                       atIndexPath:(NSIndexPath * __nonnull)indexPath
+                                         withTitle:(NSString * __nullable)title {
+    if (kind == UICollectionElementKindSectionFooter) {        if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: nil) {
+        return view
+    }
+
         FooterExampleView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                                                                      withReuseIdentifier:FooterExampleViewIdentifier
                                                                             forIndexPath:indexPath];

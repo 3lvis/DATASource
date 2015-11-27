@@ -68,7 +68,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 }
 
 - (NSString *)randomString {
-    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    NSString *letters = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     NSMutableString *randomString = [NSMutableString stringWithCapacity:10];
 
