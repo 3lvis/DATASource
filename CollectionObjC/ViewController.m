@@ -92,15 +92,11 @@
 
 #pragma mark - DATASourceDelegate
 
-- (UICollectionReusableView * __nonnull)dataSource:(DATASource * __nonnull)dataSource
-                                    collectionView:(UICollectionView * __nonnull)collectionView
-                 viewForSupplementaryElementOfKind:(NSString * __nonnull)kind
-                                       atIndexPath:(NSIndexPath * __nonnull)indexPath
-                                         withTitle:(NSString * __nullable)title {
-    if (kind == UICollectionElementKindSectionFooter) {        if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: nil) {
-        return view
-    }
-
+- (UICollectionReusableView * __nullable)dataSource:(DATASource * __nonnull)dataSource
+                                     collectionView:(UICollectionView * __nonnull)collectionView
+                  viewForSupplementaryElementOfKind:(NSString * __nonnull)kind
+                                        atIndexPath:(NSIndexPath * __nonnull)indexPath withTitle:(id __nullable)title {
+    if (kind == UICollectionElementKindSectionFooter) {
         FooterExampleView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                                                                      withReuseIdentifier:FooterExampleViewIdentifier
                                                                             forIndexPath:indexPath];

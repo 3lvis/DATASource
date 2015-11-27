@@ -40,7 +40,7 @@ import CoreData
     * **************************
     */
 
-    optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath, withTitle title: String?) -> UICollectionReusableView
+    optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath, withTitle title: AnyObject?) -> UICollectionReusableView?
 
     @available(*, deprecated=5.1.0, message="Use dataSource(_:collectionView:viewForSupplementaryElementOfKind:atIndexPath:withTitle) instead") optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
 }
@@ -116,8 +116,8 @@ public class DATASource: NSObject {
         return [NSFetchedResultsChangeType : NSMutableIndexSet]()
     }()
 
-    private lazy var cachedSectionNames: [String] = {
-        return [String]()
+    private lazy var cachedSectionNames: [AnyObject] = {
+        return [AnyObject]()
     }()
 
     /**
@@ -314,10 +314,6 @@ extension DATASource: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: nil) {
-            return view
-        }
-
         if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
             if self.cachedSectionNames.isEmpty {
                 var ascending: Bool? = nil
@@ -350,17 +346,28 @@ extension DATASource: UICollectionViewDataSource {
 
                 if let objects = objects {
                     for object in objects {
-                        self.cachedSectionNames.appendContentsOf(object.allValues as! [String])
+                        self.cachedSectionNames.appendContentsOf(object.allValues)
                     }
                 }
             }
 
             let title = self.cachedSectionNames[indexPath.section]
 
+            if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: title) {
+                return view
+            }
+
             if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader {
-                headerView.title = title
+                if let title = title as? String {
+                    headerView.title = title
+                }
+
                 return headerView
             }
+        }
+
+        if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: nil) {
+            return view
         }
 
         return UICollectionReusableView()
@@ -570,7 +577,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
             }
         }
     }
-
+    
     private func configureCell(cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
         
