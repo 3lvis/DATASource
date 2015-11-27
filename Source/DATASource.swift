@@ -40,7 +40,7 @@ import CoreData
     * **************************
     */
 
-    optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath, withTitle title: String) -> UICollectionReusableView
+    optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath, withTitle title: String?) -> UICollectionReusableView
 
     @available(*, deprecated=5.1.0, message="Use dataSource(_:collectionView:viewForSupplementaryElementOfKind:atIndexPath:withTitle) instead") optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
 }
@@ -314,15 +314,32 @@ extension DATASource: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
-            if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
+        if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: nil) {
+            return view
+        }
+
+        if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
+            if self.cachedSectionNames.isEmpty {
+                var ascending: Bool? = nil
+
+                if let sortDescriptors = self.fetchedResultsController.fetchRequest.sortDescriptors {
+                    for sortDescriptor in sortDescriptors where sortDescriptor.key == keyPath {
+                        ascending = sortDescriptor.ascending
+                    }
+
+                    if ascending == nil {
+                        fatalError("KeyPath: \(keyPath) should be included in the fetchRequest's sortDescriptors. This is necessary so we can know if the keyPath is ascending or descending. Current descriptors are: \(sortDescriptors)")
+                    }
+                }
+
                 let request = NSFetchRequest()
                 request.entity = self.fetchedResultsController.fetchRequest.entity
                 request.resultType = .DictionaryResultType
                 request.returnsDistinctResults = true
                 request.propertiesToFetch = [keyPath]
                 request.predicate = self.fetchedResultsController.fetchRequest.predicate
-                request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: true)]
+                request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: ascending!)]
+
                 var objects: [NSDictionary]?
 
                 do {
@@ -336,20 +353,14 @@ extension DATASource: UICollectionViewDataSource {
                         self.cachedSectionNames.appendContentsOf(object.allValues as! [String])
                     }
                 }
-
-                let title = self.cachedSectionNames[indexPath.section]
-
-                if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: title) {
-                    return view
-                }
-
-                if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader {
-                    headerView.title = title
-                    return headerView
-                }
             }
-        } else if (kind == UICollectionElementKindSectionFooter) {
-            // Add support for footers
+
+            let title = self.cachedSectionNames[indexPath.section]
+
+            if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader {
+                headerView.title = title
+                return headerView
+            }
         }
 
         return UICollectionReusableView()

@@ -8,7 +8,10 @@ class ViewController: UITableViewController {
 
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "name", ascending: true),
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
+        ]
 
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             if let cell = cell as? CustomCell {
