@@ -336,18 +336,9 @@ extension DATASource: UICollectionViewDataSource {
                 request.predicate = self.fetchedResultsController.fetchRequest.predicate
                 request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: ascending!)]
 
-                var objects: [NSDictionary]?
-
-                do {
-                    objects = try self.fetchedResultsController.managedObjectContext.executeFetchRequest(request) as? [NSDictionary]
-                } catch {
-                    print("Error")
-                }
-
-                if let objects = objects {
-                    for object in objects {
-                        self.cachedSectionNames.appendContentsOf(object.allValues)
-                    }
+                let objects = try! self.fetchedResultsController.managedObjectContext.executeFetchRequest(request) as! [NSDictionary]
+                for object in objects {
+                    self.cachedSectionNames.appendContentsOf(object.allValues)
                 }
             }
 
@@ -357,11 +348,8 @@ extension DATASource: UICollectionViewDataSource {
                 return view
             }
 
-            if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader {
-                if let title = title as? String {
-                    headerView.title = title
-                }
-
+            if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader, let title = title as? String {
+                headerView.title = title
                 return headerView
             }
         }
