@@ -16,7 +16,7 @@
 - (DATAStack *)dataStack {
     if (_dataStack) return _dataStack;
 
-    _dataStack = [[DATAStack alloc] init];
+    _dataStack = [[DATAStack alloc] initWithModelName:@"DataModel"];
 
     return _dataStack;
 }

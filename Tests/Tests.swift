@@ -9,10 +9,10 @@ class PodTests: XCTestCase {
     static let entityName = "User"
     static let modelName = "DataModel"
 
-    func userWithName(name: String, context: NSManagedObjectContext) -> User {
+    func userWithName(name: String, context: NSManagedObjectContext) -> NSManagedObject {
         let entity = NSEntityDescription.entityForName(PodTests.entityName, inManagedObjectContext: context)!
-        let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context) as! User
-        user.name = name
+        let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
+        user.setValue(name, forKey: "name")
 
         return user
     }

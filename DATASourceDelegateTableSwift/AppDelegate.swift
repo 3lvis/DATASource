@@ -9,13 +9,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
         return window
-        }()
+    }()
 
     var dataStack: DATAStack = {
         let dataStack = DATAStack(modelName: "DataModel")
 
         return dataStack
-        }()
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         if let window = self.window {

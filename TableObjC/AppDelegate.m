@@ -13,7 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-    self.dataStack = [[DATAStack alloc] initWithModelName:@"TableObjC"];
+    self.dataStack = [[DATAStack alloc] initWithModelName:@"DataModel"];
     ViewController *mainController = [[ViewController alloc] initWithDataStack:self.dataStack];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
     self.window.rootViewController = navigationController;
