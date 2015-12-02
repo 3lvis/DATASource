@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }()
 
     var dataStack: DATAStack = {
-        let dataStack = DATAStack(modelName: "CollectionSwift")
+        let dataStack = DATAStack(modelName: "DataModel")
 
         return dataStack
     }()
