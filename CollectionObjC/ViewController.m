@@ -2,8 +2,8 @@
 
 @import DATAStack;
 @import DATASource;
+@import CoreData;
 
-#import "User.h"
 #import "FooterExampleView.h"
 #import "CollectionCell.h"
 
@@ -39,9 +39,7 @@
                                                  sectionName:@"firstLetterOfName"
                                                configuration:^(UICollectionViewCell * _Nonnull cell, NSManagedObject * _Nonnull item, NSIndexPath * _Nonnull indexPath) {
                                                    CollectionCell *collectionCell = (CollectionCell *)cell;
-                                                   User *user = (User *)item;
-
-                                                   [collectionCell updateWithText:user.name];
+                                                   [collectionCell updateWithText:[item valueForKey:@"name"]];
                                                }];
     _dataSource.delegate = self;
 
@@ -67,8 +65,8 @@
     [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"User"
                                                   inManagedObjectContext:backgroundContext];
-        User *user = [[User alloc] initWithEntity:entity
-                   insertIntoManagedObjectContext:backgroundContext];
+        NSManagedObject *user = [[NSManagedObject alloc] initWithEntity:entity
+                                         insertIntoManagedObjectContext:backgroundContext];
         NSString *name = [self randomString];
         NSString *firstLetter = [[name substringToIndex:1] uppercaseString];
         [user setValue:name forKey:@"name"];
@@ -104,6 +102,10 @@
     }
 
     return nil;
+}
+
+- (void)dataSourceDidChangeContent:(DATASource * __nonnull)dataSource {
+    NSLog(@"DATASource finished doing it's thing");
 }
 
 @end

@@ -36,7 +36,6 @@
 		14F3A6C91BE01BA900789E22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F3A6C71BE01BA900789E22 /* LaunchScreen.storyboard */; };
 		14F3A6DD1BE01D6E00789E22 /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F3A6D61BE01D6E00789E22 /* CollectionCell.m */; };
 		14F3A6DE1BE01D6E00789E22 /* FooterExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F3A6D81BE01D6E00789E22 /* FooterExampleView.m */; };
-		14F3A6DF1BE01D6E00789E22 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F3A6DA1BE01D6E00789E22 /* User.m */; };
 		14F3A6E01BE01D6E00789E22 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F3A6DC1BE01D6E00789E22 /* ViewController.m */; };
 		14F3A6E31BE01D9200789E22 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3A6E11BE01D9200789E22 /* CollectionCell.swift */; };
 		14F3A6E41BE01D9200789E22 /* CollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3A6E21BE01D9200789E22 /* CollectionController.swift */; };
@@ -95,8 +94,6 @@
 		14F3A6D61BE01D6E00789E22 /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
 		14F3A6D71BE01D6E00789E22 /* FooterExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterExampleView.h; sourceTree = "<group>"; };
 		14F3A6D81BE01D6E00789E22 /* FooterExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterExampleView.m; sourceTree = "<group>"; };
-		14F3A6D91BE01D6E00789E22 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		14F3A6DA1BE01D6E00789E22 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		14F3A6DB1BE01D6E00789E22 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		14F3A6DC1BE01D6E00789E22 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		14F3A6E11BE01D9200789E22 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
@@ -265,8 +262,6 @@
 				14F3A6D61BE01D6E00789E22 /* CollectionCell.m */,
 				14F3A6D71BE01D6E00789E22 /* FooterExampleView.h */,
 				14F3A6D81BE01D6E00789E22 /* FooterExampleView.m */,
-				14F3A6D91BE01D6E00789E22 /* User.h */,
-				14F3A6DA1BE01D6E00789E22 /* User.m */,
 				14F3A6DB1BE01D6E00789E22 /* ViewController.h */,
 				14F3A6DC1BE01D6E00789E22 /* ViewController.m */,
 				14F3A6991BE01B9200789E22 /* Assets.xcassets */,
@@ -833,7 +828,6 @@
 				14F3A6E01BE01D6E00789E22 /* ViewController.m in Sources */,
 				148C57741C0EBCB500546AEF /* DataModel.xcdatamodeld in Sources */,
 				14F3A6951BE01B9200789E22 /* AppDelegate.m in Sources */,
-				14F3A6DF1BE01D6E00789E22 /* User.m in Sources */,
 				14F3A6921BE01B9200789E22 /* main.m in Sources */,
 				14F3A6DD1BE01D6E00789E22 /* CollectionCell.m in Sources */,
 				14F3A6DE1BE01D6E00789E22 /* FooterExampleView.m in Sources */,
