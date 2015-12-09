@@ -6,6 +6,7 @@ import CoreData
     optional func dataSource(dataSource: DATASource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     optional func dataSource(dataSource: DATASource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     optional func dataSource(dataSource: DATASource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath)
+    optional func dataSourceDidChangeContent(dataSource: DATASource)
 
     /*!
     * **************************
@@ -564,6 +565,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     }, completion: nil)
             }
         }
+        self.delegate?.dataSourceDidChangeContent?(self)
     }
     
     private func configureCell(cell: UIView, indexPath: NSIndexPath) {
