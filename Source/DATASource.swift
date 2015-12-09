@@ -6,6 +6,7 @@ import CoreData
     optional func dataSource(dataSource: DATASource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     optional func dataSource(dataSource: DATASource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     optional func dataSource(dataSource: DATASource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath)
+    optional func dataSourceDidChangeContent(dataSource: DATASource)
 
     /*!
     * **************************
@@ -17,7 +18,6 @@ import CoreData
 
     // Sections and Headers
 
-    optional func numberOfSectionsInTableViewCalled(dataSource: DATASource, tableView: UITableView)
     optional func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String]
     optional func dataSource(dataSource: DATASource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
     optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
@@ -196,7 +196,6 @@ public class DATASource: NSObject {
 
 extension DATASource: UITableViewDataSource {
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        self.delegate?.numberOfSectionsInTableViewCalled?(self, tableView: tableView)
         return self.fetchedResultsController.sections?.count ?? 0
     }
 
@@ -566,6 +565,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     }, completion: nil)
             }
         }
+        self.delegate?.dataSourceDidChangeContent?(self)
     }
     
     private func configureCell(cell: UIView, indexPath: NSIndexPath) {
