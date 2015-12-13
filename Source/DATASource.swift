@@ -148,6 +148,15 @@ public class DATASource: NSObject {
         }
     }
 
+    /**
+     Returns the title of a given section. Uses given `sectionName` in the initializer to do this lookup.
+     - parameter section: The section used to retrieve the title.
+     - returns: The title for the requested section, returns `nil` if the section is not present.
+     */
+    public func titleForHeaderInSection(section: Int) -> String? {
+        return self.fetchedResultsController.sections?[section].name
+    }
+
     internal func configureCell(cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
 

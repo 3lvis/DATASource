@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-@objc public protocol DATASourceDelegate: class {
+@objc public protocol DATASourceDelegate: NSObjectProtocol {
     optional func dataSource(dataSource: DATASource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     optional func dataSource(dataSource: DATASource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
     optional func dataSource(dataSource: DATASource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
