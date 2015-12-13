@@ -100,6 +100,12 @@ extension MyController: DATASourceDelegate {
 }
 ```
 
+DATASource also provides [a simple method to get the title for an specific section](https://github.com/3lvis/DATASource/blob/d2e095cc864cef5363b571898210baf3feffa50e/Source/DATASource.swift#L156), useful when dealing with custom headers.
+
+```swift
+let sectionTitle = self.dataSource.titleForHeaderInSection(section)
+```
+
 ### UITableViewDataSource
 
 `DATASource` takes ownership of your `UITableViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UITableViewDataSource` methods you can use the [`DATASourceDelegate`](/Source/DATASourceDelegate.swift).
