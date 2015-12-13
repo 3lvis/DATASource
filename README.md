@@ -69,7 +69,7 @@ func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableV
 
 ### UITableViewDataSource
 
-`DATASource` takes ownership of your `UITableViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UITableViewDataSource` methods you can use the `DATASourceDelegate`.
+`DATASource` takes ownership of your `UITableViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UITableViewDataSource` methods you can use the [`DATASourceDelegate`](/Source/DATASourceDelegate.swift).
 
 ## UICollectionView
 
