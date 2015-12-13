@@ -16,6 +16,7 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
   * [Basic Usage](#basic-usage)
   * [Sectioned UITableView](#sectioned-uitableview)
   * [Sectioned UITableView Without Indexes](#sectioned-uitableview-without-indexes)
+  * [Custom Headers](#custom-headers)
   * [UITableViewDataSource](#uitableviewdatasource)
 * [UICollectionView](#example)
   * [Basic Usage](#basic-usage-1)
@@ -78,8 +79,24 @@ You can disable the indexes by overwritting the method that generates them and j
 ```swift
 self.dataSource.delegate = self
 
-func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String] {
-    return [String]()
+extension MyController: DATASourceDelegate {
+    func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String] {
+        return [String]()
+    }
+}
+```
+
+### Custom Headers
+
+By default DATASource uses the UITableView's built-in header. But many apps require the use of custom headers when using sectioned table views. To be able to use your [custom header view](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITableViewDelegate_Protocol/#//apple_ref/occ/intfm/UITableViewDelegate/tableView:viewForHeaderInSection:), you will need to disable the built-in header by implementing `dataSource:tableView:titleForHeaderInSection:` in the DATASourceDelegate so it returns `nil`:
+
+```swift
+self.dataSource.delegate = self
+
+extension MyController: DATASourceDelegate {
+    func dataSource(dataSource: DATASource, tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
+    }
 }
 ```
 
