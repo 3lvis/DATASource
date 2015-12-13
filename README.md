@@ -107,7 +107,7 @@ DATASource *dataSource = [[DATASource alloc] initWithCollectionView:self.collect
 self.collectionView.dataSource = dataSource;
 ```
 
-### Indexed UITableView
+### Sectioned UICollectionViewController
 
 `DATASource` provides an easy way to show an grouped UICollectionView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`. This will create a collectionView reusable header.
 
