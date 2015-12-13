@@ -45,19 +45,19 @@ DATASource *dataSource = [[DATASource alloc] initWithTableView:self.tableView
 self.tableView.dataSource = dataSource;
 ```
 
-### Indexed UITableView
+### Sectioned UITableView
 
-`DATASource` provides an easy way to show an indexed UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
+`DATASource` provides an easy way to show an sectioned UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
 
-Check the [Swift Demo](https://github.com/3lvis/DATASource/blob/master/TableSwift/ViewController.swift) for an example of this, were we have an indexed UITableView of names, just like the Contacts.app!
+Check the [Swift Demo](https://github.com/3lvis/DATASource/blob/master/TableSwift/ViewController.swift) for an example of this, were we have an sectioned UITableView of names, where each section is defined by the first letter of the name, just like the Contacts app!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/table.gif" />
 </p>
 
-#### The section grouping is cool, but I don't want the indexes
+#### Sectioned UITableView Without Indexes
 
-You can disable the indexes by overwritting the method that generates them and just return an empty list of indexes. Add the `DATASourceDelegate` protocol to your controller then:
+You can disable the indexes by overwritting the method that generates them and just return an empty list of indexes. Add the `DATASourceDelegate` protocol to your controller then implement the `sectionIndexTitlesForDataSource:dataSource:tableView` method, like this:
 
 ```swift
 self.dataSource.delegate = self
