@@ -55,7 +55,7 @@ Check the [Swift Demo](https://github.com/3lvis/DATASource/blob/master/TableSwif
   <img src="https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/table.gif" />
 </p>
 
-#### Sectioned UITableView Without Indexes
+### Sectioned UITableView Without Indexes
 
 You can disable the indexes by overwritting the method that generates them and just return an empty list of indexes. Add the `DATASourceDelegate` protocol to your controller then implement the `sectionIndexTitlesForDataSource:dataSource:tableView` method, like this:
 
