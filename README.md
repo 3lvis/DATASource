@@ -64,7 +64,7 @@ self.tableView.dataSource = dataSource;
 
 ### Sectioned UITableView
 
-`DATASource` provides an easy way to show an sectioned UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
+**DATASource** provides an easy way to show an sectioned UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
 
 Check the [Swift Demo](https://github.com/3lvis/DATASource/blob/master/TableSwift/ViewController.swift) for an example of this, were we have an sectioned UITableView of names, where each section is defined by the first letter of the name, just like the Contacts app!
 
@@ -88,7 +88,7 @@ extension MyController: DATASourceDelegate {
 
 ### Custom Headers
 
-By default DATASource uses the UITableView's built-in header. But many apps require the use of custom headers when using sectioned table views. To be able to use your [custom header view](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITableViewDelegate_Protocol/#//apple_ref/occ/intfm/UITableViewDelegate/tableView:viewForHeaderInSection:), you will need to disable the built-in header by implementing `dataSource:tableView:titleForHeaderInSection:` in the DATASourceDelegate so it returns `nil`:
+By default **DATASource** uses the UITableView's built-in header. But many apps require the use of custom headers when using sectioned table views. To be able to use your [custom header view](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITableViewDelegate_Protocol/#//apple_ref/occ/intfm/UITableViewDelegate/tableView:viewForHeaderInSection:), you will need to disable the built-in header by implementing `dataSource:tableView:titleForHeaderInSection:` in the DATASourceDelegate so it returns `nil`:
 
 ```swift
 self.dataSource.delegate = self
@@ -100,7 +100,7 @@ extension MyController: DATASourceDelegate {
 }
 ```
 
-DATASource also provides [a simple method to get the title for an specific section](https://github.com/3lvis/DATASource/blob/d2e095cc864cef5363b571898210baf3feffa50e/Source/DATASource.swift#L156), useful when dealing with custom headers.
+**DATASource** also provides [a simple method to get the title for an specific section](https://github.com/3lvis/DATASource/blob/d2e095cc864cef5363b571898210baf3feffa50e/Source/DATASource.swift#L156), useful when dealing with custom headers.
 
 ```swift
 let sectionTitle = self.dataSource.titleForHeaderInSection(section)
@@ -108,7 +108,7 @@ let sectionTitle = self.dataSource.titleForHeaderInSection(section)
 
 ### UITableViewDataSource
 
-`DATASource` takes ownership of your `UITableViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UITableViewDataSource` methods you can use the [`DATASourceDelegate`](/Source/DATASourceDelegate.swift).
+**DATASource** takes ownership of your `UITableViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UITableViewDataSource` methods you can use the [`DATASourceDelegate`](/Source/DATASourceDelegate.swift).
 
 ## UICollectionView
 
@@ -148,7 +148,7 @@ self.collectionView.dataSource = dataSource;
 
 ### Sectioned UICollectionViewController
 
-`DATASource` provides an easy way to show an grouped UICollectionView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`. This will create a collectionView reusable header.
+**DATASource** provides an easy way to show an grouped UICollectionView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`. This will create a collectionView reusable header.
 
 Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/CollectionSwift) for an example of this, were we have a grouped UICollectionView using the first letter of a name as a header, just like the Contacts.app!
 
@@ -158,7 +158,7 @@ Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/
 
 ### UICollectionViewDataSource
 
-`DATASource` takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/CollectionSwift) where we show how to add a footer view to your `DATASource` backed UICollectionView.
+**DATASource** takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/CollectionSwift) where we show how to add a footer view to your **DATASource** backed UICollectionView.
 
 ## Installation
 
