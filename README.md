@@ -10,6 +10,22 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 - [x] Swift 2.0
 - [x] Objective-C compatibility
 
+## Table of Contents
+
+* [UITableView](#uitableview)
+  * [Basic Usage](#basic-usage)
+  * [Sectioned UITableView](#sectioned-uitableview)
+  * [Sectioned UITableView Without Indexes](#sectioned-uitableview-without-indexes)
+  * [UITableViewDataSource](#uitableviewdatasource)
+* [UICollectionView](#example)
+  * [Basic Usage](#basic-usage-1)
+  * [Sectioned UICollectionViewController](#sectioned-uicollectionviewcontroller)
+  * [UICollectionViewDataSource](#uicollectionviewdatasource)
+* [Installation](#installation)
+* [Author](#author)
+* [License](#license)
+* [Footnotes](#footnotes)
+
 ## UITableView
 
 ### Basic Usage
