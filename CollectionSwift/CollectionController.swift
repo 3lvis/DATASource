@@ -73,9 +73,9 @@ class CollectionController: UICollectionViewController {
     }
 
     func randomString() -> String {
-        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let letters = "ABCDEFGHIJKL"
         var string = ""
-        for _ in 0...10 {
+        for _ in 0...5 {
             let token = UInt32(letters.characters.count)
             let letterIndex = Int(arc4random_uniform(token))
             let firstChar = Array(letters.characters)[letterIndex]
@@ -83,5 +83,25 @@ class CollectionController: UICollectionViewController {
         }
         
         return string
+    }
+}
+
+extension CollectionController {
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard let object = self.dataSource.objectAtIndexPath(indexPath) else { return }
+
+        if let name = object.valueForKey("name") as? String where name.characters.first == "A" {
+            self.dataStack?.performInNewBackgroundContext({ backgroundContext in
+                let backgroundObject = backgroundContext.objectWithID(object.objectID)
+                backgroundObject.setValue(name + "+", forKey: "name")
+                try! backgroundContext.save()
+            })
+        } else {
+            self.dataStack?.performInNewBackgroundContext({ backgroundContext in
+                let backgroundObject = backgroundContext.objectWithID(object.objectID)
+                backgroundContext.deleteObject(backgroundObject)
+                try! backgroundContext.save()
+            })
+        }
     }
 }

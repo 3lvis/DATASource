@@ -93,21 +93,31 @@ extension DATASource: NSFetchedResultsControllerDelegate {
             case .Insert:
                 if let newIndexPath = newIndexPath {
                     changeSet.append(newIndexPath)
+                    self.objectChanges[type] = changeSet
                 }
                 break
             case .Delete, .Update:
                 if let indexPath = indexPath {
                     changeSet.append(indexPath)
+                    self.objectChanges[type] = changeSet
                 }
+                break
             case .Move:
                 if let indexPath = indexPath, newIndexPath = newIndexPath {
-                    changeSet.append(indexPath)
-                    changeSet.append(newIndexPath)
+                    // Workaround: Updating a UICollectionView element sometimes will trigger a .Move change
+                    // where both indexPaths are the same, as a workaround if this happens, DATASource
+                    // will treat this change as an .Update
+                    if indexPath == newIndexPath {
+                        changeSet.append(indexPath)
+                        self.objectChanges[.Update] = changeSet
+                    } else {
+                        changeSet.append(indexPath)
+                        changeSet.append(newIndexPath)
+                        self.objectChanges[type] = changeSet
+                    }
                 }
                 break
             }
-
-            self.objectChanges[type] = changeSet
         }
     }
 
