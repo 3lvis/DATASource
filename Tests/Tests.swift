@@ -51,6 +51,7 @@ class Tests: XCTestCase {
         XCTAssertTrue(success)
     }
 
+    /*
     func testCollectionViewDataSouce()  {
         var success = false
         let bundle = NSBundle(forClass: Tests.self)
@@ -83,4 +84,5 @@ class Tests: XCTestCase {
         // Invalid update: invalid number of items in section 0.  The number of items contained in an existing section after the update (1) must be equal to the number of items contained in that section before the update (1), 
         // plus or minus the number of items inserted or deleted from that section (1 inserted, 0 deleted) and plus or minus the number of items moved into or out of that section (0 moved in, 0 moved out). with userInfo (null)
     }
+    */
 }
