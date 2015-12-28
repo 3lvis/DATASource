@@ -5,12 +5,12 @@ import CoreData
 import DATASource
 
 class PodTests: XCTestCase {
-    static let cellIdentifier = "CellIdentifier"
-    static let entityName = "User"
-    static let modelName = "DataModel"
+    static let CellIdentifier = "CellIdentifier"
+    static let EntityName = "User"
+    static let ModelName = "DataModel"
 
     func userWithName(name: String, context: NSManagedObjectContext) -> NSManagedObject {
-        let entity = NSEntityDescription.entityForName(PodTests.entityName, inManagedObjectContext: context)!
+        let entity = NSEntityDescription.entityForName(PodTests.EntityName, inManagedObjectContext: context)!
         let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
         user.setValue(name, forKey: "name")
 
@@ -20,15 +20,15 @@ class PodTests: XCTestCase {
     func testTableViewDATASource() {
         var success = false
         let bundle = NSBundle(forClass: PodTests.self)
-        let dataStack = DATAStack(modelName: PodTests.modelName, bundle: bundle, storeType: .InMemory)
+        let dataStack = DATAStack(modelName: PodTests.ModelName, bundle: bundle, storeType: .InMemory)
 
         let tableView = UITableView()
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: PodTests.cellIdentifier)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: PodTests.CellIdentifier)
 
-        let request = NSFetchRequest(entityName: PodTests.entityName)
+        let request = NSFetchRequest(entityName: PodTests.EntityName)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DATASource(tableView: tableView, cellIdentifier: PodTests.cellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
+        let dataSource = DATASource(tableView: tableView, cellIdentifier: PodTests.CellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
             if let name = item.valueForKey("name") as? String {
                 XCTAssertEqual(name, "Elvis")
                 success = true
@@ -50,4 +50,39 @@ class PodTests: XCTestCase {
 
         XCTAssertTrue(success)
     }
+
+    /*
+    func testCollectionViewDataSouce()  {
+        var success = false
+        let bundle = NSBundle(forClass: PodTests.self)
+        let dataStack = DATAStack(modelName: PodTests.ModelName, bundle: bundle, storeType: .InMemory)
+        let layout = UICollectionViewLayout()
+        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: PodTests.CellIdentifier)
+        let request = NSFetchRequest(entityName: PodTests.EntityName)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: PodTests.CellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
+            success = true
+        }
+        collectionView.dataSource = dataSource
+        collectionView.reloadData()
+
+        dataStack.performInNewBackgroundContext { backgroundContext in
+            self.userWithName("Elvis", context: backgroundContext)
+
+            do {
+                try backgroundContext.save()
+            } catch {
+                print("Background save error")
+            }
+        }
+
+        XCTAssertTrue(success)
+
+        // Fails
+        // CoreData: error: Serious application error.  An exception was caught from the delegate of NSFetchedResultsController during a call to -controllerDidChangeContent:.  
+        // Invalid update: invalid number of items in section 0.  The number of items contained in an existing section after the update (1) must be equal to the number of items contained in that section before the update (1), 
+        // plus or minus the number of items inserted or deleted from that section (1 inserted, 0 deleted) and plus or minus the number of items moved into or out of that section (0 moved in, 0 moved out). with userInfo (null)
+    }
+    */
 }
