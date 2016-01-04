@@ -20,6 +20,12 @@ class ViewController: UITableViewController {
         return dataSource
     }()
 
+    lazy var loadingView: LoadingView = {
+        let loadingView = LoadingView()
+
+        return loadingView
+    }()
+
     convenience init(dataStack: DATAStack) {
         self.init(style: .Plain)
 
@@ -33,7 +39,10 @@ class ViewController: UITableViewController {
         self.tableView.dataSource = self.dataSource
 
         if self.dataSource.isEmpty {
-            self.loadItems(0, completion: nil)
+            self.loadingView.present()
+            self.loadItems(0, completion: {
+                self.loadingView.dismiss()
+            })
         }
     }
 
@@ -46,9 +55,11 @@ class ViewController: UITableViewController {
         if offset > scrollView.contentSize.height {
             if let item = self.dataSource.objects.last {
                 self.loading = true
+                self.loadingView.present()
                 let initialIndex = Int(item.valueForKey("name") as! String)! + 1
                 self.loadItems(initialIndex, completion: {
                     self.loading = false
+                    self.loadingView.dismiss()
                     print("loaded items starting at \(item.valueForKey("name"))")
                 })
             }
