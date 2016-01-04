@@ -9,7 +9,6 @@ class LoadingView: UIView {
 
     lazy var loadingLabel: UILabel = {
         let loadingLabel = UILabel()
-        loadingLabel.text = "Loading"
         loadingLabel.textAlignment = .Center
         loadingLabel.textColor = UIColor.whiteColor()
 
@@ -46,16 +45,22 @@ class LoadingView: UIView {
 
     func present() {
         self.loadingIndicator.startAnimating()
-        let window = UIApplication.sharedApplication().keyWindow!
-        window.addSubview(self)
+        self.loadingLabel.text = "Loading"
+
+        if self.superview == nil {
+            let window = UIApplication.sharedApplication().keyWindow!
+            window.addSubview(self)
+        }
     }
 
     func dismiss() {
         self.loadingIndicator.stopAnimating()
         self.loadingLabel.text = "Done"
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            self.removeFromSuperview()
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            if self.superview != nil {
+                self.removeFromSuperview()
+            }
         }
     }
 }
