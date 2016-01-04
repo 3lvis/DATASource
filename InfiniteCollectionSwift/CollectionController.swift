@@ -1,20 +1,23 @@
 import UIKit
+
 import DATAStack
 import DATASource
 import CoreData
 
-class ViewController: UITableViewController {
-    static let Identifier = "Identifier"
+class CollectionController: UICollectionViewController {
     var dataStack: DATAStack?
 
     lazy var dataSource: DATASource = {
+        guard let collectionView = self.collectionView, mainContext = self.dataStack?.mainContext else { fatalError("CollectionView is nil") }
+
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true)
         ]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: ViewController.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, configuration: { cell, item, indexPath in
-            cell.textLabel?.text = item.valueForKey("name") as? String
+        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, configuration: { cell, item, indexPath in
+            let collectionCell = cell as! CollectionCell
+            collectionCell.textLabel.text = item.valueForKey("name") as? String
         })
 
         return dataSource
@@ -26,17 +29,24 @@ class ViewController: UITableViewController {
         return loadingView
     }()
 
-    convenience init(dataStack: DATAStack) {
-        self.init(style: .Plain)
+    init(layout: UICollectionViewLayout, dataStack: DATAStack) {
+        super.init(collectionViewLayout: layout)
 
         self.dataStack = dataStack
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ViewController.Identifier)
-        self.tableView.dataSource = self.dataSource
+        guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
+        collectionView.registerClass(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.Identifier)
+        collectionView.dataSource = self.dataSource
+        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
         if self.dataSource.isEmpty {
             self.loadingView.present()
@@ -48,10 +58,10 @@ class ViewController: UITableViewController {
 
     var loading = false
     override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        guard let tableView = self.tableView else { return }
+        guard let collectionView = self.collectionView else { return }
         guard self.loading == false else { return }
 
-        let offset = tableView.contentOffset.y + UIScreen.mainScreen().bounds.height
+        let offset = collectionView.contentOffset.y + UIScreen.mainScreen().bounds.height
         if offset >= scrollView.contentSize.height {
             if let item = self.dataSource.objects.last {
                 self.loading = true
