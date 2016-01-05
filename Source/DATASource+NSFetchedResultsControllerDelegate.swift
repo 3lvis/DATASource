@@ -161,29 +161,6 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 }
             }
 
-            if let deletes = self.objectChanges[.Delete] {
-                if deletes.count > 0 {
-                    if let sections = self.sectionChanges[.Delete] {
-                        let filtered = deletes.filter({ element -> Bool in
-                            return (sections.containsIndex(element.section))
-                        })
-                        self.objectChanges[.Delete] = filtered
-                    }
-                }
-            }
-
-            if let inserts = self.objectChanges[.Insert] {
-                if inserts.count > 0 {
-                    if let sections = self.sectionChanges[.Insert] {
-                        let filtered = inserts.filter({ element -> Bool in
-                            return (sections.containsIndex(element.section))
-                        })
-
-                        self.objectChanges[.Insert] = filtered
-                    }
-                }
-            }
-
             if let collectionView = self.collectionView {
                 collectionView.performBatchUpdates({
                     if let deletedSections = self.sectionChanges[.Delete] {
