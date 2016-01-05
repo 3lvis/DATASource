@@ -5,7 +5,7 @@
 @import CoreData;
 
 #import "FooterExampleView.h"
-#import "CollectionCell.h"
+#import "CollectionObjC-Swift.h"
 
 @interface ViewController () <NSFetchedResultsControllerDelegate, DATASourceDelegate>
 
@@ -33,13 +33,13 @@
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"firstLetterOfName" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
     _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
-                                              cellIdentifier:CollectionCellIdentifier
+                                              cellIdentifier:[CollectionCell Identifier]
                                                 fetchRequest:request
                                                  mainContext:self.dataStack.mainContext
                                                  sectionName:@"firstLetterOfName"
                                                configuration:^(UICollectionViewCell * _Nonnull cell, NSManagedObject * _Nonnull item, NSIndexPath * _Nonnull indexPath) {
                                                    CollectionCell *collectionCell = (CollectionCell *)cell;
-                                                   [collectionCell updateWithText:[item valueForKey:@"name"]];
+                                                   collectionCell.textLabel.text = [item valueForKey:@"name"];
                                                }];
     _dataSource.delegate = self;
 
@@ -49,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.collectionView registerClass:[CollectionCell class] forCellWithReuseIdentifier:CollectionCellIdentifier];
+    [self.collectionView registerClass:[CollectionCell class] forCellWithReuseIdentifier:[CollectionCell Identifier]];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                           target:self
                                                                           action:@selector(addAction)];

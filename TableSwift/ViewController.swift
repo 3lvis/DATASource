@@ -4,7 +4,7 @@ import DATASource
 import CoreData
 
 class ViewController: UITableViewController {
-    var dataStack: DATAStack?
+    weak var dataStack: DATAStack?
 
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")

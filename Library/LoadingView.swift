@@ -11,14 +11,15 @@ class LoadingView: UIView {
         let loadingLabel = UILabel()
         loadingLabel.textAlignment = .Center
         loadingLabel.textColor = UIColor.whiteColor()
+        loadingLabel.font = UIFont.systemFontOfSize(14)
 
         return loadingLabel
     }()
 
     init() {
         let bounds = UIScreen.mainScreen().bounds
-        let width = CGFloat(200)
-        let height = CGFloat(50)
+        let width = CGFloat(150)
+        let height = CGFloat(35)
         let bottomMargin = CGFloat(25)
         let x = (bounds.width - width) / 2
         let y = bounds.height - height - bottomMargin
