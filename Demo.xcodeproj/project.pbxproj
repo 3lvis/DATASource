@@ -38,6 +38,9 @@
 		149AF19B1C0EB9EF00BA0907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149AF1991C0EB9EF00BA0907 /* LaunchScreen.storyboard */; };
 		149AF1A11C0EBA0700BA0907 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AF1A01C0EBA0700BA0907 /* ViewController.swift */; };
 		14A139B41AEFC72B00AD732F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A139B31AEFC72B00AD732F /* Tests.swift */; };
+		14AFFAF01C3C00E0001AD02C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */; };
+		14AFFAF11C3C00E3001AD02C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */; };
+		14AFFAF21C3C00E5001AD02C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6081C3BC9E80066FAC8 /* LoadingView.swift */; };
 		14F3A67D1BE01B8500789E22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3A67C1BE01B8500789E22 /* AppDelegate.swift */; };
 		14F3A6821BE01B8500789E22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14F3A6811BE01B8500789E22 /* Assets.xcassets */; };
 		14F3A6851BE01B8500789E22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F3A6831BE01B8500789E22 /* LaunchScreen.storyboard */; };
@@ -1036,7 +1039,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14AFFAF11C3C00E3001AD02C /* DataModel.xcdatamodeld in Sources */,
+				14AFFAF21C3C00E5001AD02C /* LoadingView.swift in Sources */,
 				14A139B41AEFC72B00AD732F /* Tests.swift in Sources */,
+				14AFFAF01C3C00E0001AD02C /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
