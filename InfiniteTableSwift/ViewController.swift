@@ -76,8 +76,8 @@ class ViewController: UITableViewController {
                         let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
                         user.setValue(String(format: "%04d", i), forKey: "name")
 
-                        let hundreds = Int(floor(Double(i) / 10.0) * 10)
-                        user.setValue(String(hundreds), forKey: "firstLetterOfName")
+                        let tens = Int(floor(Double(i) / 10.0) * 10)
+                        user.setValue(String(tens), forKey: "firstLetterOfName")
                     }
 
                     do {
