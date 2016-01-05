@@ -13,9 +13,11 @@ class ViewController: UITableViewController {
             NSSortDescriptor(key: "name", ascending: true)
         ]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: ViewController.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, configuration: { cell, item, indexPath in
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: ViewController.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             cell.textLabel?.text = item.valueForKey("name") as? String
         })
+
+        dataSource.delegate = self
 
         return dataSource
     }()
@@ -70,9 +72,12 @@ class ViewController: UITableViewController {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.dataStack!.performInNewBackgroundContext { backgroundContext in
                 if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
-                    for i in initialIndex..<initialIndex + 20 {
+                    for i in initialIndex..<initialIndex + 18 {
                         let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
                         user.setValue(String(format: "%04d", i), forKey: "name")
+
+                        let hundreds = Int(floor(Double(i) / 10.0) * 10)
+                        user.setValue(String(hundreds), forKey: "firstLetterOfName")
                     }
 
                     do {
@@ -91,5 +96,11 @@ class ViewController: UITableViewController {
                 }
             }
         }
+    }
+}
+
+extension ViewController: DATASourceDelegate {
+    func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String] {
+        return [String]()
     }
 }
