@@ -5,7 +5,7 @@ import CoreData
 
 class ViewController: UITableViewController {
     static let Identifier = "Identifier"
-    var dataStack: DATAStack?
+    weak var dataStack: DATAStack?
 
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")

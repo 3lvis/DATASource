@@ -5,10 +5,10 @@ import DATASource
 import CoreData
 
 class CollectionController: UICollectionViewController {
-    var dataStack: DATAStack?
+    unowned var dataStack: DATAStack
 
     lazy var dataSource: DATASource = {
-        guard let collectionView = self.collectionView, mainContext = self.dataStack?.mainContext else { fatalError("CollectionView is nil") }
+        guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
 
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [
@@ -16,7 +16,7 @@ class CollectionController: UICollectionViewController {
             NSSortDescriptor(key: "firstLetterOfName", ascending: true)
         ]
 
-        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let collectionCell = cell as! CollectionCell
             collectionCell.textLabel.text = item.valueForKey("name") as? String
         })
@@ -25,9 +25,9 @@ class CollectionController: UICollectionViewController {
         }()
 
     init(layout: UICollectionViewLayout, dataStack: DATAStack) {
-        super.init(collectionViewLayout: layout)
-
         self.dataStack = dataStack
+
+        super.init(collectionViewLayout: layout)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +48,7 @@ class CollectionController: UICollectionViewController {
     }
 
     func saveAction() {
-        self.dataStack?.performInNewBackgroundContext { backgroundContext in
+        self.dataStack.performInNewBackgroundContext { backgroundContext in
             if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
                 let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
 
@@ -65,7 +65,7 @@ class CollectionController: UICollectionViewController {
                     fatalError()
                 }
 
-                self.dataStack?.persistWithCompletion({ })
+                self.dataStack.persistWithCompletion({ })
             } else {
                 print("Oh no")
             }
@@ -91,13 +91,13 @@ extension CollectionController {
         guard let object = self.dataSource.objectAtIndexPath(indexPath) else { return }
 
         if let name = object.valueForKey("name") as? String where name.characters.first == "A" {
-            self.dataStack?.performInNewBackgroundContext({ backgroundContext in
+            self.dataStack.performInNewBackgroundContext({ backgroundContext in
                 let backgroundObject = backgroundContext.objectWithID(object.objectID)
                 backgroundObject.setValue(name + "+", forKey: "name")
                 try! backgroundContext.save()
             })
         } else {
-            self.dataStack?.performInNewBackgroundContext({ backgroundContext in
+            self.dataStack.performInNewBackgroundContext({ backgroundContext in
                 let backgroundObject = backgroundContext.objectWithID(object.objectID)
                 backgroundContext.deleteObject(backgroundObject)
                 try! backgroundContext.save()
