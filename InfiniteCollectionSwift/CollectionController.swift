@@ -5,10 +5,10 @@ import DATASource
 import CoreData
 
 class CollectionController: UICollectionViewController {
-    var dataStack: DATAStack?
+    unowned var dataStack: DATAStack
 
     lazy var dataSource: DATASource = {
-        guard let collectionView = self.collectionView, mainContext = self.dataStack?.mainContext else { fatalError("CollectionView is nil") }
+        guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
 
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [
@@ -16,7 +16,7 @@ class CollectionController: UICollectionViewController {
             NSSortDescriptor(key: "firstLetterOfName", ascending: true)
         ]
 
-        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let collectionCell = cell as! CollectionCell
             collectionCell.textLabel.text = item.valueForKey("name") as? String
         })
@@ -31,9 +31,9 @@ class CollectionController: UICollectionViewController {
     }()
 
     init(layout: UICollectionViewLayout, dataStack: DATAStack) {
-        super.init(collectionViewLayout: layout)
-
         self.dataStack = dataStack
+
+        super.init(collectionViewLayout: layout)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -79,7 +79,7 @@ class CollectionController: UICollectionViewController {
 
     func loadItems(initialIndex: Int, completion: (Void -> Void)?) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            self.dataStack!.performInNewBackgroundContext { backgroundContext in
+            self.dataStack.performInNewBackgroundContext { backgroundContext in
                 if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
                     for i in initialIndex..<initialIndex + 18 {
                         let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
@@ -97,13 +97,37 @@ class CollectionController: UICollectionViewController {
                         fatalError()
                     }
 
-                    self.dataStack!.persistWithCompletion({
+                    self.dataStack.persistWithCompletion({
                         completion?()
                     })
                 } else {
                     print("Oh no")
                 }
             }
+        }
+    }
+}
+
+extension CollectionController {
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard let numberOfItems = self.collectionView?.numberOfItemsInSection(indexPath.section) else { return }
+        var items = [NSManagedObject]()
+        for i in 0..<numberOfItems {
+            let newIndexPath = NSIndexPath(forRow: i, inSection: indexPath.section)
+            if let item = self.dataSource.objectAtIndexPath(newIndexPath) {
+                items.append(item)
+            }
+        }
+
+        self.dataStack.performInNewBackgroundContext { backgroundContext in
+            for item in items {
+                let safeItem = backgroundContext.objectWithID(item.objectID)
+                backgroundContext.deleteObject(safeItem)
+            }
+
+            try! backgroundContext.save()
+
+            self.dataStack.persistWithCompletion(nil)
         }
     }
 }
