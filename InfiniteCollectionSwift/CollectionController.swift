@@ -12,10 +12,11 @@ class CollectionController: UICollectionViewController {
 
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [
-            NSSortDescriptor(key: "name", ascending: true)
+            NSSortDescriptor(key: "name", ascending: true),
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
         ]
 
-        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, configuration: { cell, item, indexPath in
+        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let collectionCell = cell as! CollectionCell
             collectionCell.textLabel.text = item.valueForKey("name") as? String
         })
@@ -80,9 +81,12 @@ class CollectionController: UICollectionViewController {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.dataStack!.performInNewBackgroundContext { backgroundContext in
                 if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
-                    for i in initialIndex..<initialIndex + 20 {
+                    for i in initialIndex..<initialIndex + 18 {
                         let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
                         user.setValue(String(format: "%04d", i), forKey: "name")
+
+                        let tens = Int(floor(Double(i) / 10.0) * 10)
+                        user.setValue(String(tens), forKey: "firstLetterOfName")
                     }
 
                     do {
