@@ -1,6 +1,6 @@
 import UIKit
 
-class LoadingView: UIView {
+class InfiniteLoadingIndicator: UIView {
     lazy var loadingIndicator: UIActivityIndicatorView = {
         let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         loadingIndicator.startAnimating()
@@ -8,13 +8,16 @@ class LoadingView: UIView {
         return loadingIndicator
     }()
 
-    init() {
-        let bounds = UIScreen.mainScreen().bounds
+    unowned var parentController: UIViewController
+
+    init(parentController: UIViewController) {
+        self.parentController = parentController
+
         let width = CGFloat(40)
         let height = CGFloat(40)
-        let bottomMargin = CGFloat(25)
-        let x = (bounds.width - width) / 2
-        let y = bounds.height - height - bottomMargin
+        let bottomMargin = CGFloat(20)
+        let x = (self.parentController.view.frame.width - width) / 2
+        let y = self.parentController.view.frame.height - height - bottomMargin
         let frame = CGRect(x: x, y: y, width: width, height: height)
         super.init(frame: frame)
 
@@ -38,10 +41,9 @@ class LoadingView: UIView {
 
     func present() {
         let originalFrame = self.frame
-        self.frame.origin.y = UIScreen.mainScreen().bounds.height
+        self.frame.origin.y = self.parentController.view.frame.height
         if self.superview == nil {
-            let window = UIApplication.sharedApplication().keyWindow!
-            window.addSubview(self)
+            self.parentController.view.addSubview(self)
 
             UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [.AllowUserInteraction], animations: {
                 self.frame = originalFrame
@@ -53,7 +55,7 @@ class LoadingView: UIView {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             let originalFrame = self.frame
             var newFrame = self.frame
-            newFrame.origin.y = UIScreen.mainScreen().bounds.height
+            newFrame.origin.y = self.parentController.view.frame.height + 10
             UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [.AllowUserInteraction], animations: { () -> Void in
                 self.frame = newFrame
                 }, completion: { finished in
