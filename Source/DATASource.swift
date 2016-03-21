@@ -89,7 +89,10 @@ public class DATASource: NSObject {
             self.fetchedResultsController.fetchRequest.predicate = newValue
             self.fetch()
             self.tableView?.reloadData()
-            self.collectionView?.reloadData()
+
+            if let visibleIndexPaths = self.collectionView?.indexPathsForVisibleItems() where visibleIndexPaths.count > 0 {
+                self.collectionView?.reloadItemsAtIndexPaths(visibleIndexPaths)
+            }
         }
     }
 
