@@ -32,7 +32,7 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.registerClass(CustomCell.self, forCellReuseIdentifier: CustomCell.Identifier)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "saveAction")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.saveAction))
         self.tableView.dataSource = self.dataSource
     }
 

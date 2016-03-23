@@ -24,10 +24,10 @@ class CollectionController: UICollectionViewController {
         return dataSource
     }()
 
-    lazy var loadingView: LoadingView = {
-        let loadingView = LoadingView()
+    lazy var infiniteLoadingIndicator: InfiniteLoadingIndicator = {
+        let infiniteLoadingIndicator = InfiniteLoadingIndicator(parentController: self)
 
-        return loadingView
+        return infiniteLoadingIndicator
     }()
 
     init(layout: UICollectionViewLayout, dataStack: DATAStack) {
@@ -50,9 +50,9 @@ class CollectionController: UICollectionViewController {
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
         if self.dataSource.isEmpty {
-            self.loadingView.present()
+            self.infiniteLoadingIndicator.present()
             self.loadItems(0, completion: {
-                self.loadingView.dismiss()
+                self.infiniteLoadingIndicator.dismiss()
             })
         }
     }
@@ -66,11 +66,11 @@ class CollectionController: UICollectionViewController {
         if offset >= scrollView.contentSize.height {
             if let item = self.dataSource.objects.last {
                 self.loading = true
-                self.loadingView.present()
+                self.infiniteLoadingIndicator.present()
                 let initialIndex = Int(item.valueForKey("name") as! String)! + 1
                 self.loadItems(initialIndex, completion: {
                     self.loading = false
-                    self.loadingView.dismiss()
+                    self.infiniteLoadingIndicator.dismiss()
                     print("loaded items starting at \(item.valueForKey("name"))")
                 })
             }
