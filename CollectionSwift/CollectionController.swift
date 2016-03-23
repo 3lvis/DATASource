@@ -44,7 +44,7 @@ class CollectionController: UICollectionViewController {
         collectionView.backgroundColor = UIColor.whiteColor()
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "saveAction")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(CollectionController.saveAction))
     }
 
     func saveAction() {
