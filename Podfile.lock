@@ -1,0 +1,17 @@
+PODS:
+  - DATASource (5.6.1)
+  - DATAStack (4.2.1)
+
+DEPENDENCIES:
+  - DATASource (from `.`)
+  - DATAStack
+
+EXTERNAL SOURCES:
+  DATASource:
+    :path: "."
+
+SPEC CHECKSUMS:
+  DATASource: 6fe46e3c907faba5c5d7327009fe0a72b54b1967
+  DATAStack: 38009d8509307fca8c5bb26bca149e2e601fc369
+
+COCOAPODS: 0.39.0
