@@ -9,6 +9,54 @@
 /* Begin PBXBuildFile section */
 		0299322E8667C83ED0DEA919 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49785EF9F4AAF152E01ABC3 /* Pods.framework */; };
 		141D2EE41BE021500028F879 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D2EE31BE021500028F879 /* CustomCell.swift */; };
+		14308AA21CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
+		14308AA31CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
+		14308AA41CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
+		14308AA51CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
+		14308AA61CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
+		14308AA71CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
+		14308AA81CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
+		14308AA91CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
+		14308AAA1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
+		14308AAB1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
+		14308AAC1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
+		14308AAD1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
+		14308AAE1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
+		14308AAF1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
+		14308AB01CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
+		14308AB11CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
+		14308AB21CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
+		14308AB31CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
+		14308AB41CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
+		14308AB51CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
+		14308AB61CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
+		14308AB71CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
+		14308AB81CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
+		14308AB91CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
+		14308ABA1CC66665000C21DF /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
+		14308ABB1CC66665000C21DF /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
+		14308ABC1CC66665000C21DF /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
+		14308ABD1CC66665000C21DF /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
+		14308ABE1CC66665000C21DF /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
+		14308ABF1CC66665000C21DF /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
+		14308AC01CC66665000C21DF /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
+		14308AC11CC66665000C21DF /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
+		14308AC21CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
+		14308AC31CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
+		14308AC41CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
+		14308AC51CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
+		14308AC61CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
+		14308AC71CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
+		14308AC81CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
+		14308AC91CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
+		14308ACA1CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		14308ACB1CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		14308ACC1CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		14308ACD1CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		14308ACE1CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		14308ACF1CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		14308AD01CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		14308AD11CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
 		146205831C3AB0E400D78FC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146205821C3AB0E400D78FC5 /* AppDelegate.swift */; };
 		146205851C3AB0E400D78FC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146205841C3AB0E400D78FC5 /* Assets.xcassets */; };
 		146205881C3AB0E400D78FC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146205861C3AB0E400D78FC5 /* LaunchScreen.storyboard */; };
@@ -75,6 +123,12 @@
 
 /* Begin PBXFileReference section */
 		141D2EE31BE021500028F879 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DATASource+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
+		14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DATASource+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DATASource+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		14308A9F1CC66665000C21DF /* DATASource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATASource.swift; sourceTree = "<group>"; };
+		14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATASourceCollectionHeaderView.swift; sourceTree = "<group>"; };
+		14308AA11CC66665000C21DF /* DATASourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATASourceDelegate.swift; sourceTree = "<group>"; };
 		146205801C3AB0E400D78FC5 /* InfiniteCollectionSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteCollectionSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146205821C3AB0E400D78FC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		146205841C3AB0E400D78FC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -208,6 +262,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14308A9B1CC66665000C21DF /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */,
+				14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */,
+				14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */,
+				14308A9F1CC66665000C21DF /* DATASource.swift */,
+				14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */,
+				14308AA11CC66665000C21DF /* DATASourceDelegate.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		146205811C3AB0E400D78FC5 /* InfiniteCollectionSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +290,7 @@
 		146D728A1AB782920058798C = {
 			isa = PBXGroup;
 			children = (
+				14308A9B1CC66665000C21DF /* Source */,
 				14C136501AB7849300B7B07A /* Metadata */,
 				146D72AF1AB782920058798C /* Tests */,
 				1498B6041C3BC9E80066FAC8 /* Library */,
@@ -1027,10 +1095,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14308AC91CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 				146205831C3AB0E400D78FC5 /* AppDelegate.swift in Sources */,
+				14308AA91CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				1498B6161C3BC9E80066FAC8 /* DataModel.xcdatamodeld in Sources */,
+				14308AB91CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
+				14308AD11CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
+				14308AC11CC66665000C21DF /* DATASource.swift in Sources */,
 				14F7B07C1C3AB23000AE779F /* CollectionController.swift in Sources */,
 				1498B61D1C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift in Sources */,
+				14308AB11CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				1498B60F1C3BC9E80066FAC8 /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,9 +1113,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14308AAA1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				14AFFAF11C3C00E3001AD02C /* DataModel.xcdatamodeld in Sources */,
 				14AFFAF21C3C00E5001AD02C /* InfiniteLoadingIndicator.swift in Sources */,
+				14308AC21CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
+				14308AB21CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
+				14308AA21CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				14A139B41AEFC72B00AD732F /* Tests.swift in Sources */,
+				14308ACA1CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
+				14308ABA1CC66665000C21DF /* DATASource.swift in Sources */,
 				14AFFAF01C3C00E0001AD02C /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1050,10 +1130,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14308AC71CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 				149AF1A11C0EBA0700BA0907 /* ViewController.swift in Sources */,
+				14308AA71CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				1498B6141C3BC9E80066FAC8 /* DataModel.xcdatamodeld in Sources */,
+				14308AB71CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
+				14308ACF1CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
+				14308ABF1CC66665000C21DF /* DATASource.swift in Sources */,
 				149AF1931C0EB9EF00BA0907 /* AppDelegate.swift in Sources */,
 				1498B61B1C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift in Sources */,
+				14308AAF1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				1498B60D1C3BC9E80066FAC8 /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1062,10 +1148,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14308AC31CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 				14F3A67D1BE01B8500789E22 /* AppDelegate.swift in Sources */,
+				14308AA31CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				1498B6101C3BC9E80066FAC8 /* DataModel.xcdatamodeld in Sources */,
+				14308AB31CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
+				14308ACB1CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
+				14308ABB1CC66665000C21DF /* DATASource.swift in Sources */,
 				14F3A6E41BE01D9200789E22 /* CollectionController.swift in Sources */,
 				1498B6171C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift in Sources */,
+				14308AAB1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				1498B6091C3BC9E80066FAC8 /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1075,12 +1167,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F3A6E01BE01D6E00789E22 /* ViewController.m in Sources */,
+				14308AB41CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
+				14308AA41CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				14F3A6951BE01B9200789E22 /* AppDelegate.m in Sources */,
 				14F3A6921BE01B9200789E22 /* main.m in Sources */,
 				1498B6111C3BC9E80066FAC8 /* DataModel.xcdatamodeld in Sources */,
+				14308AC41CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 				14F3A6DE1BE01D6E00789E22 /* FooterExampleView.m in Sources */,
+				14308AAC1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
+				14308ABC1CC66665000C21DF /* DATASource.swift in Sources */,
 				1498B6181C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift in Sources */,
 				1498B60A1C3BC9E80066FAC8 /* CollectionCell.swift in Sources */,
+				14308ACC1CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,12 +1186,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14308AB51CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
+				14308ACD1CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
+				14308AA51CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				14F3A6E91BE01DE800789E22 /* ViewController.swift in Sources */,
 				1498B6121C3BC9E80066FAC8 /* DataModel.xcdatamodeld in Sources */,
+				14308ABD1CC66665000C21DF /* DATASource.swift in Sources */,
 				141D2EE41BE021500028F879 /* CustomCell.swift in Sources */,
+				14308AAD1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				14F3A6A91BE01B9C00789E22 /* AppDelegate.swift in Sources */,
 				1498B60B1C3BC9E80066FAC8 /* CollectionCell.swift in Sources */,
 				1498B6191C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift in Sources */,
+				14308AC51CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1101,12 +1205,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14308AB61CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
+				14308ACE1CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
+				14308AA61CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				14F3A6C11BE01BA900789E22 /* AppDelegate.m in Sources */,
 				1498B6131C3BC9E80066FAC8 /* DataModel.xcdatamodeld in Sources */,
+				14308ABE1CC66665000C21DF /* DATASource.swift in Sources */,
 				14F3A6E71BE01DD000789E22 /* ViewController.m in Sources */,
+				14308AAE1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				14F3A6BE1BE01BA900789E22 /* main.m in Sources */,
 				1498B60C1C3BC9E80066FAC8 /* CollectionCell.swift in Sources */,
 				1498B61A1C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift in Sources */,
+				14308AC61CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1114,10 +1224,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14308AC81CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 				14F535A01C3A7EC000671EDF /* ViewController.swift in Sources */,
+				14308AA81CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				1498B6151C3BC9E80066FAC8 /* DataModel.xcdatamodeld in Sources */,
+				14308AB81CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
+				14308AD01CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
+				14308AC01CC66665000C21DF /* DATASource.swift in Sources */,
 				14F535951C3A7E9C00671EDF /* AppDelegate.swift in Sources */,
 				1498B61C1C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift in Sources */,
+				14308AB01CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				1498B60E1C3BC9E80066FAC8 /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
