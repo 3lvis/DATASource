@@ -260,13 +260,13 @@
 		149AF1A01C0EBA0700BA0907 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		149EE8791CC916DB002739BA /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14A139B31AEFC72B00AD732F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		14C022541CC9031700CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		14C022581CC9031F00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		14C0225C1CC9033B00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		14C022601CC9034500CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		14C022641CC9034E00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		14C022681CC9035800CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		14C0226C1CC9036100CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
+		14C022541CC9031700CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
+		14C022581CC9031F00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
+		14C0225C1CC9033B00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
+		14C022601CC9034500CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
+		14C022641CC9034E00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
+		14C022681CC9035800CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
+		14C0226C1CC9036100CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -315,7 +315,6 @@
 		14F8486F1CC667BB0052E4B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14F848701CC667D20052E4B0 /* DATASource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
 		14F8487D1CC668820052E4B0 /* DATASource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DATASource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B49785EF9F4AAF152E01ABC3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,7 +416,6 @@
 		146205811C3AB0E400D78FC5 /* InfiniteCollectionSwift */ = {
 			isa = PBXGroup;
 			children = (
-				14C0226C1CC9036100CEFC40 /* DATAStack.framework */,
 				146205821C3AB0E400D78FC5 /* AppDelegate.swift */,
 				14F7B07B1C3AB23000AE779F /* CollectionController.swift */,
 				146205841C3AB0E400D78FC5 /* Assets.xcassets */,
@@ -430,7 +428,6 @@
 		146D728A1AB782920058798C = {
 			isa = PBXGroup;
 			children = (
-				149EE8791CC916DB002739BA /* DATAStack.framework */,
 				14308A9B1CC66665000C21DF /* Source */,
 				14C136501AB7849300B7B07A /* Metadata */,
 				146D72AF1AB782920058798C /* Tests */,
@@ -496,7 +493,6 @@
 		149AF1911C0EB9EF00BA0907 /* DATASourceDelegateTableSwift */ = {
 			isa = PBXGroup;
 			children = (
-				14C022641CC9034E00CEFC40 /* DATAStack.framework */,
 				149AF1921C0EB9EF00BA0907 /* AppDelegate.swift */,
 				149AF1A01C0EBA0700BA0907 /* ViewController.swift */,
 				149AF1971C0EB9EF00BA0907 /* Assets.xcassets */,
@@ -522,7 +518,6 @@
 		14F3A67B1BE01B8500789E22 /* CollectionSwift */ = {
 			isa = PBXGroup;
 			children = (
-				14C022581CC9031F00CEFC40 /* DATAStack.framework */,
 				14F3A67C1BE01B8500789E22 /* AppDelegate.swift */,
 				14F3A6E21BE01D9200789E22 /* CollectionController.swift */,
 				14F3A6811BE01B8500789E22 /* Assets.xcassets */,
@@ -535,7 +530,6 @@
 		14F3A68F1BE01B9200789E22 /* CollectionObjC */ = {
 			isa = PBXGroup;
 			children = (
-				14C022541CC9031700CEFC40 /* DATAStack.framework */,
 				14F3A6931BE01B9200789E22 /* AppDelegate.h */,
 				14F3A6941BE01B9200789E22 /* AppDelegate.m */,
 				14F3A6D71BE01D6E00789E22 /* FooterExampleView.h */,
@@ -561,7 +555,6 @@
 		14F3A6A71BE01B9C00789E22 /* TableSwift */ = {
 			isa = PBXGroup;
 			children = (
-				14C0225C1CC9033B00CEFC40 /* DATAStack.framework */,
 				14F3A6A81BE01B9C00789E22 /* AppDelegate.swift */,
 				14F3A6E81BE01DE800789E22 /* ViewController.swift */,
 				141D2EE31BE021500028F879 /* CustomCell.swift */,
@@ -575,7 +568,6 @@
 		14F3A6BB1BE01BA900789E22 /* TableObjC */ = {
 			isa = PBXGroup;
 			children = (
-				14C022601CC9034500CEFC40 /* DATAStack.framework */,
 				14F3A6BF1BE01BA900789E22 /* AppDelegate.h */,
 				14F3A6C01BE01BA900789E22 /* AppDelegate.m */,
 				14F3A6E51BE01DD000789E22 /* ViewController.h */,
@@ -599,7 +591,6 @@
 		14F535931C3A7E9C00671EDF /* InfiniteTableSwift */ = {
 			isa = PBXGroup;
 			children = (
-				14C022681CC9035800CEFC40 /* DATAStack.framework */,
 				14F535941C3A7E9C00671EDF /* AppDelegate.swift */,
 				14F5359F1C3A7EC000671EDF /* ViewController.swift */,
 				14F535961C3A7E9C00671EDF /* Assets.xcassets */,
@@ -612,7 +603,14 @@
 		AD64C6A3429E8A3FBFC3CF2D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B49785EF9F4AAF152E01ABC3 /* Pods.framework */,
+				14C022581CC9031F00CEFC40 /* DATAStack.framework */,
+				149EE8791CC916DB002739BA /* DATAStack.framework */,
+				14C022541CC9031700CEFC40 /* DATAStack.framework */,
+				14C0225C1CC9033B00CEFC40 /* DATAStack.framework */,
+				14C022601CC9034500CEFC40 /* DATAStack.framework */,
+				14C022641CC9034E00CEFC40 /* DATAStack.framework */,
+				14C022681CC9035800CEFC40 /* DATAStack.framework */,
+				14C0226C1CC9036100CEFC40 /* DATAStack.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
