@@ -84,6 +84,7 @@
 		149AF1981C0EB9EF00BA0907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149AF1971C0EB9EF00BA0907 /* Assets.xcassets */; };
 		149AF19B1C0EB9EF00BA0907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149AF1991C0EB9EF00BA0907 /* LaunchScreen.storyboard */; };
 		149AF1A11C0EBA0700BA0907 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AF1A01C0EBA0700BA0907 /* ViewController.swift */; };
+		149EE87A1CC916DB002739BA /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 149EE8791CC916DB002739BA /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A139B41AEFC72B00AD732F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A139B31AEFC72B00AD732F /* Tests.swift */; };
 		14AFFAF01C3C00E0001AD02C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */; };
 		14AFFAF11C3C00E3001AD02C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */; };
@@ -144,6 +145,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		149EE8781CC916B5002739BA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				149EE87A1CC916DB002739BA /* DATAStack.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C022571CC9031700CEFC40 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,6 +258,7 @@
 		149AF19A1C0EB9EF00BA0907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		149AF19C1C0EB9EF00BA0907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		149AF1A01C0EBA0700BA0907 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		149EE8791CC916DB002739BA /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14A139B31AEFC72B00AD732F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		14C022541CC9031700CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14C022581CC9031F00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = ../Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
@@ -418,6 +430,7 @@
 		146D728A1AB782920058798C = {
 			isa = PBXGroup;
 			children = (
+				149EE8791CC916DB002739BA /* DATAStack.framework */,
 				14308A9B1CC66665000C21DF /* Source */,
 				14C136501AB7849300B7B07A /* Metadata */,
 				146D72AF1AB782920058798C /* Tests */,
@@ -651,6 +664,7 @@
 				146D72A81AB782920058798C /* Sources */,
 				146D72A91AB782920058798C /* Frameworks */,
 				146D72AA1AB782920058798C /* Resources */,
+				149EE8781CC916B5002739BA /* CopyFiles */,
 			);
 			buildRules = (
 			);
