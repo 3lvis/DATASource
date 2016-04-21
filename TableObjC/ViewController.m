@@ -1,8 +1,8 @@
 #import "ViewController.h"
 
 @import DATAStack;
-@import DATASource;
 @import CoreData;
+#import "TableObjC-Swift.h"
 
 static NSString *CellIdentifier = @"CellIdentifier";
 

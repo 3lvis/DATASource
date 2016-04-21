@@ -2,7 +2,6 @@ import UIKit
 import XCTest
 import DATAStack
 import CoreData
-import DATASource
 
 class Tests: XCTestCase {
     static let CellIdentifier = "CellIdentifier"

@@ -1,7 +1,6 @@
 import UIKit
 
 import DATAStack
-import DATASource
 import CoreData
 
 class CollectionController: UICollectionViewController {

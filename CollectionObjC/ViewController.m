@@ -1,7 +1,6 @@
 #import "ViewController.h"
 
 @import DATAStack;
-@import DATASource;
 @import CoreData;
 
 #import "FooterExampleView.h"
