@@ -63,8 +63,8 @@ public class DATASource: NSObject {
 
     internal var fetchedResultsController: NSFetchedResultsController
 
-    internal lazy var objectChanges: [NSFetchedResultsChangeType : [NSIndexPath]] = {
-        return [NSFetchedResultsChangeType : [NSIndexPath]]()
+    internal lazy var objectChanges: [NSFetchedResultsChangeType : Set<NSIndexPath>] = {
+        return [NSFetchedResultsChangeType : Set<NSIndexPath>]()
 
     }()
 
