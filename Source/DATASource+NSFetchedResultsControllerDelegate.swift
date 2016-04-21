@@ -130,8 +130,8 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     var updatedMoves = Set<NSIndexPath>()
                     if let insertSections = self.sectionChanges[.Insert], deleteSections = self.sectionChanges[.Delete] {
                         var generator = moves.generate()
-                        let fromIndexPath = generator.next()!
-                        let toIndexPath = generator.next()!
+                        guard let fromIndexPath = generator.next() else { fatalError("fromIndexPath not found. Moves: \(moves), inserted sections: \(insertSections), deleted sections: \(deleteSections)") }
+                        guard let toIndexPath = generator.next() else { fatalError("toIndexPath not found. Moves: \(moves), inserted sections: \(insertSections), deleted sections: \(deleteSections)") }
 
                         if deleteSections.containsIndex(fromIndexPath.section) {
                             if insertSections.containsIndex(toIndexPath.section) == false {
@@ -188,8 +188,8 @@ extension DATASource: NSFetchedResultsControllerDelegate {
 
                     if let moveItems = self.objectChanges[.Move] {
                         var generator = moveItems.generate()
-                        let fromIndexPath = generator.next()!
-                        let toIndexPath = generator.next()!
+                        guard let fromIndexPath = generator.next() else { fatalError("fromIndexPath not found. Move items: \(moveItems)") }
+                        guard let toIndexPath = generator.next() else { fatalError("toIndexPath not found. Move items: \(moveItems)") }
                         collectionView.moveItemAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
                     }
 
