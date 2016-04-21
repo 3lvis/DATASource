@@ -3,6 +3,6 @@ language: objective-c
 before_install: 
   - gem install xcpretty obcd slather -N
   - brew install carthage
-  - carthage bootstrap --verbose
+  - carthage update
 script: xcodebuild -project Demo.xcodeproj -scheme Tests -sdk iphonesimulator build test -destination 'platform=iOS Simulator,name=iPhone 6' GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean test | xcpretty -c  && exit ${PIPESTATUS[0]}
 after_success: slather
