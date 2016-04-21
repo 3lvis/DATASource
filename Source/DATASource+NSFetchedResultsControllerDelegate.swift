@@ -7,7 +7,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
             tableView.beginUpdates()
         } else if let _ = self.collectionView {
             self.sectionChanges = [NSFetchedResultsChangeType : NSMutableIndexSet]()
-            self.objectChanges = [NSFetchedResultsChangeType : [NSIndexPath]]()
+            self.objectChanges = [NSFetchedResultsChangeType : Set<NSIndexPath>]()
         }
     }
 
@@ -87,18 +87,18 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 break
             }
         } else if let _ = self.collectionView {
-            var changeSet = self.objectChanges[type] ?? [NSIndexPath]()
+            var changeSet = self.objectChanges[type] ?? Set<NSIndexPath>()
 
             switch type {
             case .Insert:
                 if let newIndexPath = newIndexPath {
-                    changeSet.append(newIndexPath)
+                    changeSet.insert(newIndexPath)
                     self.objectChanges[type] = changeSet
                 }
                 break
             case .Delete, .Update:
                 if let indexPath = indexPath {
-                    changeSet.append(indexPath)
+                    changeSet.insert(indexPath)
                     self.objectChanges[type] = changeSet
                 }
                 break
@@ -108,11 +108,11 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     // where both indexPaths are the same, as a workaround if this happens, DATASource
                     // will treat this change as an .Update
                     if indexPath == newIndexPath {
-                        changeSet.append(indexPath)
+                        changeSet.insert(indexPath)
                         self.objectChanges[.Update] = changeSet
                     } else {
-                        changeSet.append(indexPath)
-                        changeSet.append(newIndexPath)
+                        changeSet.insert(indexPath)
+                        changeSet.insert(newIndexPath)
                         self.objectChanges[type] = changeSet
                     }
                 }
@@ -127,15 +127,16 @@ extension DATASource: NSFetchedResultsControllerDelegate {
         } else if let _ = self.collectionView {
             if let moves = self.objectChanges[.Move] {
                 if moves.count > 0 {
-                    var updatedMoves = [NSIndexPath]()
+                    var updatedMoves = Set<NSIndexPath>()
                     if let insertSections = self.sectionChanges[.Insert], deleteSections = self.sectionChanges[.Delete] {
-                        let fromIndexPath = moves[0]
-                        let toIndexPath = moves[1]
+                        var generator = moves.generate()
+                        let fromIndexPath = generator.next()!
+                        let toIndexPath = generator.next()!
 
                         if deleteSections.containsIndex(fromIndexPath.section) {
                             if insertSections.containsIndex(toIndexPath.section) == false {
                                 if var changeSet = self.objectChanges[.Insert] {
-                                    changeSet.append(toIndexPath)
+                                    changeSet.insert(toIndexPath)
                                     self.objectChanges[.Insert] = changeSet
                                 } else {
                                     self.objectChanges[.Insert] = [toIndexPath]
@@ -143,13 +144,15 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                             }
                         } else if insertSections.containsIndex(toIndexPath.section) {
                             if var changeSet = self.objectChanges[.Delete] {
-                                changeSet.append(fromIndexPath)
+                                changeSet.insert(fromIndexPath)
                                 self.objectChanges[.Delete] = changeSet
                             } else {
                                 self.objectChanges[.Delete] = [fromIndexPath]
                             }
                         } else {
-                            updatedMoves.appendContentsOf(moves)
+                            for move in moves {
+                                updatedMoves.insert(move)
+                            }
                         }
                     }
 
@@ -172,19 +175,22 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     }
 
                     if let deleteItems = self.objectChanges[.Delete] {
-                        collectionView.deleteItemsAtIndexPaths(deleteItems)
+                        collectionView.deleteItemsAtIndexPaths(Array(deleteItems))
                     }
 
                     if let insertedItems = self.objectChanges[.Insert] {
-                        collectionView.insertItemsAtIndexPaths(insertedItems)
+                        collectionView.insertItemsAtIndexPaths(Array(insertedItems))
                     }
 
                     if let reloadItems = self.objectChanges[.Update] {
-                        collectionView.reloadItemsAtIndexPaths(reloadItems)
+                        collectionView.reloadItemsAtIndexPaths(Array(reloadItems))
                     }
 
                     if let moveItems = self.objectChanges[.Move] {
-                        collectionView.moveItemAtIndexPath(moveItems[0], toIndexPath: moveItems[1])
+                        var generator = moveItems.generate()
+                        let fromIndexPath = generator.next()!
+                        let toIndexPath = generator.next()!
+                        collectionView.moveItemAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
                     }
 
                     }, completion: nil)
