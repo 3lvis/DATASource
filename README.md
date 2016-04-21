@@ -169,6 +169,13 @@ it, simply add the following line to your Podfile:
 pod 'DATASource'
 ```
 
+**DATASource** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
+it, simply add the following line to your Cartfile:
+
+```ruby
+github '3lvis/DATASource'
+```
+
 ## Author
 
 Elvis Nuñez, [@3lvis](https://twitter.com/3lvis)
