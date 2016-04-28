@@ -48,10 +48,10 @@ public class DATASource: NSObject {
         self.fetch()
     }
 
-    internal weak var tableView: UITableView?
-    internal weak var collectionView: UICollectionView?
+    weak var tableView: UITableView?
+    weak var collectionView: UICollectionView?
     private var sectionName: String?
-    internal var cellIdentifier: String
+    var cellIdentifier: String
     private weak var mainContext: NSManagedObjectContext?
     private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
     private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
@@ -61,18 +61,18 @@ public class DATASource: NSObject {
      */
     public weak var delegate: DATASourceDelegate?
 
-    internal var fetchedResultsController: NSFetchedResultsController
+    var fetchedResultsController: NSFetchedResultsController
 
-    internal lazy var objectChanges: [NSFetchedResultsChangeType : Set<NSIndexPath>] = {
+    lazy var objectChanges: [NSFetchedResultsChangeType : Set<NSIndexPath>] = {
         return [NSFetchedResultsChangeType : Set<NSIndexPath>]()
 
     }()
 
-    internal lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
+    lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
         return [NSFetchedResultsChangeType : NSMutableIndexSet]()
     }()
 
-    internal lazy var cachedSectionNames: [AnyObject] = {
+    lazy var cachedSectionNames: [AnyObject] = {
         return [AnyObject]()
     }()
 
@@ -160,7 +160,7 @@ public class DATASource: NSObject {
         return self.fetchedResultsController.sections?[section].name
     }
 
-    internal func configureCell(cell: UIView, indexPath: NSIndexPath) {
+    func configureCell(cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
 
         let rowIsInsideBounds = indexPath.row < self.fetchedResultsController.fetchedObjects?.count
