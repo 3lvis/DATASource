@@ -11,7 +11,7 @@ public class DATASource: NSObject {
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    public convenience init<T: UITableViewCell, U: NSManagedObject>(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: T, item: U, indexPath: NSIndexPath) -> Void) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil)
 
         self.tableView = tableView
@@ -27,7 +27,7 @@ public class DATASource: NSObject {
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    public convenience init<C: UICollectionViewCell, U: NSManagedObject>(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: C, item: U, indexPath: NSIndexPath) -> Void) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: configuration)
 
         self.collectionView = collectionView
@@ -36,7 +36,7 @@ public class DATASource: NSObject {
         self.collectionView?.registerClass(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier);
     }
 
-    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?, collectionConfiguration: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?) {
+    private init<T: UITableViewCell, C: UICollectionViewCell, U: NSManagedObject>(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((cell: T, item: U, indexPath: NSIndexPath) -> Void)?, collectionConfiguration: ((cell: C, item: U, indexPath: NSIndexPath) -> Void)?) {
         self.cellIdentifier = cellIdentifier
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
         self.tableConfigurationBlock = tableConfiguration
@@ -53,8 +53,9 @@ public class DATASource: NSObject {
     private var sectionName: String?
     var cellIdentifier: String
     private weak var mainContext: NSManagedObjectContext?
-    private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
-    private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+
+    private var tableConfigurationBlock<T: UITableViewCell, U: NSManagedObject>: ((cell: T, item: U, indexPath: NSIndexPath) -> Void)?
+    private var collectionConfigurationBlock<T: UICollectionViewCell, U: NSManagedObject>: ((cell: C, item: U, indexPath: NSIndexPath) -> Void)?
 
     /**
      The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
