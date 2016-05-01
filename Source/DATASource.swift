@@ -130,9 +130,10 @@ public class DATASource: NSObject {
      - parameter indexPath: An index path used to fetch an specific object.
      - returns: The object at a given index path in the fetch results.
      */
-    public func objectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject? {
+    public func objectAtIndexPath<T: NSManagedObject>(indexPath: NSIndexPath) -> T? {
         if self.fetchedResultsController.fetchedObjects?.count > 0 {
-            return self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject ?? nil
+            guard let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as? T else { fatalError("Couldn't cast object") }
+            return object
         }
 
         return nil
