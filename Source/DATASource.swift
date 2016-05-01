@@ -99,7 +99,14 @@ public class DATASource: NSObject {
     /**
      The number of objects fetched by DATASource.
      */
-    public var objectsCount: Int {
+    @available(*, deprecated=5.6.3, message="Use `count` instead") public var objectsCount: Int {
+        return self.count
+    }
+
+    /**
+     The number of objects fetched by DATASource.
+     */
+    public var count: Int {
         return self.fetchedResultsController.fetchedObjects?.count ?? 0
     }
 
