@@ -96,9 +96,9 @@ class CollectionController: UICollectionViewController {
                         fatalError()
                     }
 
-                    self.dataStack.persistWithCompletion({
+                    self.dataStack.persist { _ in
                         completion?()
-                    })
+                    }
                 } else {
                     print("Oh no")
                 }
@@ -126,7 +126,7 @@ extension CollectionController {
 
             try! backgroundContext.save()
 
-            self.dataStack.persistWithCompletion(nil)
+            self.dataStack.persist(nil)
         }
     }
 }

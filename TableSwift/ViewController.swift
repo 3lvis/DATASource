@@ -5,6 +5,8 @@ import CoreData
 class ViewController: UITableViewController {
     weak var dataStack: DATAStack?
 
+    var rowSelectedCount = 0
+
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [
@@ -41,7 +43,7 @@ class ViewController: UITableViewController {
                 let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
 
                 let name = self.randomString()
-                let firstLetter = String(Array(name.characters)[0])
+                let firstLetter = "0"
                 user.setValue(name, forKey: "name")
                 user.setValue(firstLetter, forKey: "firstLetterOfName")
 
@@ -53,7 +55,7 @@ class ViewController: UITableViewController {
                     fatalError()
                 }
 
-                self.dataStack!.persistWithCompletion({ })
+                self.dataStack!.persist(nil)
             } else {
                 print("Oh no")
             }
@@ -71,5 +73,17 @@ class ViewController: UITableViewController {
         }
 
         return string
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = self.dataSource.objectAtIndexPath(indexPath)
+        self.dataStack?.performInNewBackgroundContext { backgroundContext in
+            guard let objectID = user?.objectID else { fatalError() }
+            let user = backgroundContext.objectWithID(objectID)
+            let name = user.valueForKey("name") as! String
+            self.rowSelectedCount += 1
+            user.setValue("\(self.rowSelectedCount)-\(name)", forKey: "name")
+            try! backgroundContext.save()
+        }
     }
 }

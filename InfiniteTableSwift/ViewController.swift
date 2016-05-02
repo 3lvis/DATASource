@@ -88,9 +88,9 @@ class ViewController: UITableViewController {
                         fatalError()
                     }
 
-                    self.dataStack!.persistWithCompletion({
+                    self.dataStack!.persist { _ in
                         completion?()
-                    })
+                    }
                 } else {
                     print("Oh no")
                 }
