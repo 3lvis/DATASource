@@ -13,11 +13,9 @@ public class DATASource: NSObject {
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
     public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]!, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
-        self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil)
+        self.init(tableView: tableView, cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
         
         self.animations = animations
-        self.tableView = tableView
-        self.tableView?.dataSource = self
     }
     /**
      Initializes and returns a data source object for a table view.
