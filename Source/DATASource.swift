@@ -61,6 +61,11 @@ public class DATASource: NSObject {
      */
     public weak var delegate: DATASourceDelegate?
 
+    /**
+     Animations configuration
+    */
+    public var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
+
     var fetchedResultsController: NSFetchedResultsController
 
     lazy var objectChanges: [NSFetchedResultsChangeType : Set<NSIndexPath>] = {
