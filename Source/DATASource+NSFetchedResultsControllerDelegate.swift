@@ -77,13 +77,8 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: rowAnimationType)
                     tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: rowAnimationType)
 
-                    if let oldCell = tableView.cellForRowAtIndexPath(indexPath), newCell = tableView.cellForRowAtIndexPath(newIndexPath) {
-                        self.configureCell(oldCell, indexPath: indexPath)
-                        self.configureCell(newCell, indexPath: newIndexPath)
-
-                        if let anObject = anObject as? NSManagedObject {
-                            self.delegate?.dataSource?(self, didMoveObject: anObject, fromIndexPath: indexPath, toIndexPath: newIndexPath)
-                        }
+                    if let anObject = anObject as? NSManagedObject {
+                        self.delegate?.dataSource?(self, didMoveObject: anObject, fromIndexPath: indexPath, toIndexPath: newIndexPath)
                     }
                 }
                 break
