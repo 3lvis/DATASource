@@ -5,20 +5,21 @@ import CoreData
 class ViewController: UITableViewController {
     weak var dataStack: DATAStack?
 
-    var rowSelectedCount = 0
-
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [
+            NSSortDescriptor(key: "count", ascending: true),
             NSSortDescriptor(key: "name", ascending: true),
             NSSortDescriptor(key: "firstLetterOfName", ascending: true)
         ]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName") { cell, item, indexPath in
             if let cell = cell as? CustomCell {
-                cell.label.text = item.valueForKey("name") as? String
+                let name = item.valueForKey("name") as? String ?? ""
+                let count = item.valueForKey("count") as? Int ?? 0
+                cell.label.text = "\(count) — \(name)"
             }
-        })
+        }
 
         return dataSource
     }()
@@ -43,7 +44,7 @@ class ViewController: UITableViewController {
                 let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
 
                 let name = self.randomString()
-                let firstLetter = "0"
+                let firstLetter = String(Array(name.characters)[0])
                 user.setValue(name, forKey: "name")
                 user.setValue(firstLetter, forKey: "firstLetterOfName")
 
@@ -80,9 +81,9 @@ class ViewController: UITableViewController {
         self.dataStack?.performInNewBackgroundContext { backgroundContext in
             guard let objectID = user?.objectID else { fatalError() }
             let user = backgroundContext.objectWithID(objectID)
-            let name = user.valueForKey("name") as! String
-            self.rowSelectedCount += 1
-            user.setValue("\(self.rowSelectedCount)-\(name)", forKey: "name")
+            var count = user.valueForKey("count") as? Int ?? 0
+            count += 1
+            user.setValue(count, forKey: "count")
             try! backgroundContext.save()
         }
     }
