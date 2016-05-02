@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
 
+        self.dataStack.drop()
         return true
     }
 }
