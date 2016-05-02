@@ -17,13 +17,13 @@ extension DATASource: NSFetchedResultsControllerDelegate {
         if let tableView = self.tableView {
             switch type {
             case .Insert:
-                tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+                tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: self.animations?[type] ?? .Automatic)
                 break
             case .Delete:
-                tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+                tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: self.animations?[type] ?? .Automatic)
                 break
             case .Move, .Update:
-                tableView.reloadSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+                tableView.reloadSections(NSIndexSet(index: sectionIndex), withRowAnimation: self.animations?[type] ?? .Automatic)
                 break
             }
         } else if let _ = self.collectionView {
@@ -47,13 +47,13 @@ extension DATASource: NSFetchedResultsControllerDelegate {
             switch type {
             case .Insert:
                 if let newIndexPath = newIndexPath, anObject = anObject as? NSManagedObject {
-                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Automatic)
+                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: self.animations?[type] ?? .Automatic)
                     self.delegate?.dataSource?(self, didInsertObject: anObject, atIndexPath: newIndexPath)
                 }
                 break
             case .Delete:
                 if let indexPath = indexPath, anObject = anObject as? NSManagedObject {
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: self.animations?[type] ?? .Automatic)
                     self.delegate?.dataSource?(self, didDeleteObject: anObject, atIndexPath: indexPath)
                 }
                 break
@@ -72,8 +72,8 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 break
             case .Move:
                 if let indexPath = indexPath, newIndexPath = newIndexPath {
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Automatic)
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: self.animations?[type] ?? .Automatic)
+                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: self.animations?[type] ?? .Automatic)
 
                     if let oldCell = tableView.cellForRowAtIndexPath(indexPath), newCell = tableView.cellForRowAtIndexPath(newIndexPath) {
                         self.configureCell(oldCell, indexPath: indexPath)

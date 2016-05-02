@@ -9,6 +9,21 @@ public class DATASource: NSObject {
      - parameter fetchRequest: A request to be used, requests need a sort descriptor.
      - parameter mainContext: A main thread managed object context.
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
+     - parameter animations: Animations configuration disctionary.
+     - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
+     */
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]!, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+        self.init(tableView: tableView, cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, configuration: configuration)
+        
+        self.animations = animations
+    }
+    /**
+     Initializes and returns a data source object for a table view.
+     - parameter tableView: A table view used to construct the data source.
+     - parameter cellIdentifier: An identifier from the registered UITableViewCell subclass.
+     - parameter fetchRequest: A request to be used, requests need a sort descriptor.
+     - parameter mainContext: A main thread managed object context.
+     - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
     public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
@@ -60,6 +75,10 @@ public class DATASource: NSObject {
      The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
      */
     public weak var delegate: DATASourceDelegate?
+    /**
+     Animations configuration
+    */
+    public var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
 
     var fetchedResultsController: NSFetchedResultsController
 
