@@ -8,15 +8,18 @@ class ViewController: UITableViewController {
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [
-            NSSortDescriptor(key: "name", ascending: true),
-            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true),
+            NSSortDescriptor(key: "count", ascending: true),
+            NSSortDescriptor(key: "name", ascending: true)
         ]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName") { cell, item, indexPath in
             if let cell = cell as? CustomCell {
-                cell.label.text = item.valueForKey("name") as? String
+                let name = item.valueForKey("name") as? String ?? ""
+                let count = item.valueForKey("count") as? Int ?? 0
+                cell.label.text = "\(count) — \(name)"
             }
-        })
+        }
 
         return dataSource
     }()
@@ -53,7 +56,7 @@ class ViewController: UITableViewController {
                     fatalError()
                 }
 
-                self.dataStack!.persistWithCompletion({ })
+                self.dataStack!.persist(nil)
             } else {
                 print("Oh no")
             }
@@ -71,5 +74,17 @@ class ViewController: UITableViewController {
         }
 
         return string
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = self.dataSource.objectAtIndexPath(indexPath)
+        self.dataStack?.performInNewBackgroundContext { backgroundContext in
+            guard let objectID = user?.objectID else { fatalError() }
+            let user = backgroundContext.objectWithID(objectID)
+            var count = user.valueForKey("count") as? Int ?? 0
+            count += 1
+            user.setValue(count, forKey: "count")
+            try! backgroundContext.save()
+        }
     }
 }

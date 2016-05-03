@@ -64,7 +64,7 @@ class CollectionController: UICollectionViewController {
                     fatalError()
                 }
 
-                self.dataStack.persistWithCompletion({ })
+                self.dataStack.persist(nil)
             } else {
                 print("Oh no")
             }

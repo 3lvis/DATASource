@@ -12,6 +12,7 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 
 ## Table of Contents
 
+* [Running the demos](#running-the-demos)
 * [UITableView](#uitableview)
   * [Basic Usage](#basic-usage)
   * [Sectioned UITableView](#sectioned-uitableview)
@@ -26,6 +27,13 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 * [Author](#author)
 * [License](#license)
 * [Footnotes](#footnotes)
+
+## Running the demos
+Before being able to run the demos you have to install the demo dependencies using [Carthage](https://github.com/Carthage/Carthage).
+
+- [ ] Install Carthage
+- [ ] Run `carthage update`
+- [ ] Enjoy!
 
 ## UITableView
 
