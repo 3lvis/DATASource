@@ -19,7 +19,7 @@ extension DATASource: UITableViewDataSource {
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath)
 
-        self.configureCell(cell, indexPath: indexPath)
+        self.configure(cell: cell, indexPath: indexPath)
 
         return cell
     }
