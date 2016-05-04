@@ -134,7 +134,7 @@ public class DATASource: NSObject {
     /**
      All the objects fetched by DATASource. This is an array of `NSManagedObject`.
      */
-    func all<T: NSManagedObject>() -> [T] {
+    public func all<T: NSManagedObject>() -> [T] {
         return self.fetchedResultsController.fetchedObjects as?  [T] ?? [T]()
     }
 
