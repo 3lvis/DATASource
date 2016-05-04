@@ -51,6 +51,9 @@ static NSString *CellIdentifier = @"CellIdentifier";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
 
     self.tableView.dataSource = self.dataSource;
+
+    NSManagedObject *object = [self.dataSource objectAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0];];
+    NSLog(@"object: %@", object);
 }
 
 - (void)addAction {

@@ -63,7 +63,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 if let indexPath = indexPath {
                     if tableView.indexPathsForVisibleRows?.indexOf(indexPath) != nil {
                         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-                            self.configureCell(cell, indexPath: indexPath)
+                            self.configure(cell: cell, indexPath: indexPath)
                         }
 
                         if let anObject = anObject as? NSManagedObject {

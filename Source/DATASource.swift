@@ -62,7 +62,7 @@ public class DATASource: NSObject {
     public weak var delegate: DATASourceDelegate?
 
     /**
-     Animations configuration
+     Dictionary to configurate the different animations to be applied by each change type.
     */
     public var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
 
@@ -126,8 +126,16 @@ public class DATASource: NSObject {
     /**
      The objects fetched by DATASource. This is an array of `NSManagedObject`.
      */
+    // Meant to be a Objective-C compatibility later for `all`
     public var objects: [NSManagedObject] {
-        return self.fetchedResultsController.fetchedObjects as?  [NSManagedObject] ?? [NSManagedObject]()
+        return all()
+    }
+
+    /**
+     All the objects fetched by DATASource. This is an array of `NSManagedObject`.
+     */
+    func all<T: NSManagedObject>() -> [T] {
+        return self.fetchedResultsController.fetchedObjects as?  [T] ?? [T]()
     }
 
     /**
@@ -135,7 +143,17 @@ public class DATASource: NSObject {
      - parameter indexPath: An index path used to fetch an specific object.
      - returns: The object at a given index path in the fetch results.
      */
-    public func objectAtIndexPath<T: NSManagedObject>(indexPath: NSIndexPath) -> T? {
+    // Meant to be a Objective-C compatibility later for object(indexPath: indexPath)
+    public func objectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject? {
+        return object(indexPath: indexPath)
+    }
+
+    /**
+     Returns the object for a given index path.
+     - parameter indexPath: An index path used to fetch an specific object.
+     - returns: The object at a given index path in the fetch results.
+     */
+    public func object<T: NSManagedObject>(indexPath indexPath: NSIndexPath) -> T? {
         if self.fetchedResultsController.fetchedObjects?.count > 0 {
             guard let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as? T else { fatalError("Couldn't cast object") }
             return object
@@ -149,7 +167,18 @@ public class DATASource: NSObject {
      - parameter object: An object in the receiver’s fetch results.
      - returns: The index path of object in the receiver’s fetch results, or nil if object could not be found.
      */
+    //
+    // Meant to be a Objective-C compatibility later for `indexPath(object: object)`
     public func indexPathForObject(object: NSManagedObject) -> NSIndexPath? {
+        return self.indexPath(object: object)
+    }
+
+    /**
+     Returns the index path of a given managed object.
+     - parameter object: An object in the receiver’s fetch results.
+     - returns: The index path of object in the receiver’s fetch results, or nil if object could not be found.
+     */
+    public func indexPath(object object: NSManagedObject) -> NSIndexPath? {
         return self.fetchedResultsController.indexPathForObject(object) ?? nil
     }
 
@@ -169,11 +198,21 @@ public class DATASource: NSObject {
      - parameter section: The section used to retrieve the title.
      - returns: The title for the requested section, returns `nil` if the section is not present.
      */
+    // Meant to be a Objective-C compatibility later for `titleForHeader(section: section)`
     public func titleForHeaderInSection(section: Int) -> String? {
+        return self.titleForHeader(section: section)
+    }
+
+    /**
+     Returns the title of a given section. Uses given `sectionName` in the initializer to do this lookup.
+     - parameter section: The section used to retrieve the title.
+     - returns: The title for the requested section, returns `nil` if the section is not present.
+     */
+    public func titleForHeader(section section: Int) -> String? {
         return self.fetchedResultsController.sections?[section].name
     }
 
-    func configureCell(cell: UIView, indexPath: NSIndexPath) {
+    func configure(cell cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
 
         let rowIsInsideBounds = indexPath.row < self.fetchedResultsController.fetchedObjects?.count

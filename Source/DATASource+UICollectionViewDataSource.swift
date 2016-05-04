@@ -19,7 +19,7 @@ extension DATASource: UICollectionViewDataSource {
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.cellIdentifier, forIndexPath: indexPath)
 
-        self.configureCell(cell, indexPath: indexPath)
+        self.configure(cell: cell, indexPath: indexPath)
 
         return cell
     }
