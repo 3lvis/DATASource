@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var dataStack: DATAStack = {
         let dataStack = DATAStack(modelName: "DataModel")
-        dataStack.drop()
+        try! dataStack.drop()
 
         return dataStack
     }()

@@ -52,7 +52,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
     self.tableView.dataSource = self.dataSource;
 
-    NSManagedObject *object = [self.dataSource objectAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0];];
+    NSManagedObject *object = [self.dataSource objectAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     NSLog(@"object: %@", object);
 }
 

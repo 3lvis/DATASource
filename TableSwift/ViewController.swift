@@ -58,8 +58,6 @@ class ViewController: UITableViewController {
                 } catch {
                     fatalError()
                 }
-
-                self.dataStack!.persist(nil)
             } else {
                 print("Oh no")
             }

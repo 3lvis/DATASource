@@ -42,7 +42,6 @@ class ViewController: UITableViewController {
             let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
             user.setValue(NSDate(), forKey: "createdDate")
             try! backgroundContext.save()
-            self.dataStack!.persist(nil)
         }
     }
 
