@@ -50,7 +50,7 @@ let dataSource = DATASource(tableView: self.tableView, cellIdentifier: "Cell", f
     cell.textLabel?.text = item.valueForKey("title") as? String
 })
 
-tableView.dataSource = dataSource;
+tableView.dataSource = dataSource
 ```
 
 **Objective-C:**
