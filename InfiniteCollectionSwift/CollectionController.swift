@@ -79,28 +79,18 @@ class CollectionController: UICollectionViewController {
     func loadItems(initialIndex: Int, completion: (Void -> Void)?) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.dataStack.performInNewBackgroundContext { backgroundContext in
-                if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
-                    for i in initialIndex..<initialIndex + 18 {
-                        let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
-                        user.setValue(String(format: "%04d", i), forKey: "name")
+                let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext)!
+                for i in initialIndex..<initialIndex + 18 {
+                    let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
+                    user.setValue(String(format: "%04d", i), forKey: "name")
 
-                        let tens = Int(floor(Double(i) / 10.0) * 10)
-                        user.setValue(String(tens), forKey: "firstLetterOfName")
-                    }
+                    let tens = Int(floor(Double(i) / 10.0) * 10)
+                    user.setValue(String(tens), forKey: "firstLetterOfName")
+                }
 
-                    do {
-                        try backgroundContext.save()
-                    } catch let savingError as NSError {
-                        print("Could not save \(savingError)")
-                    } catch {
-                        fatalError()
-                    }
-
-                    self.dataStack.persist { _ in
-                        completion?()
-                    }
-                } else {
-                    print("Oh no")
+                try! backgroundContext.save()
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion?()
                 }
             }
         }
@@ -123,10 +113,7 @@ extension CollectionController {
                 let safeItem = backgroundContext.objectWithID(item.objectID)
                 backgroundContext.deleteObject(safeItem)
             }
-
             try! backgroundContext.save()
-
-            self.dataStack.persist(nil)
         }
     }
 }

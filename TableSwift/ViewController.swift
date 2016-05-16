@@ -36,6 +36,9 @@ class ViewController: UITableViewController {
         self.tableView.registerClass(CustomCell.self, forCellReuseIdentifier: CustomCell.Identifier)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.saveAction))
         self.tableView.dataSource = self.dataSource
+
+        let object = self.dataSource.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        print(object)
     }
 
     func saveAction() {
@@ -55,8 +58,6 @@ class ViewController: UITableViewController {
                 } catch {
                     fatalError()
                 }
-
-                self.dataStack!.persist(nil)
             } else {
                 print("Oh no")
             }

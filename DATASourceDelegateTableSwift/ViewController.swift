@@ -42,7 +42,6 @@ class ViewController: UITableViewController {
             let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
             user.setValue(NSDate(), forKey: "createdDate")
             try! backgroundContext.save()
-            self.dataStack!.persist(nil)
         }
     }
 
@@ -69,6 +68,7 @@ extension ViewController {
         let delete = UITableViewRowAction(style: .Default, title: "Delete") { action, indexPath in
             let item = self.dataSource.objectAtIndexPath(indexPath)!
             self.dataStack!.mainContext.deleteObject(item)
+            try! self.dataStack!.mainContext.save()
         }
 
         return [delete]

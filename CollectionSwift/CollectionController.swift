@@ -63,8 +63,6 @@ class CollectionController: UICollectionViewController {
                 } catch {
                     fatalError()
                 }
-
-                self.dataStack.persist(nil)
             } else {
                 print("Oh no")
             }

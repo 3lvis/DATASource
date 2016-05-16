@@ -39,12 +39,7 @@ class Tests: XCTestCase {
 
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.userWithName("Elvis", context: backgroundContext)
-
-            do {
-                try backgroundContext.save()
-            } catch {
-                print("Background save error")
-            }
+            try! backgroundContext.save()
         }
 
         XCTAssertTrue(success)
@@ -60,6 +55,7 @@ class Tests: XCTestCase {
         collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: Tests.CellIdentifier)
         let request = NSFetchRequest(entityName: Tests.EntityName)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+
         let dataSource = DATASource(collectionView: collectionView, cellIdentifier: Tests.CellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
             success = true
         }
@@ -68,12 +64,7 @@ class Tests: XCTestCase {
 
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.userWithName("Elvis", context: backgroundContext)
-
-            do {
-                try backgroundContext.save()
-            } catch {
-                print("Background save error")
-            }
+            try! backgroundContext.save()
         }
 
         XCTAssertTrue(success)
@@ -83,5 +74,5 @@ class Tests: XCTestCase {
         // Invalid update: invalid number of items in section 0.  The number of items contained in an existing section after the update (1) must be equal to the number of items contained in that section before the update (1), 
         // plus or minus the number of items inserted or deleted from that section (1 inserted, 0 deleted) and plus or minus the number of items moved into or out of that section (0 moved in, 0 moved out). with userInfo (null)
     }
-    */
+     */
 }
