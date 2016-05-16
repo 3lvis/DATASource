@@ -8,9 +8,8 @@ class ViewController: UITableViewController {
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest(entityName: "User")
         request.sortDescriptors = [
-            NSSortDescriptor(key: "firstLetterOfName", ascending: true),
+            NSSortDescriptor(key: "name", ascending: true),
             NSSortDescriptor(key: "count", ascending: true),
-            NSSortDescriptor(key: "name", ascending: true)
         ]
 
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName") { cell, item, indexPath in
@@ -44,12 +43,10 @@ class ViewController: UITableViewController {
     func saveAction() {
         self.dataStack!.performInNewBackgroundContext { backgroundContext in
             if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
-                let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
+                let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext) as! User
 
                 let name = self.randomString()
-                let firstLetter = String(Array(name.characters)[0])
                 user.setValue(name, forKey: "name")
-                user.setValue(firstLetter, forKey: "firstLetterOfName")
 
                 do {
                     try backgroundContext.save()
