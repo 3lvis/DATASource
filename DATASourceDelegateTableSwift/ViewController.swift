@@ -68,6 +68,7 @@ extension ViewController {
         let delete = UITableViewRowAction(style: .Default, title: "Delete") { action, indexPath in
             let item = self.dataSource.objectAtIndexPath(indexPath)!
             self.dataStack!.mainContext.deleteObject(item)
+            try! self.dataStack!.mainContext.save()
         }
 
         return [delete]
