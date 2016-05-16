@@ -32,6 +32,11 @@ extension DATASource: UITableViewDataSource {
         } else if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
             let request = NSFetchRequest()
             request.entity = self.fetchedResultsController.fetchRequest.entity
+            if let property = request.entity?.propertiesByName[keyPath] {
+                if property.transient {
+                    return self.fetchedResultsController.sectionIndexTitles
+                }
+            }
             request.resultType = .DictionaryResultType
             request.returnsDistinctResults = true
             request.propertiesToFetch = [keyPath]
