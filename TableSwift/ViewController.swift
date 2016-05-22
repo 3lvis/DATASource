@@ -12,7 +12,7 @@ class ViewController: UITableViewController {
             NSSortDescriptor(key: "count", ascending: true),
         ]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName") { cell, item, indexPath in
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfNameTransient") { cell, item, indexPath in
             if let cell = cell as? CustomCell {
                 let name = item.valueForKey("name") as? String ?? ""
                 let count = item.valueForKey("count") as? Int ?? 0
