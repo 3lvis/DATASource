@@ -142,6 +142,8 @@
 		14F848891CC668B60052E4B0 /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
 		14F8488A1CC668B60052E4B0 /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
 		14F8488B1CC668B60052E4B0 /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		7207A0CA1CEA34E9005FDD4C /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7207A0C81CEA34E9005FDD4C /* User+CoreDataProperties.swift */; };
+		7207A0CB1CEA34E9005FDD4C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7207A0C91CEA34E9005FDD4C /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -315,6 +317,8 @@
 		14F8486F1CC667BB0052E4B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14F848701CC667D20052E4B0 /* DATASource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
 		14F8487D1CC668820052E4B0 /* DATASource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DATASource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7207A0C81CEA34E9005FDD4C /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7207A0C91CEA34E9005FDD4C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +559,8 @@
 		14F3A6A71BE01B9C00789E22 /* TableSwift */ = {
 			isa = PBXGroup;
 			children = (
+				7207A0C81CEA34E9005FDD4C /* User+CoreDataProperties.swift */,
+				7207A0C91CEA34E9005FDD4C /* User.swift */,
 				14F3A6A81BE01B9C00789E22 /* AppDelegate.swift */,
 				14F3A6E81BE01DE800789E22 /* ViewController.swift */,
 				141D2EE31BE021500028F879 /* CustomCell.swift */,
@@ -1076,10 +1082,12 @@
 				14F3A6E91BE01DE800789E22 /* ViewController.swift in Sources */,
 				1498B6121C3BC9E80066FAC8 /* DataModel.xcdatamodeld in Sources */,
 				14308ABD1CC66665000C21DF /* DATASource.swift in Sources */,
+				7207A0CB1CEA34E9005FDD4C /* User.swift in Sources */,
 				141D2EE41BE021500028F879 /* CustomCell.swift in Sources */,
 				14308AAD1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				14F3A6A91BE01B9C00789E22 /* AppDelegate.swift in Sources */,
 				1498B60B1C3BC9E80066FAC8 /* CollectionCell.swift in Sources */,
+				7207A0CA1CEA34E9005FDD4C /* User+CoreDataProperties.swift in Sources */,
 				1498B6191C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift in Sources */,
 				14308AC51CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 			);
