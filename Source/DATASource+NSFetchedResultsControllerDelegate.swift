@@ -162,39 +162,35 @@ extension DATASource: NSFetchedResultsControllerDelegate {
             }
 
             if let collectionView = self.collectionView {
-                do {
-                    collectionView.performBatchUpdates({
-                        if let deletedSections = self.sectionChanges[.Delete] {
-                            collectionView.deleteSections(deletedSections)
-                        }
+                collectionView.performBatchUpdates({
+                    if let deletedSections = self.sectionChanges[.Delete] {
+                        collectionView.deleteSections(deletedSections)
+                    }
 
-                        if let insertedSections = self.sectionChanges[.Insert] {
-                            collectionView.insertSections(insertedSections)
-                        }
+                    if let insertedSections = self.sectionChanges[.Insert] {
+                        collectionView.insertSections(insertedSections)
+                    }
 
-                        if let deleteItems = self.objectChanges[.Delete] {
-                            collectionView.deleteItemsAtIndexPaths(Array(deleteItems))
-                        }
+                    if let deleteItems = self.objectChanges[.Delete] {
+                        collectionView.deleteItemsAtIndexPaths(Array(deleteItems))
+                    }
 
-                        if let insertedItems = self.objectChanges[.Insert] {
-                            collectionView.insertItemsAtIndexPaths(Array(insertedItems))
-                        }
+                    if let insertedItems = self.objectChanges[.Insert] {
+                        collectionView.insertItemsAtIndexPaths(Array(insertedItems))
+                    }
 
-                        if let reloadItems = self.objectChanges[.Update] {
-                            collectionView.reloadItemsAtIndexPaths(Array(reloadItems))
-                        }
+                    if let reloadItems = self.objectChanges[.Update] {
+                        collectionView.reloadItemsAtIndexPaths(Array(reloadItems))
+                    }
 
-                        if let moveItems = self.objectChanges[.Move] {
-                            var generator = moveItems.generate()
-                            guard let fromIndexPath = generator.next() else { fatalError("fromIndexPath not found. Move items: \(moveItems)") }
-                            guard let toIndexPath = generator.next() else { fatalError("toIndexPath not found. Move items: \(moveItems)") }
-                            collectionView.moveItemAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
-                        }
-                        
-                        }, completion: nil)
-                } catch let error as NSError {
-                    fatalError("Failed trying to update the collection view: \(error.description)")
-                }
+                    if let moveItems = self.objectChanges[.Move] {
+                        var generator = moveItems.generate()
+                        guard let fromIndexPath = generator.next() else { fatalError("fromIndexPath not found. Move items: \(moveItems)") }
+                        guard let toIndexPath = generator.next() else { fatalError("toIndexPath not found. Move items: \(moveItems)") }
+                        collectionView.moveItemAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
+                    }
+
+                    }, completion: nil)
             }
         }
         self.delegate?.dataSourceDidChangeContent?(self)
