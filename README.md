@@ -23,6 +23,7 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
   * [Basic Usage](#basic-usage-1)
   * [Sectioned UICollectionViewController](#sectioned-uicollectionviewcontroller)
   * [UICollectionViewDataSource](#uicollectionviewdatasource)
+* [Customizing change animations](#customizing-change-animations) 
 * [Installation](#installation)
 * [Author](#author)
 * [License](#license)
@@ -167,6 +168,22 @@ Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/
 ### UICollectionViewDataSource
 
 **DATASource** takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/CollectionSwift) where we show how to add a footer view to your **DATASource** backed UICollectionView.
+
+## Customizing change animations
+
+By default `UITableViewRowAnimation.Automatic` is used to animate inserts, updates and deletes, but if you want to overwrite this animation types you can use the `animations` dictionary on **DATASource**.
+
+### Animate insertions using fade
+```swift
+let dataSource = ...
+dataSource.animations[.Insert] = .Fade
+```
+
+### Disabling all animations
+```swift
+let dataSource = ...
+dataSource.animations = [.Update: .None, .Move  : .None, .Insert: .None]
+```
 
 ## Installation
 
