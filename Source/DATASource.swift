@@ -112,7 +112,17 @@ public class DATASource: NSObject {
      The number of objects fetched by DATASource.
      */
     public var count: Int {
-        return self.fetchedResultsController.fetchedObjects?.count ?? 0
+        var total = 0
+        let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
+        if sections.count == 0 {
+            return 0
+        } else {
+            for section in sections {
+                total += section.numberOfObjects
+            }
+        }
+
+        return total
     }
 
     /**
@@ -120,7 +130,18 @@ public class DATASource: NSObject {
      is more than 0.
      */
     public var isEmpty: Bool {
-        return self.fetchedResultsController.fetchedObjects?.count == 0
+        let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
+        if sections.count == 0 {
+            return true
+        } else {
+            for section in sections {
+                if section.numberOfObjects > 0 {
+                    return false
+                }
+            }
+        }
+
+        return true
     }
 
     /**
@@ -154,7 +175,7 @@ public class DATASource: NSObject {
      - returns: The object at a given index path in the fetch results.
      */
     public func object<T: NSManagedObject>(indexPath indexPath: NSIndexPath) -> T? {
-        if self.fetchedResultsController.fetchedObjects?.count > 0 {
+        if !self.isEmpty {
             guard let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as? T else { fatalError("Couldn't cast object") }
             return object
         }
@@ -215,7 +236,7 @@ public class DATASource: NSObject {
     func configure(cell cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
 
-        let rowIsInsideBounds = indexPath.row < self.fetchedResultsController.fetchedObjects?.count
+        let rowIsInsideBounds = indexPath.row < self.count
         if rowIsInsideBounds {
             item = self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject
         }
