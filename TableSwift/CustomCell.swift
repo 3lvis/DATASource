@@ -4,8 +4,8 @@ class CustomCell: UITableViewCell {
     static let Identifier = "CustomCellIdentifier"
 
     lazy var label: UILabel = {
-        let label = UILabel(frame: CGRectZero)
-        label.textAlignment = .Center
+        let label = UILabel(frame: CGRect.zero)
+        label.textAlignment = .center
 
         return label
     }()

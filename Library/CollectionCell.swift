@@ -5,7 +5,7 @@ public class CollectionCell: UICollectionViewCell {
 
     public lazy var textLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
-        label.textAlignment = .Center
+        label.textAlignment = .center
 
         return label
     }()
@@ -14,7 +14,7 @@ public class CollectionCell: UICollectionViewCell {
         super.init(frame: frame)
 
         self.contentView.layer.borderWidth = 1
-        self.contentView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.contentView.layer.borderColor = UIColor.lightGray().cgColor
 
         addSubview(textLabel)
     }

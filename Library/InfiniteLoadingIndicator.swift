@@ -2,7 +2,7 @@ import UIKit
 
 class InfiniteLoadingIndicator: UIView {
     lazy var loadingIndicator: UIActivityIndicatorView = {
-        let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         loadingIndicator.startAnimating()
 
         return loadingIndicator
@@ -21,9 +21,9 @@ class InfiniteLoadingIndicator: UIView {
         let frame = CGRect(x: x, y: y, width: width, height: height)
         super.init(frame: frame)
 
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white()
         self.layer.cornerRadius = height / 2
-        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowColor = UIColor.black().cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 2
         self.layer.shadowOpacity = 0.3
@@ -45,18 +45,18 @@ class InfiniteLoadingIndicator: UIView {
         if self.superview == nil {
             self.parentController.view.addSubview(self)
 
-            UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [.AllowUserInteraction], animations: {
+            UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [.allowUserInteraction], animations: {
                 self.frame = originalFrame
                 }, completion: nil)
         }
     }
 
     func dismiss() {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+        DispatchQueue.main.after(when: DispatchTime.now() + Double(Int64(0.3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
             let originalFrame = self.frame
             var newFrame = self.frame
             newFrame.origin.y = self.parentController.view.frame.height + 10
-            UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [.AllowUserInteraction], animations: { () -> Void in
+            UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [.allowUserInteraction], animations: { () -> Void in
                 self.frame = newFrame
                 }, completion: { finished in
                     self.frame = originalFrame

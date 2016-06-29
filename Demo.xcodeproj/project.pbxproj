@@ -832,9 +832,13 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = C6K65RDJHL;
 						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					146D72AB1AB782920058798C = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					149AF18F1C0EB9EF00BA0907 = {
 						CreatedOnToolsVersion = 7.1;
@@ -846,26 +850,31 @@
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = C6K65RDJHL;
 						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					14F3A68D1BE01B9200789E22 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = C6K65RDJHL;
 						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					14F3A6A51BE01B9C00789E22 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = C6K65RDJHL;
 						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					14F3A6B91BE01BA900789E22 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = C6K65RDJHL;
 						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					14F535911C3A7E9C00671EDF = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = C6K65RDJHL;
 						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					14F848661CC667990052E4B0 = {
 						CreatedOnToolsVersion = 7.3;
@@ -877,6 +886,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = C6K65RDJHL;
 						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -1246,6 +1256,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InfiniteCollectionSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1265,6 +1276,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InfiniteCollectionSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1361,6 +1373,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1374,6 +1387,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1433,6 +1447,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.CollectionSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1452,6 +1467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.CollectionSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1473,6 +1489,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1494,6 +1511,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1513,6 +1531,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.TableSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1532,6 +1551,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.TableSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1552,6 +1572,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.TableObjC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1572,6 +1593,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.TableObjC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1591,6 +1613,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InfiniteTableSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1610,6 +1633,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InfiniteTableSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1684,6 +1708,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1710,6 +1735,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";

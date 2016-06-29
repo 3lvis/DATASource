@@ -61,7 +61,7 @@
 }
 
 - (void)addAction {
-    [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
+    [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {        
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"User"
                                                   inManagedObjectContext:backgroundContext];
         NSManagedObject *user = [[NSManagedObject alloc] initWithEntity:entity

@@ -7,11 +7,11 @@ class ViewController: UITableViewController {
     var dataStack: DATAStack?
 
     lazy var dataSource: DATASource = {
-        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
-        request.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: true)]
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.sortDescriptors = [SortDescriptor(key: "createdDate", ascending: true)]
 
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: ViewController.CellIdentifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, configuration: { cell, item, indexPath in
-            let date = item.valueForKey("createdDate") as? NSDate
+            let date = item.value(forKey: "createdDate") as? NSDate
             cell.textLabel?.text = date?.description
         })
 
@@ -21,7 +21,7 @@ class ViewController: UITableViewController {
     }()
 
     convenience init(dataStack: DATAStack) {
-        self.init(style: .Plain)
+        self.init(style: .plain)
 
         self.dataStack = dataStack
     }
@@ -29,34 +29,34 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ViewController.CellIdentifier)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.saveAction))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(ViewController.editAction))
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewController.CellIdentifier)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ViewController.saveAction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(ViewController.editAction))
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self
     }
 
     func saveAction() {
         self.dataStack!.performInNewBackgroundContext { backgroundContext in
-            let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext)!
-            let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
+            let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext)!
+            let user = NSManagedObject(entity: entity, insertInto: backgroundContext)
             user.setValue(NSDate(), forKey: "createdDate")
             try! backgroundContext.save()
         }
     }
 
     func editAction() {
-        self.setEditing(!self.editing, animated: true)
+        self.setEditing(!self.isEditing, animated: true)
     }
 }
 
 extension ViewController: DATASourceDelegate {
-    func dataSource(dataSource: DATASource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func dataSource(_ dataSource: DATASource, tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
         return true
     }
 
     // This doesn't seem to be needed when implementing tableView(_:editActionsForRowAtIndexPath).
-    func dataSource(dataSource: DATASource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func dataSource(_ dataSource: DATASource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath) {
 
     }
 }
@@ -64,10 +64,10 @@ extension ViewController: DATASourceDelegate {
 // MARK: - UITableViewDelegate
 
 extension ViewController {
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .Default, title: "Delete") { action, indexPath in
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .default, title: "Delete") { action, indexPath in
             let item = self.dataSource.objectAtIndexPath(indexPath)!
-            self.dataStack!.mainContext.deleteObject(item)
+            self.dataStack!.mainContext.delete(item)
             try! self.dataStack!.mainContext.save()
         }
 

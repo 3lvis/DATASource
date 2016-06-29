@@ -6,17 +6,17 @@ class ViewController: UITableViewController {
     weak var dataStack: DATAStack?
 
     lazy var dataSource: DATASource = {
-        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
-            NSSortDescriptor(key: "firstLetterOfName", ascending: true),
-            NSSortDescriptor(key: "count", ascending: true),
-            NSSortDescriptor(key: "name", ascending: true)
+            SortDescriptor(key: "firstLetterOfName", ascending: true),
+            SortDescriptor(key: "count", ascending: true),
+            SortDescriptor(key: "name", ascending: true)
         ]
 
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName") { cell, item, indexPath in
             if let cell = cell as? CustomCell {
-                let name = item.valueForKey("name") as? String ?? ""
-                let count = item.valueForKey("count") as? Int ?? 0
+                let name = item.value(forKey: "name") as? String ?? ""
+                let count = item.value(forKey: "count") as? Int ?? 0
                 cell.label.text = "\(count) — \(name)"
             }
         }
@@ -33,18 +33,18 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.registerClass(CustomCell.self, forCellReuseIdentifier: CustomCell.Identifier)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.saveAction))
+        self.tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.Identifier)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ViewController.saveAction))
         self.tableView.dataSource = self.dataSource
 
-        let object = self.dataSource.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        let object = self.dataSource.objectAtIndexPath(IndexPath(forRow: 0, inSection: 0))
         print(object)
     }
 
     func saveAction() {
         self.dataStack!.performInNewBackgroundContext { backgroundContext in
-            if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
-                let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
+            if let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext) {
+                let user = NSManagedObject(entity: entity, insertInto: backgroundContext)
 
                 let name = self.randomString()
                 let firstLetter = String(Array(name.characters)[0])
@@ -77,7 +77,7 @@ class ViewController: UITableViewController {
         return string
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = self.dataSource.objectAtIndexPath(indexPath)
         self.dataStack?.performInNewBackgroundContext { backgroundContext in
             guard let objectID = user?.objectID else { fatalError() }
