@@ -825,38 +825,57 @@
 			attributes = {
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					1462057F1C3AB0E400D78FC5 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
 					};
 					146D72AB1AB782920058798C = {
 						CreatedOnToolsVersion = 6.2;
 					};
 					149AF18F1C0EB9EF00BA0907 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					14F3A6791BE01B8400789E22 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
 					};
 					14F3A68D1BE01B9200789E22 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
 					};
 					14F3A6A51BE01B9C00789E22 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
 					};
 					14F3A6B91BE01BA900789E22 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
 					};
 					14F535911C3A7E9C00671EDF = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
 					};
 					14F848661CC667990052E4B0 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
 					};
 					14F8487C1CC668820052E4B0 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = C6K65RDJHL;
+						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
 					};
 				};
 			};
@@ -1244,6 +1263,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InfiniteCollectionSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1270,6 +1290,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1311,6 +1332,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1350,6 +1372,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1369,6 +1392,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.DATASourceDelegateTableSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1387,6 +1411,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.DATASourceDelegateTableSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1424,6 +1450,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = demo.CollectionSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1465,6 +1492,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.CollectionObjC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1502,6 +1530,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = demo.TableSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1541,6 +1570,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = demo.TableObjC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1578,6 +1608,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InfiniteTableSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -1624,6 +1655,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.3lvis.DATASource;
 				PRODUCT_NAME = DATASource;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1674,6 +1706,7 @@
 				PRODUCT_NAME = DATASource;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";

@@ -104,13 +104,6 @@ public class DATASource: NSObject {
     /**
      The number of objects fetched by DATASource.
      */
-    @available(*, deprecated=5.6.3, message="Use `count` instead") public var objectsCount: Int {
-        return self.count
-    }
-
-    /**
-     The number of objects fetched by DATASource.
-     */
     public var count: Int {
         var total = 0
         let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
@@ -174,7 +167,7 @@ public class DATASource: NSObject {
      - parameter indexPath: An index path used to fetch an specific object.
      - returns: The object at a given index path in the fetch results.
      */
-    public func object<T: NSManagedObject>(indexPath indexPath: NSIndexPath) -> T? {
+    public func object<T: NSManagedObject>(indexPath: NSIndexPath) -> T? {
         if !self.isEmpty {
             guard let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as? T else { fatalError("Couldn't cast object") }
             return object
@@ -199,7 +192,7 @@ public class DATASource: NSObject {
      - parameter object: An object in the receiver’s fetch results.
      - returns: The index path of object in the receiver’s fetch results, or nil if object could not be found.
      */
-    public func indexPath(object object: NSManagedObject) -> NSIndexPath? {
+    public func indexPath(object: NSManagedObject) -> NSIndexPath? {
         return self.fetchedResultsController.indexPathForObject(object) ?? nil
     }
 
@@ -229,11 +222,11 @@ public class DATASource: NSObject {
      - parameter section: The section used to retrieve the title.
      - returns: The title for the requested section, returns `nil` if the section is not present.
      */
-    public func titleForHeader(section section: Int) -> String? {
+    public func titleForHeader(section: Int) -> String? {
         return self.fetchedResultsController.sections?[section].name
     }
 
-    func configure(cell cell: UIView, indexPath: NSIndexPath) {
+    func configure(cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
 
         let rowIsInsideBounds = indexPath.row < self.count

@@ -42,6 +42,4 @@ import CoreData
     */
 
     optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath, withTitle title: AnyObject?) -> UICollectionReusableView?
-
-    @available(*, deprecated=5.1.0, message="Use dataSource(_:collectionView:viewForSupplementaryElementOfKind:atIndexPath:withTitle) instead") optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
 }
