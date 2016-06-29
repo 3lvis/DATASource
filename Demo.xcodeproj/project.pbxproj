@@ -871,6 +871,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = C6K65RDJHL;
 						DevelopmentTeamName = "Elvis Nunez (Personal Team)";
+						LastSwiftMigration = 0800;
 					};
 					14F8487C1CC668820052E4B0 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1631,6 +1632,7 @@
 				PRODUCT_NAME = DATASource;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1656,6 +1658,7 @@
 				PRODUCT_NAME = DATASource;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

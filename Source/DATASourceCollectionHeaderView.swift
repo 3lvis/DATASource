@@ -14,7 +14,7 @@ public class DATASourceCollectionViewHeader: UICollectionReusableView {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
-        label.font = UIFont.boldSystemFontOfSize(22.0)
+        label.font = UIFont.boldSystemFont(ofSize: 22.0)
 
         return label
     }()
@@ -22,7 +22,7 @@ public class DATASourceCollectionViewHeader: UICollectionReusableView {
     private lazy var separatorView: UIView = {
         let bottomMargin = CGFloat(10)
         let view = UIView(frame: CGRect(x: 0, y: self.frame.height - bottomMargin, width: self.frame.width, height: 1))
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = UIColor.black()
 
         return view
     }()

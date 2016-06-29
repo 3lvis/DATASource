@@ -2,11 +2,11 @@ import UIKit
 import CoreData
 
 extension DATASource: UICollectionViewDataSource {
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
 
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var numberOfItemsInSection = 0
 
         if let sections = self.fetchedResultsController.sections {
@@ -16,15 +16,15 @@ extension DATASource: UICollectionViewDataSource {
         return numberOfItemsInSection
     }
 
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.cellIdentifier, forIndexPath: indexPath)
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath)
 
-        self.configure(cell: cell, indexPath: indexPath)
+        self.configure(cell, indexPath: indexPath)
 
         return cell
     }
 
-    public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
             if self.cachedSectionNames.isEmpty {
                 var ascending: Bool? = nil
@@ -39,27 +39,27 @@ extension DATASource: UICollectionViewDataSource {
                     }
                 }
 
-                let request = NSFetchRequest()
+                let request = NSFetchRequest<NSFetchRequestResult>()
                 request.entity = self.fetchedResultsController.fetchRequest.entity
-                request.resultType = .DictionaryResultType
+                request.resultType = .dictionaryResultType
                 request.returnsDistinctResults = true
                 request.propertiesToFetch = [keyPath]
                 request.predicate = self.fetchedResultsController.fetchRequest.predicate
-                request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: ascending!)]
+                request.sortDescriptors = [SortDescriptor(key: keyPath, ascending: ascending!)]
 
-                let objects = try! self.fetchedResultsController.managedObjectContext.executeFetchRequest(request) as! [NSDictionary]
+                let objects = try! self.fetchedResultsController.managedObjectContext.fetch(request) as! [NSDictionary]
                 for object in objects {
-                    self.cachedSectionNames.appendContentsOf(object.allValues)
+                    self.cachedSectionNames.append(contentsOf: object.allValues)
                 }
             }
 
-            let title = self.cachedSectionNames[indexPath.section]
+            let title = self.cachedSectionNames[(indexPath as NSIndexPath).section]
 
             if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: title) {
                 return view
             }
 
-            if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, forIndexPath: indexPath) as? DATASourceCollectionViewHeader, let title = title as? String {
+            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, for: indexPath) as? DATASourceCollectionViewHeader, let title = title as? String {
                 headerView.title = title
                 return headerView
             }

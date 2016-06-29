@@ -2,11 +2,11 @@ import UIKit
 import CoreData
 
 @objc public protocol DATASourceDelegate: NSObjectProtocol {
-    optional func dataSource(dataSource: DATASource, didInsertObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    optional func dataSource(dataSource: DATASource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    optional func dataSource(dataSource: DATASource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: NSIndexPath)
-    optional func dataSource(dataSource: DATASource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath)
-    optional func dataSourceDidChangeContent(dataSource: DATASource)
+    @objc optional func dataSource(_ dataSource: DATASource, didInsertObject object: NSManagedObject, atIndexPath indexPath: IndexPath)
+    @objc optional func dataSource(_ dataSource: DATASource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: IndexPath)
+    @objc optional func dataSource(_ dataSource: DATASource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: IndexPath)
+    @objc optional func dataSource(_ dataSource: DATASource, didMoveObject object: NSManagedObject, fromIndexPath oldIndexPath: IndexPath, toIndexPath newIndexPath: IndexPath)
+    @objc optional func dataSourceDidChangeContent(_ dataSource: DATASource)
 
     /*!
     * **************************
@@ -18,20 +18,20 @@ import CoreData
 
     // Sections and Headers
 
-    optional func sectionIndexTitlesForDataSource(dataSource: DATASource, tableView: UITableView) -> [String]
-    optional func dataSource(dataSource: DATASource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
-    optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-    optional func dataSource(dataSource: DATASource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
+    @objc optional func sectionIndexTitlesForDataSource(_ dataSource: DATASource, tableView: UITableView) -> [String]
+    @objc optional func dataSource(_ dataSource: DATASource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int
+    @objc optional func dataSource(_ dataSource: DATASource, tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    @objc optional func dataSource(_ dataSource: DATASource, tableView: UITableView, titleForFooterInSection section: Int) -> String?
 
     // Editing
 
-    optional func dataSource(dataSource: DATASource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
-    optional func dataSource(dataSource: DATASource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataSource(_ dataSource: DATASource, tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool
+    @objc optional func dataSource(_ dataSource: DATASource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath)
 
     // Moving or Reordering
 
-    optional func dataSource(dataSource: DATASource, tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
-    optional func dataSource(dataSource: DATASource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)
+    @objc optional func dataSource(_ dataSource: DATASource, tableView: UITableView, canMoveRowAtIndexPath indexPath: IndexPath) -> Bool
+    @objc optional func dataSource(_ dataSource: DATASource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: IndexPath, toIndexPath destinationIndexPath: IndexPath)
 
     /*!
     * **************************
@@ -41,5 +41,5 @@ import CoreData
     * **************************
     */
 
-    optional func dataSource(dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath, withTitle title: AnyObject?) -> UICollectionReusableView?
+    @objc optional func dataSource(_ dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath, withTitle title: AnyObject?) -> UICollectionReusableView?
 }
