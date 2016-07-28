@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "DATASource"
-  s.version = "5.8.1"
+  s.version = "5.9.0"
   s.summary = "Core Data's NSFetchedResultsController wrapper for UITableView and UICollectionView"
   s.description  = <<-EOS
   If you are not familiarized with NSFetchedResultsController, it allows you to efficiently manage the results returned from a Core Data fetch request to provide data for a UITableView or a UICollectionView. NSFetchedResultsController monitors changes in Core Data objects and notifies the view about those changes allowing you to be reactive about them.
