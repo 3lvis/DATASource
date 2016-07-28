@@ -233,6 +233,24 @@ public class DATASource: NSObject {
         return self.fetchedResultsController.sections?[section].name
     }
 
+    /**
+     Lightweight replacement for `reloadItemsAtIndexPaths` that doesn't flash the reloaded items.
+     - parameter indexPaths: The array of indexPaths to be reloaded.
+     */
+    public func reloadCells(at indexPaths: [NSIndexPath]) {
+        for indexPath in indexPaths {
+            if let tableView = self.tableView {
+                if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                    self.configure(cell: cell, indexPath: indexPath)
+                }
+            } else if let collectionView = self.collectionView {
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
+                    self.configure(cell: cell, indexPath: indexPath)
+                }
+            }
+        }
+    }
+
     func configure(cell cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
 
