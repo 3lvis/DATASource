@@ -48,13 +48,13 @@ extension DATASource: NSFetchedResultsControllerDelegate {
             let rowAnimationType = self.animations?[type] ?? .automatic
             switch type {
             case .insert:
-                if let newIndexPath = newIndexPath, anObject = anObject as? NSManagedObject {
+                if let newIndexPath = newIndexPath, let anObject = anObject as? NSManagedObject {
                     tableView.insertRows(at: [newIndexPath], with: rowAnimationType)
                     self.delegate?.dataSource?(self, didInsertObject: anObject, atIndexPath: newIndexPath)
                 }
                 break
             case .delete:
-                if let indexPath = indexPath, anObject = anObject as? NSManagedObject {
+                if let indexPath = indexPath, let anObject = anObject as? NSManagedObject {
                     tableView.deleteRows(at: [indexPath], with: rowAnimationType)
                     self.delegate?.dataSource?(self, didDeleteObject: anObject, atIndexPath: indexPath)
                 }
@@ -73,7 +73,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 }
                 break
             case .move:
-                if let indexPath = indexPath, newIndexPath = newIndexPath {
+                if let indexPath = indexPath, let newIndexPath = newIndexPath {
                     tableView.deleteRows(at: [indexPath], with: rowAnimationType)
                     tableView.insertRows(at: [newIndexPath], with: rowAnimationType)
 
@@ -100,7 +100,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 }
                 break
             case .move:
-                if let indexPath = indexPath, newIndexPath = newIndexPath {
+                if let indexPath = indexPath, let newIndexPath = newIndexPath {
                     // Workaround: Updating a UICollectionView element sometimes will trigger a .Move change
                     // where both indexPaths are the same, as a workaround if this happens, DATASource
                     // will treat this change as an .Update
@@ -125,7 +125,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
             if let moves = self.objectChanges[.move] {
                 if moves.count > 0 {
                     var updatedMoves = Set<IndexPath>()
-                    if let insertSections = self.sectionChanges[.insert], deleteSections = self.sectionChanges[.delete] {
+                    if let insertSections = self.sectionChanges[.insert], let deleteSections = self.sectionChanges[.delete] {
                         var generator = moves.makeIterator()
                         guard let fromIndexPath = generator.next() else { fatalError("fromIndexPath not found. Moves: \(moves), inserted sections: \(insertSections), deleted sections: \(deleteSections)") }
                         guard let toIndexPath = generator.next() else { fatalError("toIndexPath not found. Moves: \(moves), inserted sections: \(insertSections), deleted sections: \(deleteSections)") }
