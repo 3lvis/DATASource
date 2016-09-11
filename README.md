@@ -44,7 +44,7 @@ Hooking up your table view to your `Task` model and making your UITableView reac
 
 **Swift:**
 ```swift
-let request: NSFetchRequest = NSFetchRequest(entityName: "Task")
+let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
 request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 
 let dataSource = DATASource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack.mainContext, configuration: { cell, item, indexPath in
@@ -127,7 +127,7 @@ Hooking up a UICollectionView is as simple as doing it with a UITableView, just 
 
 **Swift**:
 ```swift
-let request: NSFetchRequest = NSFetchRequest(entityName: "Task")
+let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
 request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 
 let dataSource = DATASource(collectionView: self.collectionView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack.mainContext, configuration: { cell, item, indexPath in

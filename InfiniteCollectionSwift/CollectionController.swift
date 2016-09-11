@@ -9,10 +9,10 @@ class CollectionController: UICollectionViewController {
     lazy var dataSource: DATASource = {
         guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
-            SortDescriptor(key: "name", ascending: true),
-            SortDescriptor(key: "firstLetterOfName", ascending: true)
+            NSSortDescriptor(key: "name", ascending: true),
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
         ]
 
         let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
@@ -45,7 +45,7 @@ class CollectionController: UICollectionViewController {
         guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
         collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.Identifier)
         collectionView.dataSource = self.dataSource
-        collectionView.backgroundColor = UIColor.white()
+        collectionView.backgroundColor = UIColor.white
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
         if self.dataSource.isEmpty {
@@ -61,7 +61,7 @@ class CollectionController: UICollectionViewController {
         guard let collectionView = self.collectionView else { return }
         guard self.loading == false else { return }
 
-        let offset = collectionView.contentOffset.y + UIScreen.main().bounds.height
+        let offset = collectionView.contentOffset.y + UIScreen.main.bounds.height
         if offset >= scrollView.contentSize.height {
             if let item = self.dataSource.objects.last {
                 self.loading = true
@@ -77,7 +77,7 @@ class CollectionController: UICollectionViewController {
     }
 
     func loadItems(_ initialIndex: Int, completion: ((Void) -> Void)?) {
-        DispatchQueue.main.after(when: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.dataStack.performInNewBackgroundContext { backgroundContext in
                 let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext)!
                 for i in initialIndex..<initialIndex + 18 {
@@ -89,7 +89,7 @@ class CollectionController: UICollectionViewController {
                 }
 
                 try! backgroundContext.save()
-                DispatchQueue.main().asynchronously(DispatchQueue.main) {
+                DispatchQueue.main.async {
                     completion?()
                 }
             }

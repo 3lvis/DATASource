@@ -53,7 +53,7 @@ class Tests: XCTestCase {
         let layout = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: Tests.CellIdentifier)
-        let request = NSFetchRequest(entityName: Tests.EntityName)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: Tests.EntityName)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
         let dataSource = DATASource(collectionView: collectionView, cellIdentifier: Tests.CellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in

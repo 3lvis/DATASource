@@ -6,7 +6,7 @@ import DATAStack
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow? = {
-        let window = UIWindow(frame: UIScreen.main().bounds)
+        let window = UIWindow(frame: UIScreen.main.bounds)
 
         return window
     }()

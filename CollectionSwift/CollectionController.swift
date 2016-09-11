@@ -11,8 +11,8 @@ class CollectionController: UICollectionViewController {
 
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
-            SortDescriptor(key: "name", ascending: true),
-            SortDescriptor(key: "firstLetterOfName", ascending: true)
+            NSSortDescriptor(key: "name", ascending: true),
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
         ]
 
         let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
@@ -40,7 +40,7 @@ class CollectionController: UICollectionViewController {
 
         collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.Identifier)
         collectionView.dataSource = self.dataSource
-        collectionView.backgroundColor = UIColor.white()
+        collectionView.backgroundColor = UIColor.white
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(CollectionController.saveAction))
@@ -86,7 +86,7 @@ extension CollectionController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let object = self.dataSource.objectAtIndexPath(indexPath) else { return }
 
-        if let name = object.value(forKey: "name") as? String where name.characters.first == "A" {
+        if let name = object.value(forKey: "name") as? String , name.characters.first == "A" {
             self.dataStack.performInNewBackgroundContext({ backgroundContext in
                 let backgroundObject = backgroundContext.object(with: object.objectID)
                 backgroundObject.setValue(name + "+", forKey: "name")
