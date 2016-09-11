@@ -1,28 +1,28 @@
 import UIKit
 
-public class DATASourceCollectionViewHeader: UICollectionReusableView {
+open class DATASourceCollectionViewHeader: UICollectionReusableView {
 
     // MARK: Variables
 
-    public static let Identifier = "DATASourceCollectionHeaderViewIdentifier"
+    open static let Identifier = "DATASourceCollectionHeaderViewIdentifier"
 
-    public var title: String = "" {
+    open var title: String = "" {
         didSet {
             self.titleLabel.text = title
         }
     }
 
-    private lazy var titleLabel: UILabel = {
+    fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         label.font = UIFont.boldSystemFont(ofSize: 22.0)
 
         return label
     }()
 
-    private lazy var separatorView: UIView = {
+    fileprivate lazy var separatorView: UIView = {
         let bottomMargin = CGFloat(10)
         let view = UIView(frame: CGRect(x: 0, y: self.frame.height - bottomMargin, width: self.frame.width, height: 1))
-        view.backgroundColor = UIColor.black()
+        view.backgroundColor = UIColor.black
 
         return view
     }()

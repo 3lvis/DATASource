@@ -13,13 +13,8 @@ class ViewController: UITableViewController {
             SortDescriptor(key: "name", ascending: true)
         ]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName") { cell, item, indexPath in
-            if let cell = cell as? CustomCell {
-                let name = item.value(forKey: "name") as? String ?? ""
-                let count = item.value(forKey: "count") as? Int ?? 0
-                cell.label.text = "\(count) — \(name)"
-            }
-        }
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName")
+        dataSource.delegate = self
 
         return dataSource
     }()
@@ -86,6 +81,16 @@ class ViewController: UITableViewController {
             count += 1
             user.setValue(count, forKey: "count")
             try! backgroundContext.save()
+        }
+    }
+}
+
+extension ViewController: DATASourceDelegate {
+    func dataSource(dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: NSIndexPath) {
+        if let cell = cell as? CustomCell {
+            let name = item.valueForKey("name") as? String ?? ""
+            let count = item.valueForKey("count") as? Int ?? 0
+            cell.label.text = "\(count) — \(name)"
         }
     }
 }

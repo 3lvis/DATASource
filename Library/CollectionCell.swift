@@ -1,9 +1,9 @@
 import UIKit
 
-public class CollectionCell: UICollectionViewCell {
-    public static let Identifier = "CollectionCellIdentifier"
+open class CollectionCell: UICollectionViewCell {
+    open static let Identifier = "CollectionCellIdentifier"
 
-    public lazy var textLabel: UILabel = {
+    open lazy var textLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         label.textAlignment = .center
 
@@ -14,7 +14,7 @@ public class CollectionCell: UICollectionViewCell {
         super.init(frame: frame)
 
         self.contentView.layer.borderWidth = 1
-        self.contentView.layer.borderColor = UIColor.lightGray().cgColor
+        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
 
         addSubview(textLabel)
     }

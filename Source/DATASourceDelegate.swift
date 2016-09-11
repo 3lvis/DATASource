@@ -2,6 +2,23 @@ import UIKit
 import CoreData
 
 @objc public protocol DATASourceDelegate: NSObjectProtocol {
+    /*!
+     * **************************
+     *
+     * Cell Configuration
+     *
+     * **************************
+     */
+    @objc optional func dataSource(_ dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath)
+    @objc optional func dataSource(_ dataSource: DATASource, configureCollectionViewCell cell: UICollectionViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath)
+
+    /*!
+     * **************************
+     *
+     * NSFetchedResultsControllerDelegate
+     *
+     * **************************
+     */
     @objc optional func dataSource(_ dataSource: DATASource, didInsertObject object: NSManagedObject, atIndexPath indexPath: IndexPath)
     @objc optional func dataSource(_ dataSource: DATASource, didUpdateObject object: NSManagedObject, atIndexPath indexPath: IndexPath)
     @objc optional func dataSource(_ dataSource: DATASource, didDeleteObject object: NSManagedObject, atIndexPath indexPath: IndexPath)
@@ -11,7 +28,7 @@ import CoreData
     /*!
     * **************************
     *
-    * UITableView specific
+    * UITableView
     *
     * **************************
     */
@@ -36,7 +53,7 @@ import CoreData
     /*!
     * **************************
     *
-    * UICollectionView specific
+    * UICollectionView
     *
     * **************************
     */
