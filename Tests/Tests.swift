@@ -25,7 +25,7 @@ class Tests: XCTestCase {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Tests.CellIdentifier)
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: Tests.EntityName)
-        request.sortDescriptors = [SortDescriptor(key: "name", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
         let dataSource = DATASource(tableView: tableView, cellIdentifier: Tests.CellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
             if let name = item.value(forKey: "name") as? String {

@@ -36,7 +36,7 @@ extension DATASource: UITableViewDataSource {
             request.resultType = .dictionaryResultType
             request.returnsDistinctResults = true
             request.propertiesToFetch = [keyPath]
-            request.sortDescriptors = [SortDescriptor(key: keyPath, ascending: true)]
+            request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: true)]
             var names = [String]()
             var objects: [NSDictionary]?
 

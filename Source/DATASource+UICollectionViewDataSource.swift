@@ -61,7 +61,7 @@ extension DATASource: UICollectionViewDataSource {
             }
         }
 
-        let request = NSFetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = self.fetchedResultsController.fetchRequest.entity
         request.resultType = .dictionaryResultType
         request.returnsDistinctResults = true
@@ -71,7 +71,7 @@ extension DATASource: UICollectionViewDataSource {
 
         let objects = try! self.fetchedResultsController.managedObjectContext.fetch(request) as! [NSDictionary]
         for object in objects {
-            self.cachedSectionNames.append(contentsOf: object.allValues)
+            self.cachedSectionNames.append(object.allValues)
         }
     }
 }

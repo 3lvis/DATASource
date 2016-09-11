@@ -11,7 +11,7 @@ open class DATASource: NSObject {
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: @escaping (_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil)
 
         self.tableView = tableView
@@ -27,7 +27,7 @@ open class DATASource: NSObject {
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: @escaping (_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: configuration)
 
         self.collectionView = collectionView
@@ -44,7 +44,7 @@ open class DATASource: NSObject {
      - parameter mainContext: A main thread managed object context.
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      */
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<AnyObject>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: nil)
 
         self.tableView = tableView
@@ -59,13 +59,13 @@ open class DATASource: NSObject {
      - parameter mainContext: A main thread managed object context.
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      */
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<AnyObject>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: nil)
 
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
 
-        self.collectionView?.registerClass(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
+        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
     }
 
     fileprivate init(cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?, collectionConfiguration: ((_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?) {
@@ -109,20 +109,20 @@ open class DATASource: NSObject {
         return [NSFetchedResultsChangeType : IndexSet]()
     }()
 
-    lazy var cachedSectionNames: [AnyObject] = {
-        return [AnyObject]()
+    lazy var cachedSectionNames: [Any] = {
+        return [Any]()
     }()
 
     /**
      The DATASource's predicate.
      */
-    open var predicate: Predicate? {
+    open var predicate: NSPredicate? {
         get {
             return self.fetchedResultsController.fetchRequest.predicate
         }
 
         set {
-            self.cachedSectionNames = [String]() as [AnyObject]
+            self.cachedSectionNames = [String]() as [Any]
             self.fetchedResultsController.fetchRequest.predicate = newValue
             self.fetch()
             self.tableView?.reloadData()

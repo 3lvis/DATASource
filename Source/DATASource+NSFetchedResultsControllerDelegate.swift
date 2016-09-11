@@ -43,7 +43,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
         }
     }
 
-    public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: AnyObject, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         if let tableView = self.tableView {
             let rowAnimationType = self.animations?[type] ?? .automatic
             switch type {

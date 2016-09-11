@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return dataStack
     }()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: Any]?) -> Bool {
         if let window = self.window {
             let viewController = ViewController(dataStack: self.dataStack)
             window.rootViewController = UINavigationController(rootViewController: viewController)

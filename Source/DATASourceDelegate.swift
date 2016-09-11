@@ -58,5 +58,5 @@ import CoreData
     * **************************
     */
 
-    @objc optional func dataSource(_ dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath, withTitle title: AnyObject?) -> UICollectionReusableView?
+    @objc optional func dataSource(_ dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath, withTitle title: Any?) -> UICollectionReusableView?
 }

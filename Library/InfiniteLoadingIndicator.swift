@@ -52,7 +52,7 @@ class InfiniteLoadingIndicator: UIView {
     }
 
     func dismiss() {
-        DispatchQueue.main.after(when: DispatchTime.now() + Double(Int64(0.3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             let originalFrame = self.frame
             var newFrame = self.frame
             newFrame.origin.y = self.parentController.view.frame.height + 10
