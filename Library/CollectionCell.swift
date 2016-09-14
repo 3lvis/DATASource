@@ -1,9 +1,10 @@
 import UIKit
 
-class CollectionCell: UICollectionViewCell {
-    static let Identifier = "CollectionCellIdentifier"
+// Everything here needs to be public to be accessed by Objective-C.
+public class CollectionCell: UICollectionViewCell {
+    public static let Identifier = "CollectionCellIdentifier"
 
-    lazy var textLabel: UILabel = {
+    public lazy var textLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         label.textAlignment = .center
 
@@ -19,7 +20,7 @@ class CollectionCell: UICollectionViewCell {
         addSubview(textLabel)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
