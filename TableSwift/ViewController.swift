@@ -6,7 +6,7 @@ class ViewController: UITableViewController {
     weak var dataStack: DATAStack?
 
     lazy var dataSource: DATASource = {
-        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
             NSSortDescriptor(key: "firstLetterOfName", ascending: true),
             NSSortDescriptor(key: "count", ascending: true),
@@ -20,7 +20,7 @@ class ViewController: UITableViewController {
     }()
 
     convenience init(dataStack: DATAStack) {
-        self.init(style: .Plain)
+        self.init(style: .plain)
 
         self.dataStack = dataStack
     }
@@ -28,21 +28,21 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.registerClass(CustomCell.self, forCellReuseIdentifier: CustomCell.Identifier)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.saveAction))
+        self.tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.Identifier)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ViewController.saveAction))
         self.tableView.dataSource = self.dataSource
 
-        let object = self.dataSource.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        let object = self.dataSource.objectAtIndexPath(IndexPath(row: 0, section: 0))
         print(object)
     }
 
     func saveAction() {
         self.dataStack!.performInNewBackgroundContext { backgroundContext in
-            if let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext) {
-                let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
+            if let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext) {
+                let user = NSManagedObject(entity: entity, insertInto: backgroundContext)
 
                 let name = self.randomString()
-                let firstLetter = String(Array(name.characters)[0])
+                let firstLetter = String(name[name.startIndex])
                 user.setValue(name, forKey: "name")
                 user.setValue(firstLetter, forKey: "firstLetterOfName")
 
@@ -72,12 +72,12 @@ class ViewController: UITableViewController {
         return string
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = self.dataSource.objectAtIndexPath(indexPath)
         self.dataStack?.performInNewBackgroundContext { backgroundContext in
             guard let objectID = user?.objectID else { fatalError() }
-            let user = backgroundContext.objectWithID(objectID)
-            var count = user.valueForKey("count") as? Int ?? 0
+            let user = backgroundContext.object(with: objectID)
+            var count = user.value(forKey: "count") as? Int ?? 0
             count += 1
             user.setValue(count, forKey: "count")
             try! backgroundContext.save()
@@ -86,10 +86,10 @@ class ViewController: UITableViewController {
 }
 
 extension ViewController: DATASourceDelegate {
-    func dataSource(dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: NSIndexPath) {
+    func dataSource(_ dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath) {
         if let cell = cell as? CustomCell {
-            let name = item.valueForKey("name") as? String ?? ""
-            let count = item.valueForKey("count") as? Int ?? 0
+            let name = item.value(forKey: "name") as? String ?? ""
+            let count = item.value(forKey: "count") as? Int ?? 0
             cell.label.text = "\(count) — \(name)"
         }
     }

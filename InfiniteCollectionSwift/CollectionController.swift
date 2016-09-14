@@ -9,7 +9,7 @@ class CollectionController: UICollectionViewController {
     lazy var dataSource: DATASource = {
         guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: "User")
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true),
             NSSortDescriptor(key: "firstLetterOfName", ascending: true)
@@ -17,7 +17,7 @@ class CollectionController: UICollectionViewController {
 
         let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let collectionCell = cell as! CollectionCell
-            collectionCell.textLabel.text = item.valueForKey("name") as? String
+            collectionCell.textLabel.text = item.value(forKey: "name") as? String
         })
 
         return dataSource
@@ -43,9 +43,9 @@ class CollectionController: UICollectionViewController {
         super.viewDidLoad()
 
         guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
-        collectionView.registerClass(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.Identifier)
+        collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.Identifier)
         collectionView.dataSource = self.dataSource
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.white
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
         if self.dataSource.isEmpty {
@@ -57,31 +57,31 @@ class CollectionController: UICollectionViewController {
     }
 
     var loading = false
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let collectionView = self.collectionView else { return }
         guard self.loading == false else { return }
 
-        let offset = collectionView.contentOffset.y + UIScreen.mainScreen().bounds.height
+        let offset = collectionView.contentOffset.y + UIScreen.main.bounds.height
         if offset >= scrollView.contentSize.height {
             if let item = self.dataSource.objects.last {
                 self.loading = true
                 self.infiniteLoadingIndicator.present()
-                let initialIndex = Int(item.valueForKey("name") as! String)! + 1
+                let initialIndex = Int(item.value(forKey: "name") as! String)! + 1
                 self.loadItems(initialIndex, completion: {
                     self.loading = false
                     self.infiniteLoadingIndicator.dismiss()
-                    print("loaded items starting at \(item.valueForKey("name"))")
+                    print("loaded items starting at \(item.value(forKey: "name"))")
                 })
             }
         }
     }
 
-    func loadItems(initialIndex: Int, completion: (Void -> Void)?) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+    func loadItems(_ initialIndex: Int, completion: ((Void) -> Void)?) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.dataStack.performInNewBackgroundContext { backgroundContext in
-                let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: backgroundContext)!
+                let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext)!
                 for i in initialIndex..<initialIndex + 18 {
-                    let user = NSManagedObject(entity: entity, insertIntoManagedObjectContext: backgroundContext)
+                    let user = NSManagedObject(entity: entity, insertInto: backgroundContext)
                     user.setValue(String(format: "%04d", i), forKey: "name")
 
                     let tens = Int(floor(Double(i) / 10.0) * 10)
@@ -89,7 +89,7 @@ class CollectionController: UICollectionViewController {
                 }
 
                 try! backgroundContext.save()
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     completion?()
                 }
             }
@@ -98,11 +98,11 @@ class CollectionController: UICollectionViewController {
 }
 
 extension CollectionController {
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let numberOfItems = self.collectionView?.numberOfItemsInSection(indexPath.section) else { return }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let numberOfItems = self.collectionView?.numberOfItems(inSection: (indexPath as NSIndexPath).section) else { return }
         var items = [NSManagedObject]()
         for i in 0..<numberOfItems {
-            let newIndexPath = NSIndexPath(forRow: i, inSection: indexPath.section)
+            let newIndexPath = IndexPath(row: i, section: (indexPath as NSIndexPath).section)
             if let item = self.dataSource.objectAtIndexPath(newIndexPath) {
                 items.append(item)
             }
@@ -110,8 +110,8 @@ extension CollectionController {
 
         self.dataStack.performInNewBackgroundContext { backgroundContext in
             for item in items {
-                let safeItem = backgroundContext.objectWithID(item.objectID)
-                backgroundContext.deleteObject(safeItem)
+                let safeItem = backgroundContext.object(with: item.objectID)
+                backgroundContext.delete(safeItem)
             }
             try! backgroundContext.save()
         }

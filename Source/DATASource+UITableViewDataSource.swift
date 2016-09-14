@@ -2,11 +2,11 @@ import UIKit
 import CoreData
 
 extension DATASource: UITableViewDataSource {
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
 
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numberOfRowsInSection = 0
 
         if let sections = self.fetchedResultsController.sections {
@@ -16,23 +16,24 @@ extension DATASource: UITableViewDataSource {
         return numberOfRowsInSection
     }
 
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath)
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
 
-        self.configure(cell: cell, indexPath: indexPath)
+        self.configure(cell, indexPath: indexPath)
 
         return cell
     }
 
     // Sections and Headers
 
-    public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+    #if os(iOS)
+    public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         if let titles = self.delegate?.sectionIndexTitlesForDataSource?(self, tableView: tableView) {
             return titles
         } else if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
-            let request = NSFetchRequest()
+            let request = NSFetchRequest<NSFetchRequestResult>()
             request.entity = self.fetchedResultsController.fetchRequest.entity
-            request.resultType = .DictionaryResultType
+            request.resultType = .dictionaryResultType
             request.returnsDistinctResults = true
             request.propertiesToFetch = [keyPath]
             request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: true)]
@@ -40,14 +41,14 @@ extension DATASource: UITableViewDataSource {
             var objects: [NSDictionary]?
 
             do {
-                objects = try self.fetchedResultsController.managedObjectContext.executeFetchRequest(request) as? [NSDictionary]
+                objects = try self.fetchedResultsController.managedObjectContext.fetch(request) as? [NSDictionary]
             } catch {
                 print("Error")
             }
 
             if let objects = objects {
                 for object in objects {
-                    names.appendContentsOf(object.allValues as! [String])
+                    names.append(contentsOf: object.allValues as! [String])
                 }
             }
 
@@ -57,14 +58,15 @@ extension DATASource: UITableViewDataSource {
         return nil
     }
 
-    public func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+    public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return self.delegate?.dataSource?(self, tableView: tableView, sectionForSectionIndexTitle: title, atIndex: index) ?? index
     }
+    #endif
 
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var resultTitle: String?
 
-        if self.delegate?.respondsToSelector(#selector(DATASourceDelegate.dataSource(_:tableView:titleForHeaderInSection:))) == true {
+        if self.delegate?.responds(to: #selector(DATASourceDelegate.dataSource(_:tableView:titleForHeaderInSection:))) == true {
             resultTitle = self.delegate?.dataSource?(self, tableView: tableView, titleForHeaderInSection: section)
         } else if let sections = self.fetchedResultsController.sections {
             resultTitle = sections[section].name
@@ -73,27 +75,27 @@ extension DATASource: UITableViewDataSource {
         return resultTitle
     }
 
-    public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return self.delegate?.dataSource?(self, tableView: tableView, titleForFooterInSection: section)
     }
 
     // Editing
 
-    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return self.delegate?.dataSource?(self, tableView: tableView, canEditRowAtIndexPath: indexPath) ?? false
     }
 
-    public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         self.delegate?.dataSource?(self, tableView: tableView, commitEditingStyle: editingStyle, forRowAtIndexPath: indexPath)
     }
 
     // Moving or Reordering
 
-    public func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return self.delegate?.dataSource?(self, tableView: tableView, canMoveRowAtIndexPath: indexPath) ?? false
     }
 
-    public func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         self.delegate?.dataSource?(self, tableView: tableView, moveRowAtIndexPath: sourceIndexPath, toIndexPath: destinationIndexPath)
     }
 }

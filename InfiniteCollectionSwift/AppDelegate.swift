@@ -6,7 +6,7 @@ import DATAStack
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow? = {
-        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let window = UIWindow(frame: UIScreen.main.bounds)
 
         return window
     }()
@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return dataStack
     }()
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: Any]?) -> Bool {
         if let window = self.window {
-            let bounds = UIScreen.mainScreen().bounds
+            let bounds = UIScreen.main.bounds
 
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: 120, height: 120)

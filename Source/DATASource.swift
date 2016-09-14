@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-public class DATASource: NSObject {
+open class DATASource: NSObject {
     /**
      Initializes and returns a data source object for a table view.
      - parameter tableView: A table view used to construct the data source.
@@ -11,7 +11,7 @@ public class DATASource: NSObject {
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: @escaping (_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil)
 
         self.tableView = tableView
@@ -27,13 +27,13 @@ public class DATASource: NSObject {
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: (cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ()) {
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: @escaping (_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: configuration)
 
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
 
-        self.collectionView?.registerClass(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
+        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier);
     }
 
     /**
@@ -44,7 +44,7 @@ public class DATASource: NSObject {
      - parameter mainContext: A main thread managed object context.
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      */
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
+    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: nil)
 
         self.tableView = tableView
@@ -59,16 +59,16 @@ public class DATASource: NSObject {
      - parameter mainContext: A main thread managed object context.
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      */
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
+    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: nil)
 
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
 
-        self.collectionView?.registerClass(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
+        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
     }
 
-    private init(cellIdentifier: String, fetchRequest: NSFetchRequest, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?, collectionConfiguration: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?) {
+    fileprivate init(cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?, collectionConfiguration: ((_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?) {
         self.cellIdentifier = cellIdentifier
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
         self.tableConfigurationBlock = tableConfiguration
@@ -82,53 +82,53 @@ public class DATASource: NSObject {
 
     weak var tableView: UITableView?
     weak var collectionView: UICollectionView?
-    private var sectionName: String?
+    fileprivate var sectionName: String?
     var cellIdentifier: String
-    private weak var mainContext: NSManagedObjectContext?
-    private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
-    private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+    fileprivate weak var mainContext: NSManagedObjectContext?
+    fileprivate var tableConfigurationBlock: ((_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?
+    fileprivate var collectionConfigurationBlock: ((_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?
 
     /**
      The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
      */
-    public weak var delegate: DATASourceDelegate?
+    open weak var delegate: DATASourceDelegate?
 
     /**
      Dictionary to configurate the different animations to be applied by each change type.
     */
-    public var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
+    open var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
 
-    var fetchedResultsController: NSFetchedResultsController
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
 
-    lazy var objectChanges: [NSFetchedResultsChangeType : Set<NSIndexPath>] = {
-        return [NSFetchedResultsChangeType : Set<NSIndexPath>]()
+    lazy var objectChanges: [NSFetchedResultsChangeType : Set<IndexPath>] = {
+        return [NSFetchedResultsChangeType : Set<IndexPath>]()
 
     }()
 
-    lazy var sectionChanges: [NSFetchedResultsChangeType : NSMutableIndexSet] = {
-        return [NSFetchedResultsChangeType : NSMutableIndexSet]()
+    lazy var sectionChanges: [NSFetchedResultsChangeType : IndexSet] = {
+        return [NSFetchedResultsChangeType : IndexSet]()
     }()
 
-    lazy var cachedSectionNames: [AnyObject] = {
-        return [AnyObject]()
+    lazy var cachedSectionNames: [Any] = {
+        return [Any]()
     }()
 
     /**
      The DATASource's predicate.
      */
-    public var predicate: NSPredicate? {
+    open var predicate: NSPredicate? {
         get {
             return self.fetchedResultsController.fetchRequest.predicate
         }
 
         set {
-            self.cachedSectionNames = [String]()
+            self.cachedSectionNames = [String]() as [Any]
             self.fetchedResultsController.fetchRequest.predicate = newValue
             self.fetch()
             self.tableView?.reloadData()
 
-            if let visibleIndexPaths = self.collectionView?.indexPathsForVisibleItems() where visibleIndexPaths.count > 0 {
-                self.collectionView?.reloadItemsAtIndexPaths(visibleIndexPaths)
+            if let visibleIndexPaths = self.collectionView?.indexPathsForVisibleItems , visibleIndexPaths.count > 0 {
+                self.collectionView?.reloadItems(at: visibleIndexPaths)
             }
         }
     }
@@ -136,14 +136,7 @@ public class DATASource: NSObject {
     /**
      The number of objects fetched by DATASource.
      */
-    @available(*, deprecated=5.6.3, message="Use `count` instead") public var objectsCount: Int {
-        return self.count
-    }
-
-    /**
-     The number of objects fetched by DATASource.
-     */
-    public var count: Int {
+    open var count: Int {
         var total = 0
         let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
         if sections.count == 0 {
@@ -161,7 +154,7 @@ public class DATASource: NSObject {
      Check for wheter the DATASource is empty or not. Returns `true` is the amount of objects
      is more than 0.
      */
-    public var isEmpty: Bool {
+    open var isEmpty: Bool {
         let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
         if sections.count == 0 {
             return true
@@ -180,14 +173,14 @@ public class DATASource: NSObject {
      The objects fetched by DATASource. This is an array of `NSManagedObject`.
      */
     // Meant to be a Objective-C compatibility later for `all`
-    public var objects: [NSManagedObject] {
+    open var objects: [NSManagedObject] {
         return all()
     }
 
     /**
      All the objects fetched by DATASource. This is an array of `NSManagedObject`.
      */
-    public func all<T: NSManagedObject>() -> [T] {
+    open func all<T: NSManagedObject>() -> [T] {
         return self.fetchedResultsController.fetchedObjects as?  [T] ?? [T]()
     }
 
@@ -197,8 +190,8 @@ public class DATASource: NSObject {
      - returns: The object at a given index path in the fetch results.
      */
     // Meant to be a Objective-C compatibility later for object(indexPath: indexPath)
-    public func objectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject? {
-        return object(indexPath: indexPath)
+    open func objectAtIndexPath(_ indexPath: IndexPath) -> NSManagedObject? {
+        return object(indexPath)
     }
 
     /**
@@ -206,9 +199,9 @@ public class DATASource: NSObject {
      - parameter indexPath: An index path used to fetch an specific object.
      - returns: The object at a given index path in the fetch results.
      */
-    public func object<T: NSManagedObject>(indexPath indexPath: NSIndexPath) -> T? {
+    open func object<T: NSManagedObject>(_ indexPath: IndexPath) -> T? {
         if !self.isEmpty {
-            guard let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as? T else { fatalError("Couldn't cast object") }
+            guard let object = self.fetchedResultsController.object(at: indexPath) as? T else { fatalError("Couldn't cast object") }
             return object
         }
 
@@ -222,8 +215,8 @@ public class DATASource: NSObject {
      */
     //
     // Meant to be a Objective-C compatibility later for `indexPath(object: object)`
-    public func indexPathForObject(object: NSManagedObject) -> NSIndexPath? {
-        return self.indexPath(object: object)
+    open func indexPathForObject(_ object: NSManagedObject) -> IndexPath? {
+        return self.indexPath(object)
     }
 
     /**
@@ -231,14 +224,14 @@ public class DATASource: NSObject {
      - parameter object: An object in the receiver’s fetch results.
      - returns: The index path of object in the receiver’s fetch results, or nil if object could not be found.
      */
-    public func indexPath(object object: NSManagedObject) -> NSIndexPath? {
-        return self.fetchedResultsController.indexPathForObject(object) ?? nil
+    open func indexPath(_ object: NSManagedObject) -> IndexPath? {
+        return self.fetchedResultsController.indexPath(forObject: object) ?? nil
     }
 
     /**
      Executes the DATASource's fetch request.
      */
-    public func fetch() {
+    open func fetch() {
         do {
             try self.fetchedResultsController.performFetch()
         } catch {
@@ -252,8 +245,8 @@ public class DATASource: NSObject {
      - returns: The title for the requested section, returns `nil` if the section is not present.
      */
     // Meant to be a Objective-C compatibility later for `titleForHeader(section: section)`
-    public func titleForHeaderInSection(section: Int) -> String? {
-        return self.titleForHeader(section: section)
+    open func titleForHeaderInSection(_ section: Int) -> String? {
+        return self.titleForHeader(section)
     }
 
     /**
@@ -261,49 +254,31 @@ public class DATASource: NSObject {
      - parameter section: The section used to retrieve the title.
      - returns: The title for the requested section, returns `nil` if the section is not present.
      */
-    public func titleForHeader(section section: Int) -> String? {
+    open func titleForHeader(_ section: Int) -> String? {
         return self.fetchedResultsController.sections?[section].name
     }
 
-    /**
-     Lightweight replacement for `reloadItemsAtIndexPaths` that doesn't flash the reloaded items.
-     - parameter indexPaths: The array of indexPaths to be reloaded.
-     */
-    public func reloadCells(at indexPaths: [NSIndexPath]) {
-        for indexPath in indexPaths {
-            if let tableView = self.tableView {
-                if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-                    self.configure(cell: cell, indexPath: indexPath)
-                }
-            } else if let collectionView = self.collectionView {
-                if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
-                    self.configure(cell: cell, indexPath: indexPath)
-                }
-            }
-        }
-    }
-
-    func configure(cell cell: UIView, indexPath: NSIndexPath) {
+    func configure(_ cell: UIView, indexPath: IndexPath) {
         var item: NSManagedObject?
 
-        let rowIsInsideBounds = indexPath.row < self.count
+        let rowIsInsideBounds = (indexPath as NSIndexPath).row < self.count
         if rowIsInsideBounds {
-            item = self.fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject
+            item = self.fetchedResultsController.object(at: indexPath) as? NSManagedObject
         }
 
         if let item = item {
             if let _ = self.tableView {
                 if let configuration = self.tableConfigurationBlock {
-                    configuration(cell: cell as! UITableViewCell, item: item, indexPath: indexPath)
-                } else if self.delegate?.respondsToSelector(#selector(DATASourceDelegate.dataSource(_:configureTableViewCell:withItem:atIndexPath:))) != nil {
+                    configuration(cell as! UITableViewCell, item, indexPath)
+                } else if self.delegate?.responds(to: #selector(DATASourceDelegate.dataSource(_:configureTableViewCell:withItem:atIndexPath:))) != nil {
                     self.delegate?.dataSource?(self, configureTableViewCell: cell as! UITableViewCell, withItem: item, atIndexPath: indexPath)
                 } else {
                     fatalError()
                 }
             } else if let _ = self.collectionView {
                 if let configuration = self.collectionConfigurationBlock {
-                    configuration(cell: cell as! UICollectionViewCell, item: item, indexPath: indexPath)
-                } else if self.delegate?.respondsToSelector(#selector(DATASourceDelegate.dataSource(_:configureCollectionViewCell:withItem:atIndexPath:))) != nil {
+                    configuration(cell as! UICollectionViewCell, item, indexPath)
+                } else if self.delegate?.responds(to: #selector(DATASourceDelegate.dataSource(_:configureCollectionViewCell:withItem:atIndexPath:))) != nil {
                     self.delegate?.dataSource?(self, configureCollectionViewCell: cell as! UICollectionViewCell, withItem: item, atIndexPath: indexPath)
                 } else {
                     fatalError()
@@ -311,4 +286,23 @@ public class DATASource: NSObject {
             }
         }
     }
+
+    /**
+     Lightweight replacement for `reloadItemsAtIndexPaths` that doesn't flash the reloaded items.
+     - parameter indexPaths: The array of indexPaths to be reloaded.
+     */
+    open func reloadCells(at indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if let tableView = self.tableView {
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    self.configure(cell, indexPath: indexPath)
+                }
+            } else if let collectionView = self.collectionView {
+                if let cell = collectionView.cellForItem(at: indexPath) {
+                    self.configure(cell, indexPath: indexPath)
+                }
+            }
+        }
+    }
+
 }
