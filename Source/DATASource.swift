@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-open class DATASource: NSObject {
+public class DATASource: NSObject {
     /**
      Initializes and returns a data source object for a table view.
      - parameter tableView: A table view used to construct the data source.
@@ -91,12 +91,12 @@ open class DATASource: NSObject {
     /**
      The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
      */
-    open weak var delegate: DATASourceDelegate?
+    public weak var delegate: DATASourceDelegate?
 
     /**
      Dictionary to configurate the different animations to be applied by each change type.
     */
-    open var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
+    public var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
 
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
 
@@ -116,7 +116,7 @@ open class DATASource: NSObject {
     /**
      The DATASource's predicate.
      */
-    open var predicate: NSPredicate? {
+    public var predicate: NSPredicate? {
         get {
             return self.fetchedResultsController.fetchRequest.predicate
         }
@@ -136,7 +136,7 @@ open class DATASource: NSObject {
     /**
      The number of objects fetched by DATASource.
      */
-    open var count: Int {
+    public var count: Int {
         var total = 0
         let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
         if sections.count == 0 {
@@ -154,7 +154,7 @@ open class DATASource: NSObject {
      Check for wheter the DATASource is empty or not. Returns `true` is the amount of objects
      is more than 0.
      */
-    open var isEmpty: Bool {
+    public var isEmpty: Bool {
         let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
         if sections.count == 0 {
             return true
@@ -173,14 +173,14 @@ open class DATASource: NSObject {
      The objects fetched by DATASource. This is an array of `NSManagedObject`.
      */
     // Meant to be a Objective-C compatibility later for `all`
-    open var objects: [NSManagedObject] {
+    public var objects: [NSManagedObject] {
         return all()
     }
 
     /**
      All the objects fetched by DATASource. This is an array of `NSManagedObject`.
      */
-    open func all<T: NSManagedObject>() -> [T] {
+    public func all<T: NSManagedObject>() -> [T] {
         return self.fetchedResultsController.fetchedObjects as?  [T] ?? [T]()
     }
 
@@ -190,7 +190,7 @@ open class DATASource: NSObject {
      - returns: The object at a given index path in the fetch results.
      */
     // Meant to be a Objective-C compatibility later for object(indexPath: indexPath)
-    open func objectAtIndexPath(_ indexPath: IndexPath) -> NSManagedObject? {
+    public func objectAtIndexPath(_ indexPath: IndexPath) -> NSManagedObject? {
         return object(indexPath)
     }
 
@@ -199,7 +199,7 @@ open class DATASource: NSObject {
      - parameter indexPath: An index path used to fetch an specific object.
      - returns: The object at a given index path in the fetch results.
      */
-    open func object<T: NSManagedObject>(_ indexPath: IndexPath) -> T? {
+    public func object<T: NSManagedObject>(_ indexPath: IndexPath) -> T? {
         if !self.isEmpty {
             guard let object = self.fetchedResultsController.object(at: indexPath) as? T else { fatalError("Couldn't cast object") }
             return object
@@ -215,7 +215,7 @@ open class DATASource: NSObject {
      */
     //
     // Meant to be a Objective-C compatibility later for `indexPath(object: object)`
-    open func indexPathForObject(_ object: NSManagedObject) -> IndexPath? {
+    public func indexPathForObject(_ object: NSManagedObject) -> IndexPath? {
         return self.indexPath(object)
     }
 
@@ -224,14 +224,14 @@ open class DATASource: NSObject {
      - parameter object: An object in the receiver’s fetch results.
      - returns: The index path of object in the receiver’s fetch results, or nil if object could not be found.
      */
-    open func indexPath(_ object: NSManagedObject) -> IndexPath? {
+    public func indexPath(_ object: NSManagedObject) -> IndexPath? {
         return self.fetchedResultsController.indexPath(forObject: object) ?? nil
     }
 
     /**
      Executes the DATASource's fetch request.
      */
-    open func fetch() {
+    public func fetch() {
         do {
             try self.fetchedResultsController.performFetch()
         } catch {
@@ -245,7 +245,7 @@ open class DATASource: NSObject {
      - returns: The title for the requested section, returns `nil` if the section is not present.
      */
     // Meant to be a Objective-C compatibility later for `titleForHeader(section: section)`
-    open func titleForHeaderInSection(_ section: Int) -> String? {
+    public func titleForHeaderInSection(_ section: Int) -> String? {
         return self.titleForHeader(section)
     }
 
@@ -254,7 +254,7 @@ open class DATASource: NSObject {
      - parameter section: The section used to retrieve the title.
      - returns: The title for the requested section, returns `nil` if the section is not present.
      */
-    open func titleForHeader(_ section: Int) -> String? {
+    public func titleForHeader(_ section: Int) -> String? {
         return self.fetchedResultsController.sections?[section].name
     }
 
@@ -291,7 +291,7 @@ open class DATASource: NSObject {
      Lightweight replacement for `reloadItemsAtIndexPaths` that doesn't flash the reloaded items.
      - parameter indexPaths: The array of indexPaths to be reloaded.
      */
-    open func reloadCells(at indexPaths: [IndexPath]) {
+    public func reloadCells(at indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if let tableView = self.tableView {
                 if let cell = tableView.cellForRow(at: indexPath) {

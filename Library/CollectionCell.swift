@@ -1,9 +1,9 @@
 import UIKit
 
-open class CollectionCell: UICollectionViewCell {
-    open static let Identifier = "CollectionCellIdentifier"
+class CollectionCell: UICollectionViewCell {
+    static let Identifier = "CollectionCellIdentifier"
 
-    open lazy var textLabel: UILabel = {
+    lazy var textLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         label.textAlignment = .center
 
@@ -19,7 +19,7 @@ open class CollectionCell: UICollectionViewCell {
         addSubview(textLabel)
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

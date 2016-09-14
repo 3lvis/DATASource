@@ -403,12 +403,12 @@
 			isa = PBXGroup;
 			children = (
 				14F848701CC667D20052E4B0 /* DATASource.h */,
+				14308A9F1CC66665000C21DF /* DATASource.swift */,
+				14308AA11CC66665000C21DF /* DATASourceDelegate.swift */,
 				14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */,
 				14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */,
 				14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */,
-				14308A9F1CC66665000C21DF /* DATASource.swift */,
 				14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */,
-				14308AA11CC66665000C21DF /* DATASourceDelegate.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";

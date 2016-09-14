@@ -1,12 +1,12 @@
 import UIKit
 
-open class DATASourceCollectionViewHeader: UICollectionReusableView {
+public class DATASourceCollectionViewHeader: UICollectionReusableView {
 
     // MARK: Variables
 
-    open static let Identifier = "DATASourceCollectionHeaderViewIdentifier"
+    public static let Identifier = "DATASourceCollectionHeaderViewIdentifier"
 
-    open var title: String = "" {
+    public var title: String = "" {
         didSet {
             self.titleLabel.text = title
         }
