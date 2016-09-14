@@ -68,7 +68,7 @@ public class DATASource: NSObject {
         self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
     }
 
-    fileprivate init(cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?, collectionConfiguration: ((_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?) {
+    private init(cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?, collectionConfiguration: ((_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?) {
         self.cellIdentifier = cellIdentifier
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
         self.tableConfigurationBlock = tableConfiguration
@@ -82,11 +82,11 @@ public class DATASource: NSObject {
 
     weak var tableView: UITableView?
     weak var collectionView: UICollectionView?
-    fileprivate var sectionName: String?
+    private var sectionName: String?
     var cellIdentifier: String
-    fileprivate weak var mainContext: NSManagedObjectContext?
-    fileprivate var tableConfigurationBlock: ((_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?
-    fileprivate var collectionConfigurationBlock: ((_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?
+    private weak var mainContext: NSManagedObjectContext?
+    private var tableConfigurationBlock: ((_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?
+    private var collectionConfigurationBlock: ((_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?
 
     /**
      The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.

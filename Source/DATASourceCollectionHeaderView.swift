@@ -12,14 +12,14 @@ public class DATASourceCollectionViewHeader: UICollectionReusableView {
         }
     }
 
-    fileprivate lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         label.font = UIFont.boldSystemFont(ofSize: 22.0)
 
         return label
     }()
 
-    fileprivate lazy var separatorView: UIView = {
+    private lazy var separatorView: UIView = {
         let bottomMargin = CGFloat(10)
         let view = UIView(frame: CGRect(x: 0, y: self.frame.height - bottomMargin, width: self.frame.width, height: 1))
         view.backgroundColor = UIColor.black
