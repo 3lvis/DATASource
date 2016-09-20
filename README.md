@@ -1,5 +1,11 @@
 ![DATASource](https://raw.githubusercontent.com/3lvis/DATASource/master/Images/logo.png)
 
+[![Version](https://img.shields.io/cocoapods/v/DATASource.svg?style=flat)](https://cocoapods.org/pods/DATASource)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/3lvis/DATASource)
+![Swift 3](https://img.shields.io/badge/Swift-3-orange.svg)
+![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20OS%20X%20%7C%20watchOS%20%7C%20tvOS%20-lightgrey.svg)
+[![License](https://img.shields.io/cocoapods/l/DATASource.svg?style=flat)](https://cocoapods.org/pods/DATASource)
+
 If you are not familiarized with [NSFetchedResultsController](https://developer.apple.com/library/ios/documentation/CoreData/Reference/NSFetchedResultsController_Class/index.html), it allows you to efficiently manage the results returned from a `Core Data` fetch request to provide data for a `UITableView` or a `UICollectionView`. `NSFetchedResultsController` monitors changes in `Core Data` objects and notifies the view about those changes allowing you to be reactive about them.<sup>[1](#footnote1)<sup>
 
 Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is awesome, but sadly it involves a lot of boilerplate. Well, luckily with DATASource not anymore.
