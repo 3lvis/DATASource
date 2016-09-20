@@ -191,14 +191,14 @@ dataSource.animations = [.Update: .None, .Move  : .None, .Insert: .None]
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'DATASource'
+pod 'DATASource', '~> 6'
 ```
 
 **DATASource** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
 it, simply add the following line to your Cartfile:
 
 ```ruby
-github '3lvis/DATASource'
+github '3lvis/DATASource' ~> 6
 ```
 
 ## Author
