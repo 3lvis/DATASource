@@ -1,1 +1,1 @@
-Check https://github.com/3lvis/DATASource/releases for more information.
+Check https://github.com/SyncDB/DATASource/releases for more information.

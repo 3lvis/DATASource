@@ -1,7 +1,7 @@
-![DATASource](https://raw.githubusercontent.com/3lvis/DATASource/master/Images/logo.png)
+![DATASource](https://raw.githubusercontent.com/SyncDB/DATASource/master/Images/logo.png)
 
 [![Version](https://img.shields.io/cocoapods/v/DATASource.svg?style=flat)](https://cocoapods.org/pods/DATASource)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/3lvis/DATASource)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SyncDB/DATASource)
 ![Swift 3](https://img.shields.io/badge/Swift-3-orange.svg)
 ![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20OS%20X%20%7C%20watchOS%20%7C%20tvOS%20-lightgrey.svg)
 [![License](https://img.shields.io/cocoapods/l/DATASource.svg?style=flat)](https://cocoapods.org/pods/DATASource)
@@ -29,7 +29,7 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
   * [Basic Usage](#basic-usage-1)
   * [Sectioned UICollectionViewController](#sectioned-uicollectionviewcontroller)
   * [UICollectionViewDataSource](#uicollectionviewdatasource)
-* [Customizing change animations](#customizing-change-animations) 
+* [Customizing change animations](#customizing-change-animations)
 * [Installation](#installation)
 * [Author](#author)
 * [License](#license)
@@ -81,10 +81,10 @@ self.tableView.dataSource = dataSource;
 
 **DATASource** provides an easy way to show an sectioned UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
 
-Check the [Swift Demo](https://github.com/3lvis/DATASource/blob/master/TableSwift/ViewController.swift) for an example of this, were we have an sectioned UITableView of names, where each section is defined by the first letter of the name, just like the Contacts app!
+Check the [Swift Demo](https://github.com/SyncDB/DATASource/blob/master/TableSwift/ViewController.swift) for an example of this, were we have an sectioned UITableView of names, where each section is defined by the first letter of the name, just like the Contacts app!
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/table.gif" />
+  <img src="https://raw.githubusercontent.com/SyncDB/DATASource/master/GitHub/table.gif" />
 </p>
 
 ### Sectioned UITableView Without Indexes
@@ -115,7 +115,7 @@ extension MyController: DATASourceDelegate {
 }
 ```
 
-**DATASource** also provides [a simple method to get the title for an specific section](https://github.com/3lvis/DATASource/blob/d2e095cc864cef5363b571898210baf3feffa50e/Source/DATASource.swift#L156), useful when dealing with custom headers.
+**DATASource** also provides [a simple method to get the title for an specific section](https://github.com/SyncDB/DATASource/blob/d2e095cc864cef5363b571898210baf3feffa50e/Source/DATASource.swift#L156), useful when dealing with custom headers.
 
 ```swift
 let sectionTitle = self.dataSource.titleForHeaderInSection(section)
@@ -165,15 +165,15 @@ self.collectionView.dataSource = dataSource;
 
 **DATASource** provides an easy way to show an grouped UICollectionView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`. This will create a collectionView reusable header.
 
-Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/CollectionSwift) for an example of this, were we have a grouped UICollectionView using the first letter of a name as a header, just like the Contacts.app!
+Check the [CollectionView Demo](https://github.com/SyncDB/DATASource/tree/master/CollectionSwift) for an example of this, were we have a grouped UICollectionView using the first letter of a name as a header, just like the Contacts.app!
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/3lvis/DATASource/master/GitHub/collection.gif" />
+  <img src="https://raw.githubusercontent.com/SyncDB/DATASource/master/GitHub/collection.gif" />
 </p>
 
 ### UICollectionViewDataSource
 
-**DATASource** takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/3lvis/DATASource/tree/master/CollectionSwift) where we show how to add a footer view to your **DATASource** backed UICollectionView.
+**DATASource** takes ownership of your `UICollectionViewDataSource` providing boilerplate functionality for the most common tasks, but if you need to override any of the `UICollectionViewDataSource` methods you can use the `DATASourceDelegate`. Check the [CollectionView Demo](https://github.com/SyncDB/DATASource/tree/master/CollectionSwift) where we show how to add a footer view to your **DATASource** backed UICollectionView.
 
 ## Customizing change animations
 
@@ -204,12 +204,12 @@ pod 'DATASource', '~> 6'
 it, simply add the following line to your Cartfile:
 
 ```ruby
-github "3lvis/DATASource" ~> 6
+github "SyncDB/DATASource" ~> 6
 ```
 
 ## Author
 
-Elvis Nuñez, [@3lvis](https://twitter.com/3lvis)
+SyncDB, [@Sync_DB](https://twitter.com/Sync_DB)
 
 ## License
 

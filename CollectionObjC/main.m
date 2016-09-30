@@ -1,11 +1,3 @@
-//
-//  main.m
-//  CollectionObjC
-//
-//  Created by Elvis Nuñez on 27/10/15.
-//
-//
-
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
