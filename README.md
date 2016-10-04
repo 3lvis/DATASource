@@ -204,7 +204,7 @@ pod 'DATASource', '~> 6'
 it, simply add the following line to your Cartfile:
 
 ```ruby
-github "SyncDB/DATASource" ~> 6
+github "SyncDB/DATASource" ~> 6.0
 ```
 
 ## Author
