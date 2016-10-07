@@ -62,7 +62,7 @@ class ViewController: UITableViewController {
                 self.loadItems(initialIndex, completion: {
                     self.loading = false
                     self.infiniteLoadingIndicator.dismiss()
-                    print("loaded items starting at \(item.value(forKey: "name"))")
+                    print("loaded items starting at \(item.value(forKey: "name")!)")
                 })
             }
         }
