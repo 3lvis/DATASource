@@ -3,27 +3,25 @@ import CoreData
 import DATAStack
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow? = {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-
-        return window
-        }()
+class AppDelegate: UIResponder {
+    var window: UIWindow?
 
     var dataStack: DATAStack = {
         let dataStack = DATAStack(modelName: "DataModel")
 
         return dataStack
-        }()
+    }()
+}
 
-    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: Any]?) -> Bool {
-        if let window = self.window {
-            let viewController = ViewController(dataStack: self.dataStack)
-            window.rootViewController = UINavigationController(rootViewController: viewController)
-            window.makeKeyAndVisible()
-        }
+extension AppDelegate: UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        guard let window = self.window else { fatalError("Window not found") }
 
+        let viewController = ViewController(dataStack: self.dataStack)
+        window.rootViewController = UINavigationController(rootViewController: viewController)
+        window.makeKeyAndVisible()
+        
         return true
     }
 }
