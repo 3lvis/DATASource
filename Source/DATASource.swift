@@ -233,6 +233,7 @@ public class DATASource: NSObject {
      */
     public func fetch() {
         do {
+            self.cachedSectionNames = [String]() as [Any]
             try self.fetchedResultsController.performFetch()
         } catch {
             print("Error fetching objects")
