@@ -1,1 +1,1 @@
-github "SyncDB/DATAStack"
+github "SyncDB/DATAStack" ~> 6.0
