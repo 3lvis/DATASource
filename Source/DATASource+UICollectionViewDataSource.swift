@@ -49,7 +49,7 @@ extension DATASource: UICollectionViewDataSource {
             return view
         }
         
-        fatalError("Couldn't find supplementary view for kind: \(kind) at indexPath: \(indexPath) using title: \(title)")
+        fatalError("Couldn't find supplementary view for kind: \(kind) at indexPath: \(indexPath)")
     }
 
     func cacheSectionNames(using keyPath: String) {
