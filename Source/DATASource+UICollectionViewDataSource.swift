@@ -35,9 +35,13 @@ extension DATASource: UICollectionViewDataSource {
                 return view
             }
 
-            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, for: indexPath) as? DATASourceCollectionViewHeader, let title = title as? String {
-                headerView.title = title
-                return headerView
+            if let title = title as? NSArray, title.count > 0 {
+                if let firstTitle = title[0] as? String {
+                    if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, for: indexPath) as? DATASourceCollectionViewHeader {
+                        headerView.title = firstTitle
+                        return headerView
+                    }
+                }
             }
         }
 
@@ -45,7 +49,7 @@ extension DATASource: UICollectionViewDataSource {
             return view
         }
         
-        return UICollectionReusableView()
+        fatalError("Couldn't find supplementary view for kind: \(kind) at indexPath: \(indexPath) using title: \(title)")
     }
 
     func cacheSectionNames(using keyPath: String) {
