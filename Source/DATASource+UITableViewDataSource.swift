@@ -20,7 +20,7 @@ extension DATASource: UITableViewDataSource {
         
         var cellIdentifier = self.cellIdentifier
         
-        if let value = self.delegate?.cellIdentifier!(forIndexPath: indexPath) {
+        if let value = self.delegate?.cellIdentifier?(forIndexPath: indexPath) {
             cellIdentifier = value
         }
         
