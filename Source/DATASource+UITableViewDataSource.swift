@@ -17,7 +17,14 @@ extension DATASource: UITableViewDataSource {
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
+        
+        var cellIdentifier = self.cellIdentifier
+        
+        if let value = self.delegate?.cellIdentifier?(forIndexPath: indexPath) {
+            cellIdentifier = value
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier:  cellIdentifier, for: indexPath)
 
         self.configure(cell, indexPath: indexPath)
 
