@@ -35,13 +35,6 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 * [License](#license)
 * [Footnotes](#footnotes)
 
-## Running the demos
-Before being able to run the demos you have to install the demo dependencies using [Carthage](https://github.com/Carthage/Carthage).
-
-- Install Carthage
-- Run `carthage update`
-- Enjoy!
-
 ## UITableView
 
 ### Basic Usage
