@@ -95,7 +95,7 @@ public class DATASource: NSObject {
 
     /**
      Dictionary to configurate the different animations to be applied by each change type.
-    */
+     */
     public var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
 
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
@@ -259,7 +259,12 @@ public class DATASource: NSObject {
         return self.fetchedResultsController.sections?[section].name
     }
 
-    func configure(_ cell: UIView, indexPath: IndexPath) {
+    /**
+     Requests to reload the contents of the cell at a specific indexPath.
+     - parameter cell: The cell to be loaded.
+     - parameter indexPath: The indexPath where the cell is located.
+     */
+    public func configure(_ cell: UIView, indexPath: IndexPath) {
         var item: NSManagedObject?
 
         let rowIsInsideBounds = (indexPath as NSIndexPath).row < self.count
@@ -304,6 +309,5 @@ public class DATASource: NSObject {
                 }
             }
         }
-    }
-
+    }    
 }
