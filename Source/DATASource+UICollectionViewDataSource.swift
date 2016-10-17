@@ -18,11 +18,11 @@ extension DATASource: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cellIdentifier = self.cellIdentifier
-        
+
         if let value = self.delegate?.cellIdentifier?(forIndexPath: indexPath) {
             cellIdentifier = value
         }
-        
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
 
         self.configure(cell, indexPath: indexPath)
@@ -41,21 +41,15 @@ extension DATASource: UICollectionViewDataSource {
                 return view
             }
 
-            if let title = title as? NSArray, title.count > 0 {
-                if let firstTitle = title[0] as? String {
-                    if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, for: indexPath) as? DATASourceCollectionViewHeader {
-                        headerView.title = firstTitle
-                        return headerView
-                    }
-                }
+            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, for: indexPath) as? DATASourceCollectionViewHeader {
+                headerView.title = "\(title)"
+                return headerView
             }
-        }
-
-        if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: nil) {
+        } else if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: nil) {
             return view
         }
-        
-        fatalError("Couldn't find supplementary view for kind: \(kind) at indexPath: \(indexPath)")
+
+        fatalError("Couldn't find supplementary view for kind: \(kind) at indexPath: \(indexPath), if you don't expect any headers to be used, consider removing the `headerReferenceSize` from your UICollectionViewLayout.")
     }
 
     func cacheSectionNames(using keyPath: String) {
@@ -81,7 +75,7 @@ extension DATASource: UICollectionViewDataSource {
 
         let objects = try! self.fetchedResultsController.managedObjectContext.fetch(request) as! [NSDictionary]
         for object in objects {
-            self.cachedSectionNames.append(object.allValues)
+            self.cachedSectionNames.append(contentsOf: object.allValues)
         }
     }
 }
