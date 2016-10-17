@@ -46,33 +46,33 @@ class Tests: XCTestCase {
     }
 
     /*
-    func testCollectionViewDataSouce()  {
-        var success = false
-        let bundle = NSBundle(forClass: Tests.self)
-        let dataStack = DATAStack(modelName: Tests.ModelName, bundle: bundle, storeType: .InMemory)
-        let layout = UICollectionViewLayout()
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: Tests.CellIdentifier)
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: Tests.EntityName)
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+     func testCollectionViewDataSouce()  {
+     var success = false
+     let bundle = NSBundle(forClass: Tests.self)
+     let dataStack = DATAStack(modelName: Tests.ModelName, bundle: bundle, storeType: .InMemory)
+     let layout = UICollectionViewLayout()
+     let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+     collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: Tests.CellIdentifier)
+     let request = NSFetchRequest<NSFetchRequestResult>(entityName: Tests.EntityName)
+     request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
-        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: Tests.CellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
-            success = true
-        }
-        collectionView.dataSource = dataSource
-        collectionView.reloadData()
+     let dataSource = DATASource(collectionView: collectionView, cellIdentifier: Tests.CellIdentifier, fetchRequest: request, mainContext: dataStack.mainContext) { cell, item, indexPath in
+     success = true
+     }
+     collectionView.dataSource = dataSource
+     collectionView.reloadData()
 
-        dataStack.performInNewBackgroundContext { backgroundContext in
-            self.userWithName("Elvis", context: backgroundContext)
-            try! backgroundContext.save()
-        }
+     dataStack.performInNewBackgroundContext { backgroundContext in
+     self.userWithName("Elvis", context: backgroundContext)
+     try! backgroundContext.save()
+     }
 
-        XCTAssertTrue(success)
+     XCTAssertTrue(success)
 
-        // Fails
-        // CoreData: error: Serious application error.  An exception was caught from the delegate of NSFetchedResultsController during a call to -controllerDidChangeContent:.  
-        // Invalid update: invalid number of items in section 0.  The number of items contained in an existing section after the update (1) must be equal to the number of items contained in that section before the update (1), 
-        // plus or minus the number of items inserted or deleted from that section (1 inserted, 0 deleted) and plus or minus the number of items moved into or out of that section (0 moved in, 0 moved out). with userInfo (null)
-    }
-     */
+     // Fails
+     // CoreData: error: Serious application error.  An exception was caught from the delegate of NSFetchedResultsController during a call to -controllerDidChangeContent:.
+     // Invalid update: invalid number of items in section 0.  The number of items contained in an existing section after the update (1) must be equal to the number of items contained in that section before the update (1),
+     // plus or minus the number of items inserted or deleted from that section (1 inserted, 0 deleted) and plus or minus the number of items moved into or out of that section (0 moved in, 0 moved out). with userInfo (null)
+     }
+    */
 }

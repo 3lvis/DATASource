@@ -12,7 +12,7 @@ class CollectionController: UICollectionViewController {
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true),
-            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true),
         ]
 
         let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
@@ -57,6 +57,7 @@ class CollectionController: UICollectionViewController {
     }
 
     var loading = false
+
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let collectionView = self.collectionView else { return }
         guard self.loading == false else { return }
@@ -80,7 +81,7 @@ class CollectionController: UICollectionViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.dataStack.performInNewBackgroundContext { backgroundContext in
                 let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext)!
-                for i in initialIndex..<initialIndex + 18 {
+                for i in initialIndex ..< initialIndex + 18 {
                     let user = NSManagedObject(entity: entity, insertInto: backgroundContext)
                     user.setValue(String(format: "%04d", i), forKey: "name")
 
@@ -98,10 +99,11 @@ class CollectionController: UICollectionViewController {
 }
 
 extension CollectionController {
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let numberOfItems = self.collectionView?.numberOfItems(inSection: (indexPath as NSIndexPath).section) else { return }
         var items = [NSManagedObject]()
-        for i in 0..<numberOfItems {
+        for i in 0 ..< numberOfItems {
             let newIndexPath = IndexPath(row: i, section: (indexPath as NSIndexPath).section)
             if let item = self.dataSource.objectAtIndexPath(newIndexPath) {
                 items.append(item)

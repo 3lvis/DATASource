@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 
 extension DATASource: UICollectionViewDataSource {
+
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
@@ -32,7 +33,7 @@ extension DATASource: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let keyPath = self.fetchedResultsController.sectionNameKeyPath {
-            if self.cachedSectionNames.isEmpty || indexPath.section >= self.cachedSectionNames.count{
+            if self.cachedSectionNames.isEmpty || indexPath.section >= self.cachedSectionNames.count {
                 self.cacheSectionNames(using: keyPath)
             }
 

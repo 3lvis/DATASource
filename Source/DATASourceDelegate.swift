@@ -9,7 +9,7 @@ import CoreData
      *
      * **************************
      */
-    @objc optional func cellIdentifier(forIndexPath:IndexPath) -> String 
+    @objc optional func cellIdentifier(forIndexPath: IndexPath) -> String
     @objc optional func dataSource(_ dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath)
     @objc optional func dataSource(_ dataSource: DATASource, configureCollectionViewCell cell: UICollectionViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath)
 
@@ -27,12 +27,12 @@ import CoreData
     @objc optional func dataSourceDidChangeContent(_ dataSource: DATASource)
 
     /*!
-    * **************************
-    *
-    * UITableView
-    *
-    * **************************
-    */
+     * **************************
+     *
+     * UITableView
+     *
+     * **************************
+     */
 
     // Sections and Headers
 
@@ -52,12 +52,12 @@ import CoreData
     @objc optional func dataSource(_ dataSource: DATASource, tableView: UITableView, moveRowAtIndexPath sourceIndexPath: IndexPath, toIndexPath destinationIndexPath: IndexPath)
 
     /*!
-    * **************************
-    *
-    * UICollectionView
-    *
-    * **************************
-    */
+     * **************************
+     *
+     * UICollectionView
+     *
+     * **************************
+     */
 
     @objc optional func dataSource(_ dataSource: DATASource, collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath, withTitle title: Any?) -> UICollectionReusableView?
 }

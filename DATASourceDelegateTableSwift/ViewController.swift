@@ -51,19 +51,20 @@ class ViewController: UITableViewController {
 }
 
 extension ViewController: DATASourceDelegate {
+
     func dataSource(_ dataSource: DATASource, tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath) -> Bool {
         return true
     }
 
     // This doesn't seem to be needed when implementing tableView(_:editActionsForRowAtIndexPath).
     func dataSource(_ dataSource: DATASource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath) {
-
     }
 }
 
 // MARK: - UITableViewDelegate
 
 extension ViewController {
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .default, title: "Delete") { action, indexPath in
             let item = self.dataSource.objectAtIndexPath(indexPath)!

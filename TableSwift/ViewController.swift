@@ -10,7 +10,7 @@ class ViewController: UITableViewController {
         request.sortDescriptors = [
             NSSortDescriptor(key: "firstLetterOfName", ascending: true),
             NSSortDescriptor(key: "count", ascending: true),
-            NSSortDescriptor(key: "name", ascending: true)
+            NSSortDescriptor(key: "name", ascending: true),
         ]
 
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomCell.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName")
@@ -62,7 +62,7 @@ class ViewController: UITableViewController {
     func randomString() -> String {
         let letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÅØÆ"
         var string = ""
-        for _ in 0...10 {
+        for _ in 0 ... 10 {
             let token = UInt32(letters.characters.count)
             let letterIndex = Int(arc4random_uniform(token))
             let firstChar = Array(letters.characters)[letterIndex]
@@ -86,6 +86,7 @@ class ViewController: UITableViewController {
 }
 
 extension ViewController: DATASourceDelegate {
+
     func dataSource(_ dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath) {
         if let cell = cell as? CustomCell {
             let name = item.value(forKey: "name") as? String ?? ""

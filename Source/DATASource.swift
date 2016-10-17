@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 
 public class DATASource: NSObject {
+
     /**
      Initializes and returns a data source object for a table view.
      - parameter tableView: A table view used to construct the data source.
@@ -33,7 +34,7 @@ public class DATASource: NSObject {
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
 
-        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier);
+        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
     }
 
     /**
@@ -100,13 +101,13 @@ public class DATASource: NSObject {
 
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
 
-    lazy var objectChanges: [NSFetchedResultsChangeType : Set<IndexPath>] = {
-        return [NSFetchedResultsChangeType : Set<IndexPath>]()
+    lazy var objectChanges: [NSFetchedResultsChangeType: Set<IndexPath>] = {
+        return [NSFetchedResultsChangeType: Set<IndexPath>]()
 
     }()
 
-    lazy var sectionChanges: [NSFetchedResultsChangeType : IndexSet] = {
-        return [NSFetchedResultsChangeType : IndexSet]()
+    lazy var sectionChanges: [NSFetchedResultsChangeType: IndexSet] = {
+        return [NSFetchedResultsChangeType: IndexSet]()
     }()
 
     lazy var cachedSectionNames: [Any] = {
@@ -127,7 +128,7 @@ public class DATASource: NSObject {
             self.fetch()
             self.tableView?.reloadData()
 
-            if let visibleIndexPaths = self.collectionView?.indexPathsForVisibleItems , visibleIndexPaths.count > 0 {
+            if let visibleIndexPaths = self.collectionView?.indexPathsForVisibleItems, visibleIndexPaths.count > 0 {
                 self.collectionView?.reloadItems(at: visibleIndexPaths)
             }
         }
@@ -181,7 +182,7 @@ public class DATASource: NSObject {
      All the objects fetched by DATASource. This is an array of `NSManagedObject`.
      */
     public func all<T: NSManagedObject>() -> [T] {
-        return self.fetchedResultsController.fetchedObjects as?  [T] ?? [T]()
+        return self.fetchedResultsController.fetchedObjects as? [T] ?? [T]()
     }
 
     /**
@@ -309,5 +310,5 @@ public class DATASource: NSObject {
                 }
             }
         }
-    }    
+    }
 }

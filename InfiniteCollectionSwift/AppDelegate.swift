@@ -14,6 +14,7 @@ class AppDelegate: UIResponder {
 }
 
 extension AppDelegate: UIApplicationDelegate {
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("Window not found") }
@@ -28,7 +29,7 @@ extension AppDelegate: UIApplicationDelegate {
         let viewController = CollectionController(layout: layout, dataStack: self.dataStack)
         window.rootViewController = UINavigationController(rootViewController: viewController)
         window.makeKeyAndVisible()
-        
+
         return true
     }
 }

@@ -2,12 +2,13 @@ import UIKit
 import CoreData
 
 extension DATASource: NSFetchedResultsControllerDelegate {
+
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let tableView = self.tableView {
             tableView.beginUpdates()
         } else if let _ = self.collectionView {
-            self.sectionChanges = [NSFetchedResultsChangeType : IndexSet]()
-            self.objectChanges = [NSFetchedResultsChangeType : Set<IndexPath>]()
+            self.sectionChanges = [NSFetchedResultsChangeType: IndexSet]()
+            self.objectChanges = [NSFetchedResultsChangeType: Set<IndexPath>]()
         }
     }
 
@@ -190,7 +191,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                         collectionView.moveItem(at: fromIndexPath as IndexPath, to: toIndexPath as IndexPath)
                     }
 
-                    }, completion: nil)
+                }, completion: nil)
             }
         }
         self.delegate?.dataSourceDidChangeContent?(self)

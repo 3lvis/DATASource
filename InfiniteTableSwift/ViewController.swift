@@ -10,7 +10,7 @@ class ViewController: UITableViewController {
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true),
-            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true),
         ]
 
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: ViewController.Identifier, fetchRequest: request, mainContext: self.dataStack!.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
@@ -49,6 +49,7 @@ class ViewController: UITableViewController {
     }
 
     var loading = false
+
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let tableView = self.tableView else { return }
         guard self.loading == false else { return }
@@ -72,7 +73,7 @@ class ViewController: UITableViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.dataStack!.performInNewBackgroundContext { backgroundContext in
                 let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext)!
-                for i in initialIndex..<initialIndex + 18 {
+                for i in initialIndex ..< initialIndex + 18 {
                     let user = NSManagedObject(entity: entity, insertInto: backgroundContext)
                     user.setValue(String(format: "%04d", i), forKey: "name")
 
@@ -90,6 +91,7 @@ class ViewController: UITableViewController {
 }
 
 extension ViewController: DATASourceDelegate {
+
     func sectionIndexTitlesForDataSource(_ dataSource: DATASource, tableView: UITableView) -> [String] {
         return [String]()
     }

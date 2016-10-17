@@ -12,7 +12,7 @@ class CollectionController: UICollectionViewController {
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true),
-            NSSortDescriptor(key: "firstLetterOfName", ascending: true)
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true),
         ]
 
         let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
@@ -21,7 +21,7 @@ class CollectionController: UICollectionViewController {
         })
 
         return dataSource
-        }()
+    }()
 
     init(layout: UICollectionViewLayout, dataStack: DATAStack) {
         self.dataStack = dataStack
@@ -71,22 +71,23 @@ class CollectionController: UICollectionViewController {
     func randomString() -> String {
         let letters = "ABCDEFGHIJKL"
         var string = ""
-        for _ in 0...5 {
+        for _ in 0 ... 5 {
             let token = UInt32(letters.characters.count)
             let letterIndex = Int(arc4random_uniform(token))
             let firstChar = Array(letters.characters)[letterIndex]
             string.append(firstChar)
         }
-        
+
         return string
     }
 }
 
 extension CollectionController {
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let object = self.dataSource.objectAtIndexPath(indexPath) else { return }
 
-        if let name = object.value(forKey: "name") as? String , name.characters.first == "A" {
+        if let name = object.value(forKey: "name") as? String, name.characters.first == "A" {
             self.dataStack.performInNewBackgroundContext({ backgroundContext in
                 let backgroundObject = backgroundContext.object(with: object.objectID)
                 backgroundObject.setValue(name + "+", forKey: "name")

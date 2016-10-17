@@ -47,7 +47,7 @@ class InfiniteLoadingIndicator: UIView {
 
             UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [.allowUserInteraction], animations: {
                 self.frame = originalFrame
-                }, completion: nil)
+            }, completion: nil)
         }
     }
 
@@ -58,11 +58,11 @@ class InfiniteLoadingIndicator: UIView {
             newFrame.origin.y = self.parentController.view.frame.height + 10
             UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [.allowUserInteraction], animations: { () -> Void in
                 self.frame = newFrame
-                }, completion: { finished in
-                    self.frame = originalFrame
-                    if self.superview != nil {
-                        self.removeFromSuperview()
-                    }
+            }, completion: { finished in
+                self.frame = originalFrame
+                if self.superview != nil {
+                    self.removeFromSuperview()
+                }
             })
         }
     }
