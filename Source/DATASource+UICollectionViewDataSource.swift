@@ -20,7 +20,7 @@ extension DATASource: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cellIdentifier = self.cellIdentifier
 
-        if let value = self.delegate?.cellIdentifier?(forIndexPath: indexPath) {
+        if let value = self.delegate?.dataSource?(self, cellIdentifierFor: indexPath) {
             cellIdentifier = value
         }
 
