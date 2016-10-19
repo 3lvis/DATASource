@@ -1,4 +1,4 @@
-#import "ViewController.h"
+#import "UICollectionViewControllerDemo.h"
 
 @import DATAStack;
 @import CoreData;
@@ -6,14 +6,14 @@
 #import "FooterExampleView.h"
 #import "ObjectiveCDemo-Swift.h"
 
-@interface ViewController () <NSFetchedResultsControllerDelegate, DATASourceDelegate>
+@interface UICollectionViewControllerDemo () <NSFetchedResultsControllerDelegate, DATASourceDelegate>
 
 @property (nonatomic, weak) DATAStack *dataStack;
 @property (nonatomic) DATASource *dataSource;
 
 @end
 
-@implementation ViewController
+@implementation UICollectionViewControllerDemo
 
 - (instancetype)initWithLayout:(UICollectionViewLayout *)layout
                   andDataStack:(DATAStack *)dataStack {

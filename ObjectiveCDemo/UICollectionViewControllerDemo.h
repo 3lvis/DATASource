@@ -2,7 +2,7 @@
 
 @class DATAStack;
 
-@interface ViewController : UICollectionViewController
+@interface UICollectionViewControllerDemo : UICollectionViewController
 
 - (instancetype)initWithLayout:(UICollectionViewLayout *)layout andDataStack:(DATAStack *)dataStack;
 
