@@ -15,9 +15,7 @@
 		14308ACA1CC66665000C21DF /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
 		149EE87A1CC916DB002739BA /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 149EE8791CC916DB002739BA /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A139B41AEFC72B00AD732F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A139B31AEFC72B00AD732F /* Tests.swift */; };
-		14AFFAF01C3C00E0001AD02C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */; };
 		14AFFAF11C3C00E3001AD02C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */; };
-		14AFFAF21C3C00E5001AD02C /* InfiniteLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6081C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift */; };
 		14C022701CC9038700CEFC40 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C0226C1CC9036100CEFC40 /* DATAStack.framework */; };
 		14F848711CC6686B0052E4B0 /* DATASource.h in Headers */ = {isa = PBXBuildFile; fileRef = 14F848701CC667D20052E4B0 /* DATASource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F848721CC668700052E4B0 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
@@ -33,21 +31,27 @@
 		14F848891CC668B60052E4B0 /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
 		14F8488A1CC668B60052E4B0 /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
 		14F8488B1CC668B60052E4B0 /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
-		44791F851DB776C50062DE8E /* OptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44791F841DB776C50062DE8E /* OptionsController.m */; };
-		4479C23C1DB77A2A00803558 /* UITableViewControllerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4479C23B1DB77A2A00803558 /* UITableViewControllerDemo.m */; };
+		4479C24B1DB77BB000803558 /* OptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4479C23F1DB77BB000803558 /* OptionsController.m */; };
+		4479C24C1DB77BB000803558 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4479C2421DB77BB000803558 /* AppDelegate.m */; };
+		44A8DB571DB77D59009EF5A7 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB481DB77D59009EF5A7 /* CollectionViewController.m */; };
+		44A8DB581DB77D59009EF5A7 /* FooterExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB4B1DB77D59009EF5A7 /* FooterExampleView.m */; };
+		44A8DB591DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB4D1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m */; };
+		44A8DB5A1DB77D59009EF5A7 /* CollectionViewControllerWithSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB501DB77D59009EF5A7 /* CollectionViewControllerWithSections.m */; };
+		44A8DB5B1DB77D59009EF5A7 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB531DB77D59009EF5A7 /* TableViewController.m */; };
+		44A8DB5C1DB77D59009EF5A7 /* TableViewControllerWithSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB561DB77D59009EF5A7 /* TableViewControllerWithSections.m */; };
+		44A8DB5E1DB77E62009EF5A7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB5D1DB77E62009EF5A7 /* Helper.swift */; };
+		44A8DB5F1DB77E62009EF5A7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB5D1DB77E62009EF5A7 /* Helper.swift */; };
+		44A8DB601DB77F46009EF5A7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB5D1DB77E62009EF5A7 /* Helper.swift */; };
 		44B91CE71DB7728D009DB4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B91CE61DB7728D009DB4B7 /* AppDelegate.swift */; };
 		44B91CF01DB7728D009DB4B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B91CEF1DB7728D009DB4B7 /* Assets.xcassets */; };
 		44B91CF31DB7728D009DB4B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B91CF11DB7728D009DB4B7 /* LaunchScreen.storyboard */; };
 		44B91D001DB7729D009DB4B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B91CFF1DB7729D009DB4B7 /* main.m */; };
-		44B91D031DB7729D009DB4B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B91D021DB7729D009DB4B7 /* AppDelegate.m */; };
 		44B91D0E1DB7729D009DB4B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B91D0D1DB7729D009DB4B7 /* Assets.xcassets */; };
 		44B91D111DB7729D009DB4B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B91D0F1DB7729D009DB4B7 /* LaunchScreen.storyboard */; };
 		44B91D171DB77375009DB4B7 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B91D161DB77375009DB4B7 /* DATAStack.framework */; };
 		44B91D181DB77375009DB4B7 /* DATAStack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44B91D161DB77375009DB4B7 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44B91D1B1DB77381009DB4B7 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B91D1A1DB77381009DB4B7 /* DATAStack.framework */; };
 		44B91D1C1DB77381009DB4B7 /* DATAStack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44B91D1A1DB77381009DB4B7 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		44B91D221DB77475009DB4B7 /* FooterExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B91D1F1DB77475009DB4B7 /* FooterExampleView.m */; };
-		44B91D231DB77475009DB4B7 /* UICollectionViewControllerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B91D211DB77475009DB4B7 /* UICollectionViewControllerDemo.m */; };
 		44B91D241DB774B0009DB4B7 /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
 		44B91D251DB774B0009DB4B7 /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
 		44B91D261DB774B2009DB4B7 /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
@@ -133,10 +137,23 @@
 		14F8486F1CC667BB0052E4B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14F848701CC667D20052E4B0 /* DATASource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
 		14F8487D1CC668820052E4B0 /* DATASource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DATASource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		44791F831DB776C50062DE8E /* OptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsController.h; sourceTree = "<group>"; };
-		44791F841DB776C50062DE8E /* OptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsController.m; sourceTree = "<group>"; };
-		4479C23A1DB77A2A00803558 /* UITableViewControllerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewControllerDemo.h; sourceTree = "<group>"; };
-		4479C23B1DB77A2A00803558 /* UITableViewControllerDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewControllerDemo.m; sourceTree = "<group>"; };
+		4479C23E1DB77BB000803558 /* OptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsController.h; sourceTree = "<group>"; };
+		4479C23F1DB77BB000803558 /* OptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsController.m; sourceTree = "<group>"; };
+		4479C2411DB77BB000803558 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4479C2421DB77BB000803558 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		44A8DB471DB77D59009EF5A7 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		44A8DB481DB77D59009EF5A7 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		44A8DB4A1DB77D59009EF5A7 /* FooterExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterExampleView.h; sourceTree = "<group>"; };
+		44A8DB4B1DB77D59009EF5A7 /* FooterExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterExampleView.m; sourceTree = "<group>"; };
+		44A8DB4C1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewControllerWithFooter.h; sourceTree = "<group>"; };
+		44A8DB4D1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewControllerWithFooter.m; sourceTree = "<group>"; };
+		44A8DB4F1DB77D59009EF5A7 /* CollectionViewControllerWithSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewControllerWithSections.h; sourceTree = "<group>"; };
+		44A8DB501DB77D59009EF5A7 /* CollectionViewControllerWithSections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewControllerWithSections.m; sourceTree = "<group>"; };
+		44A8DB521DB77D59009EF5A7 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		44A8DB531DB77D59009EF5A7 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		44A8DB551DB77D59009EF5A7 /* TableViewControllerWithSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerWithSections.h; sourceTree = "<group>"; };
+		44A8DB561DB77D59009EF5A7 /* TableViewControllerWithSections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerWithSections.m; sourceTree = "<group>"; };
+		44A8DB5D1DB77E62009EF5A7 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		44B91CE41DB7728D009DB4B7 /* SwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B91CE61DB7728D009DB4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44B91CEF1DB7728D009DB4B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -144,17 +161,11 @@
 		44B91CF41DB7728D009DB4B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44B91CFC1DB7729D009DB4B7 /* ObjectiveCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B91CFF1DB7729D009DB4B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		44B91D011DB7729D009DB4B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		44B91D021DB7729D009DB4B7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		44B91D0D1DB7729D009DB4B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44B91D101DB7729D009DB4B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44B91D121DB7729D009DB4B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44B91D161DB77375009DB4B7 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		44B91D1A1DB77381009DB4B7 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		44B91D1E1DB77475009DB4B7 /* FooterExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterExampleView.h; sourceTree = "<group>"; };
-		44B91D1F1DB77475009DB4B7 /* FooterExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterExampleView.m; sourceTree = "<group>"; };
-		44B91D201DB77475009DB4B7 /* UICollectionViewControllerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewControllerDemo.h; sourceTree = "<group>"; };
-		44B91D211DB77475009DB4B7 /* UICollectionViewControllerDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewControllerDemo.m; sourceTree = "<group>"; };
 		44B91D361DB77657009DB4B7 /* CollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,9 +273,10 @@
 		1498B6041C3BC9E80066FAC8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */,
 				1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */,
+				1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */,
 				1498B6081C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift */,
+				44A8DB5D1DB77E62009EF5A7 /* Helper.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -279,6 +291,71 @@
 				14F8486F1CC667BB0052E4B0 /* Info.plist */,
 			);
 			name = Metadata;
+			sourceTree = "<group>";
+		};
+		4479C23D1DB77BB000803558 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				4479C23E1DB77BB000803558 /* OptionsController.h */,
+				4479C23F1DB77BB000803558 /* OptionsController.m */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
+		4479C2401DB77BB000803558 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				4479C2411DB77BB000803558 /* AppDelegate.h */,
+				4479C2421DB77BB000803558 /* AppDelegate.m */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		44A8DB461DB77D59009EF5A7 /* CollectionViewControllerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				44A8DB471DB77D59009EF5A7 /* CollectionViewController.h */,
+				44A8DB481DB77D59009EF5A7 /* CollectionViewController.m */,
+			);
+			path = CollectionViewControllerDemo;
+			sourceTree = "<group>";
+		};
+		44A8DB491DB77D59009EF5A7 /* CollectionViewControllerWithFooterDemo */ = {
+			isa = PBXGroup;
+			children = (
+				44A8DB4C1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.h */,
+				44A8DB4D1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m */,
+				44A8DB4A1DB77D59009EF5A7 /* FooterExampleView.h */,
+				44A8DB4B1DB77D59009EF5A7 /* FooterExampleView.m */,
+			);
+			path = CollectionViewControllerWithFooterDemo;
+			sourceTree = "<group>";
+		};
+		44A8DB4E1DB77D59009EF5A7 /* CollectionViewControllerWithSections */ = {
+			isa = PBXGroup;
+			children = (
+				44A8DB4F1DB77D59009EF5A7 /* CollectionViewControllerWithSections.h */,
+				44A8DB501DB77D59009EF5A7 /* CollectionViewControllerWithSections.m */,
+			);
+			path = CollectionViewControllerWithSections;
+			sourceTree = "<group>";
+		};
+		44A8DB511DB77D59009EF5A7 /* TableViewControllerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				44A8DB521DB77D59009EF5A7 /* TableViewController.h */,
+				44A8DB531DB77D59009EF5A7 /* TableViewController.m */,
+			);
+			path = TableViewControllerDemo;
+			sourceTree = "<group>";
+		};
+		44A8DB541DB77D59009EF5A7 /* TableViewControllerWithSections */ = {
+			isa = PBXGroup;
+			children = (
+				44A8DB551DB77D59009EF5A7 /* TableViewControllerWithSections.h */,
+				44A8DB561DB77D59009EF5A7 /* TableViewControllerWithSections.m */,
+			);
+			path = TableViewControllerWithSections;
 			sourceTree = "<group>";
 		};
 		44B91CE51DB7728D009DB4B7 /* SwiftDemo */ = {
@@ -296,19 +373,16 @@
 		44B91CFD1DB7729D009DB4B7 /* ObjectiveCDemo */ = {
 			isa = PBXGroup;
 			children = (
-				44B91D011DB7729D009DB4B7 /* AppDelegate.h */,
-				44B91D021DB7729D009DB4B7 /* AppDelegate.m */,
-				44791F831DB776C50062DE8E /* OptionsController.h */,
-				44791F841DB776C50062DE8E /* OptionsController.m */,
-				44B91D1E1DB77475009DB4B7 /* FooterExampleView.h */,
-				44B91D1F1DB77475009DB4B7 /* FooterExampleView.m */,
-				44B91D201DB77475009DB4B7 /* UICollectionViewControllerDemo.h */,
-				44B91D211DB77475009DB4B7 /* UICollectionViewControllerDemo.m */,
-				4479C23A1DB77A2A00803558 /* UITableViewControllerDemo.h */,
-				4479C23B1DB77A2A00803558 /* UITableViewControllerDemo.m */,
+				4479C2401DB77BB000803558 /* Root */,
+				4479C23D1DB77BB000803558 /* Options */,
 				44B91D0D1DB7729D009DB4B7 /* Assets.xcassets */,
 				44B91D0F1DB7729D009DB4B7 /* LaunchScreen.storyboard */,
 				44B91D121DB7729D009DB4B7 /* Info.plist */,
+				44A8DB461DB77D59009EF5A7 /* CollectionViewControllerDemo */,
+				44A8DB4E1DB77D59009EF5A7 /* CollectionViewControllerWithSections */,
+				44A8DB491DB77D59009EF5A7 /* CollectionViewControllerWithFooterDemo */,
+				44A8DB511DB77D59009EF5A7 /* TableViewControllerDemo */,
+				44A8DB541DB77D59009EF5A7 /* TableViewControllerWithSections */,
 				44B91CFE1DB7729D009DB4B7 /* Supporting Files */,
 			);
 			path = ObjectiveCDemo;
@@ -562,16 +636,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A8DB601DB77F46009EF5A7 /* Helper.swift in Sources */,
 				14308AAA1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				14AFFAF11C3C00E3001AD02C /* DataModel.xcdatamodeld in Sources */,
-				14AFFAF21C3C00E5001AD02C /* InfiniteLoadingIndicator.swift in Sources */,
 				14308AC21CC66665000C21DF /* DATASourceCollectionHeaderView.swift in Sources */,
 				14308AB21CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */,
 				14308AA21CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				14A139B41AEFC72B00AD732F /* Tests.swift in Sources */,
 				14308ACA1CC66665000C21DF /* DATASourceDelegate.swift in Sources */,
 				14308ABA1CC66665000C21DF /* DATASource.swift in Sources */,
-				14AFFAF01C3C00E0001AD02C /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +689,7 @@
 				44B91CE71DB7728D009DB4B7 /* AppDelegate.swift in Sources */,
 				44B91D301DB77511009DB4B7 /* CollectionCell.swift in Sources */,
 				44B91D371DB77657009DB4B7 /* CollectionController.swift in Sources */,
+				44A8DB5E1DB77E62009EF5A7 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,20 +697,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44791F851DB776C50062DE8E /* OptionsController.m in Sources */,
+				44A8DB5A1DB77D59009EF5A7 /* CollectionViewControllerWithSections.m in Sources */,
 				44B91D2F1DB774C0009DB4B7 /* DATASourceCollectionHeaderView.swift in Sources */,
 				44B91D2D1DB774BD009DB4B7 /* DATASource+UITableViewDataSource.swift in Sources */,
+				44A8DB581DB77D59009EF5A7 /* FooterExampleView.m in Sources */,
 				44B91D291DB774B6009DB4B7 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
-				4479C23C1DB77A2A00803558 /* UITableViewControllerDemo.m in Sources */,
-				44B91D031DB7729D009DB4B7 /* AppDelegate.m in Sources */,
+				44A8DB5C1DB77D59009EF5A7 /* TableViewControllerWithSections.m in Sources */,
 				44B91D271DB774B4009DB4B7 /* DATASourceDelegate.swift in Sources */,
 				44B91D001DB7729D009DB4B7 /* main.m in Sources */,
+				44A8DB5F1DB77E62009EF5A7 /* Helper.swift in Sources */,
+				44A8DB591DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m in Sources */,
 				44B91D2B1DB774BA009DB4B7 /* DATASource+UICollectionViewDataSource.swift in Sources */,
-				44B91D231DB77475009DB4B7 /* UICollectionViewControllerDemo.m in Sources */,
-				44B91D221DB77475009DB4B7 /* FooterExampleView.m in Sources */,
 				44B91D331DB77515009DB4B7 /* DataModel.xcdatamodeld in Sources */,
+				44A8DB571DB77D59009EF5A7 /* CollectionViewController.m in Sources */,
+				44A8DB5B1DB77D59009EF5A7 /* TableViewController.m in Sources */,
 				44B91D311DB77511009DB4B7 /* CollectionCell.swift in Sources */,
 				44B91D351DB77518009DB4B7 /* InfiniteLoadingIndicator.swift in Sources */,
+				4479C24C1DB77BB000803558 /* AppDelegate.m in Sources */,
+				4479C24B1DB77BB000803558 /* OptionsController.m in Sources */,
 				44B91D251DB774B0009DB4B7 /* DATASource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

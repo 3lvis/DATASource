@@ -2,7 +2,7 @@
 
 @class DATAStack;
 
-@interface UITableViewControllerDemo : UITableViewController
+@interface TableViewControllerWithSections : UITableViewController
 
 - (instancetype)initWithDataStack:(DATAStack *)dataStack;
 
