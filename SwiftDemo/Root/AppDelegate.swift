@@ -19,15 +19,8 @@ extension AppDelegate: UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("Window not found") }
 
-        let bounds = UIScreen.main.bounds
-
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 120, height: 120)
-        layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
-        layout.headerReferenceSize = CGSize(width: bounds.size.width, height: 60)
-
-        let viewController = CollectionController(layout: layout, dataStack: self.dataStack)
-        window.rootViewController = UINavigationController(rootViewController: viewController)
+        let controller = OptionsController(dataStack: self.dataStack)
+        window.rootViewController = UINavigationController(rootViewController: controller)
         window.makeKeyAndVisible()
 
         return true
