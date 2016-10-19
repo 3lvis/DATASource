@@ -1,12 +1,4 @@
-//
-//  main.m
-//  ObjectiveCDemo
-//
-//  Created by Elvis Nuñez on 10/19/16.
-//
-//
-
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {

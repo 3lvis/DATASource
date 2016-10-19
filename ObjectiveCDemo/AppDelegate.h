@@ -1,17 +1,7 @@
-//
-//  AppDelegate.h
-//  ObjectiveCDemo
-//
-//  Created by Elvis Nuñez on 10/19/16.
-//
-//
-
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic) UIWindow *window;
 
 @end
-
