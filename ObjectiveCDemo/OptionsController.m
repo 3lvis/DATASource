@@ -1,5 +1,7 @@
 #import "OptionsController.h"
+
 #import "UICollectionViewControllerDemo.h"
+#import "UITableViewControllerDemo.h"
 
 @interface OptionsController ()
 
@@ -25,17 +27,20 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"UICollectionViewController";
             break;
-
+        case 1:
+            cell.textLabel.text = @"UITableViewController";
+            break;
         default:
             break;
     }
@@ -55,7 +60,10 @@
             UICollectionViewControllerDemo *controller = [[UICollectionViewControllerDemo alloc] initWithLayout:layout andDataStack:self.dataStack];
             [self.navigationController pushViewController:controller animated:YES];
         } break;
-
+        case 1: {
+            UITableViewControllerDemo *controller = [[UITableViewControllerDemo alloc] initWithDataStack:self.dataStack];
+            [self.navigationController pushViewController:controller animated:YES];
+        } break;
         default:
             break;
     }

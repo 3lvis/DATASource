@@ -34,6 +34,7 @@
 		14F8488A1CC668B60052E4B0 /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
 		14F8488B1CC668B60052E4B0 /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
 		44791F851DB776C50062DE8E /* OptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44791F841DB776C50062DE8E /* OptionsController.m */; };
+		4479C23C1DB77A2A00803558 /* UITableViewControllerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4479C23B1DB77A2A00803558 /* UITableViewControllerDemo.m */; };
 		44B91CE71DB7728D009DB4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B91CE61DB7728D009DB4B7 /* AppDelegate.swift */; };
 		44B91CF01DB7728D009DB4B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B91CEF1DB7728D009DB4B7 /* Assets.xcassets */; };
 		44B91CF31DB7728D009DB4B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B91CF11DB7728D009DB4B7 /* LaunchScreen.storyboard */; };
@@ -134,6 +135,8 @@
 		14F8487D1CC668820052E4B0 /* DATASource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DATASource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44791F831DB776C50062DE8E /* OptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsController.h; sourceTree = "<group>"; };
 		44791F841DB776C50062DE8E /* OptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsController.m; sourceTree = "<group>"; };
+		4479C23A1DB77A2A00803558 /* UITableViewControllerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewControllerDemo.h; sourceTree = "<group>"; };
+		4479C23B1DB77A2A00803558 /* UITableViewControllerDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewControllerDemo.m; sourceTree = "<group>"; };
 		44B91CE41DB7728D009DB4B7 /* SwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B91CE61DB7728D009DB4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44B91CEF1DB7728D009DB4B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -295,12 +298,14 @@
 			children = (
 				44B91D011DB7729D009DB4B7 /* AppDelegate.h */,
 				44B91D021DB7729D009DB4B7 /* AppDelegate.m */,
+				44791F831DB776C50062DE8E /* OptionsController.h */,
+				44791F841DB776C50062DE8E /* OptionsController.m */,
 				44B91D1E1DB77475009DB4B7 /* FooterExampleView.h */,
 				44B91D1F1DB77475009DB4B7 /* FooterExampleView.m */,
 				44B91D201DB77475009DB4B7 /* UICollectionViewControllerDemo.h */,
 				44B91D211DB77475009DB4B7 /* UICollectionViewControllerDemo.m */,
-				44791F831DB776C50062DE8E /* OptionsController.h */,
-				44791F841DB776C50062DE8E /* OptionsController.m */,
+				4479C23A1DB77A2A00803558 /* UITableViewControllerDemo.h */,
+				4479C23B1DB77A2A00803558 /* UITableViewControllerDemo.m */,
 				44B91D0D1DB7729D009DB4B7 /* Assets.xcassets */,
 				44B91D0F1DB7729D009DB4B7 /* LaunchScreen.storyboard */,
 				44B91D121DB7729D009DB4B7 /* Info.plist */,
@@ -622,6 +627,7 @@
 				44B91D2F1DB774C0009DB4B7 /* DATASourceCollectionHeaderView.swift in Sources */,
 				44B91D2D1DB774BD009DB4B7 /* DATASource+UITableViewDataSource.swift in Sources */,
 				44B91D291DB774B6009DB4B7 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
+				4479C23C1DB77A2A00803558 /* UITableViewControllerDemo.m in Sources */,
 				44B91D031DB7729D009DB4B7 /* AppDelegate.m in Sources */,
 				44B91D271DB774B4009DB4B7 /* DATASourceDelegate.swift in Sources */,
 				44B91D001DB7729D009DB4B7 /* main.m in Sources */,
