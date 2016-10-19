@@ -31,14 +31,14 @@
 		14F848891CC668B60052E4B0 /* DATASource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9F1CC66665000C21DF /* DATASource.swift */; };
 		14F8488A1CC668B60052E4B0 /* DATASourceCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA01CC66665000C21DF /* DATASourceCollectionHeaderView.swift */; };
 		14F8488B1CC668B60052E4B0 /* DATASourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308AA11CC66665000C21DF /* DATASourceDelegate.swift */; };
+		4471D4E31DB7822C00DE1EBE /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471D4D41DB7822C00DE1EBE /* CollectionViewController.m */; };
+		4471D4E41DB7822C00DE1EBE /* CollectionViewControllerWithFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471D4D71DB7822C00DE1EBE /* CollectionViewControllerWithFooter.m */; };
+		4471D4E51DB7822C00DE1EBE /* FooterExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471D4D91DB7822C00DE1EBE /* FooterExampleView.m */; };
+		4471D4E61DB7822C00DE1EBE /* CollectionViewControllerWithSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471D4DC1DB7822C00DE1EBE /* CollectionViewControllerWithSections.m */; };
+		4471D4E71DB7822C00DE1EBE /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471D4DF1DB7822C00DE1EBE /* TableViewController.m */; };
+		4471D4E81DB7822C00DE1EBE /* TableViewControllerWithSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471D4E21DB7822C00DE1EBE /* TableViewControllerWithSections.m */; };
 		4479C24B1DB77BB000803558 /* OptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4479C23F1DB77BB000803558 /* OptionsController.m */; };
 		4479C24C1DB77BB000803558 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4479C2421DB77BB000803558 /* AppDelegate.m */; };
-		44A8DB571DB77D59009EF5A7 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB481DB77D59009EF5A7 /* CollectionViewController.m */; };
-		44A8DB581DB77D59009EF5A7 /* FooterExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB4B1DB77D59009EF5A7 /* FooterExampleView.m */; };
-		44A8DB591DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB4D1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m */; };
-		44A8DB5A1DB77D59009EF5A7 /* CollectionViewControllerWithSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB501DB77D59009EF5A7 /* CollectionViewControllerWithSections.m */; };
-		44A8DB5B1DB77D59009EF5A7 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB531DB77D59009EF5A7 /* TableViewController.m */; };
-		44A8DB5C1DB77D59009EF5A7 /* TableViewControllerWithSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB561DB77D59009EF5A7 /* TableViewControllerWithSections.m */; };
 		44A8DB5E1DB77E62009EF5A7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB5D1DB77E62009EF5A7 /* Helper.swift */; };
 		44A8DB5F1DB77E62009EF5A7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB5D1DB77E62009EF5A7 /* Helper.swift */; };
 		44A8DB601DB77F46009EF5A7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8DB5D1DB77E62009EF5A7 /* Helper.swift */; };
@@ -137,22 +137,22 @@
 		14F8486F1CC667BB0052E4B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14F848701CC667D20052E4B0 /* DATASource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
 		14F8487D1CC668820052E4B0 /* DATASource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DATASource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4471D4D31DB7822C00DE1EBE /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		4471D4D41DB7822C00DE1EBE /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		4471D4D61DB7822C00DE1EBE /* CollectionViewControllerWithFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewControllerWithFooter.h; sourceTree = "<group>"; };
+		4471D4D71DB7822C00DE1EBE /* CollectionViewControllerWithFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewControllerWithFooter.m; sourceTree = "<group>"; };
+		4471D4D81DB7822C00DE1EBE /* FooterExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterExampleView.h; sourceTree = "<group>"; };
+		4471D4D91DB7822C00DE1EBE /* FooterExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterExampleView.m; sourceTree = "<group>"; };
+		4471D4DB1DB7822C00DE1EBE /* CollectionViewControllerWithSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewControllerWithSections.h; sourceTree = "<group>"; };
+		4471D4DC1DB7822C00DE1EBE /* CollectionViewControllerWithSections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewControllerWithSections.m; sourceTree = "<group>"; };
+		4471D4DE1DB7822C00DE1EBE /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		4471D4DF1DB7822C00DE1EBE /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		4471D4E11DB7822C00DE1EBE /* TableViewControllerWithSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerWithSections.h; sourceTree = "<group>"; };
+		4471D4E21DB7822C00DE1EBE /* TableViewControllerWithSections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerWithSections.m; sourceTree = "<group>"; };
 		4479C23E1DB77BB000803558 /* OptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsController.h; sourceTree = "<group>"; };
 		4479C23F1DB77BB000803558 /* OptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsController.m; sourceTree = "<group>"; };
 		4479C2411DB77BB000803558 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4479C2421DB77BB000803558 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		44A8DB471DB77D59009EF5A7 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
-		44A8DB481DB77D59009EF5A7 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
-		44A8DB4A1DB77D59009EF5A7 /* FooterExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterExampleView.h; sourceTree = "<group>"; };
-		44A8DB4B1DB77D59009EF5A7 /* FooterExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterExampleView.m; sourceTree = "<group>"; };
-		44A8DB4C1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewControllerWithFooter.h; sourceTree = "<group>"; };
-		44A8DB4D1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewControllerWithFooter.m; sourceTree = "<group>"; };
-		44A8DB4F1DB77D59009EF5A7 /* CollectionViewControllerWithSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewControllerWithSections.h; sourceTree = "<group>"; };
-		44A8DB501DB77D59009EF5A7 /* CollectionViewControllerWithSections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewControllerWithSections.m; sourceTree = "<group>"; };
-		44A8DB521DB77D59009EF5A7 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		44A8DB531DB77D59009EF5A7 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		44A8DB551DB77D59009EF5A7 /* TableViewControllerWithSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerWithSections.h; sourceTree = "<group>"; };
-		44A8DB561DB77D59009EF5A7 /* TableViewControllerWithSections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerWithSections.m; sourceTree = "<group>"; };
 		44A8DB5D1DB77E62009EF5A7 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		44B91CE41DB7728D009DB4B7 /* SwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B91CE61DB7728D009DB4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -293,6 +293,53 @@
 			name = Metadata;
 			sourceTree = "<group>";
 		};
+		4471D4D21DB7822C00DE1EBE /* CollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4471D4D31DB7822C00DE1EBE /* CollectionViewController.h */,
+				4471D4D41DB7822C00DE1EBE /* CollectionViewController.m */,
+			);
+			path = CollectionViewController;
+			sourceTree = "<group>";
+		};
+		4471D4D51DB7822C00DE1EBE /* CollectionViewControllerWithFooter */ = {
+			isa = PBXGroup;
+			children = (
+				4471D4D61DB7822C00DE1EBE /* CollectionViewControllerWithFooter.h */,
+				4471D4D71DB7822C00DE1EBE /* CollectionViewControllerWithFooter.m */,
+				4471D4D81DB7822C00DE1EBE /* FooterExampleView.h */,
+				4471D4D91DB7822C00DE1EBE /* FooterExampleView.m */,
+			);
+			path = CollectionViewControllerWithFooter;
+			sourceTree = "<group>";
+		};
+		4471D4DA1DB7822C00DE1EBE /* CollectionViewControllerWithSections */ = {
+			isa = PBXGroup;
+			children = (
+				4471D4DB1DB7822C00DE1EBE /* CollectionViewControllerWithSections.h */,
+				4471D4DC1DB7822C00DE1EBE /* CollectionViewControllerWithSections.m */,
+			);
+			path = CollectionViewControllerWithSections;
+			sourceTree = "<group>";
+		};
+		4471D4DD1DB7822C00DE1EBE /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4471D4DE1DB7822C00DE1EBE /* TableViewController.h */,
+				4471D4DF1DB7822C00DE1EBE /* TableViewController.m */,
+			);
+			path = TableViewController;
+			sourceTree = "<group>";
+		};
+		4471D4E01DB7822C00DE1EBE /* TableViewControllerWithSections */ = {
+			isa = PBXGroup;
+			children = (
+				4471D4E11DB7822C00DE1EBE /* TableViewControllerWithSections.h */,
+				4471D4E21DB7822C00DE1EBE /* TableViewControllerWithSections.m */,
+			);
+			path = TableViewControllerWithSections;
+			sourceTree = "<group>";
+		};
 		4479C23D1DB77BB000803558 /* Options */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,53 +356,6 @@
 				4479C2421DB77BB000803558 /* AppDelegate.m */,
 			);
 			path = Root;
-			sourceTree = "<group>";
-		};
-		44A8DB461DB77D59009EF5A7 /* CollectionViewControllerDemo */ = {
-			isa = PBXGroup;
-			children = (
-				44A8DB471DB77D59009EF5A7 /* CollectionViewController.h */,
-				44A8DB481DB77D59009EF5A7 /* CollectionViewController.m */,
-			);
-			path = CollectionViewControllerDemo;
-			sourceTree = "<group>";
-		};
-		44A8DB491DB77D59009EF5A7 /* CollectionViewControllerWithFooterDemo */ = {
-			isa = PBXGroup;
-			children = (
-				44A8DB4C1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.h */,
-				44A8DB4D1DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m */,
-				44A8DB4A1DB77D59009EF5A7 /* FooterExampleView.h */,
-				44A8DB4B1DB77D59009EF5A7 /* FooterExampleView.m */,
-			);
-			path = CollectionViewControllerWithFooterDemo;
-			sourceTree = "<group>";
-		};
-		44A8DB4E1DB77D59009EF5A7 /* CollectionViewControllerWithSections */ = {
-			isa = PBXGroup;
-			children = (
-				44A8DB4F1DB77D59009EF5A7 /* CollectionViewControllerWithSections.h */,
-				44A8DB501DB77D59009EF5A7 /* CollectionViewControllerWithSections.m */,
-			);
-			path = CollectionViewControllerWithSections;
-			sourceTree = "<group>";
-		};
-		44A8DB511DB77D59009EF5A7 /* TableViewControllerDemo */ = {
-			isa = PBXGroup;
-			children = (
-				44A8DB521DB77D59009EF5A7 /* TableViewController.h */,
-				44A8DB531DB77D59009EF5A7 /* TableViewController.m */,
-			);
-			path = TableViewControllerDemo;
-			sourceTree = "<group>";
-		};
-		44A8DB541DB77D59009EF5A7 /* TableViewControllerWithSections */ = {
-			isa = PBXGroup;
-			children = (
-				44A8DB551DB77D59009EF5A7 /* TableViewControllerWithSections.h */,
-				44A8DB561DB77D59009EF5A7 /* TableViewControllerWithSections.m */,
-			);
-			path = TableViewControllerWithSections;
 			sourceTree = "<group>";
 		};
 		44B91CE51DB7728D009DB4B7 /* SwiftDemo */ = {
@@ -375,14 +375,11 @@
 			children = (
 				4479C2401DB77BB000803558 /* Root */,
 				4479C23D1DB77BB000803558 /* Options */,
-				44B91D0D1DB7729D009DB4B7 /* Assets.xcassets */,
-				44B91D0F1DB7729D009DB4B7 /* LaunchScreen.storyboard */,
-				44B91D121DB7729D009DB4B7 /* Info.plist */,
-				44A8DB461DB77D59009EF5A7 /* CollectionViewControllerDemo */,
-				44A8DB4E1DB77D59009EF5A7 /* CollectionViewControllerWithSections */,
-				44A8DB491DB77D59009EF5A7 /* CollectionViewControllerWithFooterDemo */,
-				44A8DB511DB77D59009EF5A7 /* TableViewControllerDemo */,
-				44A8DB541DB77D59009EF5A7 /* TableViewControllerWithSections */,
+				4471D4D21DB7822C00DE1EBE /* CollectionViewController */,
+				4471D4DA1DB7822C00DE1EBE /* CollectionViewControllerWithSections */,
+				4471D4D51DB7822C00DE1EBE /* CollectionViewControllerWithFooter */,
+				4471D4DD1DB7822C00DE1EBE /* TableViewController */,
+				4471D4E01DB7822C00DE1EBE /* TableViewControllerWithSections */,
 				44B91CFE1DB7729D009DB4B7 /* Supporting Files */,
 			);
 			path = ObjectiveCDemo;
@@ -391,6 +388,9 @@
 		44B91CFE1DB7729D009DB4B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				44B91D0D1DB7729D009DB4B7 /* Assets.xcassets */,
+				44B91D0F1DB7729D009DB4B7 /* LaunchScreen.storyboard */,
+				44B91D121DB7729D009DB4B7 /* Info.plist */,
 				44B91CFF1DB7729D009DB4B7 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -697,25 +697,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44A8DB5A1DB77D59009EF5A7 /* CollectionViewControllerWithSections.m in Sources */,
 				44B91D2F1DB774C0009DB4B7 /* DATASourceCollectionHeaderView.swift in Sources */,
+				4471D4E61DB7822C00DE1EBE /* CollectionViewControllerWithSections.m in Sources */,
 				44B91D2D1DB774BD009DB4B7 /* DATASource+UITableViewDataSource.swift in Sources */,
-				44A8DB581DB77D59009EF5A7 /* FooterExampleView.m in Sources */,
 				44B91D291DB774B6009DB4B7 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
-				44A8DB5C1DB77D59009EF5A7 /* TableViewControllerWithSections.m in Sources */,
 				44B91D271DB774B4009DB4B7 /* DATASourceDelegate.swift in Sources */,
+				4471D4E51DB7822C00DE1EBE /* FooterExampleView.m in Sources */,
 				44B91D001DB7729D009DB4B7 /* main.m in Sources */,
 				44A8DB5F1DB77E62009EF5A7 /* Helper.swift in Sources */,
-				44A8DB591DB77D59009EF5A7 /* CollectionViewControllerWithFooter.m in Sources */,
 				44B91D2B1DB774BA009DB4B7 /* DATASource+UICollectionViewDataSource.swift in Sources */,
 				44B91D331DB77515009DB4B7 /* DataModel.xcdatamodeld in Sources */,
-				44A8DB571DB77D59009EF5A7 /* CollectionViewController.m in Sources */,
-				44A8DB5B1DB77D59009EF5A7 /* TableViewController.m in Sources */,
+				4471D4E31DB7822C00DE1EBE /* CollectionViewController.m in Sources */,
 				44B91D311DB77511009DB4B7 /* CollectionCell.swift in Sources */,
 				44B91D351DB77518009DB4B7 /* InfiniteLoadingIndicator.swift in Sources */,
+				4471D4E71DB7822C00DE1EBE /* TableViewController.m in Sources */,
 				4479C24C1DB77BB000803558 /* AppDelegate.m in Sources */,
+				4471D4E81DB7822C00DE1EBE /* TableViewControllerWithSections.m in Sources */,
 				4479C24B1DB77BB000803558 /* OptionsController.m in Sources */,
 				44B91D251DB774B0009DB4B7 /* DATASource.swift in Sources */,
+				4471D4E41DB7822C00DE1EBE /* CollectionViewControllerWithFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
