@@ -34,3 +34,5 @@ Pods
 
 # Carthage
 Carthage/Checkouts
+Carthage/Build/iOS/DATASource
+
