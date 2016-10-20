@@ -9,7 +9,6 @@ class TableViewControllerWithSectionsWithoutIndex: UITableViewController {
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
             NSSortDescriptor(key: "firstLetterOfName", ascending: true),
-            NSSortDescriptor(key: "count", ascending: true),
             NSSortDescriptor(key: "name", ascending: true),
         ]
 

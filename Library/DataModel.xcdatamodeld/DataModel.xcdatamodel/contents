@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="User" representedClassName="" syncable="YES">
-        <attribute name="count" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="firstLetterOfName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-54" positionY="-9" width="128" height="105"/>
+        <element name="User" positionX="-54" positionY="-9" width="128" height="75"/>
     </elements>
 </model>
