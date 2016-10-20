@@ -2,16 +2,18 @@ import UIKit
 import DATAStack
 import CoreData
 
-class TableViewController: UITableViewController {
+class TableViewControllerWithSectionsWithoutIndex: UITableViewController {
     unowned let dataStack: DATAStack
 
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.sortDescriptors = [
+            NSSortDescriptor(key: "firstLetterOfName", ascending: true),
+            NSSortDescriptor(key: "count", ascending: true),
             NSSortDescriptor(key: "name", ascending: true),
         ]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack.mainContext)
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName")
         dataSource.delegate = self
 
         return dataSource
@@ -43,9 +45,13 @@ class TableViewController: UITableViewController {
     }
 }
 
-extension TableViewController: DATASourceDelegate {
+extension TableViewControllerWithSectionsWithoutIndex: DATASourceDelegate {
 
     func dataSource(_ dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath) {
         cell.textLabel?.text = item.value(forKey: "name") as? String ?? ""
+    }
+
+    func sectionIndexTitlesForDataSource(_ dataSource: DATASource, tableView: UITableView) -> [String] {
+        return [String]()
     }
 }
