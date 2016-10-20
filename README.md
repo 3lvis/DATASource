@@ -18,7 +18,6 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 
 ## Table of Contents
 
-* [Running the demos](#running-the-demos)
 * [UITableView](#uitableview)
   * [Basic Usage](#basic-usage)
   * [Sectioned UITableView](#sectioned-uitableview)
