@@ -76,8 +76,6 @@
 		44B91D311DB77511009DB4B7 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */; };
 		44B91D321DB77514009DB4B7 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */; };
 		44B91D331DB77515009DB4B7 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */; };
-		44B91D341DB77517009DB4B7 /* InfiniteLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6081C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift */; };
-		44B91D351DB77518009DB4B7 /* InfiniteLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6081C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,7 +125,6 @@
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		1498B6071C3BC9E80066FAC8 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		1498B6081C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteLoadingIndicator.swift; sourceTree = "<group>"; };
 		149EE8791CC916DB002739BA /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14A139B31AEFC72B00AD732F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		14C022541CC9031700CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
@@ -297,7 +294,6 @@
 			children = (
 				1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */,
 				1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */,
-				1498B6081C3BC9E80066FAC8 /* InfiniteLoadingIndicator.swift */,
 				44A8DB5D1DB77E62009EF5A7 /* Helper.swift */,
 			);
 			path = Library;
@@ -766,7 +762,6 @@
 				44B91D321DB77514009DB4B7 /* DataModel.xcdatamodeld in Sources */,
 				14F285901DB986EE00028AD4 /* AlternativeCell.swift in Sources */,
 				14F2858E1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift in Sources */,
-				44B91D341DB77517009DB4B7 /* InfiniteLoadingIndicator.swift in Sources */,
 				44B91D281DB774B6009DB4B7 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				447D2EEC1DB78559006CBF1C /* CollectionViewControllerWithSections.swift in Sources */,
 				14663CA61DB97F2D00E8ABFC /* TableViewControllerWithSectionsWithoutIndex.swift in Sources */,
@@ -801,7 +796,6 @@
 				44B91D331DB77515009DB4B7 /* DataModel.xcdatamodeld in Sources */,
 				4471D4E31DB7822C00DE1EBE /* CollectionViewController.m in Sources */,
 				44B91D311DB77511009DB4B7 /* CollectionCell.swift in Sources */,
-				44B91D351DB77518009DB4B7 /* InfiniteLoadingIndicator.swift in Sources */,
 				4471D4E71DB7822C00DE1EBE /* TableViewController.m in Sources */,
 				4479C24C1DB77BB000803558 /* AppDelegate.m in Sources */,
 				4471D4E81DB7822C00DE1EBE /* TableViewControllerWithSections.m in Sources */,
