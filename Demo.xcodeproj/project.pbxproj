@@ -18,6 +18,8 @@
 		14A139B41AEFC72B00AD732F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A139B31AEFC72B00AD732F /* Tests.swift */; };
 		14AFFAF11C3C00E3001AD02C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */; };
 		14C022701CC9038700CEFC40 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C0226C1CC9036100CEFC40 /* DATAStack.framework */; };
+		14F2858E1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2858D1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift */; };
+		14F285901DB986EE00028AD4 /* AlternativeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2858F1DB986EE00028AD4 /* AlternativeCell.swift */; };
 		14F848711CC6686B0052E4B0 /* DATASource.h in Headers */ = {isa = PBXBuildFile; fileRef = 14F848701CC667D20052E4B0 /* DATASource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F848721CC668700052E4B0 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
 		14F848731CC668700052E4B0 /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
@@ -139,6 +141,8 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14F2858D1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewMultipleCellIdentifiers.swift; sourceTree = "<group>"; };
+		14F2858F1DB986EE00028AD4 /* AlternativeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlternativeCell.swift; sourceTree = "<group>"; };
 		14F848671CC667990052E4B0 /* DATASource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DATASource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F8486F1CC667BB0052E4B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14F848701CC667D20052E4B0 /* DATASource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DATASource.h; sourceTree = "<group>"; };
@@ -311,6 +315,15 @@
 			name = Metadata;
 			sourceTree = "<group>";
 		};
+		14F2858C1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers */ = {
+			isa = PBXGroup;
+			children = (
+				14F2858D1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift */,
+				14F2858F1DB986EE00028AD4 /* AlternativeCell.swift */,
+			);
+			path = CollectionViewMultipleCellIdentifiers;
+			sourceTree = "<group>";
+		};
 		4471D4D21DB7822C00DE1EBE /* CollectionViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +444,7 @@
 				447D2EE01DB784F9006CBF1C /* Options */,
 				447D2EDC1DB784F9006CBF1C /* CollectionViewController */,
 				447D2EDF1DB784F9006CBF1C /* CollectionViewControllerWithSections */,
+				14F2858C1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers */,
 				447D2EE41DB784F9006CBF1C /* TableViewController */,
 				447D2EE51DB784F9006CBF1C /* TableViewControllerWithSections */,
 				14663CA41DB97F2D00E8ABFC /* TableViewControllerWithSectionsWithoutIndex */,
@@ -750,6 +764,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B91D321DB77514009DB4B7 /* DataModel.xcdatamodeld in Sources */,
+				14F285901DB986EE00028AD4 /* AlternativeCell.swift in Sources */,
+				14F2858E1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift in Sources */,
 				44B91D341DB77517009DB4B7 /* InfiniteLoadingIndicator.swift in Sources */,
 				44B91D281DB774B6009DB4B7 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				447D2EEC1DB78559006CBF1C /* CollectionViewControllerWithSections.swift in Sources */,

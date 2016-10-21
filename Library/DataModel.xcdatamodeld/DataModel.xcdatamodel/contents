@@ -3,8 +3,9 @@
     <entity name="User" representedClassName="" syncable="YES">
         <attribute name="firstLetterOfName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="User" positionX="-54" positionY="-9" width="128" height="90"/>
     </elements>
 </model>
