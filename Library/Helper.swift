@@ -11,6 +11,7 @@ public class Helper: NSObject {
                 let firstLetter = String(name[name.startIndex])
                 user.setValue(name, forKey: "name")
                 user.setValue(firstLetter.uppercased(), forKey: "firstLetterOfName")
+                user.setValue(Helper.isManager() ? "manager" : "employee", forKey: "role")
                 do {
                     try backgroundContext.save()
                 } catch let savingError as NSError {
@@ -35,5 +36,9 @@ public class Helper: NSObject {
         }
 
         return string
+    }
+
+    class func isManager() -> Bool {
+        return arc4random_uniform(2) == 0
     }
 }

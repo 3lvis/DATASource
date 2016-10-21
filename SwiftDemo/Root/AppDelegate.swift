@@ -6,7 +6,7 @@ import DATAStack
 class AppDelegate: UIResponder {
     var window: UIWindow?
 
-    var dataStack: DATAStack = {
+    lazy var dataStack: DATAStack = {
         let dataStack = DATAStack(modelName: "DataModel")
 
         return dataStack
