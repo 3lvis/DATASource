@@ -1,10 +1,30 @@
 ![DATASource](https://raw.githubusercontent.com/SyncDB/DATASource/master/Images/logo.png)
 
-[![Version](https://img.shields.io/cocoapods/v/DATASource.svg?style=flat)](https://cocoapods.org/pods/DATASource)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SyncDB/DATASource)
-![Swift 3](https://img.shields.io/badge/Swift-3-orange.svg)
-![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20OS%20X%20%7C%20watchOS%20%7C%20tvOS%20-lightgrey.svg)
-[![License](https://img.shields.io/cocoapods/l/DATASource.svg?style=flat)](https://cocoapods.org/pods/DATASource)
+<div align = "center">
+  <a href="https://cocoapods.org/pods/DATASource">
+    <img src="https://img.shields.io/cocoapods/v/DATASource.svg?style=flat" />
+  </a>
+  <a href="https://github.com/SyncDB/DATASource">
+    <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
+  </a>
+  <a href="https://github.com/SyncDB/DATASource#installation">
+    <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
+  </a>
+</div>
+
+<div align = "center">
+  <a href="https://cocoapods.org/pods/DATASource" target="blank">
+    <img src="https://img.shields.io/cocoapods/p/DATASource.svg?style=flat" />
+  </a>
+  <a href="https://cocoapods.org/pods/DATASource" target="blank">
+    <img src="https://img.shields.io/cocoapods/l/DATASource.svg?style=flat" />
+  </a>
+  <a href="https://gitter.im/SyncDB/DATASource?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
+    <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
+  </a>
+  <br>
+  <br>
+</div>
 
 If you are not familiarized with [NSFetchedResultsController](https://developer.apple.com/library/ios/documentation/CoreData/Reference/NSFetchedResultsController_Class/index.html), it allows you to efficiently manage the results returned from a `Core Data` fetch request to provide data for a `UITableView` or a `UICollectionView`. `NSFetchedResultsController` monitors changes in `Core Data` objects and notifies the view about those changes allowing you to be reactive about them.<sup>[1](#footnote1)<sup>
 
