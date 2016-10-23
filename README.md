@@ -18,6 +18,8 @@ Using `NSFetchedResultsController` and `NSFetchedResultsControllerDelegate` is a
 
 ## Table of Contents
 
+[![Join the chat at https://gitter.im/SyncDB/DATASource](https://badges.gitter.im/SyncDB/DATASource.svg)](https://gitter.im/SyncDB/DATASource?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 * [UITableView](#uitableview)
   * [Basic Usage](#basic-usage)
   * [Sectioned UITableView](#sectioned-uitableview)
