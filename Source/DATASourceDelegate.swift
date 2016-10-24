@@ -10,7 +10,6 @@ import CoreData
      * **************************
      */
     @objc optional func dataSource(_ dataSource: DATASource, cellIdentifierFor indexPath: IndexPath) -> String
-
     @objc optional func dataSource(_ dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath)
     @objc optional func dataSource(_ dataSource: DATASource, configureCollectionViewCell cell: UICollectionViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath)
 
