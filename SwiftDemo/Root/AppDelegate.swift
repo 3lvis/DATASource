@@ -19,7 +19,7 @@ extension AppDelegate: UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("Window not found") }
 
-        let controller = OptionsController(dataStack: self.dataStack)
+        let controller = StaticTableViewController(dataStack: self.dataStack)
         window.rootViewController = UINavigationController(rootViewController: controller)
         window.makeKeyAndVisible()
 
