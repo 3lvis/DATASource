@@ -1,5 +1,8 @@
-osx_image: xcode8
+osx_image: xcode8.1
 language: objective-c
-script: xcodebuild -project Demo.xcodeproj -scheme Tests -sdk iphonesimulator build test -destination 'platform=iOS Simulator,name=iPhone 6' | xcpretty -c && exit ${PIPESTATUS[0]} 
+script:
+  - xcodebuild -project Demo.xcodeproj -scheme SwiftDemo      -destination 'platform=iOS Simulator,name=iPhone 6' build | xcpretty
+  - xcodebuild -project Demo.xcodeproj -scheme ObjectiveCDemo -destination 'platform=iOS Simulator,name=iPhone 6' build | xcpretty
+  - xcodebuild -project Demo.xcodeproj -scheme Tests          -destination 'platform=iOS Simulator,name=iPhone 6' test  | xcpretty
 notifications:
   email: false

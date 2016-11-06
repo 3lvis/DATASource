@@ -9,7 +9,6 @@ Icon
 
 # Xcode
 #
-build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -28,11 +27,10 @@ DerivedData
 *.xcscmblueprint
 *.gcno
 *.gcda
+*.bcsymbolmap
 
-# CocoaPods
-Pods
-
-# Carthage
-Carthage/Checkouts
-Carthage/Build/iOS/DATASource
-
+Carthage/Build/watchOS
+Carthage/Build/tvOS/DATASource.framework*
+Carthage/Build/Mac/DATASource.framework*
+Carthage/Build/iOS/DATASource.framework*
+DATASource.framework.zip
