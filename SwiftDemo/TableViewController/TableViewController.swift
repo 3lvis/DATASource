@@ -34,7 +34,7 @@ class TableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(TableViewController.saveAction))
         self.tableView.dataSource = self.dataSource
 
-        let object = self.dataSource.objectAtIndexPath(IndexPath(row: 0, section: 0))
+        let object = self.dataSource.objectAtIndexPath(IndexPath(row: 0, section: 0))!
         print(object)
     }
 
