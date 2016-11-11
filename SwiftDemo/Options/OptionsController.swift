@@ -22,7 +22,7 @@ class OptionsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,6 +42,8 @@ class OptionsController: UITableViewController {
             cell.textLabel?.text = "TableViewControllerWithSections"
         case 5:
             cell.textLabel?.text = "TableViewControllerWithSectionsWithoutIndex"
+        case 6:
+            cell.textLabel?.text = "TableViewControllerCRUDAndReorder"
         default: break
         }
 
@@ -78,6 +80,9 @@ class OptionsController: UITableViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         case 5:
             let controller = TableViewControllerWithSectionsWithoutIndex(dataStack: self.dataStack)
+            self.navigationController?.pushViewController(controller, animated: true)
+        case 6:
+            let controller = TableViewControllerCRUDAndReorder(dataStack: self.dataStack)
             self.navigationController?.pushViewController(controller, animated: true)
         default: break
         }
