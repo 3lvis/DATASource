@@ -2,7 +2,7 @@ import Foundation
 import DATAStack
 
 public class Helper: NSObject {
-    public class func addNewUser(dataStack: DATAStack) {
+    public class func addNewUser(index: Int? = nil, dataStack: DATAStack) {
         dataStack.performInNewBackgroundContext { backgroundContext in
             if let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext) {
                 let user = NSManagedObject(entity: entity, insertInto: backgroundContext)
@@ -12,6 +12,11 @@ public class Helper: NSObject {
                 user.setValue(name, forKey: "name")
                 user.setValue(firstLetter.uppercased(), forKey: "firstLetterOfName")
                 user.setValue(Helper.isManager() ? "manager" : "employee", forKey: "role")
+
+                if let index = index {
+                    user.setValue(index, forKey: "index")
+                }
+
                 do {
                     try backgroundContext.save()
                 } catch let savingError as NSError {
