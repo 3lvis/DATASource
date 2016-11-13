@@ -77,24 +77,26 @@ extension TableViewControllerCRUDAndReorder: DATASourceDelegate {
         let movedName = movedUser.value(forKey: "name")! as! String
 
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            // from destination to after, change all indexes
-            // if one of them is current, skip
-            // once all the indexes are done. change object to destination index
-
             let request = NSFetchRequest<NSManagedObject>(entityName: "User")
-            request.predicate = NSPredicate(format: "index >= %@", NSNumber(value: destinationIndexPath.row))
             request.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
             let users = try! backgroundContext.fetch(request)
-            var assignedIndex = destinationIndexPath.row + 1
+
+            var beforeAssignedIndex = 0
+            var afterAssignedIndex = destinationIndexPath.row + 1
             for (index, updatedUser) in users.enumerated() {
-                if index >= destinationIndexPath.row {
-                    let updatedUserName = updatedUser.value(forKey: "name")! as! String
-                    if updatedUserName != movedName {
-                        print("changed: \(assignedIndex) — \(updatedUser.value(forKey: "name")!)")
-                        updatedUser.setValue(assignedIndex, forKey: "index")
-                        assignedIndex += 1
+                let updatedUserName = updatedUser.value(forKey: "name")! as! String
+                if updatedUserName == movedName {
+                    updatedUser.setValue(destinationIndexPath.row, forKey: "index")
+                    print("first change. object from name: \(movedName) \(updatedUser.value(forKey: "index")!) to \(destinationIndexPath.row)")
+                } else {
+                    if index > destinationIndexPath.row {
+                        print("changed after: \(afterAssignedIndex) — \(updatedUser.value(forKey: "name")!)")
+                        updatedUser.setValue(afterAssignedIndex, forKey: "index")
+                        afterAssignedIndex += 1
                     } else {
-                        updatedUser.setValue(destinationIndexPath.row, forKey: "index")
+                        print("changed before: \(beforeAssignedIndex) — \(updatedUser.value(forKey: "name")!)")
+                        updatedUser.setValue(beforeAssignedIndex, forKey: "index")
+                        beforeAssignedIndex += 1
                     }
                 }
             }
