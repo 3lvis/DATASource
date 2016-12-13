@@ -38,7 +38,7 @@ extension DATASource: UICollectionViewDataSource {
             }
 
             var title: Any?
-            if self.cachedSectionNames.isEmpty || indexPath.section >= self.cachedSectionNames.count {
+            if self.cachedSectionNames.count > 0 && indexPath.section < self.cachedSectionNames.count {
                 title = self.cachedSectionNames[indexPath.section]
             }
             if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: title) {
@@ -46,7 +46,7 @@ extension DATASource: UICollectionViewDataSource {
             }
 
             if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier, for: indexPath) as? DATASourceCollectionViewHeader {
-                headerView.title = "\(title)"
+                headerView.title = title != nil ? String(describing: title!) : ""
                 return headerView
             }
         } else if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: nil) {
