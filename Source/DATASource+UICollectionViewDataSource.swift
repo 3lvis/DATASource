@@ -37,7 +37,10 @@ extension DATASource: UICollectionViewDataSource {
                 self.cacheSectionNames(using: keyPath)
             }
 
-            let title = self.cachedSectionNames[indexPath.section]
+            var title: Any?
+            if self.cachedSectionNames.isEmpty || indexPath.section >= self.cachedSectionNames.count {
+                title = self.cachedSectionNames[indexPath.section]
+            }
             if let view = self.delegate?.dataSource?(self, collectionView: collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath, withTitle: title) {
                 return view
             }
