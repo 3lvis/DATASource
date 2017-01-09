@@ -42,4 +42,15 @@ class TableViewController: UITableViewController {
     func saveAction() {
         Helper.addNewUser(dataStack: self.dataStack)
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let item = self.dataSource.object(indexPath)
+
+        let name = item?.value(forKey: "name") as? String ?? ""
+        let alert = UIAlertController(title: "Selected object", message: name, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
