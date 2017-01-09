@@ -127,6 +127,7 @@ enum DATAStackStoreType : NSInteger;
 @class NSBundle;
 @class NSManagedObjectModel;
 @class NSError;
+@class NSPersistentStoreRequest;
 
 SWIFT_CLASS("_TtC9DATAStack9DATAStack")
 @interface DATAStack : NSObject
@@ -271,6 +272,20 @@ SWIFT_CLASS("_TtC9DATAStack9DATAStack")
   Drops the database.
 */
 - (BOOL)dropAndReturnError:(NSError * _Nullable * _Nullable)error;
+/**
+  Sends a request to all the persistent stores associated with the receiver.
+  \param request A fetch, save or delete request.
+
+  \param context The context against which request should be executed.
+
+
+  throws:
+  If an error occurs, upon return contains an NSError object that describes the problem.
+
+  returns:
+  An array containing managed objects, managed object IDs, or dictionaries as appropriate for a fetch request; an empty array if request is a save request, or nil if an error occurred.
+*/
+- (id _Nullable)execute:(NSPersistentStoreRequest * _Nonnull)request with:(NSManagedObjectContext * _Nonnull)context error:(NSError * _Nullable * _Nullable)error;
 - (void)mainContextDidSave:(NSNotification * _Nonnull)notification;
 - (void)newDisposableMainContextWillSave:(NSNotification * _Nonnull)notification;
 - (BOOL)backgroundContextDidSave:(NSNotification * _Nonnull)notification error:(NSError * _Nullable * _Nullable)error;
