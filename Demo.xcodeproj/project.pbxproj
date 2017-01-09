@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142E72801E2385BE001ACF3F /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E727E1E2385BE001ACF3F /* CustomTableViewCell.swift */; };
+		142E72811E2385BE001ACF3F /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E727E1E2385BE001ACF3F /* CustomTableViewCell.swift */; };
 		14308AA21CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */; };
 		14308AAA1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */; };
 		14308AB21CC66665000C21DF /* DATASource+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */; };
@@ -114,6 +116,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		142E727E1E2385BE001ACF3F /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		14308A9C1CC66665000C21DF /* DATASource+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DATASource+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		14308A9D1CC66665000C21DF /* DATASource+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DATASource+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		14308A9E1CC66665000C21DF /* DATASource+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DATASource+UITableViewDataSource.swift"; sourceTree = "<group>"; };
@@ -295,6 +298,7 @@
 				1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */,
 				1498B6051C3BC9E80066FAC8 /* CollectionCell.swift */,
 				44A8DB5D1DB77E62009EF5A7 /* Helper.swift */,
+				142E727E1E2385BE001ACF3F /* CustomTableViewCell.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -763,6 +767,7 @@
 				14F2858E1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift in Sources */,
 				44B91D281DB774B6009DB4B7 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				447D2EEC1DB78559006CBF1C /* CollectionViewControllerWithSections.swift in Sources */,
+				142E72801E2385BE001ACF3F /* CustomTableViewCell.swift in Sources */,
 				14663CA61DB97F2D00E8ABFC /* TableViewControllerWithSectionsWithoutIndex.swift in Sources */,
 				44B91D2E1DB774BF009DB4B7 /* DATASourceCollectionHeaderView.swift in Sources */,
 				447D2EE71DB784F9006CBF1C /* OptionsController.swift in Sources */,
@@ -788,6 +793,7 @@
 				44B91D2D1DB774BD009DB4B7 /* DATASource+UITableViewDataSource.swift in Sources */,
 				44B91D291DB774B6009DB4B7 /* DATASource+NSFetchedResultsControllerDelegate.swift in Sources */,
 				44B91D271DB774B4009DB4B7 /* DATASourceDelegate.swift in Sources */,
+				142E72811E2385BE001ACF3F /* CustomTableViewCell.swift in Sources */,
 				4471D4E51DB7822C00DE1EBE /* FooterExampleView.m in Sources */,
 				44B91D001DB7729D009DB4B7 /* main.m in Sources */,
 				44A8DB5F1DB77E62009EF5A7 /* Helper.swift in Sources */,

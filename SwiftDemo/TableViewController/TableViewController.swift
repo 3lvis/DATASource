@@ -11,8 +11,10 @@ class TableViewController: UITableViewController {
             NSSortDescriptor(key: "name", ascending: true),
         ]
 
-        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: "Cell", fetchRequest: request, mainContext: self.dataStack.mainContext)
-        dataSource.delegate = self
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: CustomTableViewCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext) { cell, item, indexPath in
+            let cell = cell as! CustomTableViewCell
+            cell.textLabel?.text = item.value(forKey: "name") as? String ?? ""
+        }
 
         return dataSource
     }()
@@ -30,22 +32,14 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.Identifier)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(TableViewController.saveAction))
         self.tableView.dataSource = self.dataSource
 
-        let object = self.dataSource.objectAtIndexPath(IndexPath(row: 0, section: 0))!
-        print(object)
+        _ = self.dataSource.objectAtIndexPath(IndexPath(row: 0, section: 0))
     }
 
     func saveAction() {
         Helper.addNewUser(dataStack: self.dataStack)
-    }
-}
-
-extension TableViewController: DATASourceDelegate {
-
-    func dataSource(_ dataSource: DATASource, configureTableViewCell cell: UITableViewCell, withItem item: NSManagedObject, atIndexPath indexPath: IndexPath) {
-        cell.textLabel?.text = item.value(forKey: "name") as? String ?? ""
     }
 }
