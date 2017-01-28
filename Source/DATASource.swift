@@ -201,7 +201,8 @@ public class DATASource: NSObject {
      - returns: The object at a given index path in the fetch results.
      */
     public func object<T: NSManagedObject>(_ indexPath: IndexPath) -> T? {
-        if !self.isEmpty {
+        let isInsideBounds = self.fetchedResultsController.sections?.count ?? 0 >= indexPath.section && self.fetchedResultsController.sections?[indexPath.section].numberOfObjects ?? 0 >= indexPath.row
+        if !self.isEmpty && isInsideBounds {
             guard let object = self.fetchedResultsController.object(at: indexPath) as? T else { fatalError("Couldn't cast object") }
             return object
         }
