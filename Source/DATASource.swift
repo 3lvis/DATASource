@@ -206,6 +206,7 @@ public class DATASource: NSObject {
             guard let object = self.fetchedResultsController.object(at: indexPath) as? T else { fatalError("Couldn't cast object") }
             return object
         }
+
         return nil
     }
 
