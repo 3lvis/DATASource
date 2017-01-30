@@ -201,7 +201,7 @@ public class DATASource: NSObject {
      - returns: The object at a given index path in the fetch results.
      */
     public func object<T: NSManagedObject>(_ indexPath: IndexPath) -> T? {
-        if !self.isEmpty {
+        if !self.isEmpty && self.isIndexPathWithinBounds(indexPath) {
             guard let object = self.fetchedResultsController.object(at: indexPath) as? T else { fatalError("Couldn't cast object") }
             return object
         }
@@ -209,6 +209,11 @@ public class DATASource: NSObject {
         return nil
     }
 
+    private func isIndexPathWithinBounds(_ indexPath: IndexPath) -> Bool {
+        return self.fetchedResultsController.sections?.count ?? 0 > indexPath.section &&
+            self.fetchedResultsController.sections?[indexPath.section].numberOfObjects ?? 0 > indexPath.row
+    }
+    
     /**
      Returns the index path of a given managed object.
      - parameter object: An object in the receiver’s fetch results.
@@ -266,14 +271,7 @@ public class DATASource: NSObject {
      - parameter indexPath: The indexPath where the cell is located.
      */
     public func configure(_ cell: UIView, indexPath: IndexPath) {
-        var item: NSManagedObject?
-
-        let rowIsInsideBounds = (indexPath as NSIndexPath).row < self.count
-        if rowIsInsideBounds {
-            item = self.fetchedResultsController.object(at: indexPath) as? NSManagedObject
-        }
-
-        if let item = item {
+        if let item = self.objectAtIndexPath(indexPath) {
             if let _ = self.tableView {
                 if let configuration = self.tableConfigurationBlock {
                     configuration(cell as! UITableViewCell, item, indexPath)
