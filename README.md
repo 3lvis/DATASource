@@ -81,7 +81,7 @@ self.tableView.dataSource = dataSource;
 
 **DATASource** provides an easy way to show an sectioned UITableView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`.
 
-Check the [Swift Demo](https://github.com/SyncDB/DATASource/blob/master/TableSwift/ViewController.swift) for an example of this, were we have an sectioned UITableView of names, where each section is defined by the first letter of the name, just like the Contacts app!
+Check the [Swift Demo](https://github.com/SyncDB/DATASource/blob/master/SwiftDemo/TableViewController/TableViewController.swift) for an example of this, were we have an sectioned UITableView of names, where each section is defined by the first letter of the name, just like the Contacts app!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/SyncDB/DATASource/master/GitHub/table.gif" />
