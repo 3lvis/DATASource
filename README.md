@@ -165,7 +165,7 @@ self.collectionView.dataSource = dataSource;
 
 **DATASource** provides an easy way to show an grouped UICollectionView, you just need to specify the attribute we should use to group your items. This attribute is located in the `dataSource` initializer as a parameter called `sectionName`. This will create a collectionView reusable header.
 
-Check the [CollectionView Demo](https://github.com/SyncDB/DATASource/tree/master/CollectionSwift) for an example of this, were we have a grouped UICollectionView using the first letter of a name as a header, just like the Contacts.app!
+Check the [CollectionView Demo](https://github.com/SyncDB/DATASource/blob/master/SwiftDemo/CollectionViewController/CollectionViewController.swift) for an example of this, were we have a grouped UICollectionView using the first letter of a name as a header, just like the Contacts.app!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/SyncDB/DATASource/master/GitHub/collection.gif" />
