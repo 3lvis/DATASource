@@ -18,6 +18,7 @@
 		14663CA61DB97F2D00E8ABFC /* TableViewControllerWithSectionsWithoutIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14663CA51DB97F2D00E8ABFC /* TableViewControllerWithSectionsWithoutIndex.swift */; };
 		149EE87A1CC916DB002739BA /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 149EE8791CC916DB002739BA /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A139B41AEFC72B00AD732F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A139B31AEFC72B00AD732F /* Tests.swift */; };
+		14A42BBB1EB20AE400DCBF84 /* TableViewControllerDeleteCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A42BBA1EB20AE400DCBF84 /* TableViewControllerDeleteCells.swift */; };
 		14AFFAF11C3C00E3001AD02C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1498B6061C3BC9E80066FAC8 /* DataModel.xcdatamodeld */; };
 		14C022701CC9038700CEFC40 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C0226C1CC9036100CEFC40 /* DATAStack.framework */; };
 		14F2858E1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F2858D1DB9859A00028AD4 /* CollectionViewMultipleCellIdentifiers.swift */; };
@@ -130,6 +131,7 @@
 		1498B6071C3BC9E80066FAC8 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		149EE8791CC916DB002739BA /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14A139B31AEFC72B00AD732F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		14A42BBA1EB20AE400DCBF84 /* TableViewControllerDeleteCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerDeleteCells.swift; sourceTree = "<group>"; };
 		14C022541CC9031700CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14C022581CC9031F00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14C0225C1CC9033B00CEFC40 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
@@ -303,6 +305,14 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		14A42BB91EB20AE400DCBF84 /* TableViewControllerDeleteCells */ = {
+			isa = PBXGroup;
+			children = (
+				14A42BBA1EB20AE400DCBF84 /* TableViewControllerDeleteCells.swift */,
+			);
+			path = TableViewControllerDeleteCells;
+			sourceTree = "<group>";
+		};
 		14C136501AB7849300B7B07A /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +458,7 @@
 				447D2EE41DB784F9006CBF1C /* TableViewController */,
 				447D2EE51DB784F9006CBF1C /* TableViewControllerWithSections */,
 				14663CA41DB97F2D00E8ABFC /* TableViewControllerWithSectionsWithoutIndex */,
+				14A42BB91EB20AE400DCBF84 /* TableViewControllerDeleteCells */,
 				44B91CEF1DB7728D009DB4B7 /* Assets.xcassets */,
 				44B91CF11DB7728D009DB4B7 /* LaunchScreen.storyboard */,
 				44B91CF41DB7728D009DB4B7 /* Info.plist */,
@@ -770,6 +781,7 @@
 				142E72801E2385BE001ACF3F /* CustomTableViewCell.swift in Sources */,
 				14663CA61DB97F2D00E8ABFC /* TableViewControllerWithSectionsWithoutIndex.swift in Sources */,
 				44B91D2E1DB774BF009DB4B7 /* DATASourceCollectionHeaderView.swift in Sources */,
+				14A42BBB1EB20AE400DCBF84 /* TableViewControllerDeleteCells.swift in Sources */,
 				447D2EE71DB784F9006CBF1C /* OptionsController.swift in Sources */,
 				447D2EE61DB784F9006CBF1C /* CollectionViewController.swift in Sources */,
 				44B91D2C1DB774BD009DB4B7 /* DATASource+UITableViewDataSource.swift in Sources */,
