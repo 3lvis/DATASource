@@ -2,6 +2,47 @@ import UIKit
 
 import DATAStack
 
+enum Option: Int {
+    case collection
+    case collectionWithSections
+    case collectionWithMultipleCellIdentifiers
+    case table
+    case tableWithSections
+    case tableWithSectionsWithoutIndex
+    case tableDeleteCells
+
+    var title: String {
+        switch self {
+        case .collection: return "CollectionViewController"
+        case .collectionWithSections: return "CollectionViewControllerWithSections"
+        case .collectionWithMultipleCellIdentifiers: return "CollectionViewMultipleCellIdentifiers"
+        case .table: return "TableViewController"
+        case .tableWithSections: return "TableViewControllerWithSections"
+        case .tableWithSectionsWithoutIndex: return "TableViewControllerWithSectionsWithoutIndex"
+        case .tableDeleteCells: return "TableViewControllerDeleteCells"
+        }
+    }
+
+    func viewController(with dataStack: DATAStack) -> UIViewController {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 120, height: 120)
+        layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
+
+        switch self {
+        case .collection:
+            return CollectionViewController(layout: layout, dataStack: dataStack)
+        case .collectionWithSections:
+            return CollectionViewController(layout: layout, dataStack: dataStack)
+        case .collectionWithMultipleCellIdentifiers:
+            return CollectionViewController(layout: layout, dataStack: dataStack)
+        case .table: return TableViewController(dataStack: dataStack)
+        case .tableWithSections: return TableViewControllerWithSections(dataStack: dataStack)
+        case .tableWithSectionsWithoutIndex: return TableViewControllerWithSectionsWithoutIndex(dataStack: dataStack)
+        case .tableDeleteCells: return TableViewControllerDeleteCells(dataStack: dataStack)
+        }
+    }
+}
+
 class OptionsController: UITableViewController {
     let dataStack: DATAStack
 
@@ -22,69 +63,34 @@ class OptionsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return Option.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.accessoryType = .disclosureIndicator
-
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = "CollectionViewController"
-        case 1:
-            cell.textLabel?.text = "CollectionViewControllerWithSections"
-        case 2:
-            cell.textLabel?.text = "CollectionViewMultipleCellIdentifiers"
-        case 3:
-            cell.textLabel?.text = "TableViewController"
-        case 4:
-            cell.textLabel?.text = "TableViewControllerWithSections"
-        case 5:
-            cell.textLabel?.text = "TableViewControllerWithSectionsWithoutIndex"
-        case 6:
-            cell.textLabel?.text = "TableViewControllerDeleteCells"
-        default: break
+        if let item = Option(rawValue: indexPath.row) as Option? {
+            cell.textLabel?.text = item.title
         }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 120, height: 120)
-            layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
-            let controller = CollectionViewController(layout: layout, dataStack: self.dataStack)
-            self.navigationController?.pushViewController(controller, animated: true)
-        case 1:
-            let bounds = UIScreen.main.bounds
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 120, height: 120)
-            layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
-            layout.headerReferenceSize = CGSize(width: bounds.size.width, height: 60)
-            let controller = CollectionViewControllerWithSections(layout: layout, dataStack: self.dataStack)
-            self.navigationController?.pushViewController(controller, animated: true)
-        case 2:
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 120, height: 120)
-            layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
-            let controller = CollectionViewMultipleCellIdentifiers(layout: layout, dataStack: self.dataStack)
-            self.navigationController?.pushViewController(controller, animated: true)
-        case 3:
-            let controller = TableViewController(dataStack: self.dataStack)
-            self.navigationController?.pushViewController(controller, animated: true)
-        case 4:
-            let controller = TableViewControllerWithSections(dataStack: self.dataStack)
-            self.navigationController?.pushViewController(controller, animated: true)
-        case 5:
-            let controller = TableViewControllerWithSectionsWithoutIndex(dataStack: self.dataStack)
-            self.navigationController?.pushViewController(controller, animated: true)
-        case 6:
-            let controller = TableViewControllerDeleteCells(dataStack: self.dataStack)
-            self.navigationController?.pushViewController(controller, animated: true)
-        default: break
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        if let item = Option(rawValue: indexPath.row) as Option? {
+            navigationController?.pushViewController(item.viewController(with: self.dataStack), animated: true)
         }
+    }
+}
+
+public extension RawRepresentable where RawValue: Integer {
+    public static var count: Int {
+        var i: RawValue = 0
+        while let _ = Self(rawValue: i) {
+            i = i.advanced(by: 1)
+        }
+        return Int(i.toIntMax())
     }
 }
