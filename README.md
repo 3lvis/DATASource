@@ -229,7 +229,7 @@ github "SyncDB/DATASource" ~> 6.0
 
 ## Author
 
-SyncDB, [@Sync_DB](https://twitter.com/Sync_DB)
+Elvis Nuñez, [@3lvis](https://twitter.com/3lvis)
 
 ## License
 
