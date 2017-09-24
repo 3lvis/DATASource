@@ -2,9 +2,9 @@ import UIKit
 
 // Everything here needs to be public to be accessed by Objective-C.
 public class CollectionCell: UICollectionViewCell {
-    public static let Identifier = "CollectionCellIdentifier"
+    @objc public static let identifier = "CollectionCellIdentifier"
 
-    public lazy var textLabel: UILabel = {
+    @objc public lazy var textLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         label.textAlignment = .center
 

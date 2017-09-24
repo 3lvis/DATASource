@@ -2,7 +2,7 @@ import Foundation
 import DATAStack
 
 public class Helper: NSObject {
-    public class func addNewUser(dataStack: DATAStack) {
+    @objc public class func addNewUser(dataStack: DATAStack) {
         dataStack.performInNewBackgroundContext { backgroundContext in
             if let entity = NSEntityDescription.entity(forEntityName: "User", in: backgroundContext) {
                 let user = NSManagedObject(entity: entity, insertInto: backgroundContext)

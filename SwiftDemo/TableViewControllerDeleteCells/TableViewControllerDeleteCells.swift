@@ -40,7 +40,7 @@ class TableViewControllerDeleteCells: UITableViewController {
         Helper.addNewUser(dataStack: self.dataStack)
     }
 
-    func toggleEdit() {
+    @objc func toggleEdit() {
         self.setEditing(!self.isEditing, animated: true)
     }
 }

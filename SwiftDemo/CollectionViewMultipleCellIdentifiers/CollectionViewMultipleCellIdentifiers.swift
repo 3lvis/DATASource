@@ -44,7 +44,7 @@ class CollectionViewMultipleCellIdentifiers: UICollectionViewController {
 
         guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
 
-        collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.Identifier)
+        collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.identifier)
         collectionView.register(AlternativeCell.self, forCellWithReuseIdentifier: AlternativeCell.Identifier)
         collectionView.dataSource = self.dataSource
         collectionView.backgroundColor = UIColor.white
@@ -65,7 +65,7 @@ extension CollectionViewMultipleCellIdentifiers: DATASourceDelegate {
         if role == "manager" {
             return AlternativeCell.Identifier
         } else {
-            return CollectionCell.Identifier
+            return CollectionCell.identifier
         }
     }
 }

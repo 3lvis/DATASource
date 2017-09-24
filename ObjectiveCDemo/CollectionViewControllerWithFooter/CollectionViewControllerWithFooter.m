@@ -33,7 +33,7 @@
                                 [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
     _dataSource = [[DATASource alloc] initWithCollectionView:self.collectionView
-                                              cellIdentifier:[CollectionCell Identifier]
+                                              cellIdentifier:[CollectionCell identifier]
                                                 fetchRequest:request
                                                  mainContext:self.dataStack.mainContext
                                                  sectionName:@"firstLetterOfName"
@@ -49,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.collectionView registerClass:[CollectionCell class] forCellWithReuseIdentifier:[CollectionCell Identifier]];
+    [self.collectionView registerClass:[CollectionCell class] forCellWithReuseIdentifier:[CollectionCell identifier]];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                           target:self
                                                                           action:@selector(addAction)];

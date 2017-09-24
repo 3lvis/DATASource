@@ -39,7 +39,7 @@ class TableViewController: UITableViewController {
         _ = self.dataSource.objectAtIndexPath(IndexPath(row: 0, section: 0))
     }
 
-    func saveAction() {
+    @objc func saveAction() {
         Helper.addNewUser(dataStack: self.dataStack)
     }
 
