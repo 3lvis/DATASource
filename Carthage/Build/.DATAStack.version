@@ -1,0 +1,27 @@
+{
+  "iOS" : [
+    {
+      "hash" : "0f05d1fd2502f2386c1151290ca63ae01de4fddcd43b8f70210357f4f533370a",
+      "name" : "DATAStack"
+    }
+  ],
+  "commitish" : "8.0.0",
+  "watchOS" : [
+    {
+      "hash" : "a8f7930ba7e520c520d9d317b1abc5df7047fa9d86c06356445ecd23d0e80667",
+      "name" : "DATAStack"
+    }
+  ],
+  "tvOS" : [
+    {
+      "hash" : "671567f96c1153af5bbd66645e87957bbdb457f33d2f81bf8fd3434dffb2d491",
+      "name" : "DATAStack"
+    }
+  ],
+  "Mac" : [
+    {
+      "hash" : "c97a950635b85eb31d41547f37665c6f894323c5b815d8bdcbb7ba1f3d1c6f0f",
+      "name" : "DATAStack"
+    }
+  ]
+}

@@ -283,9 +283,7 @@ SWIFT_CLASS("_TtC9DATAStack9DATAStack")
 /// \param operation The block that contains the created background context.
 ///
 - (void)performBackgroundTaskWithOperation:(void (^ _Nonnull)(NSManagedObjectContext * _Nonnull))operation;
-- (void)saveMainThreadWithCompletion:(void (^ _Nullable)(NSError * _Nullable))completion SWIFT_DEPRECATED_OBJC("Swift method 'DATAStack.saveMainThread(completion:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 - (void)dropWithCompletion:(void (^ _Nullable)(NSError * _Nullable))completion;
-- (BOOL)oldDropWithStoreURL:(NSURL * _Nonnull)storeURL error:(NSError * _Nullable * _Nullable)error SWIFT_DEPRECATED_OBJC("Swift method 'DATAStack.oldDrop(storeURL:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 /// Sends a request to all the persistent stores associated with the receiver.
 /// \param request A fetch, save or delete request.
 ///
@@ -309,19 +307,10 @@ typedef SWIFT_ENUM(NSInteger, DATAStackStoreType) {
 };
 
 
-@interface NSError (SWIFT_EXTENSION(DATAStack))
-- (nonnull instancetype)initWithInfo:(NSString * _Nonnull)info previousError:(NSError * _Nullable)previousError SWIFT_DEPRECATED_OBJC("Swift initializer 'NSError.init(info:previousError:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@end
 
 
-@interface NSManagedObjectModel (SWIFT_EXTENSION(DATAStack))
-- (nonnull instancetype)initWithBundle:(NSBundle * _Nonnull)bundle name:(NSString * _Nonnull)name SWIFT_DEPRECATED_OBJC("Swift initializer 'NSManagedObjectModel.init(bundle:name:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@end
 
 
-@interface NSPersistentStoreCoordinator (SWIFT_EXTENSION(DATAStack))
-- (BOOL)addPersistentStoreWithStoreType:(enum DATAStackStoreType)storeType bundle:(NSBundle * _Nonnull)bundle modelName:(NSString * _Nonnull)modelName storeName:(NSString * _Nullable)storeName containerURL:(NSURL * _Nonnull)containerURL error:(NSError * _Nullable * _Nullable)error SWIFT_DEPRECATED_OBJC("Swift method 'NSPersistentStoreCoordinator.addPersistentStore(storeType:bundle:modelName:storeName:containerURL:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@end
 
 SWIFT_MODULE_NAMESPACE_POP
 #pragma clang diagnostic pop
