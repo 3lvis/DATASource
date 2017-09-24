@@ -15,7 +15,7 @@ class CollectionViewControllerWithSections: UICollectionViewController {
             NSSortDescriptor(key: "firstLetterOfName", ascending: true),
         ]
 
-        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.Identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
+        let dataSource = DATASource(collectionView: collectionView, cellIdentifier: CollectionCell.identifier, fetchRequest: request, mainContext: self.dataStack.mainContext, sectionName: "firstLetterOfName", configuration: { cell, item, indexPath in
             let collectionCell = cell as! CollectionCell
             collectionCell.textLabel.text = item.value(forKey: "name") as? String
         })
@@ -38,7 +38,7 @@ class CollectionViewControllerWithSections: UICollectionViewController {
 
         guard let collectionView = self.collectionView else { fatalError("CollectionView is nil") }
 
-        collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.Identifier)
+        collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.identifier)
         collectionView.dataSource = self.dataSource
         collectionView.backgroundColor = UIColor.white
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)

@@ -7,4 +7,5 @@ framework module DATAStack {
 
 module DATAStack.Swift {
     header "DATAStack-Swift.h"
+    requires objc
 }

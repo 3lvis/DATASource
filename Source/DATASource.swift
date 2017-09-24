@@ -12,7 +12,7 @@ public class DATASource: NSObject {
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: @escaping (_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
+    @objc public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: @escaping (_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: configuration, collectionConfiguration: nil)
 
         self.tableView = tableView
@@ -28,7 +28,7 @@ public class DATASource: NSObject {
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      - parameter configuration: A configuration block that provides you the cell, the managed object and the index path to be configured.
      */
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: @escaping (_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
+    @objc public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, configuration: @escaping (_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ()) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: configuration)
 
         self.collectionView = collectionView
@@ -45,7 +45,7 @@ public class DATASource: NSObject {
      - parameter mainContext: A main thread managed object context.
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      */
-    public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
+    @objc public convenience init(tableView: UITableView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: nil)
 
         self.tableView = tableView
@@ -60,7 +60,7 @@ public class DATASource: NSObject {
      - parameter mainContext: A main thread managed object context.
      - parameter sectionName: The section to be used for generating the section headers. `nil` means no grouping by section is needed.
      */
-    public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
+    @objc public convenience init(collectionView: UICollectionView, cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil) {
         self.init(cellIdentifier: cellIdentifier, fetchRequest: fetchRequest, mainContext: mainContext, sectionName: sectionName, tableConfiguration: nil, collectionConfiguration: nil)
 
         self.collectionView = collectionView
@@ -92,7 +92,7 @@ public class DATASource: NSObject {
     /**
      The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
      */
-    public weak var delegate: DATASourceDelegate?
+    @objc public weak var delegate: DATASourceDelegate?
 
     /**
      Dictionary to configurate the different animations to be applied by each change type.
@@ -117,7 +117,7 @@ public class DATASource: NSObject {
     /**
      The DATASource's predicate.
      */
-    public var predicate: NSPredicate? {
+    @objc public var predicate: NSPredicate? {
         get {
             return self.fetchedResultsController.fetchRequest.predicate
         }
@@ -134,7 +134,7 @@ public class DATASource: NSObject {
     /**
      The number of objects fetched by DATASource.
      */
-    public var count: Int {
+    @objc public var count: Int {
         var total = 0
         let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
         if sections.count == 0 {
@@ -152,7 +152,7 @@ public class DATASource: NSObject {
      Check for wheter the DATASource is empty or not. Returns `true` is the amount of objects
      is more than 0.
      */
-    public var isEmpty: Bool {
+    @objc public var isEmpty: Bool {
         let sections = self.fetchedResultsController.sections ?? [NSFetchedResultsSectionInfo]()
         if sections.count == 0 {
             return true
@@ -171,7 +171,7 @@ public class DATASource: NSObject {
      The objects fetched by DATASource. This is an array of `NSManagedObject`.
      */
     // Meant to be a Objective-C compatibility later for `all`
-    public var objects: [NSManagedObject] {
+    @objc public var objects: [NSManagedObject] {
         return all()
     }
 
@@ -188,7 +188,7 @@ public class DATASource: NSObject {
      - returns: The object at a given index path in the fetch results.
      */
     // Meant to be a Objective-C compatibility later for object(indexPath: indexPath)
-    public func objectAtIndexPath(_ indexPath: IndexPath) -> NSManagedObject? {
+    @objc public func objectAtIndexPath(_ indexPath: IndexPath) -> NSManagedObject? {
         return object(indexPath)
     }
 
@@ -218,7 +218,7 @@ public class DATASource: NSObject {
      */
     //
     // Meant to be a Objective-C compatibility later for `indexPath(object: object)`
-    public func indexPathForObject(_ object: NSManagedObject) -> IndexPath? {
+    @objc public func indexPathForObject(_ object: NSManagedObject) -> IndexPath? {
         return self.indexPath(object)
     }
 
@@ -227,14 +227,14 @@ public class DATASource: NSObject {
      - parameter object: An object in the receiver’s fetch results.
      - returns: The index path of object in the receiver’s fetch results, or nil if object could not be found.
      */
-    public func indexPath(_ object: NSManagedObject) -> IndexPath? {
+    @objc public func indexPath(_ object: NSManagedObject) -> IndexPath? {
         return self.fetchedResultsController.indexPath(forObject: object) ?? nil
     }
 
     /**
      Executes the DATASource's fetch request.
      */
-    public func fetch() {
+    @objc public func fetch() {
         do {
             self.cachedSectionNames = [String]() as [Any]
             try self.fetchedResultsController.performFetch()
@@ -249,7 +249,7 @@ public class DATASource: NSObject {
      - returns: The title for the requested section, returns `nil` if the section is not present.
      */
     // Meant to be a Objective-C compatibility later for `titleForHeader(section: section)`
-    public func titleForHeaderInSection(_ section: Int) -> String? {
+    @objc public func titleForHeaderInSection(_ section: Int) -> String? {
         return self.titleForHeader(section)
     }
 
@@ -258,7 +258,7 @@ public class DATASource: NSObject {
      - parameter section: The section used to retrieve the title.
      - returns: The title for the requested section, returns `nil` if the section is not present.
      */
-    public func titleForHeader(_ section: Int) -> String? {
+    @objc public func titleForHeader(_ section: Int) -> String? {
         return self.fetchedResultsController.sections?[section].name
     }
 
@@ -267,7 +267,7 @@ public class DATASource: NSObject {
      - parameter cell: The cell to be loaded.
      - parameter indexPath: The indexPath where the cell is located.
      */
-    public func configure(_ cell: UIView, indexPath: IndexPath) {
+    @objc public func configure(_ cell: UIView, indexPath: IndexPath) {
         if let item = self.objectAtIndexPath(indexPath) {
             if let _ = self.tableView {
                 if let configuration = self.tableConfigurationBlock {
@@ -293,7 +293,7 @@ public class DATASource: NSObject {
      Lightweight replacement for `reloadItemsAtIndexPaths` that doesn't flash the reloaded items.
      - parameter indexPaths: The array of indexPaths to be reloaded.
      */
-    public func reloadCells(at indexPaths: [IndexPath]) {
+    @objc public func reloadCells(at indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if let tableView = self.tableView {
                 if let cell = tableView.cellForRow(at: indexPath) {
