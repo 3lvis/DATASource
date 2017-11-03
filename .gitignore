@@ -30,7 +30,9 @@ DerivedData
 *.bcsymbolmap
 
 Carthage/Build/watchOS
+Carthage/Build/Mac
 Carthage/Build/tvOS/DATASource.framework*
 Carthage/Build/Mac/DATASource.framework*
 Carthage/Build/iOS/DATASource.framework*
+Carthage/Checkouts
 DATASource.framework.zip
