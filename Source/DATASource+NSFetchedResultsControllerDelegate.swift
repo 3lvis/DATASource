@@ -61,14 +61,14 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 }
                 break
             case .update:
-                if let indexPath = indexPath {
-                    if tableView.indexPathsForVisibleRows?.index(of: indexPath) != nil {
-                        if let cell = tableView.cellForRow(at: indexPath) {
-                            self.configure(cell, indexPath: indexPath)
+                if let newIndexPath = newIndexPath {
+                    if tableView.indexPathsForVisibleRows?.index(of: newIndexPath) != nil {
+                        if let cell = tableView.cellForRow(at: newIndexPath) {
+                            self.configure(cell, indexPath: newIndexPath)
                         }
 
                         if let anObject = anObject as? NSManagedObject {
-                            self.delegate?.dataSource?(self, didUpdateObject: anObject, atIndexPath: indexPath)
+                            self.delegate?.dataSource?(self, didUpdateObject: anObject, atIndexPath: newIndexPath)
                         }
                     }
                 }

@@ -29,9 +29,9 @@ public class Helper: NSObject {
         let letters = "ABCDEFGHIJKL"
         var string = ""
         for _ in 0 ... 5 {
-            let token = UInt32(letters.characters.count)
+            let token = UInt32(letters.count)
             let letterIndex = Int(arc4random_uniform(token))
-            let firstChar = Array(letters.characters)[letterIndex]
+            let firstChar = Array(letters)[letterIndex]
             string.append(firstChar)
         }
 
