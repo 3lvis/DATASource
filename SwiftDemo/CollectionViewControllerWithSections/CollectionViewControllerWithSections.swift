@@ -43,10 +43,10 @@ class CollectionViewControllerWithSections: UICollectionViewController {
         collectionView.backgroundColor = UIColor.white
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(CollectionViewController.saveAction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(saveAction))
     }
 
-    func saveAction() {
+    @objc func saveAction() {
         Helper.addNewUser(dataStack: self.dataStack)
     }
 }

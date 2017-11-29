@@ -32,11 +32,11 @@ class TableViewControllerWithSectionsWithoutIndex: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(TableViewController.saveAction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(saveAction))
         self.tableView.dataSource = self.dataSource
     }
 
-    func saveAction() {
+    @objc func saveAction() {
         Helper.addNewUser(dataStack: self.dataStack)
     }
 }

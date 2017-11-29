@@ -34,7 +34,7 @@ class TableViewControllerDeleteCells: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.Identifier)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(TableViewControllerDeleteCells.toggleEdit))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEdit))
         self.tableView.dataSource = self.dataSource
 
         Helper.addNewUser(dataStack: self.dataStack)
