@@ -1,27 +1,27 @@
 {
-  "iOS" : [
+  "Mac" : [
     {
-      "hash" : "0f05d1fd2502f2386c1151290ca63ae01de4fddcd43b8f70210357f4f533370a",
-      "name" : "DATAStack"
+      "name" : "DATAStack",
+      "hash" : "f27bcf8356a6d54a4b1afc54f47239557aa5cc52568e92c205b7d7ca0f142160"
     }
   ],
-  "commitish" : "8.0.0",
   "watchOS" : [
     {
-      "hash" : "a8f7930ba7e520c520d9d317b1abc5df7047fa9d86c06356445ecd23d0e80667",
-      "name" : "DATAStack"
+      "name" : "DATAStack",
+      "hash" : "5746a658c51a48ebcea424decd8d2c417fd742b7b751a3959ca9f90d668c8d66"
     }
   ],
   "tvOS" : [
     {
-      "hash" : "671567f96c1153af5bbd66645e87957bbdb457f33d2f81bf8fd3434dffb2d491",
-      "name" : "DATAStack"
+      "name" : "DATAStack",
+      "hash" : "126a57ba1d3343693ac0e709edc6514b50ae093b57d9379aa77c2f9a9f124bfb"
     }
   ],
-  "Mac" : [
+  "commitish" : "8.0.2",
+  "iOS" : [
     {
-      "hash" : "c97a950635b85eb31d41547f37665c6f894323c5b815d8bdcbb7ba1f3d1c6f0f",
-      "name" : "DATAStack"
+      "name" : "DATAStack",
+      "hash" : "738773cd1dafb69483ace625789cd48adefa2b29e12ea4539a5070b093243a42"
     }
   ]
 }
