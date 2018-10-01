@@ -34,7 +34,7 @@ public class DATASource: NSObject {
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
 
-        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
+        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
     }
 
     /**
@@ -66,7 +66,7 @@ public class DATASource: NSObject {
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
 
-        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
+        self.collectionView?.register(DATASourceCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DATASourceCollectionViewHeader.Identifier)
     }
 
     private init(cellIdentifier: String, fetchRequest: NSFetchRequest<NSFetchRequestResult>, mainContext: NSManagedObjectContext, sectionName: String? = nil, tableConfiguration: ((_ cell: UITableViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?, collectionConfiguration: ((_ cell: UICollectionViewCell, _ item: NSManagedObject, _ indexPath: IndexPath) -> ())?) {
@@ -97,7 +97,7 @@ public class DATASource: NSObject {
     /**
      Dictionary to configurate the different animations to be applied by each change type.
      */
-    public var animations: [NSFetchedResultsChangeType: UITableViewRowAnimation]?
+    public var animations: [NSFetchedResultsChangeType: UITableView.RowAnimation]?
 
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
 
