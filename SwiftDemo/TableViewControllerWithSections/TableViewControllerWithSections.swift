@@ -39,6 +39,14 @@ class TableViewControllerWithSections: UITableViewController {
     @objc func saveAction() {
         Helper.addNewUser(dataStack: self.dataStack)
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let user = dataSource.object(indexPath) {
+            let name = user.value(forKey: "name") as! String + "1"
+            user.setValue(name, forKey: "name")
+            try! dataStack.mainContext.save()
+        }
+    }
 }
 
 extension TableViewControllerWithSections: DATASourceDelegate {
