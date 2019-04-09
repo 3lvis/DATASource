@@ -50,7 +50,7 @@ extension TableViewControllerDeleteCells: DATASourceDelegate {
         return true
     }
 
-    func dataSource(_ dataSource: DATASource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath) {
+    func dataSource(_ dataSource: DATASource, tableView: UITableView, commitEditingStyle editingStyle: UITableViewCell.EditingStyle, forRowAtIndexPath indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             let item = self.dataSource.object(indexPath)

@@ -27,6 +27,8 @@ extension DATASource: NSFetchedResultsControllerDelegate {
             case .move, .update:
                 tableView.reloadSections(IndexSet(integer: sectionIndex), with: rowAnimationType)
                 break
+            @unknown default:
+                fatalError("Unknown NSFetchedResultsChangeType not implemented")
             }
         } else if let _ = self.collectionView {
             switch type {
@@ -40,6 +42,8 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 break
             case .move, .update:
                 break
+            @unknown default:
+                fatalError("Unknown NSFetchedResultsChangeType not implemented")
             }
         }
     }
@@ -62,7 +66,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 break
             case .update:
                 if let newIndexPath = newIndexPath {
-                    if tableView.indexPathsForVisibleRows?.index(of: newIndexPath) != nil {
+                    if tableView.indexPathsForVisibleRows?.firstIndex(of: newIndexPath) != nil {
                         if let cell = tableView.cellForRow(at: newIndexPath) {
                             self.configure(cell, indexPath: newIndexPath)
                         }
@@ -96,6 +100,8 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     }
                 }
                 break
+            @unknown default:
+                fatalError("Unknown NSFetchedResultsChangeType not implemented")
             }
         } else if let _ = self.collectionView {
             var changeSet = self.objectChanges[type] ?? Set<IndexPath>()
@@ -128,6 +134,8 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     }
                 }
                 break
+            @unknown default:
+                fatalError("Unknown NSFetchedResultsChangeType not implemented")
             }
         }
     }

@@ -86,7 +86,7 @@ class OptionsController: UITableViewController {
 }
 
 public extension RawRepresentable where RawValue: BinaryInteger {
-    public static var count: Int {
+    static var count: Int {
         var i: RawValue = 0 as! Self.RawValue
         while let _ = Self(rawValue: i) {
             i = i.advanced(by: 1)
