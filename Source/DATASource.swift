@@ -132,6 +132,23 @@ public class DATASource: NSObject {
     }
 
     /**
+     The DATASource's sort descriptors.
+     */
+    @objc public var sortDescriptor: [NSSortDescriptor]? {
+        get {
+            return self.fetchedResultsController.fetchRequest.sortDescriptors
+        }
+
+        set {
+            self.cachedSectionNames = [String]() as [Any]
+            self.fetchedResultsController.fetchRequest.sortDescriptors = newValue
+            self.fetch()
+            self.tableView?.reloadData()
+            self.collectionView?.reloadData()
+        }
+    }
+
+    /**
      The number of objects fetched by DATASource.
      */
     @objc public var count: Int {
