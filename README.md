@@ -217,14 +217,14 @@ dataSource.animations = [.update: .none, .move  : .none, .insert: .none]
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'DATASource', '~> 6'
+pod 'DATASource', '~> 7'
 ```
 
 **DATASource** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
 it, simply add the following line to your Cartfile:
 
 ```ruby
-github "SyncDB/DATASource" ~> 6.0
+github "SyncDB/DATASource" ~> 7.0
 ```
 
 ## Author
