@@ -79,24 +79,11 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 break
             case .move:
                 if let indexPath = indexPath, let newIndexPath = newIndexPath {
-                    // Workaround: Updating a UICollectionView element sometimes will trigger a .Move change
-                    // where both indexPaths are the same, as a workaround if this happens, DATASource
-                    // will treat this change as an .Update
-                    if collectionView != nil && indexPath == newIndexPath {
-                        if let cell = tableView.cellForRow(at: newIndexPath) {
-                            self.configure(cell, indexPath: newIndexPath)
-                        }
+                    tableView.deleteRows(at: [indexPath], with: rowAnimationType)
+                    tableView.insertRows(at: [newIndexPath], with: rowAnimationType)
 
-                        if let anObject = anObject as? NSManagedObject {
-                            self.delegate?.dataSource?(self, didUpdateObject: anObject, atIndexPath: newIndexPath)
-                        }
-                    } else {
-                        tableView.deleteRows(at: [indexPath], with: rowAnimationType)
-                        tableView.insertRows(at: [newIndexPath], with: rowAnimationType)
-
-                        if let anObject = anObject as? NSManagedObject {
-                            self.delegate?.dataSource?(self, didMoveObject: anObject, fromIndexPath: indexPath, toIndexPath: newIndexPath)
-                        }
+                    if let anObject = anObject as? NSManagedObject {
+                        self.delegate?.dataSource?(self, didMoveObject: anObject, fromIndexPath: indexPath, toIndexPath: newIndexPath)
                     }
                 }
                 break
