@@ -82,7 +82,7 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                     // Workaround: Updating a UICollectionView element sometimes will trigger a .Move change
                     // where both indexPaths are the same, as a workaround if this happens, DATASource
                     // will treat this change as an .Update
-                    if indexPath == newIndexPath {
+                    if collectionView != nil && indexPath == newIndexPath {
                         if let cell = tableView.cellForRow(at: newIndexPath) {
                             self.configure(cell, indexPath: newIndexPath)
                         }
