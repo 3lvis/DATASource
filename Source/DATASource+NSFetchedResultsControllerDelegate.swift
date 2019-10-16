@@ -66,6 +66,9 @@ extension DATASource: NSFetchedResultsControllerDelegate {
                 break
             case .update:
                 if let newIndexPath = newIndexPath {
+                    if let indexPath = indexPath, indexPath != newIndexPath {
+                        fallthrough
+                    }
                     if tableView.indexPathsForVisibleRows?.firstIndex(of: newIndexPath) != nil {
                         if let cell = tableView.cellForRow(at: newIndexPath) {
                             self.configure(cell, indexPath: newIndexPath)
