@@ -24,17 +24,24 @@ enum Option: Int {
     }
 
     func viewController(with dataStack: DATAStack) -> UIViewController {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 120, height: 120)
-        layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
-
         switch self {
         case .collection:
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: 120, height: 120)
+            layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
             return CollectionViewController(layout: layout, dataStack: dataStack)
         case .collectionWithSections:
-            return CollectionViewController(layout: layout, dataStack: dataStack)
+            let bounds = UIScreen.main.bounds
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: 120, height: 120)
+            layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
+            layout.headerReferenceSize = CGSize(width: bounds.size.width, height: 60.0)
+            return CollectionViewControllerWithSections(layout: layout, dataStack: dataStack)
         case .collectionWithMultipleCellIdentifiers:
-            return CollectionViewController(layout: layout, dataStack: dataStack)
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: 120, height: 120)
+            layout.sectionInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
+            return CollectionViewMultipleCellIdentifiers(layout: layout, dataStack: dataStack)
         case .table: return TableViewController(dataStack: dataStack)
         case .tableWithSections: return TableViewControllerWithSections(dataStack: dataStack)
         case .tableWithSectionsWithoutIndex: return TableViewControllerWithSectionsWithoutIndex(dataStack: dataStack)

@@ -273,8 +273,6 @@ SWIFT_CLASS("_TtC9DATAStack9DATAStack")
 /// name is AwesomeApp then the .sqlite file will be named AwesomeApp.sqlite, this attribute allows your to
 /// change that.
 ///
-/// \param isExcludedFromBackup Flag to indicate if the data store should be excluded from backup. Only applies to sqlite stores. Default set to true.
-///
 - (nonnull instancetype)initWithModelName:(NSString * _Nonnull)modelName bundle:(NSBundle * _Nonnull)bundle storeType:(enum DATAStackStoreType)storeType storeName:(NSString * _Nonnull)storeName OBJC_DESIGNATED_INITIALIZER;
 /// Initializes a DATAStack using the provided model name, bundle, storeType and store name.
 /// \param modelName The name of your Core Data model (xcdatamodeld).
@@ -292,16 +290,12 @@ SWIFT_CLASS("_TtC9DATAStack9DATAStack")
 ///
 /// \param containerURL The container URL for the sqlite file when a store type of SQLite is used.
 ///
-/// \param isExcludedFromBackup Flag to indicate if the data store should be excluded from backup. Only applies to sqlite stores. Default set to true.
-///
 - (nonnull instancetype)initWithModelName:(NSString * _Nonnull)modelName bundle:(NSBundle * _Nonnull)bundle storeType:(enum DATAStackStoreType)storeType storeName:(NSString * _Nonnull)storeName containerURL:(NSURL * _Nonnull)containerURL OBJC_DESIGNATED_INITIALIZER;
 /// Initializes a DATAStack using the provided model name, bundle and storeType.
 /// \param model The model that we’ll use to set up your DATAStack.
 ///
 /// \param storeType The store type to be used, you have .InMemory and .SQLite, the first one is memory
 /// based and doesn’t save to disk, while the second one creates a .sqlite file and stores things there.
-///
-/// \param isExcludedFromBackup Flag to indicate if the data store should be excluded from backup. Only applies to sqlite stores. Default set to true
 ///
 - (nonnull instancetype)initWithModel:(NSManagedObjectModel * _Nonnull)model storeType:(enum DATAStackStoreType)storeType OBJC_DESIGNATED_INITIALIZER;
 /// Returns a new main context that is detached from saving to disk.
@@ -624,8 +618,6 @@ SWIFT_CLASS("_TtC9DATAStack9DATAStack")
 /// name is AwesomeApp then the .sqlite file will be named AwesomeApp.sqlite, this attribute allows your to
 /// change that.
 ///
-/// \param isExcludedFromBackup Flag to indicate if the data store should be excluded from backup. Only applies to sqlite stores. Default set to true.
-///
 - (nonnull instancetype)initWithModelName:(NSString * _Nonnull)modelName bundle:(NSBundle * _Nonnull)bundle storeType:(enum DATAStackStoreType)storeType storeName:(NSString * _Nonnull)storeName OBJC_DESIGNATED_INITIALIZER;
 /// Initializes a DATAStack using the provided model name, bundle, storeType and store name.
 /// \param modelName The name of your Core Data model (xcdatamodeld).
@@ -643,16 +635,12 @@ SWIFT_CLASS("_TtC9DATAStack9DATAStack")
 ///
 /// \param containerURL The container URL for the sqlite file when a store type of SQLite is used.
 ///
-/// \param isExcludedFromBackup Flag to indicate if the data store should be excluded from backup. Only applies to sqlite stores. Default set to true.
-///
 - (nonnull instancetype)initWithModelName:(NSString * _Nonnull)modelName bundle:(NSBundle * _Nonnull)bundle storeType:(enum DATAStackStoreType)storeType storeName:(NSString * _Nonnull)storeName containerURL:(NSURL * _Nonnull)containerURL OBJC_DESIGNATED_INITIALIZER;
 /// Initializes a DATAStack using the provided model name, bundle and storeType.
 /// \param model The model that we’ll use to set up your DATAStack.
 ///
 /// \param storeType The store type to be used, you have .InMemory and .SQLite, the first one is memory
 /// based and doesn’t save to disk, while the second one creates a .sqlite file and stores things there.
-///
-/// \param isExcludedFromBackup Flag to indicate if the data store should be excluded from backup. Only applies to sqlite stores. Default set to true
 ///
 - (nonnull instancetype)initWithModel:(NSManagedObjectModel * _Nonnull)model storeType:(enum DATAStackStoreType)storeType OBJC_DESIGNATED_INITIALIZER;
 /// Returns a new main context that is detached from saving to disk.
